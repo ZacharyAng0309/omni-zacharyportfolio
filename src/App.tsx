@@ -23,7 +23,7 @@ export default function App() {
 
   const handleResumeDownload = () => {
     const link = document.createElement('a');
-    link.href = '/resume_zachary_ang.pdf';
+    link.href = `${import.meta.env.BASE_URL}resume_zachary_ang.pdf`;
     link.download = 'Zachary_Ang_Zi_Yang_Resume.pdf';
     document.body.appendChild(link);
     link.click();

@@ -181,8 +181,9 @@ export class SceneController {
 
     // Load High-Class GLB Avatar
     const loader = new GLTFLoader();
+    const modelUrl = `${import.meta.env.BASE_URL}models/Asian_M_3_Busi.glb`;
     loader.load(
-      '/models/Asian_M_3_Busi.glb',
+      modelUrl,
       (gltf) => {
         if (this.isDisposed) return;
         this.avatarModel = gltf.scene;
