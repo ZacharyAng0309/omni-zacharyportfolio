@@ -151,39 +151,4 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     repoUrl: 'https://github.com/ZacharyAng0309',
   },
-  {
-    id: 'cs-gdsc-bot',
-    createdAt: '2023-11-20T00:00:00.000Z',
-    slug: 'gdsc-multimodal-assistant',
-    title: 'GDSC Community Bot & Gemini 1.5 Multimodal Workshop',
-    subtitle: 'Autonomous Community Mentor, Workshop Q&A, and Hackathon Companion',
-    category: 'Community AI',
-    role: 'Workshop Lead & GDSC APU Core Committee Member',
-    featuredAward: 'Flagship Community Tooling — Mentored 500+ Student Developers',
-    accentColor: '#818cf8',
-    impactMetrics: [
-      'Trained 500+ active student developers across GDSC APU events and technical workshops',
-      'Delivered live coding sessions on Gemini 1.5 streaming APIs, Vue.js, and React Native',
-      'Reduced repetitive student syntax and setup queries by over 70% during university hackathons',
-      'Open-sourced educational workshop repositories on GitHub for community reuse',
-    ],
-    description:
-      'Created and open-sourced an autonomous Discord assistant for Google Developer Student Clubs at APU. The agent leverages Gemini multimodal vision to debug student code screenshots and answer architectural questions in real time, serving as the basis for hands-on student workshops.',
-    problemStatement:
-      'University hackathon mentors are overwhelmed by hundreds of simultaneous syntax, environment setup, and framework questions, causing beginner developers to drop out before completing their prototypes.',
-    solutionArchitecture: [
-      'Multimodal Screenshot Parser: Ingests error screenshots and terminal output, analyzing stack traces via Gemini Pro Vision API.',
-      'RAG Community Index: Ingests past workshop slides, repo links, and setup guides to provide grounded, citation-backed answers.',
-      'Automated Workshop Labs: Hands-on student sandbox used to demonstrate live prompt engineering, streaming responses, and function calling.',
-    ],
-    techStack: [
-      'Node.js / TypeScript',
-      'Google Gemini 1.5 API',
-      'Discord.js API',
-      'Google Cloud Functions',
-      'Vue.js',
-      'React Native',
-    ],
-    repoUrl: 'https://github.com/ZacharyAng0309/discord-gemini-workshop',
-  },
 ];
