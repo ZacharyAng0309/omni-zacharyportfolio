@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { ThreeCanvas } from './graphics/ThreeCanvas';
 import { NavbarHUD } from './components/NavbarHUD';
 import { HeroSection } from './components/HeroSection';
@@ -28,12 +28,24 @@ export default function App() {
     }
   };
 
-  const handleSelectCaseStudyBySlug = (slug: string) => {
+  const handleSelectCaseStudyBySlug = useCallback((slug: string) => {
     const found = CASE_STUDIES.find((cs) => cs.slug === slug);
     if (found) {
       setSelectedCaseStudy(found);
     }
-  };
+  }, []);
+
+  const handleOpenPressModal = useCallback(() => {
+    setIsPressModalOpen(true);
+  }, []);
+
+  const handleClosePressModal = useCallback(() => {
+    setIsPressModalOpen(false);
+  }, []);
+
+  const handleCloseCaseStudyModal = useCallback(() => {
+    setSelectedCaseStudy(null);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-black text-neutral-100 font-sans selection:bg-blue-500/30 selection:text-white">
@@ -41,7 +53,7 @@ export default function App() {
       <ThreeCanvas
         scrollProgress={scrollProgress}
         isReducedMotion={isReducedMotion}
-        onSelectSummitBeacon={() => setIsPressModalOpen(true)}
+        onSelectSummitBeacon={handleOpenPressModal}
         onSelectCaseStudyNode={handleSelectCaseStudyBySlug}
       />
 
@@ -104,12 +116,12 @@ export default function App() {
       {/* Inspection Modal Drawers */}
       <CaseStudyModal
         caseStudy={selectedCaseStudy}
-        onClose={() => setSelectedCaseStudy(null)}
+        onClose={handleCloseCaseStudyModal}
       />
 
       <PressModal
         isOpen={isPressModalOpen}
-        onClose={() => setIsPressModalOpen(false)}
+        onClose={handleClosePressModal}
       />
     </div>
   );

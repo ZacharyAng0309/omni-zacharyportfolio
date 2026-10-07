@@ -14,6 +14,7 @@ export class SceneController {
   private animId: number = 0;
   private isDisposed: boolean = false;
   private isReducedMotion: boolean = false;
+  private pointerMoveHandler: ((e: MouseEvent) => void) | null = null;
 
   // 3D Avatar Host & Rig
   private avatarRig!: THREE.Group;
@@ -426,13 +427,13 @@ export class SceneController {
   }
 
   private bindEvents(): void {
-    const handlePointerMove = (e: MouseEvent) => {
+    this.pointerMoveHandler = (e: MouseEvent) => {
       const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
       const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
       this.mouseParallax.set(mouseX, mouseY);
     };
 
-    window.addEventListener('mousemove', handlePointerMove, { passive: true });
+    window.addEventListener('mousemove', this.pointerMoveHandler, { passive: true });
   }
 
   public updateScroll(progress: number): void {
@@ -567,10 +568,50 @@ export class SceneController {
   }
 
   public dispose(): void {
+    if (this.isDisposed) return;
     this.isDisposed = true;
+
     cancelAnimationFrame(this.animId);
-    if (this.renderer.domElement.parentElement) {
+
+    if (this.pointerMoveHandler) {
+      window.removeEventListener('mousemove', this.pointerMoveHandler);
+      this.pointerMoveHandler = null;
+    }
+
+    // Traverse and dispose all geometries, materials, textures
+    this.scene.traverse((object) => {
+      if ((object as THREE.Mesh).isMesh) {
+        const mesh = object as THREE.Mesh;
+        if (mesh.geometry) {
+          mesh.geometry.dispose();
+        }
+        if (mesh.material) {
+          if (Array.isArray(mesh.material)) {
+            mesh.material.forEach((mat) => {
+              if ('map' in mat && mat.map) (mat.map as THREE.Texture).dispose();
+              mat.dispose();
+            });
+          } else {
+            const mat = mesh.material;
+            if ('map' in mat && mat.map) (mat.map as THREE.Texture).dispose();
+            mat.dispose();
+          }
+        }
+      }
+    });
+
+    while (this.scene.children.length > 0) {
+      this.scene.remove(this.scene.children[0]);
+    }
+
+    if (this.renderer.domElement && this.renderer.domElement.parentElement) {
       this.renderer.domElement.parentElement.removeChild(this.renderer.domElement);
+    }
+
+    try {
+      this.renderer.forceContextLoss();
+    } catch {
+      // Ignored if unsupported
     }
     this.renderer.dispose();
   }

@@ -35,10 +35,10 @@ export const AISolutionsSection: React.FC<AISolutionsSectionProps> = ({ onSelect
       </h2>
 
       <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-3xl mb-8 sm:mb-10 leading-relaxed">
-        Engineering production-grade AI solutions that balance deep model capability with strict privacy, low latency, and measurable business impact. Explore all 5 flagship systems below:
+        Engineering production-grade AI solutions that balance deep model capability with strict privacy, low latency, and measurable business impact. Explore the flagship systems below:
       </p>
 
-      {/* Grid of 5 Comprehensive Case Studies */}
+      {/* Grid of Flagship Case Studies */}
       <div className="space-y-4">
         {CASE_STUDIES.map((study) => {
           const isExpanded = expandedId === study.id;

@@ -16,13 +16,19 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controllerRef = useRef<SceneController | null>(null);
+  const callbacksRef = useRef({ onSelectSummitBeacon, onSelectCaseStudyNode });
+
+  // Keep latest callbacks synchronized without re-initializing WebGL
+  useEffect(() => {
+    callbacksRef.current = { onSelectSummitBeacon, onSelectCaseStudyNode };
+  });
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const controller = new SceneController(containerRef.current, {
-      onSelectSummitBeacon,
-      onSelectCaseStudyNode,
+      onSelectSummitBeacon: () => callbacksRef.current.onSelectSummitBeacon?.(),
+      onSelectCaseStudyNode: (slug: string) => callbacksRef.current.onSelectCaseStudyNode?.(slug),
     });
     controllerRef.current = controller;
 
@@ -45,7 +51,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
       controller.dispose();
       controllerRef.current = null;
     };
-  }, [onSelectSummitBeacon, onSelectCaseStudyNode]);
+  }, []);
 
   useEffect(() => {
     if (controllerRef.current) {
