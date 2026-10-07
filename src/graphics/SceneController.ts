@@ -56,11 +56,13 @@ export class SceneController {
   private scrollProgress: number = 0;
   private mouseParallax: THREE.Vector2 = new THREE.Vector2(0, 0);
   private clock: THREE.Clock = new THREE.Clock();
+  private isMobile: boolean = false;
 
   constructor(container: HTMLElement, _callbacks?: SceneControllerCallbacks) {
     this.container = container;
     const width = container.clientWidth || window.innerWidth;
     const height = container.clientHeight || window.innerHeight;
+    this.isMobile = width < 768;
 
     // 1. Scene & Camera
     this.scene = new THREE.Scene();
@@ -448,9 +450,15 @@ export class SceneController {
   public resize(): void {
     const width = this.container.clientWidth || window.innerWidth;
     const height = this.container.clientHeight || window.innerHeight;
+    this.isMobile = width < 768;
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
+
+    if (this.avatarRig) {
+      const s = this.isMobile ? 0.75 : 1.0;
+      this.avatarRig.scale.set(s, s, s);
+    }
   }
 
   private animate(): void {
@@ -472,28 +480,47 @@ export class SceneController {
 
     // Companion Avatar Positioning & Rotation
     if (this.avatarRig) {
-      this.avatarRig.position.z = this.camera.position.z - 7.5;
-
-      if (sp < 0.18) {
-        // Hero: Center-Right
-        this.avatarRig.position.x = 2.0 + this.mouseParallax.x * 0.2;
-        this.avatarRig.rotation.y = -0.22;
-      } else if (sp < 0.38) {
-        // The Summit: Stepped right presenting Mount Pilatus
-        this.avatarRig.position.x = 2.8;
-        this.avatarRig.rotation.y = -0.38;
-      } else if (sp < 0.62) {
-        // Fintech & Solutions: Stepped left
-        this.avatarRig.position.x = -2.8;
-        this.avatarRig.rotation.y = 0.38;
-      } else if (sp < 0.85) {
-        // Credentials: Center-stage
-        this.avatarRig.position.x = 0;
-        this.avatarRig.rotation.y = 0;
+      if (this.isMobile) {
+        this.avatarRig.position.z = this.camera.position.z - 8.6;
+        this.avatarRig.position.y = -0.6;
       } else {
-        // Action Center: Facing forward
-        this.avatarRig.position.x = 2.2;
-        this.avatarRig.rotation.y = -0.18;
+        this.avatarRig.position.z = this.camera.position.z - 7.5;
+        this.avatarRig.position.y = 0;
+      }
+
+      if (this.isMobile) {
+        this.avatarRig.position.x = 0;
+        if (sp < 0.18) {
+          this.avatarRig.rotation.y = this.mouseParallax.x * 0.15;
+        } else if (sp < 0.38) {
+          this.avatarRig.rotation.y = -0.12;
+        } else if (sp < 0.62) {
+          this.avatarRig.rotation.y = 0.12;
+        } else {
+          this.avatarRig.rotation.y = 0;
+        }
+      } else {
+        if (sp < 0.18) {
+          // Hero: Center-Right
+          this.avatarRig.position.x = 2.0 + this.mouseParallax.x * 0.2;
+          this.avatarRig.rotation.y = -0.22;
+        } else if (sp < 0.38) {
+          // The Summit: Stepped right presenting Mount Pilatus
+          this.avatarRig.position.x = 2.8;
+          this.avatarRig.rotation.y = -0.38;
+        } else if (sp < 0.62) {
+          // Fintech & Solutions: Stepped left
+          this.avatarRig.position.x = -2.8;
+          this.avatarRig.rotation.y = 0.38;
+        } else if (sp < 0.85) {
+          // Credentials: Center-stage
+          this.avatarRig.position.x = 0;
+          this.avatarRig.rotation.y = 0;
+        } else {
+          // Action Center: Facing forward
+          this.avatarRig.position.x = 2.2;
+          this.avatarRig.rotation.y = -0.18;
+        }
       }
 
       // Procedural Bone Breathing & Cursor LookAt

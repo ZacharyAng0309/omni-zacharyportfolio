@@ -62,9 +62,9 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-auto z-0"
+      className="fixed inset-0 pointer-events-none z-0"
       style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}
-      aria-label="3D WebGL Scene. Drag to rotate, click beacons or nodes to inspect."
+      aria-label="3D WebGL Scene backdrop."
     />
   );
 };

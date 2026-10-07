@@ -41,23 +41,26 @@ export const ModalInspectionDrawer: React.FC<ModalInspectionDrawerProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label={title}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6 bg-black/85 backdrop-blur-xl animate-fadeIn"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-3xl max-h-[90vh] overflow-y-auto apple-glass p-6 sm:p-10 rounded-3xl border border-white/10 shadow-2xl relative"
+        className="w-full sm:max-w-3xl max-h-[92vh] sm:max-h-[90vh] overflow-y-auto apple-glass p-5 sm:p-8 rounded-t-3xl sm:rounded-3xl border border-white/10 shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Mobile Drag Indicator Bar */}
+        <div className="w-12 h-1 rounded-full bg-white/20 mx-auto mb-4 sm:hidden" />
+
         {/* Header */}
         <div className="flex items-start justify-between pb-4 mb-6 border-b border-white/10">
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 tracking-tight">{title}</h3>
+          <div className="pr-4">
+            <h3 className="text-lg sm:text-2xl font-bold text-white mb-1 tracking-tight leading-snug">{title}</h3>
             {subtitle && <p className="text-xs sm:text-sm font-mono text-cyan-400">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
             aria-label="Close modal"
-            className="p-2 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer flex-shrink-0"
           >
             <X className="w-5 h-5" />
           </button>
