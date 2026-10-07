@@ -2,7 +2,7 @@
 
 > **Live Deployment**: [https://zacharyang0309.github.io/omni-zacharyportfolio/](https://zacharyang0309.github.io/omni-zacharyportfolio/)  
 > **Global Grand Champion** — Hilti IT Competition 2024 (Liechtenstein & Switzerland)  
-> **Finalist** — Great AI Hackathon 2025 | **Lead** — Google Developer Student Clubs APU
+> **Finalist** — Great AI Hackathon 2025
 
 ---
 
