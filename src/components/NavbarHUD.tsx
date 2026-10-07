@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Download, EyeOff, Eye, Menu, X } from 'lucide-react';
+import { Mail, EyeOff, Eye, Menu, X } from 'lucide-react';
 
 interface NavbarHUDProps {
   activeSection: string;
   isReducedMotion: boolean;
   onToggleReducedMotion: () => void;
-  onResumeClick: () => void;
 }
 
 export const NavbarHUD: React.FC<NavbarHUDProps> = ({
   activeSection,
   isReducedMotion,
   onToggleReducedMotion,
-  onResumeClick,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -98,13 +96,13 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
             {isReducedMotion ? <EyeOff className="w-4 h-4 text-amber-400" /> : <Eye className="w-4 h-4" />}
           </button>
 
-          <button
-            onClick={onResumeClick}
+          <a
+            href="mailto:ziyang.ang02@gmail.com?subject=Strategic%20Inquiry%20-%20Ang%20Zi%20Yang%20(Zachary)"
             className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-sm hover:scale-102 active:scale-98 min-h-[36px]"
           >
-            <Download className="w-3 h-3" />
-            <span>Resume</span>
-          </button>
+            <Mail className="w-3 h-3 text-black" />
+            <span>Get in Touch</span>
+          </a>
 
           {/* Mobile Hamburger Toggle Button (min 44x44px touch target) */}
           <button
@@ -145,16 +143,14 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
             })}
 
             <div className="pt-2 mt-2 border-t border-white/10 flex items-center gap-2">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onResumeClick();
-                }}
+              <a
+                href="mailto:ziyang.ang02@gmail.com?subject=Strategic%20Inquiry%20-%20Ang%20Zi%20Yang%20(Zachary)"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-md min-h-[44px]"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Resume (PDF)</span>
-              </button>
+                <Mail className="w-3.5 h-3.5" />
+                <span>Get in Touch (Email)</span>
+              </a>
             </div>
           </div>
         </div>

@@ -1,13 +1,9 @@
 import { useState } from 'react';
-import { Download, Mail, Send, CheckCircle2, MapPin } from 'lucide-react';
-
-interface ActionCenterSectionProps {
-  onResumeClick: () => void;
-}
+import { Mail, Send, CheckCircle2, MapPin } from 'lucide-react';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export const ActionCenterSection: React.FC<ActionCenterSectionProps> = ({ onResumeClick }) => {
+export const ActionCenterSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
@@ -15,6 +11,9 @@ export const ActionCenterSection: React.FC<ActionCenterSectionProps> = ({ onResu
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
     setSubmitted(true);
+    const subject = encodeURIComponent(`Executive Dispatch: ${formData.name}`);
+    const body = encodeURIComponent(`From: ${formData.name} (${formData.email})\n\nMessage:\n${formData.message}`);
+    window.location.href = `mailto:ziyang.ang02@gmail.com?subject=${subject}&body=${body}`;
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: '', email: '', message: '' });
@@ -52,13 +51,13 @@ export const ActionCenterSection: React.FC<ActionCenterSectionProps> = ({ onResu
 
           <div className="space-y-3">
             <a
-              href="mailto:zacharyang0309@gmail.com"
+              href="mailto:ziyang.ang02@gmail.com"
               className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5 text-neutral-200 text-xs font-mono min-h-[48px]"
             >
               <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 flex-shrink-0">
                 <Mail className="w-4 h-4" />
               </div>
-              <span className="truncate">zacharyang0309@gmail.com</span>
+              <span className="truncate">ziyang.ang02@gmail.com</span>
             </a>
 
             <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/5 border border-white/5 text-neutral-300 text-xs font-mono min-h-[48px]">
@@ -70,13 +69,13 @@ export const ActionCenterSection: React.FC<ActionCenterSectionProps> = ({ onResu
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
-            <button
-              onClick={onResumeClick}
+            <a
+              href="mailto:ziyang.ang02@gmail.com?subject=Strategic%20Inquiry%20%2F%20Resume%20Request%20-%20Ang%20Zi%20Yang%20(Zachary)&body=Hi%20Zachary%2C%0A%0AI%20would%20like%20to%20get%20in%20touch%20regarding..."
               className="w-full sm:flex-1 min-h-[48px] flex items-center justify-center gap-2 py-3 px-4 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-md"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download Resume (PDF)</span>
-            </button>
+              <Mail className="w-3.5 h-3.5" />
+              <span>Get in Touch via Email</span>
+            </a>
 
             <div className="flex justify-center gap-2">
               <a

@@ -21,15 +21,6 @@ export default function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [isPressModalOpen, setIsPressModalOpen] = useState(false);
 
-  const handleResumeDownload = () => {
-    const link = document.createElement('a');
-    link.href = `${import.meta.env.BASE_URL}resume_zachary_ang.pdf`;
-    link.download = 'Zachary_Ang_Zi_Yang_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -59,7 +50,6 @@ export default function App() {
         activeSection={activeSection}
         isReducedMotion={isReducedMotion}
         onToggleReducedMotion={toggleReducedMotion}
-        onResumeClick={handleResumeDownload}
       />
 
       {/* Floating 3D Interactivity HUD Pill */}
@@ -107,9 +97,7 @@ export default function App() {
 
         {/* Section 5: Action Center & Direct Collaboration */}
         <div className="pointer-events-auto">
-          <ActionCenterSection
-            onResumeClick={handleResumeDownload}
-          />
+          <ActionCenterSection />
         </div>
       </main>
 
