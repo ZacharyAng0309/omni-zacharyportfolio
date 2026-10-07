@@ -10,13 +10,13 @@ describe('HeroSection Component', () => {
     expect(screen.getByText(/Ang Zi Yang \(Zachary\)/i)).toBeDefined();
   });
 
-  it('renders all 4 benchmark bento telemetry metrics', () => {
+  it('maintains a clean hero layout without cluttered telemetry benchmark chips', () => {
     render(<HeroSection onExploreClick={vi.fn()} onCaseStudiesClick={vi.fn()} />);
 
-    expect(screen.getByText('1st / 53')).toBeDefined();
-    expect(screen.getByText('14 Quests')).toBeDefined();
-    expect(screen.getByText('3.89 CGPA')).toBeDefined();
-    expect(screen.getByText('500+')).toBeDefined();
+    expect(screen.queryByText('1st / 53')).toBeNull();
+    expect(screen.queryByText('14 Quests')).toBeNull();
+    expect(screen.queryByText('3.89 CGPA')).toBeNull();
+    expect(screen.queryByText('500+')).toBeNull();
   });
 
   it('triggers onExploreClick and onCaseStudiesClick when CTA buttons are clicked', () => {

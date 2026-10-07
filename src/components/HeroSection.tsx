@@ -34,7 +34,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </p>
 
         {/* Keynote CTAs (Mobile Stacked / Desktop Inline) */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 sm:mb-16 w-full sm:w-auto px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto px-4">
           <button
             onClick={onExploreClick}
             className="w-full sm:w-auto min-h-[48px] flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-black text-xs sm:text-sm font-semibold hover:bg-neutral-200 transition-all cursor-pointer shadow-lg hover:scale-102 active:scale-98"
@@ -50,33 +50,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span>Inspect Architecture</span>
             <ExternalLink className="w-4 h-4 text-cyan-400" />
           </button>
-        </div>
-
-        {/* Benchmark Bento Chips (2x2 on Mobile / 4-Col on Desktop) */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 w-full max-w-4xl mx-auto">
-          <div className="apple-glass p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl text-left border-t border-rose-500/30 flex flex-col justify-between">
-            <div className="text-[10px] sm:text-[11px] font-mono uppercase text-neutral-400 mb-1 tracking-wider truncate">World Final</div>
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-0.5">1st / 53</div>
-            <div className="text-[11px] sm:text-xs text-neutral-400 line-clamp-1">Teams Worldwide (Hilti)</div>
-          </div>
-
-          <div className="apple-glass p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl text-left border-t border-cyan-500/30 flex flex-col justify-between">
-            <div className="text-[10px] sm:text-[11px] font-mono uppercase text-neutral-400 mb-1 tracking-wider truncate">Cloud Mastery</div>
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-0.5">14 Quests</div>
-            <div className="text-[11px] sm:text-xs text-neutral-400 line-clamp-1">7 Vertex &amp; Gemini Badges</div>
-          </div>
-
-          <div className="apple-glass p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl text-left border-t border-indigo-500/30 flex flex-col justify-between">
-            <div className="text-[10px] sm:text-[11px] font-mono uppercase text-neutral-400 mb-1 tracking-wider truncate">Academic Merit</div>
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-0.5">3.89 CGPA</div>
-            <div className="text-[11px] sm:text-xs text-neutral-400 line-clamp-1">APU Software Eng. First Class</div>
-          </div>
-
-          <div className="apple-glass p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl text-left border-t border-emerald-500/30 flex flex-col justify-between">
-            <div className="text-[10px] sm:text-[11px] font-mono uppercase text-neutral-400 mb-1 tracking-wider truncate">Ecosystem</div>
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-0.5">500+</div>
-            <div className="text-[11px] sm:text-xs text-neutral-400 line-clamp-1">Workshop Attendees at GDSC</div>
-          </div>
         </div>
       </div>
     </section>
