@@ -38,7 +38,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       'PostgreSQL / pgvector',
       'IndexedDB Offline Sync',
     ],
-    repoUrl: 'https://github.com/ZacharyAng0309/Hireti',
+    repoUrl: 'https://github.com/ZacharyAng0309',
   },
   {
     id: 'cs-chronoai',

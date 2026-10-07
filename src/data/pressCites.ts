@@ -15,9 +15,9 @@ export const PRESS_CITES: PressCite[] = [
     id: 'cite-the-star',
     source: 'The Star (StarEdu)',
     title: '"To the Land of the Alps, we go!"',
-    date: '12 May 2024',
+    date: '18 August 2024',
     badge: 'National Front Page',
-    url: 'https://www.thestar.com.my/news/education/2024/05/12/to-the-land-of-the-alps-we-go',
+    url: 'https://www.thestar.com.my/news/education/2024/08/18/to-the-land-of-the-alps-we-go',
     quote:
       'Team Sweetzerland emerged global champions of the 13th Hilti IT Competition... pitching Hireti, a platform tailored to enhance talent acquisition and bridge skill gaps.',
     description:
@@ -31,11 +31,11 @@ export const PRESS_CITES: PressCite[] = [
   },
   {
     id: 'cite-apu-news',
-    source: 'APU Media News',
-    title: '"To the Land of the Alps, we go! APU Conquers Hilti IT Competition"',
-    date: 'June 2024',
+    source: 'APU Official Media Release',
+    title: '"Back-to-Back Wins for APU Students at Hilti IT Competition"',
+    date: '20 June 2024',
     badge: 'University Media Release',
-    url: 'https://www.apu.edu.my/media/news/3218',
+    url: 'https://apu.edu.my/news/back-back-wins-apu-students-hilti-it-competition',
     quote:
       'Marking a historic milestone, APU became the first tertiary institution worldwide to secure consecutive victories. Team Sweetzerland, led by Zachary Ang Zi Yang, triumphed over 53 international university teams.',
     description:
@@ -47,19 +47,20 @@ export const PRESS_CITES: PressCite[] = [
     ],
   },
   {
-    id: 'cite-easyuni',
-    source: 'EasyUni Education Spotlight',
-    title: '"APU Team Sweetzerland Crowned Grand Champions at Hilti IT Competition 2024"',
+    id: 'cite-hilti-itc',
+    source: 'Hilti Corporation (Corporate Portal)',
+    title: 'Hilti IT Competition 2024 Global Championship',
     date: 'June 2024',
-    badge: 'Higher Education Feature',
-    url: 'https://www.easyuni.my/en/advice/apu-team-sweetzerland-grand-champions-hilti-it-competition-2024-3408/',
+    badge: 'Corporate Championship Portal',
+    url: 'https://itcompetition.hilti.group/',
     quote:
-      'The Malaysian engineering team demonstrated exemplary product strategy, systems architecture, and live presentation poise before the corporate executive jury in Schaan, Liechtenstein.',
+      'The 13th Hilti IT Competition attracted 53 international university submissions competing to build cutting-edge IT solutions for global industry challenges.',
     description:
-      'Higher education feature detailing how the team designed a solution addressing green skills obsolescence and automated talent matching across international construction worksites.',
+      'Official Hilti corporate IT competition platform documenting competition rules, executive jury standards, and global championship expedition awards.',
     highlights: [
-      'Evaluated on innovation, business feasibility, architecture scalability, and sustainability',
-      'Recognized as top collegiate technology talent in Southeast Asia',
+      'Organized by Hilti Corporation (HQ in Schaan, Liechtenstein)',
+      'Evaluated by Hilti CIO and European Corporate IT Leadership',
+      'Grand Champion prize: Sponsored expedition to Hilti IT HQ in Switzerland and Liechtenstein',
     ],
   },
   {
@@ -68,7 +69,7 @@ export const PRESS_CITES: PressCite[] = [
     title: 'Hilti HQ Executive Presentation & Swiss Alps Summit Ascent',
     date: '12 – 19 November 2024',
     badge: 'Corporate Record',
-    url: 'https://www.thestar.com.my/news/education/2024/05/12/to-the-land-of-the-alps-we-go',
+    url: 'https://apu.edu.my/news/back-back-wins-apu-students-hilti-it-competition',
     quote:
       'Executive technical symposium at Hilti Global IT Headquarters in Schaan, Liechtenstein, followed by high-altitude summit excursion at Mount Pilatus (2,128m).',
     description:

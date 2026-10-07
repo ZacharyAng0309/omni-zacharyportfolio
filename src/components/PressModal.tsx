@@ -13,7 +13,7 @@ export const PressModal: React.FC<PressModalProps> = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       title="National Press & Global Championship Verification"
-      subtitle="The Star (StarEdu) • Front Page Feature • May 12, 2024"
+      subtitle="The Star (StarEdu) • Front Page Feature • August 18, 2024"
     >
       <div className="space-y-6 text-sm">
         {/* Banner */}
@@ -39,7 +39,7 @@ export const PressModal: React.FC<PressModalProps> = ({ isOpen, onClose }) => {
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5" />
-              12 May 2024
+              18 August 2024
             </span>
           </div>
 
@@ -82,7 +82,7 @@ export const PressModal: React.FC<PressModalProps> = ({ isOpen, onClose }) => {
         {/* Footer Actions */}
         <div className="pt-4 border-t border-slate-800 flex justify-end gap-3">
           <a
-            href="https://www.thestar.com.my/news/education/2024/05/12/to-the-land-of-the-alps-we-go"
+            href="https://www.thestar.com.my/news/education/2024/08/18/to-the-land-of-the-alps-we-go"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700"

@@ -21,7 +21,7 @@ describe('SummitSection Component', () => {
     const theStarLink = screen.getByRole('link', { name: /read article on the star/i });
     expect(theStarLink).toBeDefined();
     expect(theStarLink.getAttribute('href')).toBe(
-      'https://www.thestar.com.my/news/education/2024/05/12/to-the-land-of-the-alps-we-go'
+      'https://www.thestar.com.my/news/education/2024/08/18/to-the-land-of-the-alps-we-go'
     );
   });
 

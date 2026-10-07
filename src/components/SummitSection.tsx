@@ -93,7 +93,7 @@ export const SummitSection: React.FC<SummitSectionProps> = ({ onInspectPressModa
           </div>
 
           <a
-            href="https://www.thestar.com.my/news/education/2024/05/12/to-the-land-of-the-alps-we-go"
+            href="https://www.thestar.com.my/news/education/2024/08/18/to-the-land-of-the-alps-we-go"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full min-h-[44px] py-2.5 px-4 rounded-xl text-xs font-semibold bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 transition-colors border border-slate-700 flex items-center justify-center gap-1.5"

@@ -8,7 +8,7 @@ export const CREDENTIALS: CredentialBadge[] = [
     issuer: 'Hilti Corporation (HQ: Schaan, Liechtenstein)',
     badgeType: 'World Championship',
     issueDate: 'March 2024 (Awarded) | Nov 2024 (Expedition)',
-    verificationUrl: 'https://www.thestar.com.my/news/education/2024/05/12/to-the-land-of-the-alps-we-go',
+    verificationUrl: 'https://www.thestar.com.my/news/education/2024/08/18/to-the-land-of-the-alps-we-go',
     color: '#f43f5e',
     highlights: [
       '1st Place worldwide against 53 international university teams (unanimous jury verdict)',
