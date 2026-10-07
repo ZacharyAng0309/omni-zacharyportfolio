@@ -75,7 +75,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="apple-glass p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl text-left border-t border-emerald-500/30 flex flex-col justify-between">
             <div className="text-[10px] sm:text-[11px] font-mono uppercase text-neutral-400 mb-1 tracking-wider truncate">Ecosystem</div>
             <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight mb-0.5">500+</div>
-            <div className="text-[11px] sm:text-xs text-neutral-400 line-clamp-1">Engineers Mentored at GDSC</div>
+            <div className="text-[11px] sm:text-xs text-neutral-400 line-clamp-1">Workshop Attendees at GDSC</div>
           </div>
         </div>
       </div>
