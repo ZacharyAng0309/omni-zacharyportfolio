@@ -106,10 +106,15 @@ export const SummitSection: React.FC<SummitSectionProps> = ({ onInspectPressModa
 
       {/* EXTENSIVE LIST OF VERIFIED NATIONAL PRESS & MEDIA CITATIONS (EXPANDABLE ACCORDIONS) */}
       <div className="space-y-4">
-        <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
-          <Newspaper className="w-3.5 h-3.5 text-amber-400" />
-          <span>Complete List of Verified Press Citations &amp; Institutional Records</span>
-        </h3>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
+            <Newspaper className="w-3.5 h-3.5 text-amber-400" />
+            <span>Verified Press Citations, ACM Research &amp; Industry Records ({PRESS_CITES.length})</span>
+          </h3>
+          <span className="text-[11px] font-mono text-slate-500">
+            National Daily • ACM SIGCHI • AI Hackathon • Petronas Energy • Institutional
+          </span>
+        </div>
 
         <div className="space-y-3">
           {PRESS_CITES.map((cite) => {

@@ -16,6 +16,15 @@ describe('External Links & Content Integrity Verification', () => {
     expect(theStarCite?.url).not.toContain('2024/05/12');
   });
 
+  it('validates ACM SIGCHI Fusion 2023 citation points to live APU media release', () => {
+    const fusionCite = PRESS_CITES.find((c) => c.id === 'cite-fusion-acm');
+    expect(fusionCite).toBeDefined();
+    expect(fusionCite?.url).toBe(
+      'https://apu.edu.my/news/apu-students-make-mark-sustainable-development-fusion-2023-winning-gold-and-silver-awards'
+    );
+    expect(fusionCite?.badge).toContain('ACM SIGCHI');
+  });
+
   it('validates APU media release points to live institutional release', () => {
     const apuCite = PRESS_CITES.find((c) => c.id === 'cite-apu-news');
     expect(apuCite).toBeDefined();
@@ -26,10 +35,21 @@ describe('External Links & Content Integrity Verification', () => {
     expect(apuCite?.url).not.toContain('3218');
   });
 
-  it('validates Hilti Competition citation points to active official portal', () => {
-    const hiltiCite = PRESS_CITES.find((c) => c.id === 'cite-hilti-itc');
-    expect(hiltiCite).toBeDefined();
-    expect(hiltiCite?.url).toBe('https://itcompetition.hilti.group/');
+  it('validates that press citations cover multiple diverse topics (not just Hilti)', () => {
+    const topics = PRESS_CITES.map((c) => c.id);
+    expect(topics).toContain('cite-the-star'); // Global competition & The Star national daily
+    expect(topics).toContain('cite-fusion-acm'); // ACM SIGCHI Human-Computer Interaction & UN SDGs
+    expect(topics).toContain('cite-great-ai'); // Great AI Hackathon & Privacy-First AI
+    expect(topics).toContain('cite-petronas-pies'); // Petronas CHESS Energy & Decarbonization
+    expect(topics).toContain('cite-apu-news'); // APU Academic Back-to-Back Milestone
+
+    // Verify all citations have valid HTTPS URLs
+    PRESS_CITES.forEach((cite) => {
+      expect(cite.url).toMatch(/^https:\/\//);
+      expect(cite.title.length).toBeGreaterThan(5);
+      expect(cite.description.length).toBeGreaterThan(20);
+      expect(cite.highlights.length).toBeGreaterThanOrEqual(3);
+    });
   });
 
   it('ensures all credential badges have valid, well-formed HTTPS verification URLs', () => {
