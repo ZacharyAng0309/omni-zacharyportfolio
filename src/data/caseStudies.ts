@@ -1,6 +1,6 @@
-import type { CaseStudy } from '../domain/contracts';
+import type { CaseStudy } from '../domain/contracts.js';
 
-export const CASE_STUDIES: CaseStudy[] = [
+export const CASE_STUDIES: readonly CaseStudy[] = [
   {
     id: 'cs-hireti',
     createdAt: '2024-03-25T00:00:00.000Z',
@@ -151,4 +151,44 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     repoUrl: 'https://github.com/ZacharyAng0309',
   },
-];
+  {
+    id: 'cs-omni-workstation',
+    createdAt: '2025-02-01T00:00:00.000Z',
+    slug: 'omni-workstation',
+    title: 'Omni-Workstation — Autonomous Multi-Modal Agentic Factory',
+    subtitle: 'Deterministic Multi-Agent Orchestration, Living Wiki Synthesis & Generative Asset Pipelines',
+    category: 'Agentic Systems',
+    role: 'Lead Architect & Systems Designer',
+    featuredAward: 'Autonomous Multi-Modal Engineering Framework',
+    accentColor: '#8b5cf6',
+    impactMetrics: [
+      '100% deterministic multi-agent execution across 9 sequential lifecycle stages (Research to Media)',
+      'Zero-defect 3D WebGL / WebGPU governance audit pipeline with 14 inviolable engine invariants',
+      'Autonomous Living Wiki compilation maintaining 100/100 link integrity and continuous ADR synthesis',
+      'Bi-directional ComfyUI generative media engine with automated prompt-chain scheduling',
+      'Matt Pocock Total TypeScript standard enforcement with schema-first Zod validation',
+    ],
+    description:
+      'Omni-Workstation is an enterprise-grade autonomous software factory and multi-modal development hub. Orchestrates specialized autonomous agents across dependency-ordered execution DAGs, integrating rigorous WebGL governance, Living Wiki compounding knowledge graphs, and automated generative media pipelines.',
+    problemStatement:
+      'Autonomous coding agents and LLM-assisted engineering workflows suffer from hallucination drift, fractured architectural memory, brittle unverified code synthesis, and siloed multi-modal asset generation without strict quality gates.',
+    solutionArchitecture: [
+      'Deterministic 9-Stage Lifecycle DAG: Sequences requirements elicitation, design token generation, bounded context modeling, and automated test-driven implementation without speculative drift.',
+      'Two-Tier Skill & Wiki Compounding Gate: Distills verified execution patterns into standardized agent skills while crystallizing architectural decisions into Living Wiki ADRs and knowledge graphs.',
+      'Sovereign WebGL & Three.js Governance: Enforces memory disposal audits, device pixel ratio bounding, clamped delta timing, and ACES Filmic tone mapping.',
+      'Multi-Modal Asset Generation Bridge: Connects ComfyUI generative recipes directly into production asset pipelines with automated fallback paths.',
+      'Strict Type-Safe Invariant Contracts: Employs schema-first Zod inference, discriminated unions, and branded identifiers to guarantee compile-time correctness.',
+    ],
+    techStack: [
+      'TypeScript',
+      'React 19',
+      'Three.js / WebGL2',
+      'Zod Schema Contracts',
+      'ComfyUI API',
+      'Vitest & JSDOM',
+      'Obsidian Living Wiki',
+      'Tailwind CSS',
+    ],
+    repoUrl: 'https://github.com/ZacharyAng0309/omni-workstation',
+  },
+] satisfies readonly CaseStudy[];

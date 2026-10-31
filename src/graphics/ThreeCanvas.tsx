@@ -6,6 +6,7 @@ interface ThreeCanvasProps {
   isReducedMotion: boolean;
   onSelectSummitBeacon?: () => void;
   onSelectCaseStudyNode?: (slug: string) => void;
+  onControllerReady?: (controller: SceneController | null) => void;
 }
 
 export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
@@ -13,6 +14,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
   isReducedMotion,
   onSelectSummitBeacon,
   onSelectCaseStudyNode,
+  onControllerReady,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controllerRef = useRef<SceneController | null>(null);
@@ -31,6 +33,12 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
       onSelectCaseStudyNode: (slug: string) => callbacksRef.current.onSelectCaseStudyNode?.(slug),
     });
     controllerRef.current = controller;
+    if (typeof document !== 'undefined') {
+      document.body.dataset.threeSceneReady = 'true';
+    }
+    if (onControllerReady) {
+      onControllerReady(controller);
+    }
 
     const handleResize = () => {
       controller.resize();
@@ -38,16 +46,22 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
 
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
       controller.updateParallax(x, y);
     };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     return () => {
+      if (typeof document !== 'undefined') {
+        delete document.body.dataset.threeSceneReady;
+      }
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      if (onControllerReady) {
+        onControllerReady(null);
+      }
       controller.dispose();
       controllerRef.current = null;
     };
@@ -68,7 +82,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      className="fixed inset-0 z-0"
       style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}
       aria-label="3D WebGL Scene backdrop."
     />

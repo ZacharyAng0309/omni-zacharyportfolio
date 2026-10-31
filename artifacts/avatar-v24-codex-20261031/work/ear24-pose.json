@@ -1,0 +1,38 @@
+{
+  "neutral": {
+    "face_pairs": 0,
+    "hair_pairs": 0,
+    "shaft-1": {
+      "sampled_surface_gap_mm_min": 4.82,
+      "median": 5.94
+    },
+    "support-1": {
+      "sampled_surface_gap_mm_min": 1.05,
+      "median": 3.55
+    },
+    "shaft1": {
+      "sampled_surface_gap_mm_min": 5.33,
+      "median": 6.24
+    },
+    "support1": {
+      "sampled_surface_gap_mm_min": 0.87,
+      "median": 3.49
+    }
+  },
+  "blink": {
+    "face_pairs": 0,
+    "hair_pairs": 0
+  },
+  "smile": {
+    "face_pairs": 0,
+    "hair_pairs": 0
+  },
+  "turn-left": {
+    "face_pairs": 0,
+    "hair_pairs": 0
+  },
+  "turn-right": {
+    "face_pairs": 0,
+    "hair_pairs": 0
+  }
+}

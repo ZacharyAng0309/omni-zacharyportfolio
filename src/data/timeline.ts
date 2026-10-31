@@ -1,6 +1,6 @@
-import type { CareerMilestone } from '../domain/contracts';
+import type { CareerMilestone } from '../domain/contracts.js';
 
-export const TIMELINE_MILESTONES: CareerMilestone[] = [
+export const TIMELINE_MILESTONES: readonly CareerMilestone[] = [
   {
     id: 'mile-soft-space',
     createdAt: '2024-10-01T00:00:00.000Z',
@@ -92,17 +92,17 @@ export const TIMELINE_MILESTONES: CareerMilestone[] = [
     createdAt: '2022-11-01T00:00:00.000Z',
     period: '2022 – 2024',
     role: 'BSc (Hons) in Information Technology (Business Information Systems)',
-    organization: 'Asia Pacific University (APU) & De Montfort University (UK)',
+    organization: 'Asia Pacific University (APU) & Staffordshire University (UK)',
     location: 'Kuala Lumpur, Malaysia',
     category: 'Academic',
     isHero: false,
     keyImpacts: [
-      'Graduated with First Class Honours equivalent (CGPA 3.75 / 4.00).',
+      'Graduated with CGPA 3.89 / 4.00 Distinction (First Class Honours Equivalent).',
       'Conferred onto the APU Vice Chancellor’s Honors List (2022/2023) for academic distinction and community impact.',
       'Specialized in Enterprise Systems Architecture, Predictive Data Modeling, and Business Process Engineering.',
     ],
     techOrDomain: [
-      'First Class Honours (3.75 CGPA)',
+      'Distinction / First Class (3.89 CGPA)',
       'Enterprise Architecture',
       'Business Information Systems',
       'Predictive Analytics',
@@ -148,4 +148,4 @@ export const TIMELINE_MILESTONES: CareerMilestone[] = [
       'Database Architecture',
     ],
   },
-];
+] satisfies readonly CareerMilestone[];

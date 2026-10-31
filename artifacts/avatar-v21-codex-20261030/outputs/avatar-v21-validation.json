@@ -1,0 +1,264 @@
+{
+  "passed": 63,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "Original source SHA-256 unchanged",
+      "result": "PASS"
+    },
+    {
+      "check": "All node transforms and hierarchy preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Joint ordering preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Inverse bind matrices preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face JOINTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face WEIGHTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face TEXCOORD_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face topology preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair JOINTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair WEIGHTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair TEXCOORD_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair topology preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands JOINTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands WEIGHTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands TEXCOORD_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands topology preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie JOINTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie WEIGHTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie TEXCOORD_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie topology preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers JOINTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers WEIGHTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers TEXCOORD_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers topology preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear JOINTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear WEIGHTS_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear TEXCOORD_0 preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear topology preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Facial expression displacement preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Facial expression displacement preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Facial expression displacement preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Facial expression displacement preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Corrected blink finite and below 12mm displacement",
+      "result": "PASS"
+    },
+    {
+      "check": "Corrected blink finite and below 12mm displacement",
+      "result": "PASS"
+    },
+    {
+      "check": "Facial expression displacement preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Facial expression displacement preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "Eight facial expressions",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Face normalized four-influence skinning",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hair normalized four-influence skinning",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Character_Hands normalized four-influence skinning",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Hoodie normalized four-influence skinning",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Trousers normalized four-influence skinning",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "SM_Cloth_Footwear normalized four-influence skinning",
+      "result": "PASS"
+    },
+    {
+      "check": "Sovereign_Titanium_Spectacles finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "Sovereign_Titanium_Spectacles finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "Sovereign_Titanium_Spectacles finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "Sovereign_Titanium_Spectacles finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "Sovereign_Titanium_Spectacles finite positions / valid triangles",
+      "result": "PASS"
+    },
+    {
+      "check": "Sovereign_Titanium_Spectacles finite unit normals",
+      "result": "PASS"
+    },
+    {
+      "check": "Embedded source texture byte-identical",
+      "result": "PASS"
+    },
+    {
+      "check": "Candidate below 3 MB",
+      "result": "PASS"
+    }
+  ],
+  "not_covered": [
+    "Browser performance timings",
+    "Visual likeness acceptance",
+    "Collision-free full motion range",
+    "Anatomical eyelid topology and mouth cavity quality"
+  ]
+}

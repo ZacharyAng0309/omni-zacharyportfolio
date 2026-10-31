@@ -1,0 +1,25 @@
+{
+  "source_sha256": "2f1dbea498ff7e25ab1c3cc849ccec7a2ab70bfd5bd2a28b52538e4ea7579de4",
+  "source_bytes": 2290076,
+  "candidate_bytes": 1731772,
+  "triangles_before": 72933,
+  "triangles_after": 41883,
+  "changes": [
+    {
+      "mesh": "SM_Character_Face",
+      "max_displacement_mm": 0.5999999165034959
+    },
+    {
+      "mesh": "SM_Character_Hair",
+      "max_displacement_mm": 13.057903289794922
+    }
+  ],
+  "rig_node_transforms_identical": true,
+  "embedded_texture_unchanged": true,
+  "facial_target_count": 8,
+  "corrected_targets": [
+    "eyeBlinkLeft",
+    "eyeBlinkRight"
+  ],
+  "unchanged_expression_targets": 6
+}

@@ -17,12 +17,12 @@ describe('NavbarHUD Component', () => {
     );
 
     expect(screen.getByText('Zachary Ang')).toBeDefined();
-    expect(screen.getByText('Overview')).toBeDefined();
-    expect(screen.getByText('The Summit')).toBeDefined();
-    expect(screen.getByText('AI Architecture')).toBeDefined();
-    expect(screen.getByText('Credentials')).toBeDefined();
-    expect(screen.getByText('Specs')).toBeDefined();
-    expect(screen.getByText('Connect')).toBeDefined();
+    expect(screen.getByText('01. Overview')).toBeDefined();
+    expect(screen.getByText('02. Growth')).toBeDefined();
+    expect(screen.getByText('03. Mastery')).toBeDefined();
+    expect(screen.getByText('04. Hilti Peak')).toBeDefined();
+    expect(screen.getByText('05. Projects')).toBeDefined();
+    expect(screen.getByText('06. Interests & Approach')).toBeDefined();
   });
 
   it('contains desktop "Get in Touch" link routed to ziyang.ang02@gmail.com', () => {
@@ -130,10 +130,10 @@ describe('NavbarHUD Component', () => {
     fireEvent.click(screen.getByLabelText('Open Navigation Menu'));
     expect(screen.getByTestId('mobile-menu-backdrop')).toBeDefined();
 
-    // Click "The Summit" inside the drawer
+    // Click "04. Hilti Peak" inside the drawer
     const drawer = screen.getByRole('dialog', { name: 'Mobile Navigation' });
     const allButtons = drawer.querySelectorAll('button');
-    const summitItem = Array.from(allButtons).find((b) => b.textContent?.includes('The Summit'));
+    const summitItem = Array.from(allButtons).find((b) => b.textContent?.includes('04. Hilti Peak'));
     expect(summitItem).toBeDefined();
     fireEvent.click(summitItem!);
 

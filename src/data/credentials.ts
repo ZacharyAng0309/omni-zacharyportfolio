@@ -1,6 +1,6 @@
-import type { CredentialBadge } from '../domain/contracts';
+import type { CredentialBadge } from '../domain/contracts.js';
 
-export const CREDENTIALS: CredentialBadge[] = [
+export const CREDENTIALS: readonly CredentialBadge[] = [
   {
     id: 'cred-hilti',
     createdAt: '2024-03-25T00:00:00.000Z',
@@ -100,13 +100,13 @@ export const CREDENTIALS: CredentialBadge[] = [
     id: 'cred-apu-degree',
     createdAt: '2024-11-15T00:00:00.000Z',
     title: 'BSc (Hons) in Information Technology (Business Information Systems)',
-    issuer: 'Asia Pacific University & De Montfort University (UK)',
+    issuer: 'Asia Pacific University & Staffordshire University (UK)',
     badgeType: 'Academic Degree',
     issueDate: 'November 2024',
     verificationUrl: 'https://www.apu.edu.my',
     color: '#10b981',
     highlights: [
-      'CGPA 3.75 / 4.00 (First Class Honours Equivalent)',
+      'CGPA 3.89 / 4.00 Distinction (First Class Honours Equivalent)',
       'Specialism in Business Information Systems, Data Analytics, and Enterprise Architecture',
       'Vice Chancellor’s Honors List Conferred (2022/2023)',
     ],
@@ -141,4 +141,4 @@ export const CREDENTIALS: CredentialBadge[] = [
       'Sub-15ms background metadata ingestion; 94% automated task classification accuracy',
     ],
   },
-];
+] satisfies readonly CredentialBadge[];

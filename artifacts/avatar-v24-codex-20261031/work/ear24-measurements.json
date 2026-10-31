@@ -1,0 +1,38 @@
+{
+  "23": {
+    "SM_Character_Face": {
+      "overlapping_triangle_pairs": 0,
+      "locations": []
+    },
+    "-1": {
+      "ear_region_vertical_span_mm": 59.6,
+      "outermost_mm": 95.47
+    },
+    "1": {
+      "ear_region_vertical_span_mm": 56.35,
+      "outermost_mm": 92.97
+    },
+    "SM_Character_Hair": {
+      "overlapping_triangle_pairs": 0,
+      "locations": []
+    }
+  },
+  "24": {
+    "SM_Character_Face": {
+      "overlapping_triangle_pairs": 0,
+      "locations": []
+    },
+    "-1": {
+      "ear_region_vertical_span_mm": 59.6,
+      "outermost_mm": 95.46
+    },
+    "1": {
+      "ear_region_vertical_span_mm": 56.35,
+      "outermost_mm": 92.94
+    },
+    "SM_Character_Hair": {
+      "overlapping_triangle_pairs": 0,
+      "locations": []
+    }
+  }
+}

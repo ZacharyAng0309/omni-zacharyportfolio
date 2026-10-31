@@ -7,7 +7,7 @@ describe('SummitSection Component', () => {
     const handleInspect = vi.fn();
     render(<SummitSection onInspectPressModal={handleInspect} />);
 
-    expect(screen.getByText(/Chapter 01 • The Summit/i)).toBeDefined();
+    expect(screen.getByText(/Act 04 • The Alpine Summit/i)).toBeDefined();
     expect(screen.getByText(/1st Place Worldwide • Team Sweetzerland/i)).toBeDefined();
 
     const inspectBtn = screen.getByRole('button', { name: /inspect trophy proof/i });

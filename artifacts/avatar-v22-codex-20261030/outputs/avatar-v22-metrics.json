@@ -1,0 +1,8 @@
+{
+  "v21_sha256": "29cad5a5b54010c12dd5f6a94fd94aec31cd014a8967969d360077213a1d3be4",
+  "face_max_delta_mm": 6.1557111740112305,
+  "ear_max_relax_mm": 1.7553708319272796,
+  "hair_max_delta_mm": 6.285284519195557,
+  "face_pinned_vertices": 191,
+  "seam_displacement_mm": 0.0
+}

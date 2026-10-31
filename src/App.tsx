@@ -2,24 +2,29 @@ import { useState, useCallback } from 'react';
 import { ThreeCanvas } from './graphics/ThreeCanvas';
 import { NavbarHUD } from './components/NavbarHUD';
 import { HeroSection } from './components/HeroSection';
+import { CareerTimelineSection } from './components/CareerTimelineSection';
+import { CredentialVaultSection } from './components/CredentialVaultSection';
 import { SummitSection } from './components/SummitSection';
 import { AISolutionsSection } from './components/AISolutionsSection';
-import { CredentialVaultSection } from './components/CredentialVaultSection';
-import { CareerTimelineSection } from './components/CareerTimelineSection';
 import { ActionCenterSection } from './components/ActionCenterSection';
+import { SpatialStageControlDock } from './components/SpatialStageControlDock';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { PressModal } from './components/PressModal';
+import { MagneticCursor } from './components/MagneticCursor';
+import { MarqueeTicker } from './components/MarqueeTicker';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import type { CaseStudy } from './domain/contracts';
 import { CASE_STUDIES } from './data/caseStudies';
-import { Sparkles } from 'lucide-react';
+import type { SceneController } from './graphics/SceneController';
 
 export default function App() {
   const { scrollProgress, activeSection } = useScrollProgress();
   const [isReducedMotion, toggleReducedMotion] = usePrefersReducedMotion();
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [isPressModalOpen, setIsPressModalOpen] = useState(false);
+  const [controller, setController] = useState<SceneController | null>(null);
+  const [isAudioEnabled, setIsAudioEnabled] = useState(false);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -28,8 +33,26 @@ export default function App() {
     }
   };
 
+  const handleControllerReady = useCallback((sc: SceneController | null) => {
+    setController(sc);
+  }, []);
+
+  const handleToggleAudio = useCallback(() => {
+    if (controller) {
+      const nextState = controller.toggleAudio();
+      setIsAudioEnabled(nextState);
+    }
+  }, [controller]);
+
   const handleSelectCaseStudyBySlug = useCallback((slug: string) => {
-    const found = CASE_STUDIES.find((cs) => cs.slug === slug);
+    const found = CASE_STUDIES.find(
+      (cs) =>
+        cs.slug === slug ||
+        cs.id === slug ||
+        cs.slug.startsWith(slug) ||
+        cs.id === `cs-${slug}` ||
+        slug.startsWith(cs.slug)
+    );
     if (found) {
       setSelectedCaseStudy(found);
     }
@@ -48,70 +71,66 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black text-neutral-100 font-sans selection:bg-blue-500/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#050507] text-neutral-100 font-sans selection:bg-blue-500/30 selection:text-white">
+      {/* Spring-Lerped Magnetic Hardware Cursor */}
+      <MagneticCursor />
+
       {/* 3D WebGL Background Canvas with Direct Raycasting & Interaction */}
       <ThreeCanvas
         scrollProgress={scrollProgress}
         isReducedMotion={isReducedMotion}
         onSelectSummitBeacon={handleOpenPressModal}
         onSelectCaseStudyNode={handleSelectCaseStudyBySlug}
+        onControllerReady={handleControllerReady}
       />
 
-      {/* Apple Pro Minimalist Navigation Bar */}
+      {/* Apple Pro Minimalist Navigation Bar (6-Act Growth Journey) */}
       <NavbarHUD
         activeSection={activeSection}
         isReducedMotion={isReducedMotion}
         onToggleReducedMotion={toggleReducedMotion}
+        isAudioEnabled={isAudioEnabled}
+        onToggleAudio={handleToggleAudio}
       />
 
-      {/* Floating 3D Interactivity HUD Pill */}
-      <aside
-        aria-label="3D Interaction Guidance"
-        className="fixed bottom-5 left-5 z-20 pointer-events-none hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-glass text-[11px] font-mono text-neutral-300 shadow-xl backdrop-blur-xl"
-      >
-        <Sparkles className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-        <span>3D Engine: Drag canvas to rotate • Click glowing beacons & nodes</span>
-      </aside>
+      {/* Main Storyline Narrative Content (Chronological 6-Act Growth Journey) */}
+      <main className="relative z-10 flex flex-col">
+        {/* Act 1 (#hero): Overview & Executive Strategy Studio */}
+        <HeroSection
+          onExploreCaseStudies={() => scrollTo('timeline')}
+          onExecutiveInquiries={() => scrollTo('contact')}
+          onExploreClick={() => scrollTo('timeline')}
+          onCaseStudiesClick={() => scrollTo('contact')}
+        />
 
-      {/* Main Storyline Narrative Content (Composited HUD Layer) */}
-      <main className="relative z-10 flex flex-col pointer-events-none">
-        {/* Section 0: Hero & Identity */}
-        <div className="pointer-events-auto">
-          <HeroSection
-            onExploreClick={() => scrollTo('summit')}
-            onCaseStudiesClick={() => scrollTo('ai-solutions')}
-          />
-        </div>
+        {/* Global Credentials Infinite Marquee Ribbon */}
+        <MarqueeTicker />
 
-        {/* Section 1: The Summit & Global Championship */}
-        <div className="pointer-events-auto">
-          <SummitSection
-            onInspectPressModal={() => setIsPressModalOpen(true)}
-          />
-        </div>
+        {/* Act 2 (#timeline): Academic Foundations & Career Ascent (The Academy) */}
+        <CareerTimelineSection />
 
-        {/* Section 2: AI Solutions & Architecture */}
-        <div className="pointer-events-auto">
-          <AISolutionsSection
-            onSelectCaseStudy={(study) => setSelectedCaseStudy(study)}
-          />
-        </div>
+        {/* Act 3 (#vault): Cloud Mastery & GDSC Leadership (The Crucible) */}
+        <CredentialVaultSection />
 
-        {/* Section 3: Credential Vault */}
-        <div className="pointer-events-auto">
-          <CredentialVaultSection />
-        </div>
+        {/* Act 4 (#summit): Global Championship Peak (The Alpine Summit / Hilti) */}
+        <SummitSection
+          onInspectPressModal={handleOpenPressModal}
+        />
 
-        {/* Section 4: Calibrated Career Timeline */}
-        <div className="pointer-events-auto">
-          <CareerTimelineSection />
-        </div>
+        {/* Act 5 (#ai-solutions): Production AI & Enterprise Systems (The Frontier) */}
+        <AISolutionsSection
+          onSelectCaseStudy={(study) => setSelectedCaseStudy(study)}
+        />
 
-        {/* Section 5: Action Center & Direct Collaboration */}
-        <div className="pointer-events-auto">
-          <ActionCenterSection />
-        </div>
+        {/* Act 6 (#contact): Beyond the Architecture — Personal Interests & Approach Hub (The Horizon) */}
+        <ActionCenterSection />
       </main>
+
+      {/* Floating Spatial Stage Control Dock (3D Peek & Gesture Trigger) */}
+      <SpatialStageControlDock
+        activeSection={activeSection}
+        controller={controller}
+      />
 
       {/* Inspection Modal Drawers */}
       <CaseStudyModal

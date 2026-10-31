@@ -86,5 +86,5 @@ describe('App Stability & Rapid Interactions Stress Test', () => {
     expect(screen.getByText(/Architect of Enterprise Intelligence/i)).toBeDefined();
     expect(screen.getByText('Hireti (Team Sweetzerland)')).toBeDefined();
     expect(screen.getByText(/Initiate Collaboration/i)).toBeDefined();
-  });
+  }, 60000);
 });

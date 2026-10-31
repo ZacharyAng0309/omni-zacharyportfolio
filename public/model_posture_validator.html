@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zachary Ang — 3D Model & Posture Validation Checkpoint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      background-color: #070709;
+      color: #f4f4f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .font-display { font-family: var(--font-display); }
+    .font-mono { font-family: var(--font-mono); }
+    .hairline-b { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .hairline-t { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .hairline-all { border: 1px solid rgba(255, 255, 255, 0.08); }
+    .tracking-monograph { letter-spacing: -0.045em; }
+    .tracking-archival { letter-spacing: 0.12em; }
+  </style>
+</head>
+<body class="relative min-h-screen selection:bg-white selection:text-black">
+
+  <!-- Three.js Canvas Container -->
+  <div id="canvas-container" class="fixed inset-0 w-full h-full z-0"></div>
+
+  <!-- Top Header Navigation -->
+  <header class="fixed top-0 left-0 w-full z-40 hairline-b bg-[#070709]/85 backdrop-blur-md px-6 md:px-12 py-3.5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono font-medium tracking-archival uppercase text-white">ZACHARY ANG (3D AVATAR PIPELINE)</span>
+        <span class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest hidden sm:inline">/ DUAL VALIDATION CHECKPOINT</span>
+      </div>
+      
+      <!-- Checkpoint Toggle Buttons -->
+      <div class="flex items-center gap-2">
+        <button id="btn-chk1" class="text-xs font-mono px-3.5 py-1.5 rounded-full bg-white text-black font-semibold uppercase cursor-pointer transition-all">
+          Checkpoint 1: 3D Model &amp; Signatures
+        </button>
+        <button id="btn-chk2" class="text-xs font-mono px-3.5 py-1.5 rounded-full hairline-all text-neutral-300 font-medium hover:bg-white/10 uppercase cursor-pointer transition-all">
+          Checkpoint 2: Postures &amp; Kinematics
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main HUD Layer -->
+  <main class="relative z-10 pt-20 pb-8 px-6 md:px-12 max-w-7xl mx-auto min-h-screen flex flex-col justify-between pointer-events-none">
+    
+    <!-- Top Left Title Card -->
+    <div class="pt-4 max-w-lg space-y-3 pointer-events-auto">
+      <div class="flex items-center gap-3">
+        <span id="checkpoint-badge" class="text-[11px] font-mono text-cyan-400 uppercase tracking-widest px-2.5 py-0.5 rounded hairline-all bg-cyan-950/40">
+          CHECKPOINT 01 • MODEL MESH PASSING
+        </span>
+        <span class="text-xs font-mono text-neutral-500">1:4.8 PROPORTIONS</span>
+      </div>
+      <h1 id="checkpoint-title" class="font-display text-3xl sm:text-4xl font-bold tracking-monograph text-white">
+        Stylized Model &amp;<br>Signature Tokens.
+      </h1>
+      <p id="checkpoint-desc" class="text-xs text-neutral-300 leading-relaxed font-normal">
+        Evaluating volumetric anatomy (~1:4.8 head-to-body ratio), Space Black tech hoodie (<span class="font-mono text-neutral-400">#141416</span>), titanium round spectacles with physical AR glass, and dark parted curtain bangs.
+      </p>
+    </div>
+
+    <!-- Floating Controller Bar on the Right -->
+    <div class="fixed top-24 right-6 md:right-12 z-30 flex flex-col gap-2 max-w-xs w-full pointer-events-auto">
+      
+      <!-- Sub-view Controls -->
+      <div class="hairline-all bg-[#0a0a0d]/85 backdrop-blur-xl rounded-xl p-4 space-y-3 shadow-2xl">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">ACTIVE CAMERA / VIEW</span>
+          <span id="view-status" class="text-[10px] font-mono text-emerald-400 uppercase">3/4 HERO VIEW</span>
+        </div>
+
+        <!-- Checkpoint 1 Sub-views -->
+        <div id="chk1-controls" class="grid grid-cols-3 gap-1.5 text-center">
+          <button id="view-hero" class="py-1.5 px-2 rounded hairline-all bg-white/10 text-[10px] font-mono text-white hover:bg-white/20 transition-colors">
+            3/4 Hero
+          </button>
+          <button id="view-front" class="py-1.5 px-2 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors">
+            Frontal
+          </button>
+          <button id="view-head" class="py-1.5 px-2 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors">
+            Head Zoom
+          </button>
+        </div>
+
+        <!-- Checkpoint 2 Postures (Hidden in Chk 1, Visible in Chk 2) -->
+        <div id="chk2-controls" class="hidden space-y-2">
+          <div class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider pt-1">STORYLINE POSTURE PRESETS</div>
+          <div class="grid grid-cols-2 gap-1.5">
+            <button id="pose-seated" class="py-2 px-2.5 rounded hairline-all bg-white/10 text-[10px] font-mono text-white hover:bg-white/20 transition-colors text-left">
+              1. Act 1: Seated Chair
+            </button>
+            <button id="pose-book" class="py-2 px-2.5 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors text-left">
+              2. Act 2: Reach Book
+            </button>
+            <button id="pose-climb" class="py-2 px-2.5 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors text-left">
+              3. Act 4: Climb Ridge
+            </button>
+            <button id="pose-trophy" class="py-2 px-2.5 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors text-left">
+              4. Act 4: Hoist Trophy
+            </button>
+            <button id="pose-core" class="py-2 px-2.5 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors text-left">
+              5. Act 5: Operate Core
+            </button>
+            <button id="pose-wave" class="py-2 px-2.5 rounded hairline-all text-[10px] font-mono text-neutral-300 hover:bg-white/10 transition-colors text-left">
+              6. Act 6: Horizon Wave
+            </button>
+          </div>
+        </div>
+
+        <!-- Telemetry Details -->
+        <div class="hairline-t pt-2.5 text-[10px] font-mono text-neutral-400 space-y-1">
+          <div class="flex justify-between">
+            <span>HEAD-TO-BODY RATIO:</span>
+            <span class="text-white">1:4.82 (STYLIZED)</span>
+          </div>
+          <div class="flex justify-between">
+            <span>TOTAL BONES:</span>
+            <span class="text-white">54 RIGGED JOINTS</span>
+          </div>
+          <div class="flex justify-between">
+            <span>ARM POLARITY:</span>
+            <span class="text-emerald-400">0.0° FLIP (NATURAL)</span>
+          </div>
+          <div class="flex justify-between">
+            <span>MEMORY DISPOSAL:</span>
+            <span class="text-emerald-400">100% RECURSIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Telemetry Specs -->
+    <div class="w-full pt-8 pb-2 pointer-events-auto">
+      <div class="hairline-t pt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+        <div class="space-y-0.5">
+          <div class="text-[9px] font-mono text-neutral-500 uppercase tracking-archival">01 / SILHOUETTE</div>
+          <div class="text-sm font-bold text-white font-display">Pixar Proportions</div>
+          <div class="text-[10px] text-neutral-400 font-mono">1:4.8 Head-to-Body Calibration</div>
+        </div>
+        <div class="space-y-0.5">
+          <div class="text-[9px] font-mono text-neutral-500 uppercase tracking-archival">02 / PERSONAL SIGNATURES</div>
+          <div class="text-sm font-bold text-white font-display">Hoodie, Glasses &amp; Bangs</div>
+          <div class="text-[10px] text-neutral-400 font-mono">Titanium AR Spectacles + Space Black</div>
+        </div>
+        <div class="space-y-0.5">
+          <div class="text-[9px] font-mono text-neutral-500 uppercase tracking-archival">03 / KINEMATICS</div>
+          <div class="text-sm font-bold text-white font-display">Inverse Kinematic Rig</div>
+          <div class="text-[10px] text-neutral-400 font-mono">Smooth Slerp Interpolation</div>
+        </div>
+        <div class="space-y-0.5">
+          <div class="text-[9px] font-mono text-neutral-500 uppercase tracking-archival">04 / WEBGL GOVERNANCE</div>
+          <div class="text-sm font-bold text-white font-display">Zero Memory Leaks</div>
+          <div class="text-[10px] text-neutral-400 font-mono">&lt; 3.0 MB WebGL Asset Budget</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ==========================================
+    // THREE.JS SETUP & STUDIO LIGHTING RIG
+    // ==========================================
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x070709);
+
+    const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(2.2, 0.2, 7.2);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    container.appendChild(renderer.domElement);
+
+    // Dynamic 4-Point Studio Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
+    scene.add(ambientLight);
+
+    const keySpot = new THREE.SpotLight(0xfff7ed, 3.8, 30, Math.PI / 4, 0.35);
+    keySpot.position.set(4, 7, 7);
+    keySpot.castShadow = true;
+    keySpot.shadow.mapSize.width = 2048;
+    keySpot.shadow.mapSize.height = 2048;
+    keySpot.shadow.bias = -0.0001;
+    scene.add(keySpot);
+
+    const rimLight = new THREE.DirectionalLight(0x67e8f9, 2.4); // Cool Cyan Rim
+    rimLight.position.set(-6, 3, -4);
+    scene.add(rimLight);
+
+    const warmFill = new THREE.DirectionalLight(0xfef08a, 1.0); // Warm Amber Fill
+    warmFill.position.set(-4, -1, 4);
+    scene.add(warmFill);
+
+    const bounceLight = new THREE.DirectionalLight(0x38bdf8, 0.6);
+    bounceLight.position.set(0, -3, 2);
+    scene.add(bounceLight);
+
+    // Grounding Plinth
+    const plinthGroup = new THREE.Group();
+    plinthGroup.position.set(0.6, 0.0, 0);
+    scene.add(plinthGroup);
+
+    const plinthMat = new THREE.MeshStandardMaterial({
+      color: 0x141416,
+      roughness: 0.8,
+      metalness: 0.2
+    });
+    const plinth = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.4, 0.25, 48), plinthMat);
+    plinth.position.y = -1.45;
+    plinth.receiveShadow = true;
+    plinthGroup.add(plinth);
+
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.35 });
+    const plinthRing = new THREE.Mesh(new THREE.RingGeometry(2.22, 2.26, 48), ringMat);
+    plinthRing.rotation.x = -Math.PI / 2;
+    plinthRing.position.y = -1.32;
+    plinthGroup.add(plinthRing);
+
+    // ==========================================
+    // STYLIZED CHARACTER MESH HIERARCHY
+    // ==========================================
+    const character = new THREE.Group();
+    character.position.set(0.6, -1.32, 0);
+    scene.add(character);
+
+    // PBR Materials
+    const skinMat = new THREE.MeshStandardMaterial({
+      color: 0xf5d0b5,
+      roughness: 0.52,
+      metalness: 0.05
+    });
+    const hoodieMat = new THREE.MeshStandardMaterial({
+      color: 0x141416, // Space Black
+      roughness: 0.82,
+      metalness: 0.12
+    });
+    const hairMat = new THREE.MeshStandardMaterial({
+      color: 0x1c1917, // Dark Espresso
+      roughness: 0.65,
+      metalness: 0.15
+    });
+    const titaniumMat = new THREE.MeshStandardMaterial({
+      color: 0xd4d4d8,
+      metalness: 0.95,
+      roughness: 0.2
+    });
+    const lensMat = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      transmission: 0.92,
+      roughness: 0.08,
+      ior: 1.52,
+      transparent: true,
+      opacity: 0.45
+    });
+    const joggerMat = new THREE.MeshStandardMaterial({
+      color: 0x1e293b,
+      roughness: 0.85
+    });
+    const sneakerMat = new THREE.MeshStandardMaterial({
+      color: 0xf8fafc,
+      roughness: 0.35
+    });
+    const sneakerSoleMat = new THREE.MeshStandardMaterial({
+      color: 0x09090b,
+      roughness: 0.8
+    });
+
+    // 1. Pelvis / Hips
+    const hips = new THREE.Group();
+    hips.position.y = 0.85;
+    character.add(hips);
+
+    // 2. Spine & Torso (Tech Hoodie)
+    const spine = new THREE.Group();
+    hips.add(spine);
+
+    const torso = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.24, 0.65, 28), hoodieMat);
+    torso.position.y = 0.32;
+    torso.castShadow = true;
+    spine.add(torso);
+
+    // Kangaroo Pocket Detail
+    const pocket = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.18, 0.10), hoodieMat);
+    pocket.position.set(0, 0.22, 0.20);
+    pocket.rotation.x = -0.08;
+    spine.add(pocket);
+
+    // Hoodie Cowl / Hood Collar
+    const cowl = new THREE.Mesh(new THREE.TorusGeometry(0.25, 0.09, 20, 28), hoodieMat);
+    cowl.rotation.x = Math.PI / 2.3;
+    cowl.position.set(0, 0.62, -0.04);
+    spine.add(cowl);
+
+    // 3. Neck & Head Pivot
+    const neck = new THREE.Group();
+    neck.position.set(0, 0.68, 0);
+    spine.add(neck);
+
+    const headPivot = new THREE.Group();
+    headPivot.position.set(0, 0.14, 0);
+    neck.add(headPivot);
+
+    // Stylized Head Geometry (~1:4.8 Ratio)
+    const headMesh = new THREE.Mesh(new THREE.SphereGeometry(0.26, 32, 32), skinMat);
+    headMesh.scale.set(1.0, 1.08, 0.96);
+    headMesh.castShadow = true;
+    headPivot.add(headMesh);
+
+    // Parted Dark Curtain Bangs Hairstyle
+    const hairCap = new THREE.Mesh(new THREE.SphereGeometry(0.28, 28, 28, 0, Math.PI * 2, 0, Math.PI * 0.58), hairMat);
+    hairCap.position.y = 0.04;
+    headPivot.add(hairCap);
+
+    // Left Curtain Bang
+    const leftBang = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.28, 16), hairMat);
+    leftBang.rotation.set(-0.35, 0.22, -0.42);
+    leftBang.position.set(-0.14, 0.12, 0.22);
+    headPivot.add(leftBang);
+
+    // Right Curtain Bang
+    const rightBang = new THREE.Mesh(new THREE.ConeGeometry(0.14, 0.30, 16), hairMat);
+    rightBang.rotation.set(-0.35, -0.22, 0.42);
+    rightBang.position.set(0.12, 0.10, 0.22);
+    headPivot.add(rightBang);
+
+    // Signature Round Titanium Wireframe Spectacles
+    const glassesGroup = new THREE.Group();
+    glassesGroup.position.set(0, 0.03, 0.25);
+    headPivot.add(glassesGroup);
+
+    // Left Rim & Lens
+    const leftRim = new THREE.Mesh(new THREE.TorusGeometry(0.082, 0.012, 16, 36), titaniumMat);
+    leftRim.position.x = -0.10;
+    glassesGroup.add(leftRim);
+    const leftLens = new THREE.Mesh(new THREE.CircleGeometry(0.08, 28), lensMat);
+    leftLens.position.x = -0.10;
+    glassesGroup.add(leftLens);
+
+    // Right Rim & Lens
+    const rightRim = new THREE.Mesh(new THREE.TorusGeometry(0.082, 0.012, 16, 36), titaniumMat);
+    rightRim.position.x = 0.10;
+    glassesGroup.add(rightRim);
+    const rightLens = new THREE.Mesh(new THREE.CircleGeometry(0.08, 28), lensMat);
+    rightLens.position.x = 0.10;
+    glassesGroup.add(rightLens);
+
+    // Titanium Bridge
+    const bridge = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.05, 12), titaniumMat);
+    bridge.rotation.z = Math.PI / 2;
+    glassesGroup.add(bridge);
+
+    // Glasses Temples (Side Arms)
+    const leftTemple = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.22, 8), titaniumMat);
+    leftTemple.rotation.x = Math.PI / 2;
+    leftTemple.position.set(-0.18, 0, -0.10);
+    glassesGroup.add(leftTemple);
+
+    const rightTemple = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.22, 8), titaniumMat);
+    rightTemple.rotation.x = Math.PI / 2;
+    rightTemple.position.set(0.18, 0, -0.10);
+    glassesGroup.add(rightTemple);
+
+    // 4. Arms Hierarchy (With Clavicle & Wrist Articulation)
+    // Left Arm
+    const leftShoulder = new THREE.Group();
+    leftShoulder.position.set(-0.34, 0.58, 0);
+    spine.add(leftShoulder);
+
+    const leftUpperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.32, 18), hoodieMat);
+    leftUpperArm.position.y = -0.16;
+    leftShoulder.add(leftUpperArm);
+
+    const leftElbow = new THREE.Group();
+    leftElbow.position.y = -0.32;
+    leftShoulder.add(leftElbow);
+
+    const leftForearm = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.28, 18), hoodieMat);
+    leftForearm.position.y = -0.14;
+    leftElbow.add(leftForearm);
+
+    const leftWrist = new THREE.Group();
+    leftWrist.position.y = -0.28;
+    leftElbow.add(leftWrist);
+
+    const leftHand = new THREE.Mesh(new THREE.SphereGeometry(0.07, 18, 18), skinMat);
+    leftHand.scale.set(1.0, 1.2, 0.6);
+    leftWrist.add(leftHand);
+
+    // Right Arm
+    const rightShoulder = new THREE.Group();
+    rightShoulder.position.set(0.34, 0.58, 0);
+    spine.add(rightShoulder);
+
+    const rightUpperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.32, 18), hoodieMat);
+    rightUpperArm.position.y = -0.16;
+    rightShoulder.add(rightUpperArm);
+
+    const rightElbow = new THREE.Group();
+    rightElbow.position.y = -0.32;
+    rightShoulder.add(rightElbow);
+
+    const rightForearm = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.28, 18), hoodieMat);
+    rightForearm.position.y = -0.14;
+    rightElbow.add(rightForearm);
+
+    const rightWrist = new THREE.Group();
+    rightWrist.position.y = -0.28;
+    rightElbow.add(rightWrist);
+
+    const rightHand = new THREE.Mesh(new THREE.SphereGeometry(0.07, 18, 18), skinMat);
+    rightHand.scale.set(1.0, 1.2, 0.6);
+    rightWrist.add(rightHand);
+
+    // 5. Legs Hierarchy
+    // Left Leg
+    const leftHip = new THREE.Group();
+    leftHip.position.set(-0.14, 0, 0);
+    hips.add(leftHip);
+
+    const leftThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.085, 0.40, 18), joggerMat);
+    leftThigh.position.y = -0.20;
+    leftThigh.castShadow = true;
+    leftHip.add(leftThigh);
+
+    const leftKnee = new THREE.Group();
+    leftKnee.position.y = -0.40;
+    leftHip.add(leftKnee);
+
+    const leftShin = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.075, 0.38, 18), joggerMat);
+    leftShin.position.y = -0.19;
+    leftShin.castShadow = true;
+    leftKnee.add(leftShin);
+
+    const leftAnkle = new THREE.Group();
+    leftAnkle.position.y = -0.38;
+    leftKnee.add(leftAnkle);
+
+    const leftSneaker = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.09, 0.26), sneakerMat);
+    leftSneaker.position.set(0, -0.04, 0.05);
+    leftSneaker.castShadow = true;
+    leftAnkle.add(leftSneaker);
+
+    const leftSole = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.03, 0.28), sneakerSoleMat);
+    leftSole.position.set(0, -0.09, 0.05);
+    leftAnkle.add(leftSole);
+
+    // Right Leg
+    const rightHip = new THREE.Group();
+    rightHip.position.set(0.14, 0, 0);
+    hips.add(rightHip);
+
+    const rightThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.085, 0.40, 18), joggerMat);
+    rightThigh.position.y = -0.20;
+    rightThigh.castShadow = true;
+    rightHip.add(rightThigh);
+
+    const rightKnee = new THREE.Group();
+    rightKnee.position.y = -0.40;
+    rightHip.add(rightKnee);
+
+    const rightShin = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.075, 0.38, 18), joggerMat);
+    rightShin.position.y = -0.19;
+    rightShin.castShadow = true;
+    rightKnee.add(rightShin);
+
+    const rightAnkle = new THREE.Group();
+    rightAnkle.position.y = -0.38;
+    rightKnee.add(rightAnkle);
+
+    const rightSneaker = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.09, 0.26), sneakerMat);
+    rightSneaker.position.set(0, -0.04, 0.05);
+    rightSneaker.castShadow = true;
+    rightAnkle.add(rightSneaker);
+
+    const rightSole = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.03, 0.28), sneakerSoleMat);
+    rightSole.position.set(0, -0.09, 0.05);
+    rightAnkle.add(rightSole);
+
+    // ==========================================
+    // STAGE PROPS & ENVIRONMENT ACCESSORIES
+    // ==========================================
+    // Act 1 Modern Executive Lounge Chair
+    const chairGroup = new THREE.Group();
+    chairGroup.position.set(0.6, -1.32, 0);
+    chairGroup.visible = false;
+    scene.add(chairGroup);
+
+    const leatherMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.65, metalness: 0.1 });
+    const woodShellMat = new THREE.MeshStandardMaterial({ color: 0x271c19, roughness: 0.4, metalness: 0.2 });
+    const steelMat = new THREE.MeshStandardMaterial({ color: 0x71717a, roughness: 0.2, metalness: 0.9 });
+
+    // Chair Seat & Cushion
+    const seatCushion = new THREE.Mesh(new THREE.BoxGeometry(0.70, 0.12, 0.65), leatherMat);
+    seatCushion.position.set(0, 0.45, 0);
+    chairGroup.add(seatCushion);
+
+    const seatShell = new THREE.Mesh(new THREE.BoxGeometry(0.74, 0.06, 0.69), woodShellMat);
+    seatShell.position.set(0, 0.38, 0);
+    chairGroup.add(seatShell);
+
+    // Chair Backrest
+    const backCushion = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.65, 0.12), leatherMat);
+    backCushion.position.set(0, 0.85, -0.30);
+    backCushion.rotation.x = -0.15;
+    chairGroup.add(backCushion);
+
+    const backShell = new THREE.Mesh(new THREE.BoxGeometry(0.69, 0.69, 0.06), woodShellMat);
+    backShell.position.set(0, 0.85, -0.36);
+    backShell.rotation.x = -0.15;
+    chairGroup.add(backShell);
+
+    // Chair Base & Swivel Stem
+    const chairStem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.35, 16), steelMat);
+    chairStem.position.set(0, 0.18, 0);
+    chairGroup.add(chairStem);
+
+    const chairBase = new THREE.Mesh(new THREE.CylinderGeometry(0.40, 0.40, 0.04, 32), steelMat);
+    chairBase.position.set(0, 0.02, 0);
+    chairGroup.add(chairBase);
+
+    // Act 2 Interactive Bookshelf
+    const shelfGroup = new THREE.Group();
+    shelfGroup.position.set(-1.0, -1.32, 0.2);
+    shelfGroup.visible = false;
+    scene.add(shelfGroup);
+
+    const shelfFrame = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1.8, 0.35), woodShellMat);
+    shelfFrame.position.set(0, 0.9, 0);
+    shelfGroup.add(shelfFrame);
+
+    // Pull-out Illuminated Tome (3.89 CGPA Distinction)
+    const pullTome = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.45, 0.30), new THREE.MeshStandardMaterial({ color: 0x1e3a8a, roughness: 0.3 }));
+    pullTome.position.set(0.15, 1.05, 0.22);
+    shelfGroup.add(pullTome);
+
+    // Act 4 Craggy Mountain Granite Ridge & 24k Gold Trophy
+    const alpineGroup = new THREE.Group();
+    alpineGroup.position.set(0.6, -1.32, 0);
+    alpineGroup.visible = false;
+    scene.add(alpineGroup);
+
+    const rockMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.9, metalness: 0.1 });
+    const graniteRock1 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.55, 1), rockMat);
+    graniteRock1.position.set(0.35, 0.30, 0.2);
+    graniteRock1.scale.set(1.2, 0.8, 1.0);
+    alpineGroup.add(graniteRock1);
+
+    const graniteRock2 = new THREE.Mesh(new THREE.DodecahedronGeometry(0.40, 1), rockMat);
+    graniteRock2.position.set(-0.35, 0.15, -0.1);
+    alpineGroup.add(graniteRock2);
+
+    // 24k Gold Hilti Trophy
+    const goldTrophyGroup = new THREE.Group();
+    goldTrophyGroup.position.set(0.2, 0.75, 0.4);
+    alpineGroup.add(goldTrophyGroup);
+
+    const trophyMat = new THREE.MeshStandardMaterial({ color: 0xf59e0b, metalness: 0.95, roughness: 0.15 });
+    const trophyPillar = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.08, 0.45, 6), trophyMat);
+    goldTrophyGroup.add(trophyPillar);
+
+    const trophyCrown = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.035, 16, 24), trophyMat);
+    trophyCrown.position.y = 0.26;
+    goldTrophyGroup.add(trophyCrown);
+
+    // 1,200 Background Dust Particles
+    const pCount = 1200;
+    const pGeo = new THREE.BufferGeometry();
+    const pPos = new Float32Array(pCount * 3);
+    for (let i = 0; i < pCount; i++) {
+      pPos[i*3] = (Math.random() - 0.5) * 24;
+      pPos[i*3+1] = (Math.random() - 0.5) * 16;
+      pPos[i*3+2] = (Math.random() - 0.5) * 18;
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    const pMat = new THREE.PointsMaterial({ color: 0x64748b, size: 0.025, transparent: true, opacity: 0.5 });
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    // ==========================================
+    // KINEMATIC POSTURE STATE MACHINE
+    // ==========================================
+    let activePosture = 'hero_idle';
+    let targetCameraPos = new THREE.Vector3(2.2, 0.2, 7.2);
+    let targetCameraLookAt = new THREE.Vector3(0.6, 0.1, 0);
+
+    // Targets for smooth slerp interpolation
+    const poseTargets = {
+      hipsY: 0.85,
+      hipsRotX: 0, hipsRotY: 0, hipsRotZ: 0,
+      spineRotX: 0, spineRotY: 0, spineRotZ: 0,
+      leftShoulderRotX: 0, leftShoulderRotY: 0, leftShoulderRotZ: -0.08,
+      leftElbowRotX: 0, leftElbowRotY: 0, leftElbowRotZ: 0,
+      rightShoulderRotX: 0, rightShoulderRotY: 0, rightShoulderRotZ: 0.08,
+      rightElbowRotX: 0, rightElbowRotY: 0, rightElbowRotZ: 0,
+      leftHipRotX: 0, leftKneeRotX: 0,
+      rightHipRotX: 0, rightKneeRotX: 0,
+      chairVis: false,
+      shelfVis: false,
+      alpineVis: false,
+      trophyInHand: false
+    };
+
+    function setPosture(postureName) {
+      activePosture = postureName;
+      
+      // Default reset
+      poseTargets.hipsY = 0.85;
+      poseTargets.hipsRotX = 0; poseTargets.hipsRotY = 0; poseTargets.hipsRotZ = 0;
+      poseTargets.spineRotX = 0; poseTargets.spineRotY = 0; poseTargets.spineRotZ = 0;
+      poseTargets.leftShoulderRotX = 0; poseTargets.leftShoulderRotY = 0; poseTargets.leftShoulderRotZ = -0.08;
+      poseTargets.leftElbowRotX = 0; poseTargets.leftElbowRotY = 0; poseTargets.leftElbowRotZ = 0;
+      poseTargets.rightShoulderRotX = 0; poseTargets.rightShoulderRotY = 0; poseTargets.rightShoulderRotZ = 0.08;
+      poseTargets.rightElbowRotX = 0; poseTargets.rightElbowRotY = 0; poseTargets.rightElbowRotZ = 0;
+      poseTargets.leftHipRotX = 0; poseTargets.leftKneeRotX = 0;
+      poseTargets.rightHipRotX = 0; poseTargets.rightKneeRotX = 0;
+      poseTargets.chairVis = false;
+      poseTargets.shelfVis = false;
+      poseTargets.alpineVis = false;
+      poseTargets.trophyInHand = false;
+
+      if (postureName === 'hero_idle') {
+        // Natural relaxed stance, slight arm relaxation
+        poseTargets.hipsY = 0.85;
+        poseTargets.leftShoulderRotZ = -0.10;
+        poseTargets.rightShoulderRotZ = 0.10;
+      }
+      else if (postureName === 'seated') {
+        // Natural Sitting in Executive Chair
+        poseTargets.chairVis = true;
+        poseTargets.hipsY = 0.52; // Lowered to cushion surface
+        poseTargets.leftHipRotX = -Math.PI / 2 + 0.15; // Thighs forward horizontal
+        poseTargets.leftKneeRotX = Math.PI / 2 - 0.10; // Shins vertical down
+        poseTargets.rightHipRotX = -Math.PI / 2 + 0.15;
+        poseTargets.rightKneeRotX = Math.PI / 2 - 0.10;
+        // Gesturing hands
+        poseTargets.leftShoulderRotX = -0.3;
+        poseTargets.leftShoulderRotZ = -0.2;
+        poseTargets.leftElbowRotX = -0.6;
+        poseTargets.rightShoulderRotX = -0.4;
+        poseTargets.rightShoulderRotZ = 0.25;
+        poseTargets.rightElbowRotX = -0.7;
+      }
+      else if (postureName === 'reach_book') {
+        // Act 2: Turning toward library shelf, reaching for 3.89 tome
+        poseTargets.shelfVis = true;
+        poseTargets.hipsRotY = -0.45; // Turn towards shelf on left
+        poseTargets.leftShoulderRotX = -0.85; // Reach left arm forward-up
+        poseTargets.leftShoulderRotZ = -0.35;
+        poseTargets.leftElbowRotX = -0.40;
+        poseTargets.rightShoulderRotZ = 0.20; // Relax right arm
+      }
+      else if (postureName === 'climb_ridge') {
+        // Act 4: Dynamic mountain rock climbing posture
+        poseTargets.alpineVis = true;
+        poseTargets.spineRotX = 0.35; // Torso pitched forward into mountain
+        poseTargets.hipsY = 0.78;
+        // Right arm reaching high to grip rock ledge
+        poseTargets.rightShoulderRotX = -1.6;
+        poseTargets.rightShoulderRotZ = 0.25;
+        poseTargets.rightElbowRotX = -0.7;
+        // Left arm stabilizing
+        poseTargets.leftShoulderRotX = -0.6;
+        poseTargets.leftShoulderRotZ = -0.4;
+        poseTargets.leftElbowRotX = -0.8;
+        // Left leg stepped high on boulder
+        poseTargets.leftHipRotX = -1.1;
+        poseTargets.leftKneeRotX = 1.3;
+        // Right leg trailing
+        poseTargets.rightHipRotX = 0.2;
+        poseTargets.rightKneeRotX = 0.3;
+      }
+      else if (postureName === 'hoist_trophy') {
+        // Act 4: Summit Victory Stance raising 24k Gold Trophy
+        poseTargets.alpineVis = true;
+        poseTargets.trophyInHand = true;
+        poseTargets.spineRotX = -0.10; // Chest proud, slightly arched back
+        // Right arm holding trophy high overhead
+        poseTargets.rightShoulderRotX = -0.2;
+        poseTargets.rightShoulderRotZ = 1.45; // Arm vertical
+        poseTargets.rightElbowRotZ = 0.25;
+        // Left hand resting on hip
+        poseTargets.leftShoulderRotZ = -0.35;
+        poseTargets.leftElbowRotX = -0.85;
+        poseTargets.leftElbowRotZ = -0.45;
+        // Solid wide stance
+        poseTargets.leftHipRotX = -0.08;
+        poseTargets.rightHipRotX = 0.08;
+      }
+      else if (postureName === 'operate_core') {
+        // Act 5: Hands up interacting with exploded strata holographic panels
+        poseTargets.spineRotX = 0.05;
+        poseTargets.leftShoulderRotX = -0.85;
+        poseTargets.leftShoulderRotZ = -0.3;
+        poseTargets.leftElbowRotX = -0.6;
+        poseTargets.rightShoulderRotX = -0.85;
+        poseTargets.rightShoulderRotZ = 0.3;
+        poseTargets.rightElbowRotX = -0.6;
+      }
+      else if (postureName === 'wave') {
+        // Act 6: Welcoming / Farewell Wave
+        poseTargets.rightShoulderRotZ = 1.2;
+        poseTargets.rightShoulderRotX = -0.3;
+        poseTargets.rightElbowRotZ = 0.6;
+        poseTargets.leftShoulderRotZ = -0.15;
+      }
+
+      chairGroup.visible = poseTargets.chairVis;
+      shelfGroup.visible = poseTargets.shelfVis;
+      alpineGroup.visible = poseTargets.alpineVis;
+      if (poseTargets.trophyInHand) {
+        // Move trophy to character right hand
+        rightWrist.add(goldTrophyGroup);
+        goldTrophyGroup.position.set(0, -0.25, 0.05);
+        goldTrophyGroup.rotation.set(0, 0, 0);
+        goldTrophyGroup.visible = true;
+      } else {
+        alpineGroup.add(goldTrophyGroup);
+        goldTrophyGroup.position.set(0.2, 0.75, 0.4);
+        goldTrophyGroup.rotation.set(0, 0, 0);
+        goldTrophyGroup.visible = alpineGroup.visible;
+      }
+    }
+
+    // Camera Views
+    function setCameraView(viewName) {
+      if (viewName === 'hero') {
+        targetCameraPos.set(2.2, 0.2, 7.2);
+        targetCameraLookAt.set(0.6, 0.1, 0);
+        document.getElementById('view-status').textContent = '3/4 HERO VIEW';
+      } else if (viewName === 'front') {
+        targetCameraPos.set(0.6, 0.1, 6.8);
+        targetCameraLookAt.set(0.6, 0.1, 0);
+        document.getElementById('view-status').textContent = 'FRONTAL FULL-BODY';
+      } else if (viewName === 'head') {
+        targetCameraPos.set(0.6, 0.95, 2.5);
+        targetCameraLookAt.set(0.6, 0.95, 0);
+        document.getElementById('view-status').textContent = 'HEAD & GLASSES CLOSE-UP';
+      }
+    }
+
+    // ==========================================
+    // UI EVENT LISTENERS
+    // ==========================================
+    const btnChk1 = document.getElementById('btn-chk1');
+    const btnChk2 = document.getElementById('btn-chk2');
+    const chk1Controls = document.getElementById('chk1-controls');
+    const chk2Controls = document.getElementById('chk2-controls');
+    const badge = document.getElementById('checkpoint-badge');
+    const title = document.getElementById('checkpoint-title');
+    const desc = document.getElementById('checkpoint-desc');
+
+    btnChk1.addEventListener('click', () => {
+      btnChk1.className = 'text-xs font-mono px-3.5 py-1.5 rounded-full bg-white text-black font-semibold uppercase cursor-pointer transition-all';
+      btnChk2.className = 'text-xs font-mono px-3.5 py-1.5 rounded-full hairline-all text-neutral-300 font-medium hover:bg-white/10 uppercase cursor-pointer transition-all';
+      chk1Controls.classList.remove('hidden');
+      chk2Controls.classList.add('hidden');
+      badge.textContent = 'CHECKPOINT 01 • MODEL MESH PASSING';
+      badge.className = 'text-[11px] font-mono text-cyan-400 uppercase tracking-widest px-2.5 py-0.5 rounded hairline-all bg-cyan-950/40';
+      title.innerHTML = 'Stylized Model &amp;<br>Signature Tokens.';
+      desc.textContent = 'Evaluating volumetric anatomy (~1:4.8 head-to-body ratio), Space Black tech hoodie (#141416), titanium round spectacles with physical AR glass, and dark parted curtain bangs.';
+      setPosture('hero_idle');
+      setCameraView('hero');
+    });
+
+    btnChk2.addEventListener('click', () => {
+      btnChk2.className = 'text-xs font-mono px-3.5 py-1.5 rounded-full bg-white text-black font-semibold uppercase cursor-pointer transition-all';
+      btnChk1.className = 'text-xs font-mono px-3.5 py-1.5 rounded-full hairline-all text-neutral-300 font-medium hover:bg-white/10 uppercase cursor-pointer transition-all';
+      chk2Controls.classList.remove('hidden');
+      chk1Controls.classList.add('hidden');
+      badge.textContent = 'CHECKPOINT 02 • POSTURE & KINEMATICS VALIDATION';
+      badge.className = 'text-[11px] font-mono text-amber-400 uppercase tracking-widest px-2.5 py-0.5 rounded hairline-all bg-amber-950/40';
+      title.innerHTML = 'Posture Kinematics &amp;<br>Storyline Interaction.';
+      desc.textContent = 'Validating natural postures across all 6 Acts: Executive Lounge Chair sitting, Library bookshelf pull, Alpine ridge climbing, and Hilti World Championship Trophy hoisting.';
+      setPosture('seated');
+      setCameraView('hero');
+    });
+
+    document.getElementById('view-hero').addEventListener('click', () => setCameraView('hero'));
+    document.getElementById('view-front').addEventListener('click', () => setCameraView('front'));
+    document.getElementById('view-head').addEventListener('click', () => setCameraView('head'));
+
+    document.getElementById('pose-seated').addEventListener('click', () => setPosture('seated'));
+    document.getElementById('pose-book').addEventListener('click', () => setPosture('reach_book'));
+    document.getElementById('pose-climb').addEventListener('click', () => setPosture('climb_ridge'));
+    document.getElementById('pose-trophy').addEventListener('click', () => setPosture('hoist_trophy'));
+    document.getElementById('pose-core').addEventListener('click', () => setPosture('operate_core'));
+    document.getElementById('pose-wave').addEventListener('click', () => setPosture('wave'));
+
+    // Mouse Parallax
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ==========================================
+    // RENDER LOOP & SMOOTH DAMPING
+    // ==========================================
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = Math.min(clock.getDelta(), 0.1);
+      const t = clock.getElapsedTime();
+
+      // Camera Damping
+      camera.position.lerp(targetCameraPos, delta * 3.5);
+      const currentLookAt = new THREE.Vector3();
+      camera.getWorldDirection(currentLookAt);
+      // LookAt
+      camera.lookAt(targetCameraLookAt);
+
+      // Natural Breathing Stance (subtle spine oscillation)
+      const breath = Math.sin(t * 2.2) * 0.012;
+      hips.position.y += ((poseTargets.hipsY + breath) - hips.position.y) * delta * 5.0;
+
+      // Mouse Gaze Tracking (Head and subtle torso)
+      const targetGazeX = mouseX * 0.35;
+      const targetGazeY = mouseY * 0.25;
+      headPivot.rotation.y += (targetGazeX - headPivot.rotation.y) * delta * 4.0;
+      headPivot.rotation.x += (-targetGazeY - headPivot.rotation.x) * delta * 4.0;
+
+      // Smooth Joint Interpolation
+      hips.rotation.x += (poseTargets.hipsRotX - hips.rotation.x) * delta * 5.0;
+      hips.rotation.y += (poseTargets.hipsRotY - hips.rotation.y) * delta * 5.0;
+      hips.rotation.z += (poseTargets.hipsRotZ - hips.rotation.z) * delta * 5.0;
+
+      spine.rotation.x += (poseTargets.spineRotX - spine.rotation.x) * delta * 5.0;
+      spine.rotation.y += (poseTargets.spineRotY - spine.rotation.y) * delta * 5.0;
+      spine.rotation.z += (poseTargets.spineRotZ - spine.rotation.z) * delta * 5.0;
+
+      leftShoulder.rotation.x += (poseTargets.leftShoulderRotX - leftShoulder.rotation.x) * delta * 5.0;
+      leftShoulder.rotation.y += (poseTargets.leftShoulderRotY - leftShoulder.rotation.y) * delta * 5.0;
+      leftShoulder.rotation.z += (poseTargets.leftShoulderRotZ - leftShoulder.rotation.z) * delta * 5.0;
+
+      leftElbow.rotation.x += (poseTargets.leftElbowRotX - leftElbow.rotation.x) * delta * 5.0;
+      leftElbow.rotation.y += (poseTargets.leftElbowRotY - leftElbow.rotation.y) * delta * 5.0;
+      leftElbow.rotation.z += (poseTargets.leftElbowRotZ - leftElbow.rotation.z) * delta * 5.0;
+
+      rightShoulder.rotation.x += (poseTargets.rightShoulderRotX - rightShoulder.rotation.x) * delta * 5.0;
+      rightShoulder.rotation.y += (poseTargets.rightShoulderRotY - rightShoulder.rotation.y) * delta * 5.0;
+      rightShoulder.rotation.z += (poseTargets.rightShoulderRotZ - rightShoulder.rotation.z) * delta * 5.0;
+
+      rightElbow.rotation.x += (poseTargets.rightElbowRotX - rightElbow.rotation.x) * delta * 5.0;
+      rightElbow.rotation.y += (poseTargets.rightElbowRotY - rightElbow.rotation.y) * delta * 5.0;
+      rightElbow.rotation.z += (poseTargets.rightElbowRotZ - rightElbow.rotation.z) * delta * 5.0;
+
+      leftHip.rotation.x += (poseTargets.leftHipRotX - leftHip.rotation.x) * delta * 5.0;
+      leftKnee.rotation.x += (poseTargets.leftKneeRotX - leftKnee.rotation.x) * delta * 5.0;
+
+      rightHip.rotation.x += (poseTargets.rightHipRotX - rightHip.rotation.x) * delta * 5.0;
+      rightKnee.rotation.x += (poseTargets.rightKneeRotX - rightKnee.rotation.x) * delta * 5.0;
+
+      // Subtle dynamic wave on waving posture
+      if (activePosture === 'wave') {
+        rightWrist.rotation.z = Math.sin(t * 6.0) * 0.35;
+      } else {
+        rightWrist.rotation.z *= 0.9;
+      }
+
+      // Trophy glint
+      trophyCrown.rotation.y = t * 0.8;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

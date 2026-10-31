@@ -1,0 +1,31 @@
+{
+  "identity": {
+    "name": "Zachary Ang Zi Yang",
+    "headline": "AI Product Strategist & Solutions Architect | Multi-Modal Agentic Systems",
+    "location": "Kuala Lumpur, Malaysia",
+    "positioning": "Designing autonomous multi-modal factories, cloud AI pipelines, and high-leverage decision systems."
+  },
+  "experience": [
+    {
+      "id": "soft-space",
+      "role": "Business Analyst (Fintech & Digital Banking Super-App)",
+      "organization": "Soft Space Sdn Bhd",
+      "period": "Oct 2024 – Present",
+      "shaderTheme": { "primaryHex": "#00F0FF", "noiseFrequency": 1.2 },
+      "highlights": [
+        "Spearheading C-suite AI strategy, automation workflows, and zero-defect UAT release governance for ASEAN digital banking super-apps.",
+        "Managing enterprise requirement engineering (BRD/FSD) and live production SLAs across active fintech wallet modules."
+      ]
+    }
+  ],
+  "featuredSystems": [
+    {
+      "id": "omni-workstation",
+      "title": "Omni-Workstation",
+      "category": "Multi-Modal Agentic Factory",
+      "repo": "https://github.com/ZacharyAng0309/omni-workstation",
+      "summary": "Deterministic workflow orchestration engine integrating multi-agent skills, automated governance audits, and multi-modal asset pipelines.",
+      "techStack": ["TypeScript", "Agentic DAGs", "ComfyUI API", "GitHub Actions"]
+    }
+  ]
+}

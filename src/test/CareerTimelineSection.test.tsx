@@ -7,7 +7,7 @@ describe('CareerTimelineSection Component', () => {
   it('renders milestones across career journey', () => {
     render(<CareerTimelineSection />);
 
-    expect(screen.getByText(/Chapter 04 • Career Journey & Milestones/i)).toBeDefined();
+    expect(screen.getByText(/Act 02 • The Academy/i)).toBeDefined();
     TIMELINE_MILESTONES.forEach((item) => {
       expect(screen.getByText(item.organization)).toBeDefined();
     });

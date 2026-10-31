@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, EyeOff, Eye, Menu, X } from 'lucide-react';
+import { Mail, EyeOff, Eye, Menu, X, Volume2, VolumeX } from 'lucide-react';
 
 interface NavbarHUDProps {
   activeSection: string;
   isReducedMotion: boolean;
   onToggleReducedMotion: () => void;
+  isAudioEnabled?: boolean;
+  onToggleAudio?: () => void;
 }
 
 export const NavbarHUD: React.FC<NavbarHUDProps> = ({
   activeSection,
   isReducedMotion,
   onToggleReducedMotion,
+  isAudioEnabled = false,
+  onToggleAudio,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'hero', label: 'Overview' },
-    { id: 'summit', label: 'The Summit' },
-    { id: 'ai-solutions', label: 'AI Architecture' },
-    { id: 'vault', label: 'Credentials' },
-    { id: 'timeline', label: 'Specs' },
-    { id: 'contact', label: 'Connect' },
+    { id: 'hero', label: '01. Overview' },
+    { id: 'timeline', label: '02. Growth' },
+    { id: 'vault', label: '03. Mastery' },
+    { id: 'summit', label: '04. Hilti Peak' },
+    { id: 'ai-solutions', label: '05. Projects' },
+    { id: 'contact', label: '06. Interests & Approach' },
   ];
 
   const scrollTo = (id: string) => {
@@ -104,18 +108,33 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
 
           {/* Actions & Accessibility */}
           <div className="flex items-center gap-1.5 sm:gap-2">
+            {onToggleAudio && (
+              <button
+                onClick={onToggleAudio}
+                title={isAudioEnabled ? 'Mute Procedural Web Audio' : 'Enable Procedural Web Audio'}
+                aria-label={isAudioEnabled ? 'Mute Procedural Web Audio' : 'Enable Procedural Web Audio'}
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                {isAudioEnabled ? (
+                  <Volume2 className="w-4 h-4 text-cyan-400 animate-pulse" />
+                ) : (
+                  <VolumeX className="w-4 h-4 text-neutral-400" />
+                )}
+              </button>
+            )}
+
             <button
               onClick={onToggleReducedMotion}
               title={isReducedMotion ? 'Enable 3D Animations' : 'Reduce 3D Motion'}
               aria-label={isReducedMotion ? 'Enable 3D Animations' : 'Reduce 3D Motion'}
-              className="min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors"
             >
               {isReducedMotion ? <EyeOff className="w-4 h-4 text-amber-400" /> : <Eye className="w-4 h-4" />}
             </button>
 
             <a
               href="mailto:ziyang.ang02@gmail.com?subject=Strategic%20Inquiry%20-%20Ang%20Zi%20Yang%20(Zachary)"
-              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-sm hover:scale-102 active:scale-98 min-h-[36px]"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-sm hover:scale-102 active:scale-98 min-h-[44px]"
             >
               <Mail className="w-3 h-3 text-black" />
               <span>Get in Touch</span>
@@ -160,10 +179,29 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
               })}
 
               <div className="pt-2 mt-2 border-t border-white/10 flex items-center gap-2">
+                {onToggleAudio && (
+                  <button
+                    onClick={onToggleAudio}
+                    className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-full text-xs font-semibold bg-white/10 text-white hover:bg-white/20 transition-all cursor-pointer min-h-[44px]"
+                  >
+                    {isAudioEnabled ? (
+                      <>
+                        <Volume2 className="w-4 h-4 text-cyan-400 animate-pulse" />
+                        <span>Sound: On</span>
+                      </>
+                    ) : (
+                      <>
+                        <VolumeX className="w-4 h-4 text-neutral-400" />
+                        <span>Sound: Off</span>
+                      </>
+                    )}
+                  </button>
+                )}
+
                 <a
                   href="mailto:ziyang.ang02@gmail.com?subject=Strategic%20Inquiry%20-%20Ang%20Zi%20Yang%20(Zachary)"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-md min-h-[44px]"
+                  className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-full text-xs font-semibold bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-md min-h-[44px]"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   <span>Get in Touch (Email)</span>

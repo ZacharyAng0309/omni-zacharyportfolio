@@ -33,3 +33,8 @@ dist-ssr
 *.secret
 credentials.json
 service-account*.json
+
+# Python & Temporary Test Output
+__pycache__/
+*.pyc
+.tmp_*

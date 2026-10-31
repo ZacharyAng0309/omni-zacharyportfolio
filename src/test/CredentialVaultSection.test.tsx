@@ -7,7 +7,7 @@ describe('CredentialVaultSection Component', () => {
   it('renders all credentials on initial load', () => {
     render(<CredentialVaultSection />);
 
-    expect(screen.getByText(/Chapter 03 • Credential Vault/i)).toBeDefined();
+    expect(screen.getByText(/Act 03 • The Crucible/i)).toBeDefined();
     expect(screen.getByText(`All Credentials (${CREDENTIALS.length})`)).toBeDefined();
   });
 

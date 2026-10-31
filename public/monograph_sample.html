@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zachary Ang — Swiss Architectural Monograph Sample</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --font-display: 'Space Grotesk', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      background-color: #070709;
+      color: #f4f4f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .font-display { font-family: var(--font-display); }
+    .font-mono { font-family: var(--font-mono); }
+    
+    /* Film Grain Overlay */
+    .film-grain {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 99;
+      mix-blend-mode: overlay;
+    }
+    
+    /* Hairline border utility */
+    .hairline-b { border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .hairline-t { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .hairline-r { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+    .hairline-l { border-left: 1px solid rgba(255, 255, 255, 0.08); }
+    .hairline-all { border: 1px solid rgba(255, 255, 255, 0.08); }
+    
+    /* Architectural tracking */
+    .tracking-monograph { letter-spacing: -0.045em; }
+    .tracking-archival { letter-spacing: 0.12em; }
+  </style>
+</head>
+<body class="relative min-h-screen selection:bg-white selection:text-black">
+  <div class="film-grain"></div>
+
+  <!-- Three.js Canvas Container -->
+  <div id="canvas-container" class="fixed inset-0 w-full h-full pointer-events-auto z-0"></div>
+
+  <!-- Architectural Header Navigation -->
+  <header class="fixed top-0 left-0 w-full z-40 hairline-b bg-[#070709]/80 backdrop-blur-md px-6 md:px-12 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="text-xs font-mono font-medium tracking-archival uppercase text-white">ANG ZI YANG (ZACHARY)</span>
+        <span class="text-[10px] font-mono text-neutral-500 uppercase tracking-widest hidden sm:inline">/ ARCHITECTURAL MONOGRAPH</span>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <span class="text-[11px] font-mono text-neutral-400 hidden md:inline">46.9799° N, 8.2536° E • SWITZERLAND</span>
+        <button id="dossier-toggle" class="text-xs font-mono tracking-wider px-3.5 py-1.5 rounded-full hairline-all hover:bg-white/10 transition-colors uppercase cursor-pointer">
+          [ Archive Dossier ↗ ]
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Monograph Section -->
+  <main class="relative z-10 pt-28 pb-16 px-6 md:px-12 max-w-7xl mx-auto min-h-screen flex flex-col justify-between pointer-events-none">
+    
+    <!-- Hero Main Spread (Asymmetric 60/40 Split) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-8 md:pt-16 pointer-events-auto">
+      
+      <!-- Left 60%: Massive Monumental Typography -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Archival Chapter Index -->
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-mono text-neutral-400 uppercase tracking-archival">01 / PROLOGUE</span>
+          <span class="w-8 h-[1px] bg-neutral-700"></span>
+          <span class="text-xs font-mono text-neutral-500 tracking-wider">REF. CS-2024</span>
+        </div>
+
+        <!-- Monumental Headline -->
+        <h1 class="font-display text-5xl sm:text-7xl lg:text-[5.5rem] font-bold leading-[0.92] tracking-monograph text-white">
+          ARCHITECT OF<br>
+          ENTERPRISE<br>
+          INTELLIGENCE.
+        </h1>
+
+        <!-- Restrained Subtitle & Narrative -->
+        <div class="space-y-3 pt-2 max-w-xl">
+          <p class="text-base sm:text-lg font-medium text-neutral-200 tracking-tight">
+            AI Product Strategist &amp; Solutions Architect <span class="text-neutral-500 font-normal">at Soft Space Fintech &amp; Multi-Modal Agentic Systems.</span>
+          </p>
+          <p class="text-xs sm:text-sm text-neutral-400 font-normal leading-relaxed">
+            Bridging frontier generative intelligence with disciplined enterprise execution. From mission-critical banking super-apps with zero defect tolerance to autonomous multi-agent pipelines.
+          </p>
+        </div>
+
+        <!-- Minimalist Architectural CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="#act-02" class="px-6 py-3 rounded-full bg-white text-black font-mono text-xs font-semibold hover:bg-neutral-200 transition-colors">
+            READ MONOGRAPH ↓
+          </a>
+          <button id="open-dossier-hero" class="px-6 py-3 rounded-full hairline-all text-neutral-300 font-mono text-xs font-medium hover:bg-white/5 transition-colors cursor-pointer">
+            ARCHIVE DOSSIER ↗
+          </button>
+        </div>
+      </div>
+
+      <!-- Right 40%: Spatial 3D Sculpture Corridor Floating Controls -->
+      <div class="lg:col-span-5 flex flex-col items-end justify-start self-start pt-4 lg:pt-0 pointer-events-none">
+        <div class="hairline-all bg-[#0a0a0d]/70 backdrop-blur-md rounded-xl p-4 max-w-xs w-full space-y-2 pointer-events-auto">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">3D SCULPTURAL CORE</span>
+            <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+          </div>
+          <div class="text-xs font-mono text-white font-medium">MATTE TITANIUM &amp; SMOKED OPTICAL GLASS</div>
+          <p class="text-[10px] text-neutral-400 leading-normal">
+            Drag to inspect 360°. Concentric gyro strata with physical light refraction.
+          </p>
+          <div class="pt-2 flex items-center gap-2">
+            <button id="explode-btn" class="w-full py-1.5 rounded hairline-all hover:bg-white/10 text-[10px] font-mono text-neutral-200 transition-colors cursor-pointer">
+              [ 💥 EXPLODE STRATA ]
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Archival Telemetry Rule (Replacing clunky 4-card grid) -->
+    <div class="pt-16 pb-4 w-full pointer-events-auto">
+      <div class="hairline-t pt-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+        
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-archival">01 / WORLD RANK</div>
+          <div class="font-display text-xl sm:text-2xl font-bold tracking-tight text-white">1ST / 53 TEAMS</div>
+          <div class="text-[11px] text-neutral-400">Global Champions • Hilti IT Switzerland</div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-archival">02 / ACADEMIC HONORS</div>
+          <div class="font-display text-xl sm:text-2xl font-bold tracking-tight text-white">3.890 CGPA</div>
+          <div class="text-[11px] text-neutral-400">Distinction • Top 5% Valedictorian (APU)</div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-archival">03 / CLOUD SYSTEMS</div>
+          <div class="font-display text-xl sm:text-2xl font-bold tracking-tight text-white">14 QUESTS &amp; 7 BADGES</div>
+          <div class="text-[11px] text-neutral-400">Google Cloud &amp; Vertex AI Certified</div>
+        </div>
+
+        <div class="space-y-1">
+          <div class="text-[10px] font-mono text-neutral-500 uppercase tracking-archival">04 / STABILITY</div>
+          <div class="font-display text-xl sm:text-2xl font-bold tracking-tight text-white">0.000% DEFECT UAT</div>
+          <div class="text-[11px] text-neutral-400">Mission-Critical Payment Super-App</div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Slide-out Executive Dossier Drawer -->
+  <aside id="dossier-drawer" class="fixed inset-y-0 right-0 w-full max-w-lg bg-[#0a0a0d] hairline-l z-50 p-8 transform translate-x-full transition-transform duration-500 flex flex-col justify-between shadow-2xl overflow-y-auto">
+    <div class="space-y-6">
+      <div class="flex items-center justify-between hairline-b pb-4">
+        <div>
+          <span class="text-[10px] font-mono text-neutral-500 uppercase tracking-archival">ARCHIVAL DOSSIER</span>
+          <h3 class="font-display text-lg font-bold text-white">ANG ZI YANG (ZACHARY)</h3>
+        </div>
+        <button id="close-dossier" class="text-xs font-mono text-neutral-400 hover:text-white cursor-pointer px-2 py-1 hairline-all rounded">
+          [ ESC / CLOSE ]
+        </button>
+      </div>
+
+      <!-- Authentic Portrait Frame -->
+      <div class="space-y-3">
+        <div class="relative rounded-lg overflow-hidden aspect-[4/5] bg-neutral-900 hairline-all">
+          <img src="/images/reference_portrait.jpg" alt="Zachary Ang" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono">
+            <span class="text-white">VERIFIED AI ARCHITECT</span>
+            <span class="text-neutral-400">SOFT SPACE • KL &amp; ZURICH</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Biographical Monograph -->
+      <div class="space-y-2 text-xs text-neutral-300 leading-relaxed font-mono">
+        <p>Specializing in enterprise AI product architecture, payment core infrastructure, and autonomous agent systems.</p>
+        <p>Distinction graduate from Asia Pacific University (3.89 CGPA) and Staffordshire University. Led Team Sweetzerland to 1st place worldwide at the 12th Annual Hilti IT Competition in Switzerland.</p>
+      </div>
+    </div>
+
+    <div class="hairline-t pt-6 space-y-3">
+      <a href="mailto:ziyang.ang02@gmail.com" class="w-full block text-center py-3 rounded-full bg-white text-black font-mono text-xs font-semibold hover:bg-neutral-200 transition-colors">
+        TRANSMIT CORRESPONDENCE ✉️
+      </a>
+      <div class="flex items-center justify-between text-[10px] font-mono text-neutral-500">
+        <span>SLA &lt; 24 HOURS</span>
+        <span>ziyang.ang02@gmail.com</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Backdrop for Drawer -->
+  <div id="drawer-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-500"></div>
+
+  <!-- Three.js Kinetic Monolith Engine Script -->
+  <script>
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x070709, 0.02);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(2.2, 0.4, 9.5);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+    container.appendChild(renderer.domElement);
+
+    // Subtle Studio Lighting (Zero cheap colored flares, warm tungsten key + cool fill)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.SpotLight(0xfff7ed, 3.2, 30, Math.PI / 4, 0.4);
+    keyLight.position.set(6, 8, 8);
+    scene.add(keyLight);
+
+    const rimLight = new THREE.DirectionalLight(0xe2e8f0, 1.8);
+    rimLight.position.set(-6, 3, -4);
+    scene.add(rimLight);
+
+    // Sculpture Master Group (shifted right into the 40% corridor)
+    const sculptureGroup = new THREE.Group();
+    sculptureGroup.position.set(2.8, 0.0, 0);
+    scene.add(sculptureGroup);
+
+    // Materials: Matte Titanium & Smoked Optical Glass
+    const titaniumMat = new THREE.MeshStandardMaterial({
+      color: 0x94a3b8,
+      metalness: 0.85,
+      roughness: 0.28
+    });
+
+    const smokedGlassMat = new THREE.MeshPhysicalMaterial({
+      color: 0x334155,
+      transmission: 0.75,
+      roughness: 0.15,
+      ior: 1.52,
+      thickness: 0.3,
+      transparent: true,
+      opacity: 0.65
+    });
+
+    const darkCoreMat = new THREE.MeshStandardMaterial({
+      color: 0x1e293b,
+      metalness: 0.9,
+      roughness: 0.1,
+      wireframe: true
+    });
+
+    // Tier 1: Outer Smoked Glass Gyro Ring
+    const ring1 = new THREE.Mesh(new THREE.TorusGeometry(2.8, 0.05, 24, 100), smokedGlassMat);
+    sculptureGroup.add(ring1);
+
+    // Tier 2: Brushed Titanium Counter-Ring
+    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.2, 0.04, 24, 90), titaniumMat);
+    ring2.rotation.x = Math.PI / 3.2;
+    sculptureGroup.add(ring2);
+
+    // Tier 3: Inner Architectural Octahedron
+    const coreMesh = new THREE.Mesh(new THREE.OctahedronGeometry(1.1, 1), darkCoreMat);
+    sculptureGroup.add(coreMesh);
+
+    // Solid Inner Sphere
+    const nucleus = new THREE.Mesh(
+      new THREE.SphereGeometry(0.5, 32, 32),
+      new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.95, roughness: 0.1 })
+    );
+    sculptureGroup.add(nucleus);
+
+    // 1,200 Subtle Particles
+    const pCount = 1200;
+    const pGeo = new THREE.BufferGeometry();
+    const pPos = new Float32Array(pCount * 3);
+    for (let i = 0; i < pCount; i++) {
+      pPos[i*3] = (Math.random() - 0.5) * 25;
+      pPos[i*3+1] = (Math.random() - 0.5) * 18;
+      pPos[i*3+2] = (Math.random() - 0.5) * 20;
+    }
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    const pMat = new THREE.PointsMaterial({
+      color: 0x64748b,
+      size: 0.025,
+      transparent: true,
+      opacity: 0.55
+    });
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
+
+    // Interaction Dynamics
+    let isExploded = false;
+    let explodeProgress = 0;
+    document.getElementById('explode-btn').addEventListener('click', () => {
+      isExploded = !isExploded;
+      document.getElementById('explode-btn').textContent = isExploded ? '[ ✖ RE-INTEGRATE ]' : '[ 💥 EXPLODE STRATA ]';
+    });
+
+    // Drawer Mechanics
+    const drawer = document.getElementById('dossier-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    function openDrawer() {
+      drawer.classList.remove('translate-x-full');
+      backdrop.classList.remove('opacity-0', 'pointer-events-none');
+    }
+    function closeDrawer() {
+      drawer.classList.add('translate-x-full');
+      backdrop.classList.add('opacity-0', 'pointer-events-none');
+    }
+    document.getElementById('dossier-toggle').addEventListener('click', openDrawer);
+    document.getElementById('open-dossier-hero').addEventListener('click', openDrawer);
+    document.getElementById('close-dossier').addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+
+    // Cursor Parallax
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    let clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      // Slow, hypnotic rotation
+      ring1.rotation.y = t * 0.25;
+      ring1.rotation.x = t * 0.18;
+      ring2.rotation.y = -t * 0.35;
+      ring2.rotation.z = t * 0.15;
+      coreMesh.rotation.x = t * 0.4;
+      coreMesh.rotation.y = t * 0.3;
+
+      // Explode physics lerp
+      const targetExp = isExploded ? 1.0 : 0.0;
+      explodeProgress += (targetExp - explodeProgress) * 0.06;
+      ring1.position.y = explodeProgress * 1.25;
+      ring2.position.y = -explodeProgress * 1.25;
+      ring1.scale.setScalar(1 + explodeProgress * 0.3);
+
+      // Smooth camera parallax
+      camera.position.x += (2.2 + mouseX * 0.4 - camera.position.x) * 0.05;
+      camera.position.y += (0.4 + mouseY * 0.3 - camera.position.y) * 0.05;
+      camera.lookAt(1.5, 0.1, 0);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
+</html>
