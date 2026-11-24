@@ -1,0 +1,14 @@
+{
+  "albedo": {
+    "resolution": 2048,
+    "raw_bytes": 1427954
+  },
+  "normal": {
+    "resolution": 1024,
+    "raw_bytes": 481344
+  },
+  "parameters": {
+    "resolution": 512,
+    "raw_bytes": 118928
+  }
+}

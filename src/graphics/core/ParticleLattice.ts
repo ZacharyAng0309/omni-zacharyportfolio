@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { CinemaSetsBuilder } from '../sets/CinemaSetsBuilder';
+import { createCinemaSkyDome, type CinemaSkyController } from '../shaders/CinemaSkyShader';
+import { isBackdropGroupVisible } from './stationProgress';
 
 export interface ParticleLatticeOptions {
   scene: THREE.Scene;
@@ -36,7 +39,7 @@ export class ParticleLattice {
   private waveRadii: Float32Array = new Float32Array(1200);
   private waveTime: number = 0;
 
-  // 2. Persistent 30,000-particle GPU-Accelerated Lattice
+  // 2. Persistent 30,000-particle GPU-Accelerated Perimeter Stardust Lattice
   private persistentLattice!: THREE.InstancedMesh;
   private persistentCount: number = 30000;
   private persistentInitialPositions: Float32Array;
@@ -44,7 +47,24 @@ export class ParticleLattice {
   private persistentPhases: Float32Array;
   private latticeTime: number = 0;
 
-  // 6-Act Morphing Dynamic Attractor Centers along the Z Spline:
+  // 3. Luminous Spatial Light-Bridge connecting the 6 Diorama Islands (Z = +5.10 to -94.20)
+  private spatialLightBridge!: THREE.Group;
+  private bridgeSlatsMesh!: THREE.InstancedMesh;
+  private bridgeSlatCount: number = 75;
+  private bridgeSlatRest: Float32Array = new Float32Array(75 * 4);
+  private bridgeRailMat: THREE.MeshStandardMaterial | null = null;
+  private bridgeSlatMat: THREE.MeshStandardMaterial | null = null;
+  private warpSmoothed: number = 0;
+
+  // 4. Full-Viewport 6-Chapter Cinema Movie Sets & Continuous Atmospheric Sky Dome
+  private chapterBackdropsGroup!: THREE.Group;
+  private chapterGroups: THREE.Group[] = [];
+  private cinemaSets!: CinemaSetsBuilder;
+  private cinemaSky!: CinemaSkyController;
+  private skyTime: number = 0;
+  private fallbackCameraPos: THREE.Vector3 = new THREE.Vector3(-0.32, 0.22, 8.5);
+
+  // 6-Act Morphing Dynamic Attractor Centers along the Z Trajectory:
   public static readonly ATTRACTOR_CENTERS: readonly THREE.Vector3[] = [
     new THREE.Vector3(0.0, 0.0, 5.0),     // Act 1: Executive Strategy Studio
     new THREE.Vector3(1.1, 0.0, -18.0),   // Act 2: The Academy
@@ -63,11 +83,17 @@ export class ParticleLattice {
     // 1. Initialize 1,200-particle Kinetic Wave Field (Act 1 plinth ocean)
     this.initKineticWaveField();
 
-    // 2. Initialize 30,000-particle Persistent Lattice along the 6-Act Spline
+    // 2. Initialize 30,000-particle Outer-Perimeter Stardust Lattice
     this.persistentInitialPositions = new Float32Array(this.persistentCount * 3);
     this.persistentVelocities = new Float32Array(this.persistentCount * 3);
     this.persistentPhases = new Float32Array(this.persistentCount);
     this.initPersistentLattice();
+
+    // 3. Initialize Luminous Spatial Light-Bridge connecting Acts 1-6
+    this.initSpatialLightBridge();
+
+    // 4. Initialize Full-Viewport Chapter Architectural Backdrops, Supergraphics & God-Rays
+    this.initChapterArchitecturalBackdrops();
   }
 
   /**
@@ -75,11 +101,11 @@ export class ParticleLattice {
    */
   private initKineticWaveField(): void {
     const waveCount = 1200;
-    const waveGeo = new THREE.SphereGeometry(0.016, 6, 6);
+    const waveGeo = new THREE.SphereGeometry(0.008, 6, 6);
     const waveMat = new THREE.MeshBasicMaterial({
-      color: 0x00f2fe,
+      color: 0xdcc296,
       transparent: true,
-      opacity: 0.72,
+      opacity: 0.24,
     });
 
     this.kineticWaveField = new THREE.InstancedMesh(waveGeo, waveMat, waveCount);
@@ -89,11 +115,11 @@ export class ParticleLattice {
     const dummy = this.dummyObj;
     const prng = createPRNG(0x42);
     for (let i = 0; i < waveCount; i++) {
-      const radius = 1.6 + Math.pow(prng(), 1.6) * 3.4;
+      const radius = 3.8 + Math.pow(prng(), 1.6) * 3.8;
       const angle = prng() * Math.PI * 2;
       const x = Math.cos(angle) * radius;
       const z = Math.sin(angle) * radius;
-      const y = -1.48 + (prng() - 0.5) * 0.12;
+      const y = -1.65 + (prng() - 0.5) * 0.10;
 
       this.waveBasePositions[i * 3 + 0] = x;
       this.waveBasePositions[i * 3 + 1] = y;
@@ -115,15 +141,16 @@ export class ParticleLattice {
   }
 
   /**
-   * Constructs the 30,000-particle persistent kinetic lattice via InstancedMesh
-   * with dynamic attractor fields morphing across the 6 acts.
+   * Constructs the 30,000-particle outer-perimeter stardust lattice via InstancedMesh.
+   * Confined strictly to the outer perimeter (radius > 5.5m) so the central 3D diorama
+   * corridor and avatar frustum remain 100% unobstructed and free of foreground confetti.
    */
   private initPersistentLattice(): void {
-    const geo = new THREE.PlaneGeometry(0.02, 0.02);
+    const geo = new THREE.PlaneGeometry(0.007, 0.007);
     const mat = new THREE.MeshBasicMaterial({
-      color: 0x00f2fe,
+      color: 0xe5d3b3,
       transparent: true,
-      opacity: 0.38,
+      opacity: 0.24,
       side: THREE.DoubleSide,
       depthWrite: false,
     });
@@ -135,21 +162,23 @@ export class ParticleLattice {
     const dummy = this.dummyObj;
     const prng = createPRNG(0x1337);
     for (let i = 0; i < this.persistentCount; i++) {
-      // Distribute along the 6-act corridor: Z from +10.0 down to -100.0
+      // Distribute along the 6-act corridor outer horizon: Z from +6.0 down to -102.0
       const actProgress = i / this.persistentCount;
-      const z = 8.5 - actProgress * 105.0 + (prng() - 0.5) * 8.0;
+      const z = 6.0 - actProgress * 108.0 + (prng() - 0.5) * 8.0;
       const angle = prng() * Math.PI * 2;
-      const radius = 0.5 + prng() * 4.5;
-      const x = Math.cos(angle) * radius + (prng() - 0.5) * 1.5;
-      const y = (prng() - 0.5) * 3.5;
+      // Strictly outer cylindrical perimeter (R >= 5.8m in X-Y around corridor) so zero floating
+      // dust squares ever enter the central avatar portrait frustum or land on Zachary's face/lips
+      const radius = 5.8 + prng() * 7.5;
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * (radius * 0.45) + 0.6;
 
       this.persistentInitialPositions[i * 3 + 0] = x;
       this.persistentInitialPositions[i * 3 + 1] = y;
       this.persistentInitialPositions[i * 3 + 2] = z;
 
-      this.persistentVelocities[i * 3 + 0] = (prng() - 0.5) * 0.15;
-      this.persistentVelocities[i * 3 + 1] = (prng() - 0.5) * 0.15;
-      this.persistentVelocities[i * 3 + 2] = (prng() - 0.5) * 0.15;
+      this.persistentVelocities[i * 3 + 0] = (prng() - 0.5) * 0.08;
+      this.persistentVelocities[i * 3 + 1] = (prng() - 0.5) * 0.08;
+      this.persistentVelocities[i * 3 + 2] = (prng() - 0.5) * 0.08;
 
       this.persistentPhases[i] = prng() * Math.PI * 2;
 
@@ -164,6 +193,145 @@ export class ParticleLattice {
     this.scene.add(this.persistentLattice);
   }
 
+  /**
+   * Constructs the Luminous Spatial Light-Bridge connecting the 6 Architectural Diorama Islands
+   * directly underneath the persona transit trajectory at foot sole elevation (pos.y - 1.455).
+   */
+  private initSpatialLightBridge(): void {
+    this.spatialLightBridge = new THREE.Group();
+    this.spatialLightBridge.name = 'SpatialLightBridge';
+
+    const stationFeet = [
+      new THREE.Vector3(1.35, -1.455, 5.10),
+      new THREE.Vector3(0.85, -1.455, -17.60),
+      new THREE.Vector3(0.76, -1.455, -35.60),
+      new THREE.Vector3(1.25, -1.305, -55.80),
+      new THREE.Vector3(0.92, -1.455, -74.60),
+      new THREE.Vector3(0.85, -1.455, -94.20),
+    ];
+
+    // 1. Dual Brushed Champagne-Bronze Guide Rails aligned per inter-act span
+    const railMat = new THREE.MeshStandardMaterial({
+      color: 0x282420,
+      emissive: 0xc8a97e,
+      emissiveIntensity: 0.24,
+      metalness: 0.88,
+      roughness: 0.24,
+      transparent: true,
+      opacity: 0.72,
+    });
+    this.bridgeRailMat = railMat;
+
+    const zAxis = new THREE.Vector3(0, 0, 1);
+    const upAxis = new THREE.Vector3(0, 1, 0);
+    const spanDir = new THREE.Vector3();
+    const lateralVec = new THREE.Vector3();
+    const midPt = new THREE.Vector3();
+    const startTrim = new THREE.Vector3();
+    const endTrim = new THREE.Vector3();
+
+    const slatsPerSpan = 15;
+    const slatGeo = new THREE.BoxGeometry(0.56, 0.018, 1.08);
+    const slatMat = new THREE.MeshStandardMaterial({
+      color: 0x24201c,
+      emissive: 0xc8a97e,
+      emissiveIntensity: 0.28,
+      metalness: 0.78,
+      roughness: 0.26,
+      transparent: true,
+      opacity: 0.78,
+    });
+    this.bridgeSlatMat = slatMat;
+    this.bridgeSlatsMesh = new THREE.InstancedMesh(slatGeo, slatMat, this.bridgeSlatCount);
+    this.bridgeSlatsMesh.name = 'SpatialBridgeSlats';
+
+    const dummy = this.dummyObj;
+    let slatIdx = 0;
+
+    for (let s = 0; s < stationFeet.length - 1; s++) {
+      const a = stationFeet[s]!;
+      const b = stationFeet[s + 1]!;
+      startTrim.lerpVectors(a, b, 0.11);
+      endTrim.lerpVectors(a, b, 0.89);
+      midPt.lerpVectors(startTrim, endTrim, 0.5);
+
+      spanDir.subVectors(endTrim, startTrim);
+      const visibleLen = spanDir.length();
+      spanDir.normalize();
+      lateralVec.crossVectors(upAxis, spanDir).normalize();
+
+      const railGeo = new THREE.BoxGeometry(0.032, 0.022, visibleLen);
+      const leftRail = new THREE.Mesh(railGeo, railMat);
+      leftRail.name = s === 0 ? 'LightBridgeLeftRail' : `LightBridgeLeftRail_${s}`;
+      leftRail.position.copy(midPt).addScaledVector(lateralVec, -0.86);
+      leftRail.position.y += 0.008;
+      leftRail.quaternion.setFromUnitVectors(zAxis, spanDir);
+      this.spatialLightBridge.add(leftRail);
+
+      const rightRail = new THREE.Mesh(railGeo, railMat);
+      rightRail.name = s === 0 ? 'LightBridgeRightRail' : `LightBridgeRightRail_${s}`;
+      rightRail.position.copy(midPt).addScaledVector(lateralVec, 0.86);
+      rightRail.position.y += 0.008;
+      rightRail.quaternion.setFromUnitVectors(zAxis, spanDir);
+      this.spatialLightBridge.add(rightRail);
+
+      // 2. Instanced Warm Basalt & Travertine Walkway Slats along the span centerline
+      for (let k = 0; k < slatsPerSpan; k++) {
+        const u = 0.11 + (k / Math.max(slatsPerSpan - 1, 1)) * 0.78;
+        dummy.position.lerpVectors(a, b, u);
+        dummy.scale.set(1, 1, 1);
+        const yaw = Math.atan2(b.x - a.x, b.z - a.z);
+        dummy.rotation.set(0, yaw, 0);
+        dummy.updateMatrix();
+        this.bridgeSlatRest[slatIdx * 4 + 0] = dummy.position.x;
+        this.bridgeSlatRest[slatIdx * 4 + 1] = dummy.position.y;
+        this.bridgeSlatRest[slatIdx * 4 + 2] = dummy.position.z;
+        this.bridgeSlatRest[slatIdx * 4 + 3] = yaw;
+        this.bridgeSlatsMesh.setMatrixAt(slatIdx++, dummy.matrix);
+      }
+    }
+
+    this.bridgeSlatsMesh.instanceMatrix.needsUpdate = true;
+    this.spatialLightBridge.add(this.bridgeSlatsMesh);
+
+    this.scene.add(this.spatialLightBridge);
+  }
+
+  public getSpatialLightBridge(): THREE.Group {
+    return this.spatialLightBridge;
+  }
+
+  public getChapterBackdropsGroup(): THREE.Group {
+    return this.chapterBackdropsGroup;
+  }
+
+  /**
+   * Builds 6 distinct full-viewport cinema movie-set scenarios behind each act stage
+   * paired with a seamless 360-degree GLSL atmospheric sky dome.
+   */
+  private initChapterArchitecturalBackdrops(): void {
+    this.cinemaSets = new CinemaSetsBuilder();
+    const { root, chapterGroups } = this.cinemaSets.buildChapterBackdrops();
+    this.chapterBackdropsGroup = root;
+    this.chapterGroups = chapterGroups;
+    this.scene.add(this.chapterBackdropsGroup);
+
+    this.cinemaSky = createCinemaSkyDome();
+    this.scene.add(this.cinemaSky.mesh);
+  }
+
+  public setAct1StudioEnvMap(envMap: THREE.Texture | null): void {
+    this.cinemaSets.applyAct1StudioEnvMap(envMap);
+  }
+
+  public setAct6EclipseTheme(hex: number): void {
+    this.cinemaSets.setAct6EclipseTheme(hex);
+  }
+
+  public getCinemaSkyMesh(): THREE.Mesh {
+    return this.cinemaSky.mesh;
+  }
+
   public getKineticWaveField(): THREE.InstancedMesh {
     return this.kineticWaveField;
   }
@@ -172,12 +340,73 @@ export class ParticleLattice {
     return this.persistentLattice;
   }
 
+  public getWarpFactor(): number {
+    return this.warpSmoothed;
+  }
+
+  public setBridgeTransitionWeight(bellWeight: number): void {
+    const fade = THREE.MathUtils.clamp(bellWeight * 4.5, 0, 1);
+    if (this.bridgeRailMat) {
+      this.bridgeRailMat.opacity = 0.72 * fade;
+    }
+    if (this.bridgeSlatMat) {
+      this.bridgeSlatMat.opacity = 0.78 * fade;
+    }
+  }
+
   /**
-   * Updates wave fields and attractor fields with zero memory allocation.
+   * Updates wave fields, attractor fields, cinema sets, and atmospheric sky with zero memory allocation.
    */
-  public update(delta: number, scrollProgress: number, isReducedMotion: boolean = false): void {
+  public update(
+    delta: number,
+    scrollProgress: number,
+    isReducedMotion: boolean = false,
+    cameraPos?: THREE.Vector3,
+    scrollVelocity: number = 0
+  ): void {
     const clampedDelta = Math.min(delta, 0.1);
     const dummy = this.dummyObj;
+    if (!isReducedMotion) {
+      this.skyTime += clampedDelta;
+    }
+
+    // 0. Depth-Gate Chapter Movie-Set Backdrops synchronously with canonical corridor schedule
+    for (let idx = 0; idx < this.chapterGroups.length; idx++) {
+      const grp = this.chapterGroups[idx]!;
+      grp.visible = isBackdropGroupVisible(idx, scrollProgress);
+    }
+    this.cinemaSets.update(this.skyTime, isReducedMotion, scrollProgress);
+    this.cinemaSky.update(
+      scrollProgress,
+      cameraPos ?? this.fallbackCameraPos,
+      this.skyTime,
+      isReducedMotion
+    );
+
+    if (isReducedMotion) {
+      this.warpSmoothed = 0;
+    }
+
+    // 0b. Sequential Photon Ripple along SpatialLightBridge Slats during Active Transit
+    if (!isReducedMotion && this.spatialLightBridge?.visible && this.bridgeSlatsMesh) {
+      for (let i = 0; i < this.bridgeSlatCount; i++) {
+        const bx = this.bridgeSlatRest[i * 4 + 0]!;
+        const by = this.bridgeSlatRest[i * 4 + 1]!;
+        const bz = this.bridgeSlatRest[i * 4 + 2]!;
+        const yaw = this.bridgeSlatRest[i * 4 + 3]!;
+        const pulse = Math.max(0, Math.sin(this.skyTime * 5.2 - i * 0.42));
+        dummy.position.set(bx, by + pulse * 0.012, bz);
+        dummy.rotation.set(0, yaw, 0);
+        dummy.scale.set(1 + pulse * 0.055, 1 + pulse * 0.20, 1 + pulse * 0.08);
+        dummy.updateMatrix();
+        this.bridgeSlatsMesh.setMatrixAt(i, dummy.matrix);
+      }
+      this.bridgeSlatsMesh.instanceMatrix.needsUpdate = true;
+      if (this.bridgeRailMat) {
+        this.bridgeRailMat.emissiveIntensity =
+          0.24 + Math.min(0.45, scrollVelocity * 0.35) + Math.sin(this.skyTime * 2.4) * 0.06;
+      }
+    }
 
     // 1. Update 1,200 Kinetic Wave Field
     if (this.kineticWaveField && !isReducedMotion) {
@@ -187,7 +416,7 @@ export class ParticleLattice {
 
       // In Act 1 hero (sp < 0.15), wave field is fully active; smoothly cross-fades out across acts
       const waveFade = THREE.MathUtils.clamp(1.0 - scrollProgress * 5.0, 0.05, 1.0);
-      (this.kineticWaveField.material as THREE.MeshBasicMaterial).opacity = 0.72 * waveFade;
+      (this.kineticWaveField.material as THREE.MeshBasicMaterial).opacity = 0.24 * waveFade;
 
       for (let i = 0; i < 1200; i++) {
         const bx = this.waveBasePositions[i * 3 + 0]!;
@@ -207,10 +436,13 @@ export class ParticleLattice {
       this.kineticWaveField.instanceMatrix.needsUpdate = true;
     }
 
-    // 2. Update 30,000 Persistent Lattice with Morphing Dynamic Attractor Fields
+    // 2. Update 30,000 Persistent Lattice with Morphing Dynamic Attractor Fields & Speed-Warp Filaments
     if (this.persistentLattice && !isReducedMotion) {
       this.latticeTime += clampedDelta * 0.75;
       const t = this.latticeTime;
+
+      const targetWarp = THREE.MathUtils.clamp(scrollVelocity * 1.4, 0, 1);
+      this.warpSmoothed = THREE.MathUtils.damp(this.warpSmoothed, targetWarp, 12.0, clampedDelta);
 
       // Smooth persistent lattice rotation and breathing
       this.persistentLattice.rotation.y = t * 0.03;
@@ -227,9 +459,11 @@ export class ParticleLattice {
       const currentAttractorY = THREE.MathUtils.lerp(c1.y, c2.y, actAlpha);
       const currentAttractorZ = THREE.MathUtils.lerp(c1.z, c2.z, actAlpha);
 
-      // Morph dynamic attractor field by updating the active slice around the camera
-      const sliceSize = 600;
-      const startIdx = Math.floor(actIdx * 5000 + (t * 120) % 4000);
+      // Morph dynamic attractor field & stretch filaments along -Z when flying quickly between acts
+      const sliceSize = 900;
+      const startIdx = Math.floor(actIdx * 5000 + (t * 140) % 4000);
+      const warpStretchZ = 1.0 + this.warpSmoothed * 20.0;
+      const warpThinXY = 1.0 - this.warpSmoothed * 0.25;
       for (let k = 0; k < sliceSize; k++) {
         const i = (startIdx + k) % this.persistentCount;
         const bx = this.persistentInitialPositions[i * 3 + 0]!;
@@ -248,8 +482,14 @@ export class ParticleLattice {
         const oy = Math.sin(t * 1.2 + phase) * 0.12 * swirlStrength;
         const oz = Math.sin(swirlAngle) * swirlStrength;
 
+        const baseScale = 1.0 + Math.sin(t * 2.0 + phase) * 0.25 * swirlStrength;
         dummy.position.set(bx + ox, by + oy, bz + oz);
-        dummy.scale.setScalar(1.0 + Math.sin(t * 2.0 + phase) * 0.25 * swirlStrength);
+        dummy.rotation.set(0, 0, 0);
+        dummy.scale.set(
+          baseScale * warpThinXY,
+          baseScale * warpThinXY,
+          baseScale * warpStretchZ
+        );
         dummy.updateMatrix();
         this.persistentLattice.setMatrixAt(i, dummy.matrix);
       }
@@ -264,6 +504,7 @@ export class ParticleLattice {
   public resetToRest(): void {
     this.waveTime = 0;
     this.latticeTime = 0;
+    this.warpSmoothed = 0;
     const dummy = this.dummyObj;
 
     if (this.kineticWaveField) {
@@ -308,6 +549,33 @@ export class ParticleLattice {
       this.persistentLattice.geometry.dispose();
       (this.persistentLattice.material as THREE.Material).dispose();
       this.scene.remove(this.persistentLattice);
+    }
+    if (this.spatialLightBridge) {
+      this.spatialLightBridge.traverse((obj) => {
+        if ((obj as THREE.Mesh).isMesh) {
+          const m = obj as THREE.Mesh;
+          m.geometry?.dispose();
+          if (Array.isArray(m.material)) {
+            m.material.forEach((mat) => mat.dispose());
+          } else {
+            m.material?.dispose();
+          }
+        }
+      });
+      this.scene.remove(this.spatialLightBridge);
+      this.bridgeRailMat = null;
+      this.bridgeSlatMat = null;
+    }
+    if (this.cinemaSets) {
+      this.cinemaSets.dispose();
+    }
+    if (this.cinemaSky) {
+      this.scene.remove(this.cinemaSky.mesh);
+      this.cinemaSky.dispose();
+    }
+    if (this.chapterBackdropsGroup) {
+      this.chapterGroups = [];
+      this.scene.remove(this.chapterBackdropsGroup);
     }
   }
 }

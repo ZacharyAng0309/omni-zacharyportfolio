@@ -1,0 +1,62 @@
+[
+  {
+    "name": "avatar-v30-finger-web-comparison.jpg",
+    "bytes": 162694,
+    "sha256": "951D4776074AD4B7A4D6115A4F2CC0C4133EC31CD3117DE0C930BA0BE56DCD4F",
+    "verified": true
+  },
+  {
+    "name": "avatar-v30-pose-targets.json",
+    "bytes": 1690,
+    "sha256": "DCC8FCC2D77891AD8024E30973897F4D92951C8FE180202434D9A18CFE24CE20",
+    "verified": true
+  },
+  {
+    "name": "Avatar-v30-Review.md",
+    "bytes": 3373,
+    "sha256": "7854600FF71E7ADC7A75A17E97A14A3C0197EA9803D60B59796C896E1081E842",
+    "verified": true
+  },
+  {
+    "name": "full30-audit.json",
+    "bytes": 17383,
+    "sha256": "B8E8BC03C4AC12DFF75A3A7014B1014AD60F1A9B52E2DBC2C36FE4D0D822DC4E",
+    "verified": true
+  },
+  {
+    "name": "full30-back.png",
+    "bytes": 697871,
+    "sha256": "5F25A600426890C341B3F584498E72A45BAECD180AB80769FCB2C68B834A57D0",
+    "verified": true
+  },
+  {
+    "name": "full30-front.png",
+    "bytes": 711277,
+    "sha256": "66833F587A1B5777A2D867B6C31B0F6587FD717CC8E2999E3ABAB07C656B1C2E",
+    "verified": true
+  },
+  {
+    "name": "full30-hand.png",
+    "bytes": 369599,
+    "sha256": "1ABC216BD21C06FA14889C659D9F59D81C9B1A84C621E014FEBD0E0BDFC5EC99",
+    "verified": true
+  },
+  {
+    "name": "full30-quarter.png",
+    "bytes": 715581,
+    "sha256": "4E0DF7953DB86060BF4E3791DDF81F69FAD7E6BB18A4B3FED953F52845D2679C",
+    "verified": true
+  },
+  {
+    "name": "Zachary_Avatar_v30_Review.blend",
+    "bytes": 3452198,
+    "sha256": "06FC3BF53907F818107960FE5A125FC273257819F449B617D7C8CFEC047536E8",
+    "verified": true
+  },
+  {
+    "name": "zachary_character_v30_candidate.glb",
+    "bytes": 2097476,
+    "sha256": "641B28FAA21193CC75E3409817D28A422929E9524F3A9C2196426BC61E23620D",
+    "verified": true
+  }
+]

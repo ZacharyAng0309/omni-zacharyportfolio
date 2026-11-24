@@ -1,0 +1,8 @@
+{
+  "command": "node scripts/audit-webgl-governance.mjs --project ZacharyPortfolio",
+  "cwd": "D:/omni-workstation",
+  "date": "2026-11-12",
+  "exit_code": 0,
+  "violations": 0,
+  "scope": "Project source and public assets; the v33 candidate remains outside the public model path. Candidate budgets checked separately."
+}

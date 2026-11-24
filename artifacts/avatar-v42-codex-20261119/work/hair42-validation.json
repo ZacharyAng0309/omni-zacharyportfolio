@@ -1,0 +1,2265 @@
+{
+  "checks_passed": 449,
+  "checks_failed": 0,
+  "metrics": {
+    "crown_vertices_moved": 653,
+    "crown_max_displacement_mm": 1.8000544309616089,
+    "face_hair_seam_copies": 155,
+    "smallest_filament_triangle_area_m2": 2.122020299469978e-11,
+    "filaments": 38,
+    "filament_vertices": 1256,
+    "filament_triangles": 2360,
+    "triangles": 47270,
+    "glb_bytes": 2678460,
+    "images": 7,
+    "joints": 52,
+    "glb_sha256": "83d1f59ffb936bc1f880d8b4ae613e5aa81e5ec725f30c88641de4ff9515532c"
+  },
+  "checks": [
+    {
+      "check": "Original accessor 0 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 1 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 2 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 3 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 4 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 5 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 6 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 7 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 8 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 9 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 10 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 11 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 12 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 13 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 16 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 17 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 18 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 19 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 20 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 21 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 22 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 23 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 24 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 25 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 26 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 27 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 28 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 29 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 30 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 31 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 32 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 33 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 34 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 35 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 36 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 37 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 38 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 39 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 40 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 41 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 42 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 43 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 44 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 45 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 46 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 47 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 48 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 49 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 50 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 51 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 52 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 53 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 54 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 55 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 56 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 57 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 58 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 59 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 60 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 61 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 62 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 63 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 64 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 65 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 66 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 67 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 68 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 69 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 70 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 71 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 72 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 73 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 74 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 75 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 76 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 77 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 78 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 79 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 80 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 81 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 82 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 83 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 84 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 85 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 86 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 87 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 88 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 89 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 90 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 91 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 92 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 93 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 94 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 95 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 96 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 97 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 98 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 99 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 100 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 101 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 102 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 103 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 104 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 105 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 106 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 107 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 108 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 109 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 110 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 111 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 112 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 113 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 114 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 115 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 116 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 117 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 118 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 119 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 120 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 121 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 122 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 123 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 124 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 125 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 126 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 127 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 128 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 129 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 130 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 131 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 132 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 133 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 134 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 135 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 136 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 137 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 138 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 139 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 140 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 141 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 142 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 143 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 144 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 145 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 146 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 147 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original accessor 148 unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 0 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 1 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 2 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 3 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 4 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 5 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 6 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 7 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 8 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 9 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 10 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 11 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 12 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 13 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 14 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 15 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 16 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 17 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 18 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 19 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 20 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 21 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 22 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 23 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 24 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 25 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 26 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 27 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 28 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 29 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 30 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 31 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 32 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 33 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 34 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 35 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 36 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 37 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 38 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 39 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 40 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 41 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 42 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 43 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 44 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 45 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 46 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 47 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 48 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 49 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 50 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 51 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 52 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 53 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 54 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 55 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 56 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 57 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 58 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 59 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 60 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 61 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 62 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 63 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 64 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 65 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 66 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 67 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 68 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 69 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 70 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 71 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 72 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 73 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 74 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 75 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 76 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 77 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 78 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 79 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 80 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 81 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 82 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 83 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 84 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 85 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 86 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 87 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 88 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 89 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 90 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 91 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 92 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 93 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 94 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 95 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 96 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 97 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 98 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 99 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 100 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 101 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 102 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 103 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 104 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 105 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 106 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 107 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 108 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 109 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 110 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 111 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 112 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 113 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 114 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 115 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 116 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 117 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 118 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 119 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 120 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 121 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 122 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 123 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 124 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 125 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 126 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 127 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 128 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 129 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 130 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 131 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 132 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 133 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 134 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 135 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 136 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 137 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 138 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 139 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 140 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 141 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 142 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 143 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 144 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 145 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 146 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 147 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 148 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 149 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 150 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 151 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 152 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 153 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Accessor 154 finite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "skins retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "textures retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "samplers retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "images retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "extensionsUsed retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "extensionsRequired retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "animations retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All original meshes and primitives retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All original materials retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 0 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 1 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 2 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 3 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 4 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 5 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 6 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 7 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 8 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 9 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 10 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 11 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 12 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 13 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 14 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 15 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 16 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 17 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 18 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 19 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 20 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 21 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 22 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 23 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 24 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 25 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 26 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 27 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 28 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 29 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 30 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 31 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 32 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 33 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 34 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 35 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 36 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 37 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 38 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 39 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 40 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 41 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 42 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 43 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 44 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 45 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 46 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 47 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 48 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 49 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 50 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 51 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 52 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 53 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 54 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 55 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 56 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 57 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 58 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 59 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 60 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 61 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 62 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 63 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 64 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 65 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 66 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original node 67 retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 0 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 1 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 2 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 3 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 4 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 5 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 6 byte identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Crown movement at most 1.801 mm",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Lower fringe and ear hair boundary unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Every original Face-Hair seam position retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Original hair triangles preserve orientation",
+      "passed": true,
+      "detail": 0.969027042388916
+    },
+    {
+      "check": "Original hair triangle areas preserved",
+      "passed": true,
+      "detail": 0.7333878874778748
+    },
+    {
+      "check": "Filament indices in range",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filament normals unit length",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filament weights normalized and nonnegative",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filament joints valid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Every filament vertex follows Head exactly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filaments share the existing hair skin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filament triangles nondegenerate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filaments are closed manifold tubes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Consistent outward winding at every edge",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Filament 0 positive enclosed volume",
+      "passed": true,
+      "detail": 9.762920746848535e-11
+    },
+    {
+      "check": "Filament 1 positive enclosed volume",
+      "passed": true,
+      "detail": 1.0170999243817628e-10
+    },
+    {
+      "check": "Filament 2 positive enclosed volume",
+      "passed": true,
+      "detail": 1.33808077055568e-10
+    },
+    {
+      "check": "Filament 3 positive enclosed volume",
+      "passed": true,
+      "detail": 1.5103566978982664e-10
+    },
+    {
+      "check": "Filament 4 positive enclosed volume",
+      "passed": true,
+      "detail": 1.794957955144249e-10
+    },
+    {
+      "check": "Filament 5 positive enclosed volume",
+      "passed": true,
+      "detail": 1.0968425450293312e-10
+    },
+    {
+      "check": "Filament 6 positive enclosed volume",
+      "passed": true,
+      "detail": 1.0344638085897271e-10
+    },
+    {
+      "check": "Filament 7 positive enclosed volume",
+      "passed": true,
+      "detail": 1.1777000014111517e-10
+    },
+    {
+      "check": "Filament 8 positive enclosed volume",
+      "passed": true,
+      "detail": 1.421396715531847e-10
+    },
+    {
+      "check": "Filament 9 positive enclosed volume",
+      "passed": true,
+      "detail": 9.456291012452783e-11
+    },
+    {
+      "check": "Filament 10 positive enclosed volume",
+      "passed": true,
+      "detail": 1.6966713021708541e-10
+    },
+    {
+      "check": "Filament 11 positive enclosed volume",
+      "passed": true,
+      "detail": 6.519608205096322e-11
+    },
+    {
+      "check": "Filament 12 positive enclosed volume",
+      "passed": true,
+      "detail": 1.4890228064997197e-10
+    },
+    {
+      "check": "Filament 13 positive enclosed volume",
+      "passed": true,
+      "detail": 8.351658111657554e-11
+    },
+    {
+      "check": "Filament 14 positive enclosed volume",
+      "passed": true,
+      "detail": 6.571829237283329e-11
+    },
+    {
+      "check": "Filament 15 positive enclosed volume",
+      "passed": true,
+      "detail": 1.5743235619802718e-10
+    },
+    {
+      "check": "Filament 16 positive enclosed volume",
+      "passed": true,
+      "detail": 6.120534355879042e-11
+    },
+    {
+      "check": "Filament 17 positive enclosed volume",
+      "passed": true,
+      "detail": 9.889701051168288e-11
+    },
+    {
+      "check": "Filament 18 positive enclosed volume",
+      "passed": true,
+      "detail": 9.25275270165386e-11
+    },
+    {
+      "check": "Filament 19 positive enclosed volume",
+      "passed": true,
+      "detail": 1.4044463307735562e-10
+    },
+    {
+      "check": "Filament 20 positive enclosed volume",
+      "passed": true,
+      "detail": 1.9072689292145479e-10
+    },
+    {
+      "check": "Filament 21 positive enclosed volume",
+      "passed": true,
+      "detail": 1.346988806129696e-10
+    },
+    {
+      "check": "Filament 22 positive enclosed volume",
+      "passed": true,
+      "detail": 8.840929990667117e-11
+    },
+    {
+      "check": "Filament 23 positive enclosed volume",
+      "passed": true,
+      "detail": 1.3544600781995672e-10
+    },
+    {
+      "check": "Filament 24 positive enclosed volume",
+      "passed": true,
+      "detail": 7.019375843570117e-11
+    },
+    {
+      "check": "Filament 25 positive enclosed volume",
+      "passed": true,
+      "detail": 1.074944023588736e-10
+    },
+    {
+      "check": "Filament 26 positive enclosed volume",
+      "passed": true,
+      "detail": 1.367192929119822e-10
+    },
+    {
+      "check": "Filament 27 positive enclosed volume",
+      "passed": true,
+      "detail": 1.0430354196002106e-10
+    },
+    {
+      "check": "Filament 28 positive enclosed volume",
+      "passed": true,
+      "detail": 2.2623248220901763e-10
+    },
+    {
+      "check": "Filament 29 positive enclosed volume",
+      "passed": true,
+      "detail": 2.3487716677382307e-10
+    },
+    {
+      "check": "Filament 30 positive enclosed volume",
+      "passed": true,
+      "detail": 4.144829281056967e-10
+    },
+    {
+      "check": "Filament 31 positive enclosed volume",
+      "passed": true,
+      "detail": 3.149560176155875e-10
+    },
+    {
+      "check": "Filament 32 positive enclosed volume",
+      "passed": true,
+      "detail": 2.26711122048786e-10
+    },
+    {
+      "check": "Filament 33 positive enclosed volume",
+      "passed": true,
+      "detail": 1.721787091026528e-10
+    },
+    {
+      "check": "Filament 34 positive enclosed volume",
+      "passed": true,
+      "detail": 2.390496299003727e-10
+    },
+    {
+      "check": "Filament 35 positive enclosed volume",
+      "passed": true,
+      "detail": 1.9120562813411763e-10
+    },
+    {
+      "check": "Filament 36 positive enclosed volume",
+      "passed": true,
+      "detail": 2.1210078504191932e-10
+    },
+    {
+      "check": "Filament 37 positive enclosed volume",
+      "passed": true,
+      "detail": 1.6419470478614416e-10
+    },
+    {
+      "check": "Candidate below 3 MB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Candidate below 50000 triangles",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No extra texture images",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "52 original joints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 0 below 100 KB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 1 below 100 KB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 2 below 100 KB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 3 below 100 KB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 4 below 100 KB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 5 below 100 KB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image 6 below 100 KB",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

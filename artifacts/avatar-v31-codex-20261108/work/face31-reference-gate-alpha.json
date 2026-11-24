@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "decision": "PASS",
+  "metrics": {
+    "silhouette_iou": 0.9566,
+    "aspect_drift": 0.0333,
+    "interior_similarity": 0.911,
+    "symmetry_parity": 0.9919
+  },
+  "thresholds": {
+    "min_iou": 0.7,
+    "max_aspect_drift": 0.18,
+    "min_interior_sim": 0.75
+  }
+}

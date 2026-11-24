@@ -196,7 +196,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                       🏆 1st / 53 Teams Worldwide
                     </span>
                     <span className="px-2 py-0.5 rounded-md bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 text-[10px] font-mono font-medium">
-                      🎓 3.89 CGPA Distinction
+                      🎓 3.75 BSc • 3.89 SE Diploma
                     </span>
                   </div>
                 </div>
@@ -391,8 +391,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               className="glass-acrylic card-sheen p-3 sm:p-4 rounded-2xl border border-white/10 hover:border-cyan-400/50 transition-all duration-300"
             >
               <div className="text-[10px] sm:text-xs font-mono text-cyan-400 font-semibold mb-0.5">ACADEMIC HONORS</div>
-              <div className="text-xl sm:text-2xl font-black text-white tracking-tight font-display">3.89 CGPA</div>
-              <div className="text-[10px] sm:text-xs text-neutral-400 mt-0.5">Top 5% Valedictorian • APU</div>
+              <div className="text-xl sm:text-2xl font-black text-white tracking-tight font-display">3.75 BSc · 3.89 Dip</div>
+              <div className="text-[10px] sm:text-xs text-neutral-400 mt-0.5">First-Class BSc &amp; Distinction Dip • APU</div>
             </div>
 
             <div
@@ -434,7 +434,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="relative rounded-3xl p-3 sm:p-4 apple-glass border border-white/15 shadow-2xl backdrop-blur-2xl">
               <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-900 border border-white/10">
                 <img
-                  src="/images/reference_portrait.jpg"
+                  src="/images/zachary_editorial_portrait.webp"
                   alt="Ang Zi Yang (Zachary) — AI Product Strategist & Solutions Architect"
                   className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                   loading="eager"
@@ -460,7 +460,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               Executive Profile &amp; Ethos
             </div>
             <p className="leading-relaxed">
-              Product strategist and solutions architect specializing in multi-modal agentic systems, enterprise fintech infrastructure, and Google Cloud Vertex AI. Graduated with First Class Honours Distinction (3.89 / 4.00 CGPA) dual degree from Asia Pacific University (APU) and Staffordshire University (UK).
+              Product strategist and solutions architect specializing in multi-modal agentic systems, enterprise fintech infrastructure, and Google Cloud Vertex AI. Graduated with First Class Honours (3.75 / 4.00 CGPA) UK dual BSc degree and Distinction (3.89 / 4.00 CGPA) Software Engineering Diploma from Asia Pacific University (APU) and Staffordshire University (UK).
             </p>
             <p className="leading-relaxed text-neutral-400 pt-1">
               Captained Team Sweetzerland to 1st Place Worldwide at the 13th Hilti IT Competition in Schaan, Liechtenstein, defeating 53 international university teams. Commended by the Hilti Global CIO and featured in <em>The Star</em> national media.
@@ -475,8 +475,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
             <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
               <div className="font-mono text-cyan-400 text-[10px] uppercase font-bold">Academic Distinction</div>
-              <div className="font-bold text-white text-sm mt-0.5">3.89 / 4.00 CGPA</div>
-              <div className="text-neutral-400 text-[11px]">APU &amp; Staffordshire UK</div>
+              <div className="font-bold text-white text-sm mt-0.5">3.75 BSc · 3.89 Dip</div>
+              <div className="text-neutral-400 text-[11px]">UK First-Class &amp; SE Distinction</div>
             </div>
           </div>
 

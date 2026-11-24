@@ -1,0 +1,44 @@
+{
+  "latest_verified_review_version": "v31",
+  "updated": "2026-11-08",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v31-codex-20261108",
+  "files": {
+    "zachary_character_v31_candidate.glb": {
+      "path": "artifacts/avatar-v31-codex-20261108/outputs/zachary_character_v31_candidate.glb",
+      "sha256": "2f9e1f924c441f7c8a604f5f85b4d028bbf025fc31bd1df58a3102e853896ba6"
+    },
+    "Zachary_Avatar_v31_Review.blend": {
+      "path": "artifacts/avatar-v31-codex-20261108/outputs/Zachary_Avatar_v31_Review.blend",
+      "sha256": "fd97c9ab915902b091d9026dfb8327f62d6f578b14e3babfdf11185ee5d3f7df"
+    },
+    "avatar-v31-pose-targets.json": {
+      "path": "artifacts/avatar-v31-codex-20261108/outputs/avatar-v31-pose-targets.json",
+      "sha256": "d68ecaacc24778859feedd4684692c0ee0150c5a481e0d096b5cdedfdd43c1b9"
+    }
+  },
+  "changes": [
+    "Restricted the upper blink deformation to protect the eyebrows, forehead and shared hairline seam.",
+    "Reduced blink seam motion from 2.79 mm to zero while retaining sampled eye closure above 95 percent.",
+    "Preserved neutral geometry and all six other expression targets; audited the remaining mouth and texture defects."
+  ],
+  "verification": [
+    "87 morph-isolation, preservation, seam, closure and size checks passed, zero failures.",
+    "Exported GLB reviewed in Blender for partial/full blinks, wink, brow combination and three-quarter closure.",
+    "Coarse normalized head framing passed the reference silhouette gate; this is not a likeness score.",
+    "Final Blender file reopened; facial animation, whole-model gesture frames and packed textures verified."
+  ],
+  "next_work": [
+    "Repair the closed mouth surface and missing oral cavity exposed by the speech pose",
+    "Improve eyelid structure and soft eye/lip texture",
+    "Refine independent finger creasing and fingertip detail",
+    "Raised-elbow cloth, remaining station poses, website integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v31 blink seam correction verified; next focus is structural mouth and eyelid refinement"
+}

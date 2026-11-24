@@ -131,7 +131,7 @@ export const ModalInspectionDrawer: React.FC<ModalInspectionDrawerProps> = ({
     >
       <div
         ref={drawerRef}
-        className="fixed inset-y-0 right-0 w-full max-w-xl h-full bg-[#090d14]/95 border-l border-white/10 shadow-2xl backdrop-blur-2xl p-6 sm:p-8 flex flex-col z-50 animate-slideInRight"
+        className="fixed inset-y-0 right-0 w-full max-w-xl h-full bg-[#12100e]/95 border-l border-white/12 shadow-[0_24px_80px_rgba(0,0,0,0.9)] backdrop-blur-2xl p-6 sm:p-8 flex flex-col z-50 animate-slideInRight"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Mobile Drag / Status Indicator Bar */}
@@ -140,10 +140,10 @@ export const ModalInspectionDrawer: React.FC<ModalInspectionDrawerProps> = ({
         {/* Header */}
         <div className="flex items-start justify-between pb-4 mb-6 border-b border-white/10 flex-shrink-0">
           <div className="pr-4">
-            <h3 className="text-lg sm:text-2xl font-bold text-white mb-1 tracking-tight leading-snug font-display">
+            <h3 className="text-lg sm:text-2xl font-bold text-[#F4F0EA] mb-1 tracking-tight leading-snug font-display">
               {title}
             </h3>
-            {subtitle && <p className="text-xs sm:text-sm font-mono text-cyan-400">{subtitle}</p>}
+            {subtitle && <p className="text-xs sm:text-sm font-mono text-[#c8a97e]">{subtitle}</p>}
           </div>
           <button
             ref={closeBtnRef}

@@ -14,7 +14,7 @@ describe('HeroSection Component', () => {
     render(<HeroSection onExploreClick={vi.fn()} onCaseStudiesClick={vi.fn()} />);
 
     expect(screen.getAllByText(/1st \/ 53 Teams/i).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getAllByText(/3\.89 CGPA/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/3\.75 BSc/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText(/14 Quests & 7 Badges/i)).toBeDefined();
     expect(screen.getByText(/0 Defect UAT/i)).toBeDefined();
   });
@@ -75,7 +75,7 @@ describe('HeroSection Component', () => {
       name: /Ang Zi Yang \(Zachary\) — AI Product Strategist & Solutions Architect/i,
     });
     expect(portraitImgs.length).toBeGreaterThanOrEqual(1);
-    expect(portraitImgs[0]?.getAttribute('src')).toBe('/images/reference_portrait.jpg');
+    expect(portraitImgs[0]?.getAttribute('src')).toBe('/images/zachary_editorial_portrait.webp');
   });
 
   it('renders spatial 3D enterprise engine floating HUD frame with explode architecture action and executive dossier trigger', () => {

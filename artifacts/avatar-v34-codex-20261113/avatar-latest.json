@@ -1,0 +1,64 @@
+{
+  "latest_verified_review_version": "v34",
+  "updated": "2026-11-13",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v34-codex-20261113",
+  "files": {
+    "zachary_character_v34_candidate.glb": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/zachary_character_v34_candidate.glb",
+      "sha256": "fc198c613d53ccdc4224520e28cb69fd1f63c0c58690e5c5c21cb4d69f310975"
+    },
+    "Zachary_Avatar_v34_Review.blend": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/Zachary_Avatar_v34_Review.blend",
+      "sha256": "5d207cc469c03943607dcdb535a57bb0717e8539d5fbc8b08f9c3fccef991b4e"
+    },
+    "avatar-v34-pose-targets.json": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/avatar-v34-pose-targets.json",
+      "sha256": "f3e2c9cae6b77ac48f2bac5e389bfd0ffdffc27c92a1c40e1b08b736adfab7af"
+    },
+    "Avatar-v34-Review.md": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/Avatar-v34-Review.md",
+      "sha256": "f493f0310d06b36bcb8fa97f2f8fc59c38cc1eebbad7d4c84fc5b013accd9aed"
+    },
+    "avatar-v34-comparison.jpg": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/avatar-v34-comparison.jpg",
+      "sha256": "746cc11ecea296511b540384ca550f9f8108c9047a6b43683fc46ac4bb166e8b"
+    },
+    "avatar-v34-expressions.jpg": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/avatar-v34-expressions.jpg",
+      "sha256": "4d8c10b9736f2c65994b4da7c3c01cebfe02b15082e72787444d1772c3c4fa96"
+    },
+    "full34-front.png": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/full34-front.png",
+      "sha256": "dc5f657fc0bf8e9b46c40b2e6a3ea81f17ed601ff1b57951b4d1898d5f190c1a"
+    },
+    "full34-audit.json": {
+      "path": "artifacts/avatar-v34-codex-20261113/outputs/full34-audit.json",
+      "sha256": "d6e370f230fca7ea2276d3f12e6bfb96f7690f4ff998f2576d52e42b844a8037"
+    }
+  },
+  "changes": [
+    "Repaired eye-patch connectivity: three nonmanifold edges removed without moving rest positions.",
+    "Isolated baked eye texture from original face UVs; corrected corner inversions during blink and brow combinations.",
+    "Preserved other anatomy and six non-blink targets; 2.35 MB review candidate."
+  ],
+  "verification": [
+    "384 checks passed; zero failed, including source preservation, UV transfer, topology and blink/brow combinations.",
+    "Final exported GLB rendered in Blender across fourteen expressions plus quarter/side speech views.",
+    "Saved Blender file reopened; five synchronized facial meshes, morph data, packed images and gesture targets verified.",
+    "Current project governance audit passed with zero violations; candidate budgets checked separately."
+  ],
+  "next_work": [
+    "Anatomical eyelids, eye texture and hairline transitions",
+    "Cheek/lip motion and individualized oral anatomy",
+    "Independent finger creasing, fingertip detail and raised-elbow cloth",
+    "Remaining station poses, application integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v34 eye connectivity, UV isolation and blink/brow repair verified. Next focus: anatomical eyelid structure and soft facial texture. Five facial meshes must remain synchronized."
+}

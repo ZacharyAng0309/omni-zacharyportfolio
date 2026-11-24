@@ -1,0 +1,24 @@
+{
+  "glasses_adjust": {
+    "Right": {
+      "wrist_error_mm": 0.0005874676102074693,
+      "elbow_error_mm": 0.00037063207719056657
+    }
+  },
+  "inspect_tablet": {
+    "Right": {
+      "wrist_error_mm": 0.000426425367744069,
+      "elbow_error_mm": 0.0003807259946532125
+    },
+    "Left": {
+      "wrist_error_mm": 0.0004912707213343051,
+      "elbow_error_mm": 0.00018958764732465597
+    }
+  },
+  "keynote_present": {
+    "Right": {
+      "wrist_error_mm": 0.0009584075852516318,
+      "elbow_error_mm": 0.0022345073960721154
+    }
+  }
+}

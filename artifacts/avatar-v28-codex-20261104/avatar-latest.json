@@ -1,0 +1,44 @@
+{
+  "latest_verified_review_version": "v28",
+  "updated": "2026-11-04",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v28-codex-20261104",
+  "files": {
+    "zachary_character_v28_candidate.glb": {
+      "path": "artifacts/avatar-v28-codex-20261104/outputs/zachary_character_v28_candidate.glb",
+      "sha256": "fa92e7df91d079e51483739413ac4c31a121b10c100123c31462e9686a17b24e"
+    },
+    "Zachary_Avatar_v28_Review.blend": {
+      "path": "artifacts/avatar-v28-codex-20261104/outputs/Zachary_Avatar_v28_Review.blend",
+      "sha256": "abe3191604041375e5fcb5d74e0ab5e1b6a8cc6160bbc797aec484570f395f65"
+    },
+    "avatar-v28-pose-targets.json": {
+      "path": "artifacts/avatar-v28-codex-20261104/outputs/avatar-v28-pose-targets.json",
+      "sha256": "a006a316e515963f461cd4e70f97a061ea541416385e40843eaf186abd17ccd4"
+    }
+  },
+  "changes": [
+    "Fitted all 30 finger pivots to hand surface midlines and corrected palmward bend axes.",
+    "Rebuilt hand weights with bone envelopes and a smooth geodesic cuff blend; preserved all 101 cuff seam vertices.",
+    "Retained v27 arm targets and specified rest-relative quaternion finger curl for future application integration."
+  ],
+  "verification": [
+    "82 structural/rest-surface/cuff/weight checks passed, zero failures.",
+    "Exported GLBs reviewed in Blender at four curl amounts, both hands, whole-body views and three gestures.",
+    "Moderate-curl 99th-percentile edge stretch reduced from 1.946x to 1.188x.",
+    "Saved Blender file reopened; gesture and finger animation plus packed textures verified."
+  ],
+  "next_work": [
+    "Fused finger webs, coarse tips and palm pinching",
+    "Facial detail and likeness",
+    "Raised-elbow garment deformation",
+    "Remaining station poses, website integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v28 review complete; next refinement is hand surface geometry and palm pinching"
+}

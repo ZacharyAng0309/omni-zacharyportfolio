@@ -1,0 +1,16 @@
+{
+  "eyeBlinkLeft": {
+    "changed_vertices": 182,
+    "affected_vertices_before": 347,
+    "affected_vertices_after": 315,
+    "protected_upper_region_old_displacement_mm": 7.448958873748779,
+    "protected_upper_region_new_displacement_mm": 0.0
+  },
+  "eyeBlinkRight": {
+    "changed_vertices": 76,
+    "affected_vertices_before": 469,
+    "affected_vertices_after": 463,
+    "protected_upper_region_old_displacement_mm": 4.2776947021484375,
+    "protected_upper_region_new_displacement_mm": 0.0
+  }
+}

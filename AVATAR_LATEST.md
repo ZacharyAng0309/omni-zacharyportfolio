@@ -1,0 +1,25 @@
+# Latest avatar refinement status
+
+Active production companion: **Pixar-Anime Hero Likeness Companion (`zachary_companion.glb`, v4.1 — Meshopt + Morphs + Warm Hair + <=100KB Textures)**: 24 November 2026, Antigravity.
+
+The legacy Meshy-derived scanned model ([`artifacts/archived_public/models/zachary_character.glb`](file:///d:/omni-workstation/projects/ZacharyPortfolio/artifacts/archived_public/models/zachary_character.glb), v41/v42) is **off-stage (`renderHumanoidOnStage = false`)** and archived out of `public/`. Authentic photography anchors Zachary's Executive Dossier via [`public/images/zachary_editorial_portrait.webp`](file:///d:/omni-workstation/projects/ZacharyPortfolio/public/images/zachary_editorial_portrait.webp), while the interactive 3D companion upgrades the **Pixar-Anime Hero (`~1:6.3` head-to-body ratio, `0.258m` head height)** with:
+- **Sealed Nape & Clean Front/Side Neck Skin**: `back_flare_z` rear wrap (`ry_lim = 0.064` behind `neck_cy`, clipped cleanly below earlobes) eliminates both nape cavities and dangling rear-collar spikes; `Zone 2` `island_margin=0.05` + Cycles bake `margin=8` + 2-pass front/side neck cluster heal removes neck collar bleed; ear shells isolated from hair shading.
+- **Warm Espresso-Brown Hair & Clean White Sneaker Outsoles**: `TARGET_HAIR_SRGB = [0.155, 0.120, 0.102]` mixed cleanly via `w_hair` in `build_hd_face_albedo_bake_shader` (`roughness = 0.70` satin matte), and sneaker outsoles gated strictly at `Z <= 0.026m` without luminance clipping.
+- **Refined Panto Eyeglasses & Facial Morphs**: Slightly widened/lowered thin-wire bronze-gunmetal panto rims clear of brows with ear-hugging temples, plus `Basis` + `['eyeBlinkLeft', 'eyeBlinkRight', 'mouthSmileLeft', 'mouthSmileRight']` shape keys directly on `SM_Companion_Body` driven by `SceneController` (`Mat_Companion_Face` calibrated with `envMapIntensity = 0.16` and subtle `emissiveMap` lift; `castShadow = false` + softened `plinthSpotLight`).
+- **Meshopt & `<= 100 KB` Embedded Texture Budget**: All embedded WebP textures baked and verified strictly `<= 100 KB` (`[59.6, 21.9, 42.8, 10.2] KB`) and exported with `EXT_meshopt_compression`, cutting `zachary_companion.glb` by 47% (`2,722,692` -> `1,442,736` bytes).
+
+## Active Shipped Assets & Tooling
+
+- [`public/models/zachary_companion.glb`](file:///d:/omni-workstation/projects/ZacharyPortfolio/public/models/zachary_companion.glb) (`1,442,736` bytes / `1408.9 KB`, `40,227` tris, `2` meshes, `5` materials, `19` bones, `4` NLA clips, `4` facial morphs, `EXT_meshopt_compression`, `Z=[-0.0006, 1.6280]`, SHA-256 `38495a233c02577f3975621341779b08e238fdb58a2d44788668d1c89bc74a23`)
+- [`public/images/zachary_editorial_portrait.webp`](file:///d:/omni-workstation/projects/ZacharyPortfolio/public/images/zachary_editorial_portrait.webp) (`600×800`, `47,514` bytes, SHA-256 `d972192802d4d7c930f2a8e820edc8a86d2f5cb8db2669a7e13eadd4ff4dbd4b`)
+- [`scripts/rig_likeness_companion.py`](file:///d:/omni-workstation/projects/ZacharyPortfolio/scripts/rig_likeness_companion.py) (SHA-256 `eb13cf66feac589d259d87e5be40da7f1a647ace41718f0a6c69fb86e72203f0`)
+- [`scripts/verify_zachary_companion.py`](file:///d:/omni-workstation/projects/ZacharyPortfolio/scripts/verify_zachary_companion.py)
+- [`screenshots/zachary_companion_blender_review.png`](file:///d:/omni-workstation/projects/ZacharyPortfolio/screenshots/zachary_companion_blender_review.png)
+
+## Verification
+
+- **Blender 5.2.2 LTS Cycles 6-panel studio audit (`verify_zachary_companion.py`, `v4.1`, 2026-11-24)**: passed cleanly (`exit 0`, `2` meshes `SM_Companion_Body` + `SM_Companion_Glasses`, `19` bones, `4` NLA clips, `4` morph targets `eyeBlinkLeft/Right` & `mouthSmileLeft/Right`, `EXT_meshopt_compression`, all embedded images `<= 100 KB`, `40,227` tris, `Z=[-0.0006, 1.6280]m`, `1,442,736` bytes).
+- **`ShippedGlbContract.test.ts` (3/3 passed)**: verified `zachary_companion.glb` `<= 3.0 MB`, `EXT_meshopt_compression`, all embedded images `<= 100 KB`, 19 bones, 4 animations, and all 4 morph targets.
+- **`v4.1` Council Execution Track (Completed & Verified, 2026-11-24)**:
+  - Phase A HUD, unified `stationProgress.ts` scroll/corridor curves, accessible `inert` scroll-spy sheet + desktop left-58% camera re-framing, sloped Act 3->4 Skybridge, `22` sub-targets (including all 5 Act 6 portal lenses), Act 6 `2.4s` arrival greet, `pointermove` 3D prop hover cursor, verified credentials (`3.75 / 4.00` UK Dual First-Class BSc, `3.89 / 4.00` APU SE Diploma Distinction), and mobile HUD touch polish verified.
+  - Phase B `v4.1` companion rebuild (`EXT_meshopt_compression`, `<= 100 KB` WebPs, morph targets, sealed nape, neck heal, warm espresso hair, white sneaker soles), Acts 02–06 Meshopt/per-material `studioEnvMap`/deferred lazy loading/scenic upgrades, `DepthPortraitMesh` lazy loading, `22` unused `public/` assets archived (`artifacts/archived_public/`), governance `<= 100 KB` GLB image check, and live Chromium CDP verification (`17/17` suites, `168/168` tests, `9/9` golden baselines at `0.00%` pixel diff, visual inspection across all 12 captures plus `zachary_companion_blender_review.png`) passed cleanly.

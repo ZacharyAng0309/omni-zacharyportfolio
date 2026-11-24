@@ -1,0 +1,67 @@
+{
+  "latest_verified_review_version": "v38",
+  "updated": "2026-11-15",
+  "owner": "Codex",
+  "status": "v38 integrated into public application model and verified in Chrome WebGL2; Blender likeness/texture refinement ongoing",
+  "archive": "artifacts/avatar-v38-codex-20261115",
+  "files": {
+    "zachary_character_v38_candidate.glb": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/zachary_character_v38_candidate.glb",
+      "sha256": "ec703d9fe5ffd3f7af1109eef6e979fe5e50e1f72aff72ce4b6dcf357280f4a3"
+    },
+    "Zachary_Avatar_v38_Review.blend": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/Zachary_Avatar_v38_Review.blend",
+      "sha256": "619b55a43dba6687dc5b7b6ed8727fdb182c73853ef8815cd7ffbfa1553d1e73"
+    },
+    "avatar-v38-pose-targets.json": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/avatar-v38-pose-targets.json",
+      "sha256": "293957d7edf8d2c1318c8e44043e441d44af2a71753db0019b3b933ed78458e4"
+    },
+    "Avatar-v38-Review.md": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/Avatar-v38-Review.md",
+      "sha256": "86404b5c58d63331e005b2655f57efc6b5fa80e5417befbf4f504c91ddd03e1e"
+    },
+    "avatar-v38-comparison.jpg": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/avatar-v38-comparison.jpg",
+      "sha256": "0da12d6441e318a38c72f7afe4ca32fab8a827a21d0cf2f8ca1a912bffa728bd"
+    },
+    "avatar-v38-hair-views.jpg": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/avatar-v38-hair-views.jpg",
+      "sha256": "143bdb560c8142db0b091ec37be1760cf6b58884fe3a5147f8eb35fb75609027"
+    },
+    "full38-front.png": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/full38-front.png",
+      "sha256": "74ef4863a1ba81bfc620213827e4a7bdb7262fcbf38da1599cf92db69972dff6"
+    },
+    "full38-audit.json": {
+      "path": "artifacts/avatar-v38-codex-20261115/outputs/full38-audit.json",
+      "sha256": "915d53f70af494394b5841effe7b776effd16b93d6b213252da51d728b9ef25c"
+    }
+  },
+  "changes": [
+    "Soft crown-part dip, maximum 5.448 mm; 130 existing hair vertices adjusted.",
+    "Directional brown strand groups with newly baked albedo, normal and roughness/specular maps.",
+    "All shared hair/face boundaries, topology, weights, facial targets and unrelated materials preserved."
+  ],
+  "verification": [
+    "337 geometry, preservation and budget checks passed; zero failed.",
+    "Fresh GLB rendered from five hair angles and during facial motion; saved Blender review reopened.",
+    "Fourteen facial frames, six synchronized meshes, packed textures and four gesture targets verified.",
+    "Current project governance audit passed; v38 integrated into public/models/zachary_character.glb and verified in headless Chromium D3D11 WebGL2 across neutral/blink/speech close-ups and Acts 1-6.",
+    "Runtime SceneController.ts updated for Schema-v4 six-mesh facial morph synchronization, non-accumulating restQuaternion finger curls, coincident UV-seam normal welding on face/hands, hair material/rim balance, and Act 1/3/4 posture/trophy clearance."
+  ],
+  "next_work": [
+    "Fringe edge cleanup, loose silhouette strands and less uniform strand flow",
+    "Side/back hair surface refinement; one frontal reference limits likeness",
+    "Eye shading, face/body texture bake (T_Face_v34_Albedo top hairline bleed and hoodie collar/wrist UV dilation >= 16px), lip/cheek motion and hand/cloth detail"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "ec703d9fe5ffd3f7af1109eef6e979fe5e50e1f72aff72ce4b6dcf357280f4a3",
+    "bytes": 2551464,
+    "latest_candidate_integrated": true,
+    "integrated_version": "v38",
+    "integrated_updated": "2026-11-15"
+  },
+  "active_work": "v38 integrated into public/models/zachary_character.glb with six-mesh Schema-v4 facial sync, coincident UV-seam normal welding (resolving 118 face split-normal lip sawtooth facets), hair roughness/emissive/rim tuning, and Act 1/3/4 posture polish verified in Chromium WebGL2. Remaining Blender-pipeline work: fringe/silhouette hair cleanup, side/rear volume, and face/body UV bake refinement."
+}

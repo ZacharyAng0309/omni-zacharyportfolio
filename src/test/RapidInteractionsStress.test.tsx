@@ -32,7 +32,24 @@ describe('App Stability & Rapid Interactions Stress Test', () => {
       });
     }
 
-    // 3. Rapidly open and close Case Study modals for each case study
+    // 3. Rapidly open and close SlideOverInspectionSheet via Diegetic 3D Hotspot & Whisper Sub-Target Pills
+    const hotspotBtn = screen.getByTestId('diegetic-hotspot-strategy-table');
+    const closeSheetBtn = screen.getByTestId('close-inspection-sheet-btn');
+    for (let i = 0; i < 6; i++) {
+      act(() => {
+        fireEvent.click(hotspotBtn);
+      });
+      act(() => {
+        fireEvent.click(closeSheetBtn);
+      });
+    }
+
+    // Open drawer before stress-testing drawer-internal modals, filters & citations (closed drawer is inert)
+    act(() => {
+      fireEvent.click(hotspotBtn);
+    });
+
+    // 4. Rapidly open and close Case Study modals for each case study
     const inspectButtons = screen.getAllByRole('button', { name: /inspect drawer/i });
     for (const btn of inspectButtons) {
       act(() => {
@@ -45,7 +62,7 @@ describe('App Stability & Rapid Interactions Stress Test', () => {
       });
     }
 
-    // 4. Rapidly open and close Press Modal 5 times
+    // 5. Rapidly open and close Press Modal 5 times
     const trophyInspectBtn = screen.getByRole('button', { name: /inspect trophy proof/i });
     for (let i = 0; i < 5; i++) {
       act(() => {
@@ -57,7 +74,7 @@ describe('App Stability & Rapid Interactions Stress Test', () => {
       });
     }
 
-    // 5. Rapidly cycle through credential category filters 12 times
+    // 6. Rapidly cycle through credential category filters 12 times
     const cloudFilter = screen.getByRole('button', { name: /cloud & ai badges/i });
     const pmFilter = screen.getByRole('button', { name: /product & ba/i });
     const academicFilter = screen.getByRole('button', { name: /academic & global wins/i });
@@ -72,19 +89,19 @@ describe('App Stability & Rapid Interactions Stress Test', () => {
       });
     }
 
-    // 6. Rapidly toggle press citation accordions 10 times
+    // 7. Rapidly toggle press citation accordions 10 times
     const accordionTriggers = screen.getAllByRole('button', { name: /the star|the star online|hilti/i });
     if (accordionTriggers.length > 0) {
       for (let i = 0; i < 10; i++) {
         act(() => {
-          fireEvent.click(accordionTriggers[0]);
+          fireEvent.click(accordionTriggers[0]!);
         });
       }
     }
 
     // Confirm that the application is fully intact and healthy after 50+ actions
-    expect(screen.getByText(/Architect of Enterprise Intelligence/i)).toBeDefined();
-    expect(screen.getByText('Hireti (Team Sweetzerland)')).toBeDefined();
-    expect(screen.getByText(/Initiate Collaboration/i)).toBeDefined();
+    expect(screen.getAllByText(/Architect of Enterprise Intelligence/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Hireti (Team Sweetzerland)').length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Initiate Collaboration/i).length).toBeGreaterThan(0);
   }, 60000);
 });

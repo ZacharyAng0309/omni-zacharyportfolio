@@ -1,0 +1,70 @@
+{
+  "latest_verified_review_version": "v42",
+  "updated": "2026-11-19",
+  "owner": "Codex",
+  "status": "v42 crown and fine-strand refinement verified in Blender; integrated application remains v41; browser review of the new strand material pending",
+  "archive": "artifacts/avatar-v42-codex-20261119",
+  "rollback_baseline_archive": "artifacts/avatar-v41-antigravity-20261119",
+  "files": {
+    "zachary_character_v42_candidate.glb": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/zachary_character_v42_candidate.glb",
+      "sha256": "83d1f59ffb936bc1f880d8b4ae613e5aa81e5ec725f30c88641de4ff9515532c"
+    },
+    "Zachary_Avatar_v42_Review.blend": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/Zachary_Avatar_v42_Review.blend",
+      "sha256": "e24119ecc40fae290ac450941bc9e3375f9de5f443b245744591e4c941576474"
+    },
+    "avatar-v42-pose-targets.json": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/avatar-v42-pose-targets.json",
+      "sha256": "04de85a6b42b4c5231f3a60b2cecf29c1c848810db49dd79e1b9388f2541fc89"
+    },
+    "Avatar-v42-Review.md": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/Avatar-v42-Review.md",
+      "sha256": "e338d4f9c2d6dd62fd47d55d50b77f7adabc071e9f4922f654b8b71cf1cce984"
+    },
+    "avatar-v42-comparison.jpg": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/avatar-v42-comparison.jpg",
+      "sha256": "a02541c14d1bc22085c52fa5a0288e6db3d4f6fc83f5d15bc6cac25986c4e455"
+    },
+    "avatar-v42-review-views.jpg": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/avatar-v42-review-views.jpg",
+      "sha256": "95e8ce02cf36982677bd2519c7f5dee7f61fb4d3071cab585df575d24355047e"
+    },
+    "full42-front.png": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/full42-front.png",
+      "sha256": "364445715ef9421ff617020100be41efe57eedd798b1b6fcf1d6f1d6a9502807"
+    },
+    "full42-audit.json": {
+      "path": "artifacts/avatar-v42-codex-20261119/outputs/full42-audit.json",
+      "sha256": "cc02f5859adb3a5fb2582c517a8def0f65d789285cf01536e14b0193c01666d9"
+    }
+  },
+  "changes": [
+    "Softened crown facets with bounded local relaxation: 653 hair vertex copies, maximum movement 1.801 mm.",
+    "Added 38 fine tapered round filaments along the curtain fringe and crown, with source-surface rig weight transfer and no new texture images.",
+    "Preserved all v41 facial/eye/eyelid/glasses/ear geometry, original UVs, textures, weights, expressions and lower hair boundaries."
+  ],
+  "verification": [
+    "449 preservation, geometry, manifold, winding, rig and budget checks passed; zero failed.",
+    "Fresh exported GLB rendered from five angles plus seven facial views in Blender.",
+    "Saved Blender file reopened: fourteen facial frames, six synchronized meshes, packed images and four gestures verified.",
+    "All 1256 filament vertices verified against Head transforms at three rotations; sampled raised-brow forehead clearance positive.",
+    "Project WebGL governance audit passed; v42 browser appearance/performance and application integration pending."
+  ],
+  "next_work": [
+    "Review the new filament material in application lighting and at portfolio distances; consider LOD and anti-aliasing.",
+    "Broader sculpted hair clumps and fringe outline polish.",
+    "Native Blender-baked collar/wrist atlas margins and residual skin/cloth/hand detail."
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "c92eba13ed8eb591569852afaf464caadc9b165a720857d2b44442dbcc05ddd8",
+    "bytes": 2582124,
+    "latest_candidate_integrated": false,
+    "integrated_version": "v41",
+    "integrated_updated": "2026-11-19",
+    "prior_verification_record": "artifacts/avatar-v40-codex-20261119/outputs/Avatar-v40-Review.md",
+    "verification_record": "artifacts/avatar-v41-antigravity-20261119/outputs/Avatar-v41-Review.md"
+  },
+  "active_work": "v42 adds sparse fine hair strands and softly relaxes the crown on the v41 baseline. The existing v41 face/eye improvements and application integration remain intact. New SM_Character_HairFilaments uses an opaque vertex-color material; verify its appearance under the application lighting and at distance before integration. Existing base-color UV2 and normal/parameter UV1 are unchanged."
+}

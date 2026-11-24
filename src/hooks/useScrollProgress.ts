@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getCanonicalStationProgress } from '../graphics/core/stationProgress';
 
 const SECTIONS = ['hero', 'timeline', 'vault', 'summit', 'ai-solutions', 'contact'] as const;
 
@@ -41,28 +42,27 @@ export function useScrollProgress(): { scrollProgress: number; activeSection: st
 
       setScrollProgress(progress);
 
-      // Section detection (6-Act Growth Journey Storyline Sequence)
-      if (progress >= 0.88) {
-        setActiveSection('contact');
+      // Section detection locked to canonical corridor curve when scroll continuum is active
+      if (currentScroll <= 0 && progress === 0) {
+        setActiveSection('hero');
         return;
       }
 
-      const contactEl = document.getElementById('contact');
-      if (contactEl) {
-        const contactRect = contactEl.getBoundingClientRect();
-        if (contactRect.top <= window.innerHeight * 0.55 && contactRect.bottom >= 0) {
-          setActiveSection('contact');
-          return;
-        }
+      if (totalScroll > 0) {
+        const { stIdx, w } = getCanonicalStationProgress(progress);
+        const canonicalIdx = Math.min(SECTIONS.length - 1, w >= 0.5 ? stIdx + 1 : stIdx);
+        setActiveSection(SECTIONS[canonicalIdx]!);
+        return;
       }
 
+      const midY = window.innerHeight * 0.5;
       for (const id of SECTIONS) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight * 0.45 && rect.bottom >= window.innerHeight * 0.2) {
+          if (rect.height > 0 && rect.top <= midY && rect.bottom > midY) {
             setActiveSection(id);
-            break;
+            return;
           }
         }
       }

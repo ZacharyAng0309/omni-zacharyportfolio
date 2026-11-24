@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "decision": "REFINE_CAMERA_OR_BLOCKOUT",
+  "metrics": {
+    "silhouette_iou": 0.5901,
+    "aspect_drift": 0.0645,
+    "interior_similarity": 0.9043,
+    "symmetry_parity": 0.8856
+  },
+  "thresholds": {
+    "min_iou": 0.7,
+    "max_aspect_drift": 0.18,
+    "min_interior_sim": 0.75
+  }
+}

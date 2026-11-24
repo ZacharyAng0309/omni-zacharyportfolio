@@ -1,0 +1,50 @@
+[
+  {
+    "name": "zachary_character_v34_candidate.glb",
+    "bytes": 2354404,
+    "sha256": "fc198c613d53ccdc4224520e28cb69fd1f63c0c58690e5c5c21cb4d69f310975",
+    "verified": true
+  },
+  {
+    "name": "Zachary_Avatar_v34_Review.blend",
+    "bytes": 3187553,
+    "sha256": "5d207cc469c03943607dcdb535a57bb0717e8539d5fbc8b08f9c3fccef991b4e",
+    "verified": true
+  },
+  {
+    "name": "avatar-v34-pose-targets.json",
+    "bytes": 2627,
+    "sha256": "f3e2c9cae6b77ac48f2bac5e389bfd0ffdffc27c92a1c40e1b08b736adfab7af",
+    "verified": true
+  },
+  {
+    "name": "Avatar-v34-Review.md",
+    "bytes": 4228,
+    "sha256": "f493f0310d06b36bcb8fa97f2f8fc59c38cc1eebbad7d4c84fc5b013accd9aed",
+    "verified": true
+  },
+  {
+    "name": "avatar-v34-comparison.jpg",
+    "bytes": 83947,
+    "sha256": "746cc11ecea296511b540384ca550f9f8108c9047a6b43683fc46ac4bb166e8b",
+    "verified": true
+  },
+  {
+    "name": "avatar-v34-expressions.jpg",
+    "bytes": 148238,
+    "sha256": "4d8c10b9736f2c65994b4da7c3c01cebfe02b15082e72787444d1772c3c4fa96",
+    "verified": true
+  },
+  {
+    "name": "full34-front.png",
+    "bytes": 711310,
+    "sha256": "dc5f657fc0bf8e9b46c40b2e6a3ea81f17ed601ff1b57951b4d1898d5f190c1a",
+    "verified": true
+  },
+  {
+    "name": "full34-audit.json",
+    "bytes": 18834,
+    "sha256": "d6e370f230fca7ea2276d3f12e6bfb96f7690f4ff998f2576d52e42b844a8037",
+    "verified": true
+  }
+]

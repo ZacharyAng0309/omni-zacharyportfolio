@@ -1,0 +1,64 @@
+{
+  "latest_verified_review_version": "likeness-companion-v4.1",
+  "updated": "2026-11-24",
+  "owner": "Antigravity",
+  "status": "Pixar-Anime Hero Likeness Companion v4.1 (zachary_companion.glb, 1,442,736 bytes / 1408.9 KB with EXT_meshopt_compression, 40,227 tris, 4 embedded WebPs <= 100 KB [59.6, 21.9, 42.8, 10.2] KB, 4 facial morph targets [eyeBlinkLeft, eyeBlinkRight, mouthSmileLeft, mouthSmileRight], sealed nape hair wrap, 2-pass neck cluster heal, warm espresso hair [0.155, 0.120, 0.102] roughness 0.70, crisp Z <= 0.026m white sneaker outsoles, refined panto glasses) verified in Blender 5.2.2 LTS Cycles (verify_zachary_companion.py, Z=[-0.0006, 1.6280]), ShippedGlbContract.test.ts, and live Chromium CDP VisualCapture.test.ts (17/17 suites, 168/168 tests, 0.00% pixel diff)",
+  "application_companion_model": {
+    "path": "public/models/zachary_companion.glb",
+    "sha256": "38495a233c02577f3975621341779b08e238fdb58a2d44788668d1c89bc74a23",
+    "bytes": 1442736,
+    "meshes": 2,
+    "materials": 5,
+    "bones": 19,
+    "tris": 40227,
+    "compression": "EXT_meshopt_compression",
+    "embedded_textures": {
+      "Companion_Body_Baked": { "mime": "image/webp", "kb_approx": 59.6 },
+      "Zachary_Face_Normal": { "mime": "image/webp", "kb_approx": 21.9 },
+      "Zachary_Face_HD": { "mime": "image/webp", "kb_approx": 42.8 },
+      "Zachary_Face_MR": { "mime": "image/webp", "kb_approx": 10.2 }
+    },
+    "z_bounds_m": [-0.0006, 1.6280],
+    "provenance": "v4.1 build from scripts/rig_likeness_companion.py (sha256=eb13cf66feac589d259d87e5be40da7f1a647ace41718f0a6c69fb86e72203f0) on raw_companion.glb + hd_bust_v4_anime.glb + 02_hd_bust_glasses_off.png",
+    "animations": [
+      "Idle_Breathing",
+      "Walk_Forward",
+      "Gesture_Present",
+      "Turn_Greet"
+    ],
+    "morphTargets": [
+      "eyeBlinkLeft",
+      "eyeBlinkRight",
+      "mouthSmileLeft",
+      "mouthSmileRight"
+    ],
+    "v2_archive": "artifacts/companion-v2-likeness/zachary_companion_v2_archive.glb",
+    "v3_archive": "artifacts/companion-v3-face-refinement/zachary_companion_v3.glb",
+    "v4_archive": "artifacts/companion-v4-anime/zachary_companion_v4_anime.glb",
+    "blender_verification": {
+      "script": "scripts/verify_zachary_companion.py",
+      "blender_version": "5.2.2 LTS",
+      "verified_at": "2026-11-24",
+      "sheet": "screenshots/zachary_companion_blender_review.png"
+    },
+    "review_sheets": [
+      "screenshots/zachary_companion_blender_review.png",
+      "artifacts/companion-v4-anime/v4_anime_face_checkpoint.png"
+    ]
+  },
+  "editorial_dossier_portrait": {
+    "path": "public/images/zachary_editorial_portrait.webp",
+    "sha256": "d972192802d4d7c930f2a8e820edc8a86d2f5cb8db2669a7e13eadd4ff4dbd4b",
+    "dimensions": "600x800",
+    "bytes": 47514,
+    "source": "artifacts/archived_public/images/reference_portrait.jpg"
+  },
+  "legacy_archived_model": {
+    "path": "artifacts/archived_public/models/zachary_character.glb",
+    "sha256": "c92eba13ed8eb591569852afaf464caadc9b165a720857d2b44442dbcc05ddd8",
+    "bytes": 2582124,
+    "rendered_on_stage": false,
+    "v42_archive": "artifacts/avatar-v42-codex-20261119",
+    "v41_rollback_archive": "artifacts/avatar-v41-antigravity-20261119"
+  }
+}

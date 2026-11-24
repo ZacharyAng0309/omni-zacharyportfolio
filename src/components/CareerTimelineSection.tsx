@@ -48,7 +48,7 @@ export const CareerTimelineSection: React.FC = () => {
                 Act 02 • The Academy • Academic Foundations &amp; Career Ascent
               </span>
               <span className="text-neutral-400 text-[11px] sm:text-xs font-mono">
-                FIRST CLASS HONOURS (CGPA 3.89)
+                UK FIRST-CLASS BSC (3.75) • APU SE DIPLOMA DISTINCTION (3.89)
               </span>
             </div>
 
@@ -60,7 +60,7 @@ export const CareerTimelineSection: React.FC = () => {
             </h2>
 
             <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
-              Trace Zachary’s chronological growth from 3.89 CGPA software engineering foundations at APU to enterprise fintech architecture at Soft Space.
+              Trace Zachary’s chronological growth from 3.89 CGPA software engineering diploma and 3.75 First-Class BSc foundations at APU to enterprise fintech architecture at Soft Space.
             </p>
           </div>
 

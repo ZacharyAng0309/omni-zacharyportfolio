@@ -1,0 +1,41 @@
+{
+  "reopened_gesture_errors_mm": {
+    "41": {
+      "RightHand": 0.00019082797281243946
+    },
+    "81": {
+      "RightHand": 0.0002602375924076584,
+      "LeftHand": 0.000568787297129402
+    },
+    "121": {
+      "RightHand": 0.000819428389362545
+    }
+  },
+  "reopened_blink_weights": {
+    "1": [
+      0.0,
+      0.0
+    ],
+    "41": [
+      0.5,
+      0.5
+    ],
+    "81": [
+      1.0,
+      1.0
+    ],
+    "121": [
+      1.0,
+      0.0
+    ],
+    "161": [
+      1.0,
+      1.0
+    ]
+  },
+  "packed_image_datablocks": 10,
+  "retained_review_scenes": [
+    "Whole model review v31",
+    "Facial expression review v31"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "latest_verified_review_version": "v41",
+  "updated": "2026-11-19",
+  "owner": "Antigravity",
+  "status": "v41 chin/jaw V-oval anatomy, +10mm under-eye scar eradication, symmetric warm dark-espresso eyes & almond eyelids with full-canvas UV fill, gaze-locked catchlight PMREM, and foreground-clear ParticleLattice integrated into public/models/zachary_character.glb and verified in Chrome WebGL2 across Acts 1-6 & active expressions",
+  "archive": "artifacts/avatar-v41-antigravity-20261119",
+  "rollback_baseline_archive": "artifacts/avatar-v40-codex-20261119",
+  "files": {
+    "zachary_character_v41_candidate.glb": {
+      "path": "artifacts/avatar-v41-antigravity-20261119/outputs/zachary_character_v41_candidate.glb",
+      "sha256": "c92eba13ed8eb591569852afaf464caadc9b165a720857d2b44442dbcc05ddd8"
+    },
+    "Avatar-v41-Review.md": {
+      "path": "artifacts/avatar-v41-antigravity-20261119/outputs/Avatar-v41-Review.md",
+      "sha256": "e383def2f9bd9ff470054ecad5c83196e7c502c829b75a78f2780baa08ade15f"
+    },
+    "v41-chrome-expressions-review.png": {
+      "path": "artifacts/avatar-v41-antigravity-20261119/outputs/v41-chrome-expressions-review.png",
+      "sha256": "ff5da4041b2b3528f341d1762b13cc66656f07f48828f515e75255c58fa27125"
+    },
+    "Zachary_Avatar_v40_Review.blend": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/Zachary_Avatar_v40_Review.blend",
+      "sha256": "d28c039571ae9fb7570247a10337ddca78bc4acf77f652fe53750ac458bb97be"
+    },
+    "avatar-v40-pose-targets.json": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/avatar-v40-pose-targets.json",
+      "sha256": "3f1df5e3b04454038233994a2ad8122d13259cb6c3b1820b59296aab46524104"
+    }
+  },
+  "changes": [
+    "Re-weighted all 1,854 front chin/mandible vertices on SM_Character_Face (and shared SM_Character_OralCavity accessors 3/4) to 1.000 Head with smooth 43mm submental throat diffusion (max_tri_head_jump = 0.2936 < 0.45) and byte-identical Face<->Hoodie collar seam weights, eliminating chin shear under head yaw/pitch.",
+    "Eradicated the inherited +10.0mm +X under-eye 3D glasses-rim scan ridge by projecting scarred +X cheek & lower orbital rim cleanly onto the smooth mirrored -X contour (moving 81 under-eye scar vertices and 24 coincident Face<->Eyelids boundary vertices in lockstep with 0.0000mm gap and 1.0000 welded normals), symmetrized cheeks/jaw, sculpted a cohesive single-curve rounded oval chin & crisp submental jawline shelf, fixed 2 stray (0,0) TEXCOORD_2 lip vertices, dilated all Face UV2 islands 16px before filtering, and harmonized +X jaw, glasses-rim ghost rings, mottled chin, side-profile neck patch & outer-eye shading via frequency-separated tone transfer (47,780 bytes WebP, v40 fringe patch preserved).",
+    "Aligned SM_Character_EyeLeft & SM_Character_EyeRight to one symmetric Z plane (80.38mm pole, |dz| = 0.0000mm), replaced +/-12.4 deg outward skew over rings 0..4 with a symmetric forward-facing (0,0,+1) spherical cornea (11.1mm iris, 6.35mm ring 4 limbus), calibrated warm dark-espresso East Asian iris colors for ACES Filmic (linear R = 0.043..0.052 around a 2.08mm pupil with lower caustic bounce), added upper-lid sclera shadow plus inner-caruncle & outer-socket occlusion, and smoothed inherited bottom-inner & inner-arc wire Z-kinks across Sovereign_Titanium_Spectacles (max |dZ| 1.90mm metal, 2.23mm browline, 4.18mm lens).",
+    "Bilaterally mirrored and sculpted SM_Character_Eyelids to a calm almond aperture (26.02x8.01mm) preserving watertight full-blink closure (<0.08mm) and verified full 161-vertex corneal blink clearance (-0.107mm); applied 100% full-canvas pure-skin dilation on T_Eyelids_v36 (min_texel_luma = 43.4, zero #000000 holes), balanced outer-corner eyelid skin bilaterally (|luma_diff| < 6.0), cleaned outer-corner bruise, and painted a crisp front-visible dark-espresso upper lash line & tapered upper crease (15,428 bytes WebP).",
+    "Fixed +Z-forward gaze yaw (Math.atan2(dx, dz)), dynamically synchronized M_Eyes_v36.envMapRotation.y to avatar head yaw with a crisp ~10:30 o'clock pinpoint catchlight ([-1.10, 1.18, 7.6], 0.23 radius, HDR 18.5, envMapIntensity = 0.64), extended applySkinAtlasMarginGuard (region 'neck') with a z <= 0.030m lateral/rear neck mask eliminating the 3 right-neck collar-bleed sawtooth triangles, confined PersistentParticleLattice strictly to the outer cylindrical perimeter (R >= 5.8m, eliminating floating dust squares on Zachary's face/lips), and calibrated VisualCapture.test.ts close-ups to 85mm-equivalent (24 deg FOV) studio portrait framing."
+  ],
+  "verification": [
+    "221 numerical & geometric verification checks passed (verify41.py, 0 failed): 44,910 tris, 2,582,124 bytes (<3.0 MB), 52 joints, all 7 images <100 KB, untouched images byte-identical, TEXCOORD_2/TEXCOORD_1 preserved, zero stray (0,0) UV2 vertices, 0.000mm Face/Hair, Face/Hoodie & Face/Eyelids seam alignment + 1.0000 boundary normals, under-eye continuous mirrored surface error <2.2mm, collar weights byte-identical, chin Head weight = 1.000, max_tri_head_jump = 0.2936 < 0.45, bilaterally symmetric eye Z (0.000mm), forward (0,0,+1) corneal normals, calibrated dark-espresso iris linear R, watertight full blink & 161-vertex corneal blink clearance (-0.107mm), zero #000000 holes on T_Eyelids_v36, spectacles edge |dZ| < 2.5 / 3.0 / 4.5mm, even front chin albedo (mean R >= 188, std R < 8.5), bilateral outer-eye Face & Eyelid shading balance (|diff| < 6.0), and non-degenerate triangle areas across neutral/blink/speech/smile morphs.",
+    "Live Chrome D3D11 WebGL2 visual verification completed for Act 1/4/6 85mm close-up portraits, all 6 diorama acts, and the 6-panel active-expression & multi-angle contact sheet (v41-chrome-expressions-review.png: Front Neutral, Full Blink, Speech jawOpen+viseme_aa, Smile+Yaw, 3/4 View, Side Profile; 0 console errors, 0 WebGLProgram/X4122 shader warnings, gl.getError() === 0, all 9 golden baselines at 0.00% diff).",
+    "Pre-release gates passed: npm test (17 suites / 162 tests), npm run build, npm run lint, WebGL governance audit (0 violations), and VaultLinter (100/100)."
+  ],
+  "next_work": [
+    "Finer sculpted natural hair fringe strands and broader hair silhouette polish (Blender pipeline)",
+    "Native Blender-baked collar/wrist atlas margins and hand/cloth detail (Blender pipeline)"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "c92eba13ed8eb591569852afaf464caadc9b165a720857d2b44442dbcc05ddd8",
+    "bytes": 2582124,
+    "latest_candidate_integrated": true,
+    "integrated_version": "v41",
+    "integrated_updated": "2026-11-19",
+    "prior_verification_record": "artifacts/avatar-v40-codex-20261119/outputs/Avatar-v40-Review.md"
+  },
+  "active_work": "v41 integrated into public/models/zachary_character.glb and verified in Chrome WebGL2 resolving under-eye +10mm glasses-rim scar, face-shape/chin distortion, right-neck collar-bleed triangles, spectacles wire bottom-inner V-kinks, dead/skewed eye shading & catchlight drift, eyelid UV holes, and foreground particle confetti across Acts 1-6 & active expressions."
+}

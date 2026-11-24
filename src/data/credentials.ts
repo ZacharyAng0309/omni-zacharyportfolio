@@ -106,7 +106,7 @@ export const CREDENTIALS: readonly CredentialBadge[] = [
     verificationUrl: 'https://www.apu.edu.my',
     color: '#10b981',
     highlights: [
-      'CGPA 3.89 / 4.00 Distinction (First Class Honours Equivalent)',
+      'CGPA 3.75 / 4.00 (UK Dual First-Class Honours)',
       'Specialism in Business Information Systems, Data Analytics, and Enterprise Architecture',
       'Vice Chancellor’s Honors List Conferred (2022/2023)',
     ],

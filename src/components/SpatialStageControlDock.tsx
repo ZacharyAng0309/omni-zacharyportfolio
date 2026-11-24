@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Eye, Sparkles, Layers } from 'lucide-react';
+import { Eye, Layers } from 'lucide-react';
 import type { SceneController } from '../graphics/SceneController';
+import { WHISPER_ACTS } from '../data/whisperActs';
 
 interface SpatialStageControlDockProps {
   activeSection: string;
   controller?: SceneController | null;
+  onOpenDispatch?: () => void;
 }
 
 interface StageActMetadata {
@@ -49,13 +51,14 @@ const STAGE_ACT_MAP: Record<string, StageActMetadata> = {
     actLabel: 'Act 06',
     stageTitle: 'Horizon Interests & Portal',
     actionId: 'cosmic_pulse',
-    actionButtonLabel: 'Cosmic Pulse',
+    actionButtonLabel: 'Initiate Dispatch',
   },
 };
 
 export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = ({
   activeSection,
   controller,
+  onOpenDispatch,
 }) => {
   const [isPeekingStage, setIsPeekingStage] = useState(false);
   const [lastTriggeredAction, setLastTriggeredAction] = useState<string | null>(null);
@@ -68,6 +71,9 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
       actionId: 'explode_strata',
       actionButtonLabel: 'Explode Core',
     };
+
+  const actAccent =
+    WHISPER_ACTS.find((a) => a.sectionId === activeSection)?.accentColor ?? '#c8a97e';
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -87,7 +93,7 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
   const handleTriggerGesture = useCallback(() => {
     const action = currentStage.actionId;
     if (controller) {
-      controller.triggerSceneAction(action);
+      controller.triggerSceneAction(action, { section: activeSection });
     }
     if (typeof window !== 'undefined') {
       window.dispatchEvent(
@@ -95,33 +101,26 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
           detail: { action, section: activeSection },
         })
       );
-      if (action === 'explode_strata') {
+      if (action === 'explode_strata' && !controller) {
         window.dispatchEvent(new CustomEvent('portfolio:explode_strata'));
       }
     }
+    if (activeSection === 'contact') {
+      onOpenDispatch?.();
+    }
     setLastTriggeredAction(action);
-  }, [controller, currentStage.actionId, activeSection]);
+  }, [controller, currentStage.actionId, activeSection, onOpenDispatch]);
 
   return (
     <aside
       aria-label="3D Spatial Stage Control Dock"
       data-testid="spatial-stage-control-dock"
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2 sm:gap-2.5 p-2 sm:px-3.5 sm:py-2 rounded-full apple-glass border border-white/15 shadow-2xl backdrop-blur-2xl"
+      className="fixed bottom-3 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:bottom-8 sm:right-10 z-40 flex items-center gap-1 sm:gap-2 p-1 sm:p-1.5 rounded-full bg-[#12100e]/88 border border-white/14 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_16px_40px_rgba(0,0,0,0.75)] backdrop-blur-2xl max-w-[calc(100vw-1.25rem)]"
     >
-      {/* Active 3D Stage Indicator */}
-      <div className="hidden lg:flex items-center gap-2 pr-2 border-r border-white/10">
-        <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-        <div className="flex flex-col">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 leading-none">
-            {currentStage.actLabel} · 3D Stage
-          </span>
-          <span
-            data-testid="dock-stage-title"
-            className="text-xs font-medium text-white tracking-tight leading-tight mt-0.5"
-          >
-            {currentStage.stageTitle}
-          </span>
-        </div>
+      {/* Accessible Stage Metadata (Visually hidden to prevent duplicating bottom-left Whisper HUD) */}
+      <div className="sr-only">
+        <span>{currentStage.actLabel} · 3D Stage</span>
+        <span data-testid="dock-stage-title">{currentStage.stageTitle}</span>
       </div>
 
       {/* Peek 3D Stage Toggle Button */}
@@ -131,15 +130,17 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
         data-cursor="PEEK"
         aria-pressed={isPeekingStage}
         onClick={handleTogglePeek}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer min-h-[44px] ${
+        className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-mono uppercase tracking-wider whitespace-nowrap transition-all cursor-pointer min-h-[38px] sm:min-h-[40px] ${
           isPeekingStage
-            ? 'bg-cyan-400 text-black font-semibold shadow-[0_0_20px_rgba(0,242,254,0.45)]'
-            : 'bg-white/10 text-neutral-200 hover:bg-white/20 hover:text-white border border-white/10'
+            ? 'bg-[#F4F0EA] text-[#14110f] font-semibold'
+            : 'text-[#D6D0C4] hover:text-[#F4F0EA] hover:bg-white/10'
         }`}
       >
-        <Eye className="w-3.5 h-3.5" />
+        <Eye className="w-3.5 h-3.5 shrink-0" />
         <span>{isPeekingStage ? 'Exit 3D Peek' : 'Peek 3D Stage'}</span>
       </button>
+
+      <span className="w-px h-4 bg-white/15 shrink-0" aria-hidden="true" />
 
       {/* Context-Aware 3D Gesture Trigger */}
       <button
@@ -148,13 +149,15 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
         data-cursor="TRIGGER"
         onClick={handleTriggerGesture}
         data-last-action={lastTriggeredAction ?? ''}
-        className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-cyan-500/15 text-cyan-300 hover:bg-cyan-500/25 hover:text-white border border-cyan-500/30 transition-all cursor-pointer min-h-[44px]"
+        style={{ color: actAccent }}
+        className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-mono uppercase tracking-wider whitespace-nowrap bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 hover:text-[#F4F0EA] transition-all cursor-pointer min-h-[38px] sm:min-h-[40px]"
       >
-        {currentStage.actionId === 'explode_strata' ? (
-          <Layers className="w-3.5 h-3.5 text-cyan-400" />
-        ) : (
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-        )}
+        <span
+          aria-hidden="true"
+          className="w-1.5 h-1.5 rounded-full shrink-0"
+          style={{ backgroundColor: actAccent }}
+        />
+        <Layers className="w-3.5 h-3.5 shrink-0" />
         <span>{currentStage.actionButtonLabel}</span>
       </button>
     </aside>

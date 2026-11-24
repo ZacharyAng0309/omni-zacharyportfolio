@@ -1,0 +1,432 @@
+{
+  "checks_passed": 238,
+  "checks_failed": 0,
+  "metrics": {
+    "glb_bytes": 2691704,
+    "triangles": 43514,
+    "new_topology": {
+      "SM_Character_UpperTeeth": {
+        "vertices": 256,
+        "triangles": 480,
+        "volume_m3": 1.1004370890077553e-06,
+        "edge_multiplicity": {
+          "2": 720
+        }
+      },
+      "SM_Character_LowerTeeth": {
+        "vertices": 256,
+        "triangles": 480,
+        "volume_m3": 8.33472142858227e-07,
+        "edge_multiplicity": {
+          "2": 720
+        }
+      },
+      "SM_Character_Tongue": {
+        "vertices": 266,
+        "triangles": 528,
+        "volume_m3": 1.7554048099555075e-06,
+        "edge_multiplicity": {
+          "2": 792
+        }
+      }
+    },
+    "front_visibility": {
+      "neutral": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 0,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 0,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 0,
+          "skin_penetrations": 0
+        }
+      },
+      "jaw": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 0,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 0,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 121,
+          "skin_penetrations": 0
+        }
+      },
+      "speech": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 191,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 121,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 377,
+          "skin_penetrations": 0
+        }
+      },
+      "smile-speech": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 319,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 59,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 248,
+          "skin_penetrations": 0
+        }
+      },
+      "wide": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 198,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 159,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 682,
+          "skin_penetrations": 0
+        }
+      },
+      "aa": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 185,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 127,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 451,
+          "skin_penetrations": 0
+        }
+      },
+      "asymmetric-speech": {
+        "SM_Character_UpperTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 167,
+          "skin_penetrations": 0
+        },
+        "SM_Character_LowerTeeth": {
+          "surface_samples": 736,
+          "visible_through_aperture": 0,
+          "skin_penetrations": 0
+        },
+        "SM_Character_Tongue": {
+          "surface_samples": 794,
+          "visible_through_aperture": 21,
+          "skin_penetrations": 0
+        }
+      }
+    },
+    "oral_pair_intersections": {
+      "neutral": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      },
+      "jaw": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      },
+      "speech": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      },
+      "smile-speech": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      },
+      "wide": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      },
+      "aa": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      },
+      "asymmetric-speech": {
+        "SM_Character_UpperTeeth / SM_Character_LowerTeeth": 0,
+        "SM_Character_UpperTeeth / SM_Character_Tongue": 0,
+        "SM_Character_LowerTeeth / SM_Character_Tongue": 0
+      }
+    }
+  },
+  "checks": {
+    "Existing accessor 0 unchanged": true,
+    "Existing accessor 1 unchanged": true,
+    "Existing accessor 2 unchanged": true,
+    "Existing accessor 3 unchanged": true,
+    "Existing accessor 4 unchanged": true,
+    "Existing accessor 5 unchanged": true,
+    "Existing accessor 6 unchanged": true,
+    "Existing accessor 7 unchanged": true,
+    "Existing accessor 8 unchanged": true,
+    "Existing accessor 9 unchanged": true,
+    "Existing accessor 10 unchanged": true,
+    "Existing accessor 11 unchanged": true,
+    "Existing accessor 12 unchanged": true,
+    "Existing accessor 13 unchanged": true,
+    "Existing accessor 14 unchanged": true,
+    "Existing accessor 15 unchanged": true,
+    "Existing accessor 16 unchanged": true,
+    "Existing accessor 17 unchanged": true,
+    "Existing accessor 18 unchanged": true,
+    "Existing accessor 19 unchanged": true,
+    "Existing accessor 20 unchanged": true,
+    "Existing accessor 21 unchanged": true,
+    "Existing accessor 22 unchanged": true,
+    "Existing accessor 23 unchanged": true,
+    "Existing accessor 24 unchanged": true,
+    "Existing accessor 25 unchanged": true,
+    "Existing accessor 26 unchanged": true,
+    "Existing accessor 27 unchanged": true,
+    "Existing accessor 28 unchanged": true,
+    "Existing accessor 29 unchanged": true,
+    "Existing accessor 30 unchanged": true,
+    "Existing accessor 31 unchanged": true,
+    "Existing accessor 32 unchanged": true,
+    "Existing accessor 33 unchanged": true,
+    "Existing accessor 34 unchanged": true,
+    "Existing accessor 35 unchanged": true,
+    "Existing accessor 36 unchanged": true,
+    "Existing accessor 37 unchanged": true,
+    "Existing accessor 38 unchanged": true,
+    "Existing accessor 39 unchanged": true,
+    "Existing accessor 40 unchanged": true,
+    "Existing accessor 41 unchanged": true,
+    "Existing accessor 42 unchanged": true,
+    "Existing accessor 43 unchanged": true,
+    "Existing accessor 44 unchanged": true,
+    "Existing accessor 45 unchanged": true,
+    "Existing accessor 46 unchanged": true,
+    "Existing accessor 47 unchanged": true,
+    "Existing accessor 48 unchanged": true,
+    "Existing accessor 49 unchanged": true,
+    "Existing accessor 50 unchanged": true,
+    "Existing accessor 51 unchanged": true,
+    "Existing accessor 52 unchanged": true,
+    "Existing accessor 53 unchanged": true,
+    "Existing accessor 54 unchanged": true,
+    "Existing accessor 55 unchanged": true,
+    "Existing meshes unchanged": true,
+    "Existing materials unchanged": true,
+    "skins unchanged": true,
+    "images unchanged": true,
+    "textures unchanged": true,
+    "samplers unchanged": true,
+    "Texture 0 preserved": true,
+    "Texture 0 below 100 KB": true,
+    "Texture 1 preserved": true,
+    "Texture 1 below 100 KB": true,
+    "Texture 2 preserved": true,
+    "Texture 2 below 100 KB": true,
+    "Texture 3 preserved": true,
+    "Texture 3 below 100 KB": true,
+    "Texture 4 preserved": true,
+    "Texture 4 below 100 KB": true,
+    "Avatar below 3 MB": true,
+    "Three oral meshes added": true,
+    "New accessor 56 finite": true,
+    "New accessor 57 finite": true,
+    "New accessor 58 finite": true,
+    "New accessor 59 finite": true,
+    "New accessor 60 finite": true,
+    "New accessor 61 finite": true,
+    "New accessor 62 finite": true,
+    "New accessor 63 finite": true,
+    "New accessor 64 finite": true,
+    "New accessor 65 finite": true,
+    "New accessor 66 finite": true,
+    "New accessor 67 finite": true,
+    "New accessor 68 finite": true,
+    "New accessor 69 finite": true,
+    "New accessor 70 finite": true,
+    "New accessor 71 finite": true,
+    "New accessor 72 finite": true,
+    "New accessor 73 finite": true,
+    "New accessor 74 finite": true,
+    "New accessor 75 finite": true,
+    "New accessor 76 finite": true,
+    "New accessor 77 finite": true,
+    "New accessor 78 finite": true,
+    "New accessor 79 finite": true,
+    "New accessor 80 finite": true,
+    "New accessor 81 finite": true,
+    "New accessor 82 finite": true,
+    "New accessor 83 finite": true,
+    "New accessor 84 finite": true,
+    "New accessor 85 finite": true,
+    "New accessor 86 finite": true,
+    "New accessor 87 finite": true,
+    "New accessor 88 finite": true,
+    "New accessor 89 finite": true,
+    "New accessor 90 finite": true,
+    "New accessor 91 finite": true,
+    "New accessor 92 finite": true,
+    "New accessor 93 finite": true,
+    "New accessor 94 finite": true,
+    "New accessor 95 finite": true,
+    "New accessor 96 finite": true,
+    "New accessor 97 finite": true,
+    "New accessor 98 finite": true,
+    "New accessor 99 finite": true,
+    "New accessor 100 finite": true,
+    "New accessor 101 finite": true,
+    "New accessor 102 finite": true,
+    "New accessor 103 finite": true,
+    "New accessor 104 finite": true,
+    "New accessor 105 finite": true,
+    "New accessor 106 finite": true,
+    "New accessor 107 finite": true,
+    "New accessor 108 finite": true,
+    "New accessor 109 finite": true,
+    "New accessor 110 finite": true,
+    "SM_Character_UpperTeeth valid indices": true,
+    "SM_Character_UpperTeeth closed manifold components": true,
+    "SM_Character_UpperTeeth no zero-area triangles": true,
+    "SM_Character_UpperTeeth outward winding": true,
+    "SM_Character_UpperTeeth rigid head attachment": true,
+    "SM_Character_UpperTeeth unit normals": true,
+    "SM_Character_UpperTeeth matching facial names": true,
+    "SM_Character_UpperTeeth target 0 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 1 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 2 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 3 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 4 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 5 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 6 POSITION bounds": true,
+    "SM_Character_UpperTeeth target 7 POSITION bounds": true,
+    "SM_Character_LowerTeeth valid indices": true,
+    "SM_Character_LowerTeeth closed manifold components": true,
+    "SM_Character_LowerTeeth no zero-area triangles": true,
+    "SM_Character_LowerTeeth outward winding": true,
+    "SM_Character_LowerTeeth rigid head attachment": true,
+    "SM_Character_LowerTeeth unit normals": true,
+    "SM_Character_LowerTeeth matching facial names": true,
+    "SM_Character_LowerTeeth target 0 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 0 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 1 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 1 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 2 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 2 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 3 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 3 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 4 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 4 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 5 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 5 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 6 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 6 NORMAL bounds": true,
+    "SM_Character_LowerTeeth target 7 POSITION bounds": true,
+    "SM_Character_LowerTeeth target 7 NORMAL bounds": true,
+    "SM_Character_Tongue valid indices": true,
+    "SM_Character_Tongue closed manifold components": true,
+    "SM_Character_Tongue no zero-area triangles": true,
+    "SM_Character_Tongue outward winding": true,
+    "SM_Character_Tongue rigid head attachment": true,
+    "SM_Character_Tongue unit normals": true,
+    "SM_Character_Tongue matching facial names": true,
+    "SM_Character_Tongue target 0 POSITION bounds": true,
+    "SM_Character_Tongue target 0 NORMAL bounds": true,
+    "SM_Character_Tongue target 1 POSITION bounds": true,
+    "SM_Character_Tongue target 1 NORMAL bounds": true,
+    "SM_Character_Tongue target 2 POSITION bounds": true,
+    "SM_Character_Tongue target 2 NORMAL bounds": true,
+    "SM_Character_Tongue target 3 POSITION bounds": true,
+    "SM_Character_Tongue target 3 NORMAL bounds": true,
+    "SM_Character_Tongue target 4 POSITION bounds": true,
+    "SM_Character_Tongue target 4 NORMAL bounds": true,
+    "SM_Character_Tongue target 5 POSITION bounds": true,
+    "SM_Character_Tongue target 5 NORMAL bounds": true,
+    "SM_Character_Tongue target 6 POSITION bounds": true,
+    "SM_Character_Tongue target 6 NORMAL bounds": true,
+    "SM_Character_Tongue target 7 POSITION bounds": true,
+    "SM_Character_Tongue target 7 NORMAL bounds": true,
+    "neutral SM_Character_UpperTeeth no sampled skin penetration": true,
+    "SM_Character_UpperTeeth hidden in neutral front view": true,
+    "neutral SM_Character_LowerTeeth no sampled skin penetration": true,
+    "SM_Character_LowerTeeth hidden in neutral front view": true,
+    "neutral SM_Character_Tongue no sampled skin penetration": true,
+    "SM_Character_Tongue hidden in neutral front view": true,
+    "neutral SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "neutral SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "neutral SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "jaw SM_Character_UpperTeeth no sampled skin penetration": true,
+    "jaw SM_Character_LowerTeeth no sampled skin penetration": true,
+    "jaw SM_Character_Tongue no sampled skin penetration": true,
+    "jaw SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "jaw SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "jaw SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "speech SM_Character_UpperTeeth no sampled skin penetration": true,
+    "speech SM_Character_LowerTeeth no sampled skin penetration": true,
+    "speech SM_Character_Tongue no sampled skin penetration": true,
+    "speech SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "speech SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "speech SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "smile-speech SM_Character_UpperTeeth no sampled skin penetration": true,
+    "smile-speech SM_Character_LowerTeeth no sampled skin penetration": true,
+    "smile-speech SM_Character_Tongue no sampled skin penetration": true,
+    "smile-speech SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "smile-speech SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "smile-speech SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "wide SM_Character_UpperTeeth no sampled skin penetration": true,
+    "SM_Character_UpperTeeth samples align with open aperture": true,
+    "wide SM_Character_LowerTeeth no sampled skin penetration": true,
+    "SM_Character_LowerTeeth samples align with open aperture": true,
+    "wide SM_Character_Tongue no sampled skin penetration": true,
+    "SM_Character_Tongue samples align with open aperture": true,
+    "wide SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "wide SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "wide SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "aa SM_Character_UpperTeeth no sampled skin penetration": true,
+    "aa SM_Character_LowerTeeth no sampled skin penetration": true,
+    "aa SM_Character_Tongue no sampled skin penetration": true,
+    "aa SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "aa SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "aa SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "asymmetric-speech SM_Character_UpperTeeth no sampled skin penetration": true,
+    "asymmetric-speech SM_Character_LowerTeeth no sampled skin penetration": true,
+    "asymmetric-speech SM_Character_Tongue no sampled skin penetration": true,
+    "asymmetric-speech SM_Character_UpperTeeth / SM_Character_LowerTeeth no intersecting triangles": true,
+    "asymmetric-speech SM_Character_UpperTeeth / SM_Character_Tongue no intersecting triangles": true,
+    "asymmetric-speech SM_Character_LowerTeeth / SM_Character_Tongue no intersecting triangles": true
+  }
+}

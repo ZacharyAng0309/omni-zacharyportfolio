@@ -1,0 +1,10 @@
+{
+  "SM_Character_Face": {
+    "vertices": 14,
+    "max_mm": 2.0000224113464355
+  },
+  "SM_Character_Hair": {
+    "vertices": 38,
+    "max_mm": 2.0000193119049072
+  }
+}

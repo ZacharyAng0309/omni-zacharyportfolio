@@ -70,9 +70,10 @@ describe('NavbarHUD Component', () => {
     const menuBtn = screen.getByLabelText('Open Navigation Menu');
     fireEvent.click(menuBtn);
 
-    // Backdrop scrim must be rendered
+    // Backdrop scrim must be rendered above z-40 inspection sheet and stage dock
     const backdrop = screen.getByTestId('mobile-menu-backdrop');
     expect(backdrop).toBeDefined();
+    expect(backdrop.className).toContain('z-[45]');
 
     // Body scroll must be locked to prevent collapsing/bleeding through body content
     expect(document.body.style.overflow).toBe('hidden');

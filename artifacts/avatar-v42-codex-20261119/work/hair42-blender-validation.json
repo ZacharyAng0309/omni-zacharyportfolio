@@ -1,0 +1,20 @@
+{
+  "filament_triangles": 2360,
+  "imported_filament_vertices": 1256,
+  "head_rotation_checks": {
+    "yaw_left": {
+      "checked_vertices": 1256,
+      "maximum_error_mm": 0.00012137334852013737
+    },
+    "yaw_right": {
+      "checked_vertices": 1256,
+      "maximum_error_mm": 0.00012202814104966819
+    },
+    "pitch": {
+      "checked_vertices": 1256,
+      "maximum_error_mm": 0.0001228781184181571
+    }
+  },
+  "raised_brow_distal_fringe_samples": 65,
+  "conservative_minimum_forehead_clearance_mm": 0.10539216435918151
+}

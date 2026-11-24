@@ -1,0 +1,10 @@
+{
+  "albedo": {
+    "resolution": 2048,
+    "bytes": 60676
+  },
+  "normal": {
+    "resolution": 512,
+    "bytes": 64626
+  }
+}

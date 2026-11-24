@@ -1,0 +1,62 @@
+[
+  {
+    "name": "avatar-v29-palm-comparison.jpg",
+    "bytes": 161528,
+    "sha256": "7E435048D6F8F65BB89F5571F0C2E9871DEAD05F431E1E0006570B06B242E913",
+    "verified": true
+  },
+  {
+    "name": "avatar-v29-pose-targets.json",
+    "bytes": 1690,
+    "sha256": "11B3007A35211B4BFD2BDFCD81D9940BC6FF3515CE5682BC52805873553DD673",
+    "verified": true
+  },
+  {
+    "name": "Avatar-v29-Review.md",
+    "bytes": 3322,
+    "sha256": "C084A3E7009FCA16144DDFD0A641C9D55247154F98B207B3CECA8E3B55796CDE",
+    "verified": true
+  },
+  {
+    "name": "full29-audit.json",
+    "bytes": 17383,
+    "sha256": "4ED1ED50B17E4DC8675B16542E6712F47690D24FCCA61C4BCCE0DF259FC72AC7",
+    "verified": true
+  },
+  {
+    "name": "full29-back.png",
+    "bytes": 697947,
+    "sha256": "FD5B072AB078CFDED964CFA08BB5DB81B3144B672D605AC7CF8D13E7A5AEAF05",
+    "verified": true
+  },
+  {
+    "name": "full29-front.png",
+    "bytes": 711334,
+    "sha256": "E0EA658C2E36EF211AE1D3E44D8D5191F4CEDBC55D17882D424CF49E8FC1BE0A",
+    "verified": true
+  },
+  {
+    "name": "full29-hand.png",
+    "bytes": 369434,
+    "sha256": "F694CB14BBF8A1C4CB085FCAE911ED1F1881C0674D539E7C5AE9DE0D5A7A138A",
+    "verified": true
+  },
+  {
+    "name": "full29-quarter.png",
+    "bytes": 715484,
+    "sha256": "79CF101C3CE1ABB7E70353C36407D0BB20D430186A581B422F9FED836719DBE5",
+    "verified": true
+  },
+  {
+    "name": "Zachary_Avatar_v29_Review.blend",
+    "bytes": 3352903,
+    "sha256": "97E60DA4B8818B6AC927BB3DD1E2D152671D7308C4766B9F8324B11B73AB31B5",
+    "verified": true
+  },
+  {
+    "name": "zachary_character_v29_candidate.glb",
+    "bytes": 1968404,
+    "sha256": "6576A0E4C673F23C330AF8310F282B0667383FB517EF23AF15173FD45DA28060",
+    "verified": true
+  }
+]

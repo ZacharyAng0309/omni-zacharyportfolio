@@ -1,0 +1,68 @@
+{
+  "latest_verified_review_version": "v35",
+  "updated": "2026-11-13",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v35-codex-20261113",
+  "files": {
+    "zachary_character_v35_candidate.glb": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/zachary_character_v35_candidate.glb",
+      "sha256": "ef5fff5d8b2a8c102aece38036f0c28da846cbc5b08d699fc2f7fe3ee263d14f"
+    },
+    "Zachary_Avatar_v35_Review.blend": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/Zachary_Avatar_v35_Review.blend",
+      "sha256": "4cd3c87d4532669ac65733bedbdc3ed9987d608753ffbe871901e770003251fb"
+    },
+    "avatar-v35-pose-targets.json": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/avatar-v35-pose-targets.json",
+      "sha256": "9b846a69207c52d8a8021f78d4a4a93df51e8a739b333acaca56c997dbebf833"
+    },
+    "Avatar-v35-Review.md": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/Avatar-v35-Review.md",
+      "sha256": "cfd14900014f1fc6e1f8f14ef641710e85ae83d8a849144906ec9642c4422162"
+    },
+    "avatar-v35-comparison.jpg": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/avatar-v35-comparison.jpg",
+      "sha256": "7b0fb59e8be8730663cfc4c439e7cede379e3a3dc12864e9cb7faf2fbb221771"
+    },
+    "avatar-v35-expressions.jpg": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/avatar-v35-expressions.jpg",
+      "sha256": "692da9580e326e220e1fcd2202e6167fed32f908bb8c86f6735da7acaf367844"
+    },
+    "avatar-v35-geometry.jpg": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/avatar-v35-geometry.jpg",
+      "sha256": "78d261febf84512129705b0536a3e17ffd3442af5081e7640e77cbb62d8873d4"
+    },
+    "full35-front.png": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/full35-front.png",
+      "sha256": "1c326c59398d367fbcf84e2112d0cde03de4398642f6f8de95a0778efb857630"
+    },
+    "full35-audit.json": {
+      "path": "artifacts/avatar-v35-codex-20261113/outputs/full35-audit.json",
+      "sha256": "d6e370f230fca7ea2276d3f12e6bfb96f7690f4ff998f2576d52e42b844a8037"
+    }
+  },
+  "changes": [
+    "Sub-millimeter local brow/fringe relaxation; visual change is subtle.",
+    "All 135 original shared hair/face seam pairs remain coincident; bounding extrema and blink-active rest vertices are fixed.",
+    "Topology, UVs, textures, materials, skin weights and all facial target deltas remain unchanged."
+  ],
+  "verification": [
+    "319 preservation, seam, local geometry, deformation and budget checks passed; zero failed.",
+    "Fresh Blender portrait/clay comparisons and eight expression/angle renders inspected.",
+    "Saved Blender file reopened: fourteen expression frames, five synchronized facial meshes, packed textures, morph data and gesture positions verified.",
+    "Current project governance audit passed with zero violations; release gates remain pending."
+  ],
+  "next_work": [
+    "Build anatomical eyelid loops and eye anatomy; further smoothing has limited benefit",
+    "Sharper facial texture and a cleaner fringe transition",
+    "Lip/cheek motion, finger creasing and raised-elbow cloth",
+    "Remaining station poses, application integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v35 subtle brow/fringe cleanup verified. Next priority is anatomical eye/eyelid reconstruction and facial texture; avoid accumulating small smoothing-only versions. Five facial meshes must remain synchronized."
+}

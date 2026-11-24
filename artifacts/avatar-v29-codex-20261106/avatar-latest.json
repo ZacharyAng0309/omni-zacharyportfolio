@@ -1,0 +1,44 @@
+{
+  "latest_verified_review_version": "v29",
+  "updated": "2026-11-06",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v29-codex-20261106",
+  "files": {
+    "zachary_character_v29_candidate.glb": {
+      "path": "artifacts/avatar-v29-codex-20261106/outputs/zachary_character_v29_candidate.glb",
+      "sha256": "6576a0e4c673f23c330af8310f282b0667383fb517ef23af15173fd45da28060"
+    },
+    "Zachary_Avatar_v29_Review.blend": {
+      "path": "artifacts/avatar-v29-codex-20261106/outputs/Zachary_Avatar_v29_Review.blend",
+      "sha256": "97e60da4b8818b6ac927bb3dd1e2d152671d7308c4766b9f8324b11b73ab31b5"
+    },
+    "avatar-v29-pose-targets.json": {
+      "path": "artifacts/avatar-v29-codex-20261106/outputs/avatar-v29-pose-targets.json",
+      "sha256": "11b3007a35211b4bfd2bdfcd81d9940bc6ff3515ce5682bc52805873553dd673"
+    }
+  },
+  "changes": [
+    "Reduced the triangular palm dent with local surface relaxation, capped at 1.5 mm.",
+    "Smoothed proximal hand weight transitions and refreshed normals on the edited patch.",
+    "Preserved all 101 cuff seam vertices, topology, UVs, textures, facial morphs and v28 joint transforms."
+  ],
+  "verification": [
+    "83 asset-preservation, cuff, normal/weight, triangle-validity and size checks passed, zero failures.",
+    "Exported GLB reviewed in Blender across four curls, both hands, full-body views and three gestures.",
+    "Moderate/strong-curl 99th-percentile edge ratios improved from 1.188/1.373 to 1.151/1.277.",
+    "Saved Blender review reopened; whole-model gestures, finger animation and packed images verified."
+  ],
+  "next_work": [
+    "Repair fused middle/ring finger web and improve coarse fingertip anatomy",
+    "Facial detail and likeness",
+    "Raised-elbow garment deformation",
+    "Remaining station poses, website integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v29 palm refinement verified; next is a localized topology repair of the fused finger web"
+}

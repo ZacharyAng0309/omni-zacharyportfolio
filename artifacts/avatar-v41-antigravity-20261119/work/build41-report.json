@@ -1,0 +1,119 @@
+{
+  "source": "D:\\omni-workstation\\projects\\ZacharyPortfolio\\artifacts\\avatar-v40-codex-20261119\\outputs\\zachary_character_v40_candidate.glb",
+  "output": "D:\\omni-workstation\\projects\\ZacharyPortfolio\\artifacts\\avatar-v41-antigravity-20261119\\outputs\\zachary_character_v41_candidate.glb",
+  "face_shape": {
+    "moved_vertices": 555,
+    "undereye_scar_vertices_fixed": 81,
+    "eyelid_boundary_synced_vertices": 24,
+    "max_disp_mm": 11.33,
+    "min_tri_normal_dot": 0.16,
+    "min_tri_area_ratio": 0.2068,
+    "jaw_asym_mm": {
+      "1.485..1.495": -3.56,
+      "1.495..1.505": -4.46,
+      "1.505..1.515": -2.55,
+      "1.515..1.525": -1.96
+    }
+  },
+  "chin_weights": {
+    "modified_vertices": 509,
+    "max_weight_norm_err": 1.1920928955078125e-07,
+    "max_tri_head_jump": 0.2936,
+    "chin_front_vertices": 1854,
+    "chin_min_head_weight": 1.0
+  },
+  "eyes_and_eyelids": {
+    "eyes": {
+      "SM_Character_EyeRight": {
+        "center_pos_mm": [
+          -34.0,
+          1596.6,
+          80.38
+        ],
+        "center_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "iris_diam_mm": 11.1
+      },
+      "SM_Character_EyeLeft": {
+        "center_pos_mm": [
+          34.0,
+          1596.6,
+          80.38
+        ],
+        "center_normal": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "iris_diam_mm": 11.1
+      }
+    },
+    "eyelids": {
+      "side_-1": {
+        "width_mm": 26.02,
+        "height_mm": 8.01,
+        "top_y": 1.59994,
+        "bot_y": 1.59206,
+        "top_z_mm": 80.95
+      },
+      "side_+1": {
+        "width_mm": 26.02,
+        "height_mm": 8.01,
+        "top_y": 1.59994,
+        "bot_y": 1.59206,
+        "top_z_mm": 80.95
+      }
+    }
+  },
+  "spectacles": {
+    "dz_shift_mm": 6.536,
+    "metal_rim_verts_restored": 173,
+    "black_brow_verts_restored": 130,
+    "lens_verts_restored": 174,
+    "max_metal_rim_edge_dz_mm": 1.9,
+    "max_brow_edge_dz_mm": 2.23,
+    "max_lens_edge_dz_mm": 4.18
+  },
+  "eyelids_tex": {
+    "eyelids_webp_bytes": 15428,
+    "min_texel_luma": 43.4
+  },
+  "face_albedo_tex": {
+    "fixed_zero_uv2_verts": 2,
+    "jaw_tris_masked": 435,
+    "undereye_tris_masked": 369,
+    "chin_tris_masked": 178,
+    "outer_eye_tris_masked": 59,
+    "clean_cheek_rgb": [
+      203.0,
+      166.0,
+      146.3
+    ],
+    "clean_jaw_rgb": [
+      191.0,
+      151.3,
+      128.2
+    ],
+    "clean_ue_rgb": [
+      198.0,
+      161.2,
+      141.0
+    ],
+    "clean_oe_rgb": [
+      160.0,
+      122.0,
+      103.0
+    ],
+    "hoodie_neck_rgb": [
+      146.5,
+      106.0,
+      86.0
+    ],
+    "face_webp_bytes": 47780,
+    "face_webp_quality": 90
+  },
+  "glb_bytes": 2582124
+}

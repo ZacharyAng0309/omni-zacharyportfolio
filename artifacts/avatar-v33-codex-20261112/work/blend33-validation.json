@@ -1,0 +1,54 @@
+{
+  "reopened_gesture_errors_mm": {
+    "41": {
+      "RightHand": 0.00019082797281243946
+    },
+    "81": {
+      "RightHand": 0.0002602375924076584,
+      "LeftHand": 0.000568787297129402
+    },
+    "121": {
+      "RightHand": 0.000819428389362545
+    }
+  },
+  "facial_frames_verified": [
+    1,
+    41,
+    81,
+    121,
+    161,
+    201,
+    241,
+    281,
+    321,
+    361
+  ],
+  "morph_meshes_synchronized": 5,
+  "all_imported_morph_vertices": {
+    "SM_Character_Face": {
+      "checked_vertices": 2150,
+      "maximum_morph_error_mm": 5.965717336983369e-05
+    },
+    "SM_Character_OralCavity": {
+      "checked_vertices": 183,
+      "maximum_morph_error_mm": 5.914004694279848e-05
+    },
+    "SM_Character_UpperTeeth": {
+      "checked_vertices": 256,
+      "maximum_morph_error_mm": 0
+    },
+    "SM_Character_LowerTeeth": {
+      "checked_vertices": 256,
+      "maximum_morph_error_mm": 5.9670092462157264e-05
+    },
+    "SM_Character_Tongue": {
+      "checked_vertices": 266,
+      "maximum_morph_error_mm": 5.9611920288969795e-05
+    }
+  },
+  "packed_image_datablocks": 10,
+  "retained_review_scenes": [
+    "Whole model review v33",
+    "Facial expression review v33"
+  ]
+}

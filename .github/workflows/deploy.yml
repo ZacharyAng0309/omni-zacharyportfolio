@@ -1,8 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Manual-only deployment: never auto-publish on push without explicit user permission.
   workflow_dispatch:
 
 permissions:

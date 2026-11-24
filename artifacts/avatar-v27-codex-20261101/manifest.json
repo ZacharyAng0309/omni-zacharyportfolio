@@ -1,0 +1,86 @@
+[
+  {
+    "name": "avatar-v27-gesture-comparison.jpg",
+    "bytes": 174789,
+    "sha256": "D76CAF84E5EFDEBFF33369E54D0F000A08D0BFEA033E27D1FF039B560E0C655E",
+    "verified": true
+  },
+  {
+    "name": "avatar-v27-pose-targets.json",
+    "bytes": 1201,
+    "sha256": "08184C5BE159FAC02AAA537364D8F78DFDF6E25CA0C364C91F80B6FA334450F8",
+    "verified": true
+  },
+  {
+    "name": "Avatar-v27-Review.md",
+    "bytes": 2692,
+    "sha256": "290843313B4880C7F71CA613102F91046114093C45AC6CEF43E1FA9DE5E99E07",
+    "verified": true
+  },
+  {
+    "name": "full27-audit.json",
+    "bytes": 17383,
+    "sha256": "BF1789B4FF6F60D8DE5154D777D38DC388370025C49198653A069CF32430E3E2",
+    "verified": true
+  },
+  {
+    "name": "full27-back.png",
+    "bytes": 698046,
+    "sha256": "25F50D0C53AE767159434F9ED1E94812D2FB8416D4DBB114DA1CE4F154393F3D",
+    "verified": true
+  },
+  {
+    "name": "full27-front.png",
+    "bytes": 711906,
+    "sha256": "F3026652C56B92529F651F403DA3BC5BBC1906490A38B7E10322556A1D82B682",
+    "verified": true
+  },
+  {
+    "name": "full27-hand.png",
+    "bytes": 369429,
+    "sha256": "127EF174485AE7E7870704164B3BC8402FC2D68B724643221A966BA022F6A951",
+    "verified": true
+  },
+  {
+    "name": "full27-quarter.png",
+    "bytes": 715535,
+    "sha256": "8DF670F176761389ADB2C88FDB9962DFFB1D0B07C55D188A0E84C676E587B0C2",
+    "verified": true
+  },
+  {
+    "name": "rigfit-v27-front.png",
+    "bytes": 598174,
+    "sha256": "5DEE8CC8E94953EB2F949C94FFE1056B3023B14EEC2CF2048CA3BE7A8F804AB2",
+    "verified": true
+  },
+  {
+    "name": "rigfit-v27-left.png",
+    "bytes": 582665,
+    "sha256": "D8BC82B04007CE8BB0184CF102B7F7F11C6232B5C6E595FE86412A63C81C2C8E",
+    "verified": true
+  },
+  {
+    "name": "rigfit-v27-quarter.png",
+    "bytes": 590544,
+    "sha256": "3491805EA1DFBCC2365C33054563AEF207B129BA9401796EDA3AE12EF5557E71",
+    "verified": true
+  },
+  {
+    "name": "rigfit-v27-right.png",
+    "bytes": 578441,
+    "sha256": "0E361094543D959226FEE9A34B990C6C262075085093AF24672418D9B94DDC6F",
+    "verified": true
+  },
+  {
+    "name": "Zachary_Avatar_v27_Review.blend",
+    "bytes": 2178759,
+    "sha256": "A0083B11898637066888D2F2A034D71DCD82CA71768D8B0271D9002C75409E7A",
+    "verified": true
+  },
+  {
+    "name": "zachary_character_v27_candidate.glb",
+    "bytes": 1968348,
+    "sha256": "9008195CFBF959D5B0B704B937F908A981FBFAC359A4D2F7B0D5DC11B60F8730",
+    "verified": true
+  }
+]

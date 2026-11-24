@@ -1,0 +1,34 @@
+{
+  "albedo": {
+    "bytes": 74704,
+    "resolution": [
+      2048,
+      2048
+    ],
+    "quality": 90,
+    "mean_channel_error_255": 0.3341050942738851
+  },
+  "normal": {
+    "bytes": 47858,
+    "resolution": [
+      1024,
+      1024
+    ],
+    "webp_quality": 95,
+    "angular_error_degrees_percentiles": [
+      0.44937290391245893,
+      2.005964898207673,
+      3.317153913883128,
+      38.04301224055977
+    ]
+  },
+  "parameters": {
+    "bytes": 54084,
+    "resolution": [
+      512,
+      512
+    ],
+    "maximum_scalar_quantization_error": 0.00784313725490196
+  },
+  "glb_bytes": 2551464
+}

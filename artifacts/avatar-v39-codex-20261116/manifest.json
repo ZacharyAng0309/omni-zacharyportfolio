@@ -1,0 +1,50 @@
+[
+  {
+    "name": "zachary_character_v39_candidate.glb",
+    "bytes": 2551464,
+    "sha256": "8a314545a7e59558784103ea9525ab6513ee1eeb87ca2f7724f2f5af5afec65a",
+    "verified": true
+  },
+  {
+    "name": "Zachary_Avatar_v39_Review.blend",
+    "bytes": 3259366,
+    "sha256": "0598eb4c576faa30c1a0554d3498da96cd48d54f2266dab61266bac5b49fd216",
+    "verified": true
+  },
+  {
+    "name": "avatar-v39-pose-targets.json",
+    "bytes": 2933,
+    "sha256": "63d6f9128e7ac6d100d94514297311f0fd392250255b96b906efa6628d59d3e4",
+    "verified": true
+  },
+  {
+    "name": "Avatar-v39-Review.md",
+    "bytes": 4752,
+    "sha256": "81d6f7f86a0cc30149ad1e5806b941956921f28b1fbb287bb6c570a3d0c58720",
+    "verified": true
+  },
+  {
+    "name": "avatar-v39-comparison.jpg",
+    "bytes": 83522,
+    "sha256": "ff592e9f65ca7abcb73fb2e3ed050c25fa52ef38c9ecc9671bcb4372de19e598",
+    "verified": true
+  },
+  {
+    "name": "avatar-v39-review-views.jpg",
+    "bytes": 132349,
+    "sha256": "321347e178370813039784740048d66ac88c8ab9530ca9246545311838396a97",
+    "verified": true
+  },
+  {
+    "name": "full39-front.png",
+    "bytes": 711782,
+    "sha256": "517a338f1b59a90cd572c0e59a98b5a82d29ae63bf38a6fdd2e3490bd59df196",
+    "verified": true
+  },
+  {
+    "name": "full39-audit.json",
+    "bytes": 19912,
+    "sha256": "622db42fdc697b8e966271b8ccc1078d8a455d638c2e3f7cfa5c6b6c6f4fbf9a",
+    "verified": true
+  }
+]

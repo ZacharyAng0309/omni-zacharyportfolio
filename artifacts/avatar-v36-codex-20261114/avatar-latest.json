@@ -1,0 +1,64 @@
+{
+  "latest_verified_review_version": "v36",
+  "updated": "2026-11-14",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v36-codex-20261114",
+  "files": {
+    "zachary_character_v36_candidate.glb": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/zachary_character_v36_candidate.glb",
+      "sha256": "768976825656422cb93c3d9c64ea6d3e2e928921fa8e3f93d1d843c45b3ed9ac"
+    },
+    "Zachary_Avatar_v36_Review.blend": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/Zachary_Avatar_v36_Review.blend",
+      "sha256": "0f7abb00b901fb91b141c8a0c46481e68aec70946fb92d0aa603ba880998ab61"
+    },
+    "avatar-v36-pose-targets.json": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/avatar-v36-pose-targets.json",
+      "sha256": "29ac9791e5281fa2e89fa14e8255b85993ae3d1676d8a181091a27c9b567c6b8"
+    },
+    "Avatar-v36-Review.md": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/Avatar-v36-Review.md",
+      "sha256": "98b7ac8751c399a85130174ef0ccd720074d9ec4ca2106beebbdf7178711d0c7"
+    },
+    "avatar-v36-comparison.jpg": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/avatar-v36-comparison.jpg",
+      "sha256": "b2bbe685c79d5c451b3cdb5a1c0b7ccf12de5e46d14081638f2a24bcf5fe9e3f"
+    },
+    "avatar-v36-expressions.jpg": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/avatar-v36-expressions.jpg",
+      "sha256": "a11c8982c08af71ca34f64aa5b2366913462542019863da0761d22471b60e066"
+    },
+    "full36-front.png": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/full36-front.png",
+      "sha256": "ceb3ef50f8bfadad47e923966dbdd03fc8a02227b2f4137d18b8957806ea927c"
+    },
+    "full36-audit.json": {
+      "path": "artifacts/avatar-v36-codex-20261114/outputs/full36-audit.json",
+      "sha256": "b603aaf5853962b30379771df48d7557d5533ccebe7deaaafa75c3ba2ff34315"
+    }
+  },
+  "changes": [
+    "Added real eye openings, four fitted lid loops per eye, and two separate closed eye globes.",
+    "Added outer-lid depth motion and verified closed-lid contact with raised brows.",
+    "Preserved source rest geometry, textures and non-blink targets; new six-mesh facial synchronization contract."
+  ],
+  "verification": [
+    "1177 data, seam, topology, deformation, sampled visibility and budget checks passed; zero failed.",
+    "Fresh exported GLB rendered across fourteen expressions and two speech angles; saved Blender review reopened successfully.",
+    "All six facial meshes, imported morph values, packed textures and gesture targets verified.",
+    "Current project governance audit passed with zero violations; release gates remain pending."
+  ],
+  "next_work": [
+    "Refine iris/cornea appearance, iris proportions and upper-lid folds against the portrait",
+    "Sharper face texture, lip/cheek motion and oral anatomy",
+    "Finger creasing and raised-elbow cloth",
+    "Six-mesh application integration, gaze controls, remaining poses and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v36 structural eye/eyelid upgrade verified. Next focus: eye appearance and upper-lid likeness. IMPORTANT: schema-v4 facial animation must synchronize Eyelids along with the existing five meshes. The globes currently follow Head only."
+}

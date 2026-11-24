@@ -1,0 +1,9 @@
+{
+  "method": "localized Laplacian relaxation and adjacency weight diffusion, selected by existing proximal hand weights and geodesic cuff distance",
+  "moved_vertices": 857,
+  "max_displacement_mm": 1.5000313520431519,
+  "reweighted_vertices": 857,
+  "seam_vertices_preserved": 101,
+  "triangle_flips": 0,
+  "iterations": 5
+}

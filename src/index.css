@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
   --font-display: "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --color-apple-canvas: #050507;
@@ -34,6 +35,11 @@
     margin: 0;
     padding: 0;
     background-color: #050507;
+  }
+
+  :where(a:any-link, button, input, textarea, [role="button"], [role="slider"]):focus-visible {
+    outline: 2px solid rgba(244, 240, 234, 0.85);
+    outline-offset: 2px;
   }
 }
 
@@ -142,6 +148,11 @@ body[data-stage-peek="true"] [data-peek-hide] {
   transform: translateX(-12px) scale(0.985);
 }
 
+body[data-stage-peek="true"] [data-peek-sheet][data-sheet-open="true"] {
+  opacity: 0.08 !important;
+  pointer-events: none !important;
+}
+
 /* Awwwards Editorial Typography & Bento System */
 .headline-editorial {
   font-family: var(--font-display);
@@ -225,6 +236,60 @@ body[data-stage-peek="true"] [data-peek-hide] {
   backdrop-filter: blur(4px) contrast(118%) brightness(112%);
   -webkit-backdrop-filter: blur(4px) contrast(118%) brightness(112%);
   box-shadow: inset 0 0 16px rgba(0, 242, 254, 0.4), 0 8px 32px -8px rgba(0, 242, 254, 0.25);
+}
+
+/* Peach Worlds Staggered Editorial Reveal Choreography */
+@keyframes cinemaRevealUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.cinema-reveal {
+  animation: cinemaRevealUp 0.56s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.cinema-reveal-delay-1 {
+  animation: cinemaRevealUp 0.62s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.cinema-reveal-delay-2 {
+  animation: cinemaRevealUp 0.68s cubic-bezier(0.16, 1, 0.3, 1) 0.11s both;
+}
+
+/* Diegetic Spatial Pin Breathing Halo */
+@keyframes hotspotPulseRing {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  70% {
+    transform: scale(1.68);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.68);
+    opacity: 0;
+  }
+}
+
+.hotspot-pulse-ring {
+  animation: hotspotPulseRing 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* Subtle Anamorphic Lens Vignette & Monograph Film-Grain Finish */
+.cinema-vignette {
+  background: radial-gradient(ellipse at center, transparent 64%, rgba(5, 6, 10, 0.34) 100%);
+}
+
+.cinema-film-grain {
+  opacity: 0.026;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @media (hover: hover) and (pointer: fine) {

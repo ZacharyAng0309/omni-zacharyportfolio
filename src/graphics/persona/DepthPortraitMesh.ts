@@ -5,6 +5,7 @@ export interface DepthPortraitMeshOptions {
   height?: number;
   texturePath?: string;
   parallaxScale?: number;
+  lazy?: boolean;
 }
 
 const vertexShader = /* glsl */ `
@@ -84,34 +85,17 @@ export class DepthPortraitMesh {
   private mesh: THREE.Mesh;
   private material: THREE.ShaderMaterial;
   private texture: THREE.Texture;
+  private texturePath: string;
+  private hasLoadedExternalTexture: boolean = false;
 
   constructor(options: DepthPortraitMeshOptions = {}) {
     const width = options.width ?? 1.8;
     const height = options.height ?? 2.4;
-    const texturePath = options.texturePath ?? '/images/reference_portrait.jpg';
+    this.texturePath = options.texturePath ?? '/images/zachary_editorial_portrait.webp';
     const parallaxScale = options.parallaxScale ?? 0.038;
 
     const geometry = new THREE.PlaneGeometry(width, height, 32, 32);
-
-    // Initialize texture loader with fallback for headless/JSDOM
-    if (typeof document !== 'undefined') {
-      const textureLoader = new THREE.TextureLoader();
-      this.texture = textureLoader.load(
-        texturePath,
-        undefined,
-        undefined,
-        () => {
-          // Fallback procedural canvas texture if offline
-          this.texture = this.createFallbackTexture();
-          const texUniform = this.material?.uniforms['uTexture'];
-          if (texUniform) {
-            texUniform.value = this.texture;
-          }
-        }
-      );
-    } else {
-      this.texture = this.createFallbackTexture();
-    }
+    this.texture = this.createFallbackTexture();
 
     this.material = new THREE.ShaderMaterial({
       vertexShader,
@@ -129,6 +113,32 @@ export class DepthPortraitMesh {
 
     this.mesh = new THREE.Mesh(geometry, this.material);
     this.mesh.name = 'DepthPortraitHologram';
+
+    if (!options.lazy && typeof document !== 'undefined') {
+      this.ensureLoaded();
+    }
+  }
+
+  public ensureLoaded(): void {
+    if (this.hasLoadedExternalTexture || typeof document === 'undefined') return;
+    this.hasLoadedExternalTexture = true;
+    const prevFallback = this.texture;
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(
+      this.texturePath,
+      (loadedTex) => {
+        this.texture = loadedTex;
+        const texUniform = this.material?.uniforms['uTexture'];
+        if (texUniform) {
+          texUniform.value = loadedTex;
+        }
+        prevFallback.dispose();
+      },
+      undefined,
+      () => {
+        // Keep procedural fallback texture if offline
+      }
+    );
   }
 
   private createFallbackTexture(): THREE.CanvasTexture {

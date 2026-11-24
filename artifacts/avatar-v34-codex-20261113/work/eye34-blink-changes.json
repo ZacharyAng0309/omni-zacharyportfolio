@@ -1,0 +1,16 @@
+[
+  {
+    "target": 4,
+    "original_inverted_patch_triangles": 2,
+    "final_inverted_patch_triangles": 0,
+    "max_adjustment_mm": 0.02930086294948148,
+    "adjusted_geometric_vertices": 6
+  },
+  {
+    "target": 5,
+    "original_inverted_patch_triangles": 1,
+    "final_inverted_patch_triangles": 0,
+    "max_adjustment_mm": 0.0023162029550434196,
+    "adjusted_geometric_vertices": 3
+  }
+]

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 4,
+  "avatarVersion": "v38",
+  "armPoseTargets": {
+    "glasses_adjust": {
+      "rightArmX": 0.533191,
+      "rightArmY": -2.947048,
+      "rightArmZ": -1.037678,
+      "rightForeX": 0.233349,
+      "rightForeY": 0.44599,
+      "rightForeZ": 0.038659,
+      "rightHandX": -0.508155,
+      "rightHandY": -0.200957,
+      "rightHandZ": 4.52316,
+      "fingerCurl": 0.15
+    },
+    "inspect_tablet": {
+      "rightArmX": 1.339392,
+      "rightArmY": -2.670173,
+      "rightArmZ": -0.3024,
+      "rightForeX": -0.134158,
+      "rightForeY": -1.143947,
+      "rightForeZ": -0.881988,
+      "rightHandX": 0.239723,
+      "rightHandY": 0.901026,
+      "rightHandZ": 1.536533,
+      "leftArmX": 1.431505,
+      "leftArmY": -2.026453,
+      "leftArmZ": -0.022854,
+      "leftForeX": 0.815342,
+      "leftForeY": 3.094684,
+      "leftForeZ": -0.986403,
+      "leftHandX": 1.256574,
+      "leftHandY": -0.479748,
+      "leftHandZ": 1.809149,
+      "fingerCurl": 0.12
+    },
+    "keynote_present": {
+      "rightArmX": 1.239168,
+      "rightArmY": -2.648113,
+      "rightArmZ": -0.385463,
+      "rightForeX": 1.878565,
+      "rightForeY": -2.355348,
+      "rightForeZ": 1.194025,
+      "rightHandX": -0.928649,
+      "rightHandY": -0.749439,
+      "rightHandZ": -0.962362,
+      "fingerCurl": 0.04
+    }
+  },
+  "fingerRotation": {
+    "mode": "rest_quaternion_times_local_axis_rotation",
+    "localAxis": [
+      1,
+      0,
+      0
+    ],
+    "thumbCurlMultiplier": 0.55,
+    "cacheRestQuaternionOnLoad": true,
+    "accumulateAcrossFrames": false
+  },
+  "integrationStatus": "not integrated into portfolio source",
+  "facialMorphContract": {
+    "meshNames": [
+      "SM_Character_Face",
+      "SM_Character_OralCavity",
+      "SM_Character_UpperTeeth",
+      "SM_Character_LowerTeeth",
+      "SM_Character_Tongue",
+      "SM_Character_Eyelids"
+    ],
+    "matchingTargetNames": [
+      "mouthSmileLeft",
+      "mouthSmileRight",
+      "mouthOpen",
+      "jawOpen",
+      "eyeBlinkLeft",
+      "eyeBlinkRight",
+      "browInnerUp",
+      "viseme_aa"
+    ],
+    "rule": "Set matching target values on all six listed meshes every frame and reset inactive values. Eyelids must be synchronized with Face to close correctly. Upper-teeth targets intentionally remain zero.",
+    "reviewSpeechWeights": {
+      "viseme_aa": 0.65,
+      "mouthOpen": 0.35
+    },
+    "oralAnatomyStatus": "Approximate upper/lower dental crowns and tongue added; not derived from personal dental reference. Lower teeth and tongue follow mouthOpen, jawOpen and viseme_aa.",
+    "runtimeVerified": false,
+    "eyeAnatomyStatus": "Separate head-skinned eye globes and fitted eyelid loops; eye placement lowered 1.6 mm with local support. Smaller pupils, larger warm brown irises, angled openings and a restrained upper-lid crease. No independent gaze rig."
+  }
+}

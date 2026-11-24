@@ -1,0 +1,1113 @@
+{
+  "checks_passed": 221,
+  "checks_failed": 0,
+  "glb_bytes": 2582124,
+  "triangles": 44910,
+  "checks": [
+    {
+      "check": "Triangle count preserved (44910)",
+      "passed": true,
+      "detail": "tris=44910"
+    },
+    {
+      "check": "GLB size under 3.0 MB",
+      "passed": true,
+      "detail": "bytes=2582124"
+    },
+    {
+      "check": "52 skin joints preserved",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Nodes/skins/scenes/samplers/textures unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 0 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 1 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 2 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 3 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 4 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 5 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 6 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 7 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 8 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 9 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 10 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 11 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 12 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 13 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 14 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 15 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 16 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 17 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 18 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 19 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 20 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 21 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 22 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 23 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 24 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 25 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 26 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 27 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 28 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 29 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 30 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 31 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 32 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 33 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 34 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 35 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 36 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 37 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 38 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 39 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 40 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 41 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 42 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 43 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 44 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 45 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 46 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 47 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 48 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 49 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 50 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 51 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 52 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 53 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 54 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 55 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 56 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 57 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 58 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 59 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 60 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 61 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 62 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 63 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 64 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 65 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 66 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 67 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 68 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 69 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 70 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 71 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 72 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 73 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 74 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 75 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 76 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 77 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 78 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 79 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 80 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 81 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 82 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 83 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 84 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 85 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 86 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 87 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 88 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 89 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 90 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 91 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 92 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 93 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 94 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 95 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 96 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 97 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 98 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 99 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 100 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 101 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 102 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 103 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 104 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 105 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 106 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 107 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 108 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 109 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 110 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 111 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 112 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 113 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 114 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 115 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 116 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 117 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 118 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 119 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 120 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 121 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 122 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 123 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 124 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 125 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 126 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 127 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 128 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 129 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 130 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 131 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 132 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 133 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 134 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 135 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 136 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 137 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 138 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 139 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 140 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 141 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 142 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 143 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 144 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 145 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 146 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 147 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Accessor 148 finite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Image 0 under 100 KB",
+      "passed": true,
+      "detail": "bytes=90724"
+    },
+    {
+      "check": "Image 0 decodes cleanly",
+      "passed": true,
+      "detail": "size=(2048, 2048)"
+    },
+    {
+      "check": "Image 0 byte-identical to v40",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Image 1 under 100 KB",
+      "passed": true,
+      "detail": "bytes=86876"
+    },
+    {
+      "check": "Image 1 decodes cleanly",
+      "passed": true,
+      "detail": "size=(2048, 2048)"
+    },
+    {
+      "check": "Image 1 byte-identical to v40",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Image 2 under 100 KB",
+      "passed": true,
+      "detail": "bytes=47858"
+    },
+    {
+      "check": "Image 2 decodes cleanly",
+      "passed": true,
+      "detail": "size=(1024, 1024)"
+    },
+    {
+      "check": "Image 2 byte-identical to v40",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Image 3 under 100 KB",
+      "passed": true,
+      "detail": "bytes=67256"
+    },
+    {
+      "check": "Image 3 decodes cleanly",
+      "passed": true,
+      "detail": "size=(1024, 1024)"
+    },
+    {
+      "check": "Image 3 byte-identical to v40",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Image 4 under 100 KB",
+      "passed": true,
+      "detail": "bytes=54084"
+    },
+    {
+      "check": "Image 4 decodes cleanly",
+      "passed": true,
+      "detail": "size=(512, 512)"
+    },
+    {
+      "check": "Image 4 byte-identical to v40",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Image 5 under 100 KB",
+      "passed": true,
+      "detail": "bytes=47780"
+    },
+    {
+      "check": "Image 5 decodes cleanly",
+      "passed": true,
+      "detail": "size=(4096, 2048)"
+    },
+    {
+      "check": "Image 6 under 100 KB",
+      "passed": true,
+      "detail": "bytes=15428"
+    },
+    {
+      "check": "Image 6 decodes cleanly",
+      "passed": true,
+      "detail": "size=(1024, 1024)"
+    },
+    {
+      "check": "T_Eyelids_v36 has zero unfilled black UV holes (min luma > 25)",
+      "passed": true,
+      "detail": "min_luma=42.0"
+    },
+    {
+      "check": "Face baseColor uses TEXCOORD_2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Hair baseColor uses TEXCOORD_2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Hair normal uses TEXCOORD_1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Hair roughness uses TEXCOORD_1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Zero stray (0,0) UV2 coordinates on SM_Character_Face triangles",
+      "passed": true,
+      "detail": "zero_uv2=0"
+    },
+    {
+      "check": "Face/Hair seam coincident",
+      "passed": true,
+      "detail": "n=163, err=0.0"
+    },
+    {
+      "check": "Face/Hoodie collar seam coincident",
+      "passed": true,
+      "detail": "n=64, err=0.0"
+    },
+    {
+      "check": "Face/Eyelids side -1 seam coincident (<0.01mm)",
+      "passed": true,
+      "detail": "max_err=0.0000mm"
+    },
+    {
+      "check": "Face/Eyelids side -1 boundary normals welded (>0.999)",
+      "passed": true,
+      "detail": "min_dot=0.99965"
+    },
+    {
+      "check": "Face/Eyelids side +1 seam coincident (<0.01mm)",
+      "passed": true,
+      "detail": "max_err=0.0000mm"
+    },
+    {
+      "check": "Face/Eyelids side +1 boundary normals welded (>0.999)",
+      "passed": true,
+      "detail": "min_dot=1.00000"
+    },
+    {
+      "check": "Under-eye +10mm glasses-rim scar eradicated (continuous mirrored surface error < 2.2mm)",
+      "passed": true,
+      "detail": "max_surf_err=1.86mm (n=84)"
+    },
+    {
+      "check": "Face skin weights normalized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "Collar seam weights preserved exactly",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "All front chin & jaw vertices 100% Head weighted",
+      "passed": true,
+      "detail": "min_hw=1.000000"
+    },
+    {
+      "check": "Zero single-triangle Head weight cliffs (< 0.45)",
+      "passed": true,
+      "detail": "max_tri_jump=0.2936"
+    },
+    {
+      "check": "SM_Character_EyeRight pupil normal points straight forward",
+      "passed": true,
+      "detail": "n0=[0.0, 0.0, 1.0]"
+    },
+    {
+      "check": "SM_Character_EyeRight unit normals",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "SM_Character_EyeRight warm dark-espresso iris calibrated (linear R in [0.038, 0.10])",
+      "passed": true,
+      "detail": "iris_R=0.0465"
+    },
+    {
+      "check": "SM_Character_EyeLeft pupil normal points straight forward",
+      "passed": true,
+      "detail": "n0=[0.0, 0.0, 1.0]"
+    },
+    {
+      "check": "SM_Character_EyeLeft unit normals",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "SM_Character_EyeLeft warm dark-espresso iris calibrated (linear R in [0.038, 0.10])",
+      "passed": true,
+      "detail": "iris_R=0.0465"
+    },
+    {
+      "check": "Left & Right eye globes bilaterally symmetric in Z (< 0.05mm)",
+      "passed": true,
+      "detail": "dz=0.0000mm"
+    },
+    {
+      "check": "Eyelids eyeBlinkLeft Y-min < -0.005",
+      "passed": true,
+      "detail": "minY=-0.00734"
+    },
+    {
+      "check": "Eyelids eyeBlinkLeft Y-max > +0.005",
+      "passed": true,
+      "detail": "maxY=0.00861"
+    },
+    {
+      "check": "Eyelids eyeBlinkRight Y-min < -0.005",
+      "passed": true,
+      "detail": "minY=-0.00698"
+    },
+    {
+      "check": "Eyelids eyeBlinkRight Y-max > +0.005",
+      "passed": true,
+      "detail": "maxY=0.00833"
+    },
+    {
+      "check": "Eyelid side -1 full blink contact watertight (< 0.1mm)",
+      "passed": true,
+      "detail": "max_gap=0.0000mm"
+    },
+    {
+      "check": "SM_Character_EyeRight front pole sits cleanly behind closed eyelid",
+      "passed": true,
+      "detail": "eyeZ=0.08038 < lidZ=0.08182"
+    },
+    {
+      "check": "SM_Character_EyeRight full cornea (161 verts) has zero blink poke-through",
+      "passed": true,
+      "detail": "max_protrusion=-0.107mm"
+    },
+    {
+      "check": "Eyelid side +1 full blink contact watertight (< 0.1mm)",
+      "passed": true,
+      "detail": "max_gap=0.0000mm"
+    },
+    {
+      "check": "SM_Character_EyeLeft front pole sits cleanly behind closed eyelid",
+      "passed": true,
+      "detail": "eyeZ=0.08038 < lidZ=0.08182"
+    },
+    {
+      "check": "SM_Character_EyeLeft full cornea (161 verts) has zero blink poke-through",
+      "passed": true,
+      "detail": "max_protrusion=-0.107mm"
+    },
+    {
+      "check": "SM_Character_Face neutral nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=8.093e-09"
+    },
+    {
+      "check": "SM_Character_Face full_blink nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=8.093e-09"
+    },
+    {
+      "check": "SM_Character_Face speech_aa nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=8.565e-09"
+    },
+    {
+      "check": "SM_Character_Face smile_035 nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=8.336e-09"
+    },
+    {
+      "check": "SM_Character_Eyelids neutral nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=2.496e-08"
+    },
+    {
+      "check": "SM_Character_Eyelids full_blink nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=1.370e-08"
+    },
+    {
+      "check": "SM_Character_Eyelids speech_aa nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=2.496e-08"
+    },
+    {
+      "check": "SM_Character_Eyelids smile_035 nonzero triangle areas",
+      "passed": true,
+      "detail": "minArea=2.496e-08"
+    },
+    {
+      "check": "Spectacles Metal rims free of Z-kinks (max edge |dZ| < 2.5mm)",
+      "passed": true,
+      "detail": "max_dz=1.90mm"
+    },
+    {
+      "check": "Spectacles Black browlines free of Z-kinks (max edge |dZ| < 3.0mm)",
+      "passed": true,
+      "detail": "max_dz=2.23mm"
+    },
+    {
+      "check": "Spectacles Lenses free of Z-kinks (max edge |dZ| < 4.5mm)",
+      "passed": true,
+      "detail": "max_dz=4.18mm"
+    },
+    {
+      "check": "Front chin albedo warm & clean (mean R >= 188)",
+      "passed": true,
+      "detail": "meanR=192.4"
+    },
+    {
+      "check": "Front chin albedo even (std R < 8.5, zero blotches)",
+      "passed": true,
+      "detail": "stdR=6.22"
+    },
+    {
+      "check": "Outer eye Face skin balanced bilaterally (|mean_diff| < 6.0)",
+      "passed": true,
+      "detail": "diff=4.92"
+    },
+    {
+      "check": "Outer eye Eyelid skin balanced bilaterally (|luma_diff| < 6.0)",
+      "passed": true,
+      "detail": "diff=1.56"
+    }
+  ]
+}

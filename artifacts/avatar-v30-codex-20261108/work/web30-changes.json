@@ -1,0 +1,2003 @@
+{
+  "method": "Blender exact Boolean with rounded slot, original vertex indices retained; barycentric transfer on appended vertices",
+  "slot_width_mm": 4.4,
+  "slot_top_y_m": 0.8029999999999999,
+  "original_vertices": 1733,
+  "appended_vertices": 398,
+  "original_triangles": 2723,
+  "result_triangles": 2975,
+  "unchanged_triangles": 2605,
+  "removed_boolean_slivers": 2,
+  "new_surface_transfer": [
+    {
+      "index": 1733,
+      "source_triangle": 81,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1734,
+      "source_triangle": 81,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1735,
+      "source_triangle": 82,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1736,
+      "source_triangle": 83,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1737,
+      "source_triangle": 87,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1738,
+      "source_triangle": 87,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1739,
+      "source_triangle": 87,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1740,
+      "source_triangle": 87,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1741,
+      "source_triangle": 87,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1742,
+      "source_triangle": 87,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1743,
+      "source_triangle": 87,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1744,
+      "source_triangle": 87,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1745,
+      "source_triangle": 107,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1746,
+      "source_triangle": 107,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1747,
+      "source_triangle": 108,
+      "source_distance_mm": 5.972094641037984e-05
+    },
+    {
+      "index": 1748,
+      "source_triangle": 109,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1749,
+      "source_triangle": 130,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1750,
+      "source_triangle": 130,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1751,
+      "source_triangle": 130,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1752,
+      "source_triangle": 130,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1753,
+      "source_triangle": 130,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1754,
+      "source_triangle": 132,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1755,
+      "source_triangle": 132,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1756,
+      "source_triangle": 133,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1757,
+      "source_triangle": 133,
+      "source_distance_mm": 0.001875005636975402
+    },
+    {
+      "index": 1758,
+      "source_triangle": 133,
+      "source_distance_mm": 0.001875005636975402
+    },
+    {
+      "index": 1759,
+      "source_triangle": 133,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1760,
+      "source_triangle": 133,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1761,
+      "source_triangle": 133,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1762,
+      "source_triangle": 136,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1763,
+      "source_triangle": 136,
+      "source_distance_mm": 0.0009583848168404074
+    },
+    {
+      "index": 1764,
+      "source_triangle": 136,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1765,
+      "source_triangle": 159,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1766,
+      "source_triangle": 159,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1767,
+      "source_triangle": 175,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1768,
+      "source_triangle": 186,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1769,
+      "source_triangle": 186,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1770,
+      "source_triangle": 187,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1771,
+      "source_triangle": 194,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1772,
+      "source_triangle": 195,
+      "source_distance_mm": 6.705522537231445e-05
+    },
+    {
+      "index": 1773,
+      "source_triangle": 199,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1774,
+      "source_triangle": 199,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1775,
+      "source_triangle": 207,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1776,
+      "source_triangle": 217,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1777,
+      "source_triangle": 218,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1778,
+      "source_triangle": 224,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1779,
+      "source_triangle": 257,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1780,
+      "source_triangle": 258,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1781,
+      "source_triangle": 279,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1782,
+      "source_triangle": 279,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1783,
+      "source_triangle": 283,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1784,
+      "source_triangle": 284,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1785,
+      "source_triangle": 296,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1786,
+      "source_triangle": 296,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1787,
+      "source_triangle": 297,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1788,
+      "source_triangle": 298,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1789,
+      "source_triangle": 298,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1790,
+      "source_triangle": 320,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1791,
+      "source_triangle": 341,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1792,
+      "source_triangle": 342,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1793,
+      "source_triangle": 342,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1794,
+      "source_triangle": 342,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1795,
+      "source_triangle": 342,
+      "source_distance_mm": 6.674406449747039e-05
+    },
+    {
+      "index": 1796,
+      "source_triangle": 342,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1797,
+      "source_triangle": 342,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1798,
+      "source_triangle": 343,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1799,
+      "source_triangle": 344,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1800,
+      "source_triangle": 344,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1801,
+      "source_triangle": 344,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1802,
+      "source_triangle": 344,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1803,
+      "source_triangle": 344,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1804,
+      "source_triangle": 344,
+      "source_distance_mm": 6.705522537231445e-05
+    },
+    {
+      "index": 1805,
+      "source_triangle": 344,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1806,
+      "source_triangle": 344,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1807,
+      "source_triangle": 345,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1808,
+      "source_triangle": 345,
+      "source_distance_mm": 5.972094641037984e-05
+    },
+    {
+      "index": 1809,
+      "source_triangle": 345,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1810,
+      "source_triangle": 345,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1811,
+      "source_triangle": 345,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1812,
+      "source_triangle": 348,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1813,
+      "source_triangle": 348,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1814,
+      "source_triangle": 349,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1815,
+      "source_triangle": 352,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1816,
+      "source_triangle": 354,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1817,
+      "source_triangle": 355,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1818,
+      "source_triangle": 355,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1819,
+      "source_triangle": 372,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1820,
+      "source_triangle": 428,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1821,
+      "source_triangle": 428,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1822,
+      "source_triangle": 2215,
+      "source_distance_mm": 0.00016323404850027146
+    },
+    {
+      "index": 1823,
+      "source_triangle": 2215,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1824,
+      "source_triangle": 2215,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1825,
+      "source_triangle": 2215,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1826,
+      "source_triangle": 2215,
+      "source_distance_mm": 0.0001625951568939854
+    },
+    {
+      "index": 1827,
+      "source_triangle": 2308,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1828,
+      "source_triangle": 2308,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1829,
+      "source_triangle": 2308,
+      "source_distance_mm": 0.0001077117914860537
+    },
+    {
+      "index": 1830,
+      "source_triangle": 2308,
+      "source_distance_mm": 0.00010803341865539551
+    },
+    {
+      "index": 1831,
+      "source_triangle": 2308,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1832,
+      "source_triangle": 2308,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1833,
+      "source_triangle": 2312,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1834,
+      "source_triangle": 2312,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1835,
+      "source_triangle": 2312,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1836,
+      "source_triangle": 2321,
+      "source_distance_mm": 5.9604644775390625e-05
+    },
+    {
+      "index": 1837,
+      "source_triangle": 2324,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1838,
+      "source_triangle": 2324,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1839,
+      "source_triangle": 2330,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1840,
+      "source_triangle": 2330,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1841,
+      "source_triangle": 2334,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1842,
+      "source_triangle": 2348,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1843,
+      "source_triangle": 2353,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1844,
+      "source_triangle": 2353,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1845,
+      "source_triangle": 2364,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1846,
+      "source_triangle": 2364,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1847,
+      "source_triangle": 2364,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1848,
+      "source_triangle": 2364,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1849,
+      "source_triangle": 2364,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1850,
+      "source_triangle": 2364,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1851,
+      "source_triangle": 2364,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1852,
+      "source_triangle": 2364,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1853,
+      "source_triangle": 2365,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1854,
+      "source_triangle": 2376,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1855,
+      "source_triangle": 2376,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1856,
+      "source_triangle": 2388,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1857,
+      "source_triangle": 2397,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1858,
+      "source_triangle": 2398,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1859,
+      "source_triangle": 2398,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1860,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1861,
+      "source_triangle": 2401,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1862,
+      "source_triangle": 2401,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1863,
+      "source_triangle": 2402,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1864,
+      "source_triangle": 2403,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1865,
+      "source_triangle": 2404,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1866,
+      "source_triangle": 2406,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1867,
+      "source_triangle": 2406,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1868,
+      "source_triangle": 2424,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1869,
+      "source_triangle": 2436,
+      "source_distance_mm": 6.757064596740747e-05
+    },
+    {
+      "index": 1870,
+      "source_triangle": 2437,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1871,
+      "source_triangle": 2478,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1872,
+      "source_triangle": 2485,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1873,
+      "source_triangle": 2492,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1874,
+      "source_triangle": 2493,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1875,
+      "source_triangle": 2517,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1876,
+      "source_triangle": 2517,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1877,
+      "source_triangle": 2519,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1878,
+      "source_triangle": 2519,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1879,
+      "source_triangle": 2543,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1880,
+      "source_triangle": 2547,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1881,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1882,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1883,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1884,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1885,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.9802322387695312e-05
+    },
+    {
+      "index": 1886,
+      "source_triangle": 2572,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1887,
+      "source_triangle": 2572,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1888,
+      "source_triangle": 2573,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1889,
+      "source_triangle": 2581,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1890,
+      "source_triangle": 2581,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1891,
+      "source_triangle": 2581,
+      "source_distance_mm": 0.0010176794376093312
+    },
+    {
+      "index": 1892,
+      "source_triangle": 2581,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1893,
+      "source_triangle": 2582,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1894,
+      "source_triangle": 2582,
+      "source_distance_mm": 6.664001972467304e-05
+    },
+    {
+      "index": 1895,
+      "source_triangle": 2582,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1896,
+      "source_triangle": 2582,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1897,
+      "source_triangle": 2583,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1898,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1899,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1900,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1901,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1902,
+      "source_triangle": 2583,
+      "source_distance_mm": 0.0
+    },
+    {
+      "index": 1903,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.725290298461914e-06
+    },
+    {
+      "index": 1904,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.0034250642074767e-05
+    },
+    {
+      "index": 1905,
+      "source_triangle": 2585,
+      "source_distance_mm": 3.071953003086492e-05
+    },
+    {
+      "index": 1906,
+      "source_triangle": 2587,
+      "source_distance_mm": 7.450580596923828e-06
+    },
+    {
+      "index": 1907,
+      "source_triangle": 130,
+      "source_distance_mm": 3.064339514821768
+    },
+    {
+      "index": 1908,
+      "source_triangle": 345,
+      "source_distance_mm": 3.0312156304717064
+    },
+    {
+      "index": 1909,
+      "source_triangle": 2465,
+      "source_distance_mm": 2.2635087370872498
+    },
+    {
+      "index": 1910,
+      "source_triangle": 2465,
+      "source_distance_mm": 2.2635087370872498
+    },
+    {
+      "index": 1911,
+      "source_triangle": 2465,
+      "source_distance_mm": 2.2635087370872498
+    },
+    {
+      "index": 1912,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.2089588455855846
+    },
+    {
+      "index": 1913,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.2089588455855846
+    },
+    {
+      "index": 1914,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.2089588455855846
+    },
+    {
+      "index": 1915,
+      "source_triangle": 130,
+      "source_distance_mm": 3.1274689827114344
+    },
+    {
+      "index": 1916,
+      "source_triangle": 345,
+      "source_distance_mm": 3.109022742137313
+    },
+    {
+      "index": 1917,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.526356605812907
+    },
+    {
+      "index": 1918,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.5449623353779316
+    },
+    {
+      "index": 1919,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.5449623353779316
+    },
+    {
+      "index": 1920,
+      "source_triangle": 136,
+      "source_distance_mm": 3.1254098284989595
+    },
+    {
+      "index": 1921,
+      "source_triangle": 136,
+      "source_distance_mm": 3.1254098284989595
+    },
+    {
+      "index": 1922,
+      "source_triangle": 136,
+      "source_distance_mm": 3.15789133310318
+    },
+    {
+      "index": 1923,
+      "source_triangle": 345,
+      "source_distance_mm": 3.1963810324668884
+    },
+    {
+      "index": 1924,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.62914109043777
+    },
+    {
+      "index": 1925,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.8529136907309294
+    },
+    {
+      "index": 1926,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.8529136907309294
+    },
+    {
+      "index": 1927,
+      "source_triangle": 345,
+      "source_distance_mm": 3.2309324014931917
+    },
+    {
+      "index": 1928,
+      "source_triangle": 2404,
+      "source_distance_mm": 3.12272971495986
+    },
+    {
+      "index": 1929,
+      "source_triangle": 2404,
+      "source_distance_mm": 3.12272971495986
+    },
+    {
+      "index": 1930,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.773446263745427
+    },
+    {
+      "index": 1931,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.773446263745427
+    },
+    {
+      "index": 1932,
+      "source_triangle": 136,
+      "source_distance_mm": 3.27318930067122
+    },
+    {
+      "index": 1933,
+      "source_triangle": 345,
+      "source_distance_mm": 3.2222785521298647
+    },
+    {
+      "index": 1934,
+      "source_triangle": 2404,
+      "source_distance_mm": 3.346610115841031
+    },
+    {
+      "index": 1935,
+      "source_triangle": 2404,
+      "source_distance_mm": 3.346610115841031
+    },
+    {
+      "index": 1936,
+      "source_triangle": 2557,
+      "source_distance_mm": 2.892157295718789
+    },
+    {
+      "index": 1937,
+      "source_triangle": 2364,
+      "source_distance_mm": 3.3788683358579874
+    },
+    {
+      "index": 1938,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.1841243617236614
+    },
+    {
+      "index": 1939,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.1841243617236614
+    },
+    {
+      "index": 1940,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.1841243617236614
+    },
+    {
+      "index": 1941,
+      "source_triangle": 136,
+      "source_distance_mm": 3.18169710226357
+    },
+    {
+      "index": 1942,
+      "source_triangle": 136,
+      "source_distance_mm": 3.18169710226357
+    },
+    {
+      "index": 1943,
+      "source_triangle": 136,
+      "source_distance_mm": 3.18169710226357
+    },
+    {
+      "index": 1944,
+      "source_triangle": 342,
+      "source_distance_mm": 3.4276852384209633
+    },
+    {
+      "index": 1945,
+      "source_triangle": 2364,
+      "source_distance_mm": 3.3961390145123005
+    },
+    {
+      "index": 1946,
+      "source_triangle": 2364,
+      "source_distance_mm": 3.421855391934514
+    },
+    {
+      "index": 1947,
+      "source_triangle": 2364,
+      "source_distance_mm": 3.421855391934514
+    },
+    {
+      "index": 1948,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.234908916056156
+    },
+    {
+      "index": 1949,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.234908916056156
+    },
+    {
+      "index": 1950,
+      "source_triangle": 136,
+      "source_distance_mm": 3.2069459557533264
+    },
+    {
+      "index": 1951,
+      "source_triangle": 136,
+      "source_distance_mm": 3.2069459557533264
+    },
+    {
+      "index": 1952,
+      "source_triangle": 2364,
+      "source_distance_mm": 3.390225814655423
+    },
+    {
+      "index": 1953,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.370688296854496
+    },
+    {
+      "index": 1954,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.370688296854496
+    },
+    {
+      "index": 1955,
+      "source_triangle": 342,
+      "source_distance_mm": 3.509546397253871
+    },
+    {
+      "index": 1956,
+      "source_triangle": 136,
+      "source_distance_mm": 3.2372213900089264
+    },
+    {
+      "index": 1957,
+      "source_triangle": 136,
+      "source_distance_mm": 3.2372213900089264
+    },
+    {
+      "index": 1958,
+      "source_triangle": 342,
+      "source_distance_mm": 3.5030278377234936
+    },
+    {
+      "index": 1959,
+      "source_triangle": 2557,
+      "source_distance_mm": 3.4155109897255898
+    },
+    {
+      "index": 1960,
+      "source_triangle": 2308,
+      "source_distance_mm": 3.393044928088784
+    },
+    {
+      "index": 1961,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.41418175958097
+    },
+    {
+      "index": 1962,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.3736780751496553
+    },
+    {
+      "index": 1963,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.3736780751496553
+    },
+    {
+      "index": 1964,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.3736780751496553
+    },
+    {
+      "index": 1965,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.405212890356779
+    },
+    {
+      "index": 1966,
+      "source_triangle": 87,
+      "source_distance_mm": 0.005199080078455154
+    },
+    {
+      "index": 1967,
+      "source_triangle": 342,
+      "source_distance_mm": 3.58489784412086
+    },
+    {
+      "index": 1968,
+      "source_triangle": 342,
+      "source_distance_mm": 3.58489784412086
+    },
+    {
+      "index": 1969,
+      "source_triangle": 133,
+      "source_distance_mm": 3.24691622518003
+    },
+    {
+      "index": 1970,
+      "source_triangle": 133,
+      "source_distance_mm": 3.24691622518003
+    },
+    {
+      "index": 1971,
+      "source_triangle": 133,
+      "source_distance_mm": 3.344138851389289
+    },
+    {
+      "index": 1972,
+      "source_triangle": 133,
+      "source_distance_mm": 3.344138851389289
+    },
+    {
+      "index": 1973,
+      "source_triangle": 342,
+      "source_distance_mm": 3.5859497729688883
+    },
+    {
+      "index": 1974,
+      "source_triangle": 342,
+      "source_distance_mm": 3.5859497729688883
+    },
+    {
+      "index": 1975,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.303967881947756
+    },
+    {
+      "index": 1976,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.303967881947756
+    },
+    {
+      "index": 1977,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.3970242366194725
+    },
+    {
+      "index": 1978,
+      "source_triangle": 133,
+      "source_distance_mm": 3.4352741204202175
+    },
+    {
+      "index": 1979,
+      "source_triangle": 133,
+      "source_distance_mm": 3.4352741204202175
+    },
+    {
+      "index": 1980,
+      "source_triangle": 344,
+      "source_distance_mm": 3.578422823920846
+    },
+    {
+      "index": 1981,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.2263200264424086
+    },
+    {
+      "index": 1982,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.2263200264424086
+    },
+    {
+      "index": 1983,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.410001052543521
+    },
+    {
+      "index": 1984,
+      "source_triangle": 133,
+      "source_distance_mm": 3.4348093904554844
+    },
+    {
+      "index": 1985,
+      "source_triangle": 133,
+      "source_distance_mm": 3.4348093904554844
+    },
+    {
+      "index": 1986,
+      "source_triangle": 344,
+      "source_distance_mm": 3.6005587317049503
+    },
+    {
+      "index": 1987,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.142064902931452
+    },
+    {
+      "index": 1988,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.142064902931452
+    },
+    {
+      "index": 1989,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.4204053226858377
+    },
+    {
+      "index": 1990,
+      "source_triangle": 133,
+      "source_distance_mm": 3.3951066434383392
+    },
+    {
+      "index": 1991,
+      "source_triangle": 133,
+      "source_distance_mm": 3.3951066434383392
+    },
+    {
+      "index": 1992,
+      "source_triangle": 344,
+      "source_distance_mm": 3.598092822358012
+    },
+    {
+      "index": 1993,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.054571570828557
+    },
+    {
+      "index": 1994,
+      "source_triangle": 2399,
+      "source_distance_mm": 3.054571570828557
+    },
+    {
+      "index": 1995,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.404217539355159
+    },
+    {
+      "index": 1996,
+      "source_triangle": 133,
+      "source_distance_mm": 3.3766264095902443
+    },
+    {
+      "index": 1997,
+      "source_triangle": 344,
+      "source_distance_mm": 3.5209436900913715
+    },
+    {
+      "index": 1998,
+      "source_triangle": 2399,
+      "source_distance_mm": 2.9313561972230673
+    },
+    {
+      "index": 1999,
+      "source_triangle": 2399,
+      "source_distance_mm": 2.9313561972230673
+    },
+    {
+      "index": 2000,
+      "source_triangle": 2399,
+      "source_distance_mm": 2.9313561972230673
+    },
+    {
+      "index": 2001,
+      "source_triangle": 2583,
+      "source_distance_mm": 3.3633699640631676
+    },
+    {
+      "index": 2002,
+      "source_triangle": 132,
+      "source_distance_mm": 3.2370234839618206
+    },
+    {
+      "index": 2003,
+      "source_triangle": 132,
+      "source_distance_mm": 3.2370234839618206
+    },
+    {
+      "index": 2004,
+      "source_triangle": 132,
+      "source_distance_mm": 3.2370234839618206
+    },
+    {
+      "index": 2005,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.772266510874033
+    },
+    {
+      "index": 2006,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.772266510874033
+    },
+    {
+      "index": 2007,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.772266510874033
+    },
+    {
+      "index": 2008,
+      "source_triangle": 2519,
+      "source_distance_mm": 3.2643519807606936
+    },
+    {
+      "index": 2009,
+      "source_triangle": 2519,
+      "source_distance_mm": 3.2643519807606936
+    },
+    {
+      "index": 2010,
+      "source_triangle": 2519,
+      "source_distance_mm": 3.2643519807606936
+    },
+    {
+      "index": 2011,
+      "source_triangle": 2404,
+      "source_distance_mm": 2.704957267269492
+    },
+    {
+      "index": 2012,
+      "source_triangle": 2399,
+      "source_distance_mm": 0.045596392737934366
+    },
+    {
+      "index": 2013,
+      "source_triangle": 2399,
+      "source_distance_mm": 0.044586242438526824
+    },
+    {
+      "index": 2014,
+      "source_triangle": 2519,
+      "source_distance_mm": 2.736488124355674
+    },
+    {
+      "index": 2015,
+      "source_triangle": 2544,
+      "source_distance_mm": 0.23382318613585085
+    },
+    {
+      "index": 2016,
+      "source_triangle": 2400,
+      "source_distance_mm": 1.3422712218016386
+    },
+    {
+      "index": 2017,
+      "source_triangle": 2400,
+      "source_distance_mm": 1.3422712218016386
+    },
+    {
+      "index": 2018,
+      "source_triangle": 2543,
+      "source_distance_mm": 0.2066876768367365
+    },
+    {
+      "index": 2019,
+      "source_triangle": 2517,
+      "source_distance_mm": 1.8013282679021358
+    },
+    {
+      "index": 2020,
+      "source_triangle": 2517,
+      "source_distance_mm": 1.8013282679021358
+    },
+    {
+      "index": 2021,
+      "source_triangle": 2407,
+      "source_distance_mm": 0.09392399078933522
+    },
+    {
+      "index": 2022,
+      "source_triangle": 2407,
+      "source_distance_mm": 1.3708409387618303
+    },
+    {
+      "index": 2023,
+      "source_triangle": 2407,
+      "source_distance_mm": 1.3708409387618303
+    },
+    {
+      "index": 2024,
+      "source_triangle": 2492,
+      "source_distance_mm": 0.5915915826335549
+    },
+    {
+      "index": 2025,
+      "source_triangle": 2492,
+      "source_distance_mm": 0.5915915826335549
+    },
+    {
+      "index": 2026,
+      "source_triangle": 2436,
+      "source_distance_mm": 0.017615826436667703
+    },
+    {
+      "index": 2027,
+      "source_triangle": 2353,
+      "source_distance_mm": 0.1661900314502418
+    },
+    {
+      "index": 2028,
+      "source_triangle": 2388,
+      "source_distance_mm": 0.2816110209096223
+    },
+    {
+      "index": 2029,
+      "source_triangle": 2324,
+      "source_distance_mm": 0.7561014499515295
+    },
+    {
+      "index": 2030,
+      "source_triangle": 2485,
+      "source_distance_mm": 0.8649815572425723
+    },
+    {
+      "index": 2031,
+      "source_triangle": 2485,
+      "source_distance_mm": 0.8649815572425723
+    },
+    {
+      "index": 2032,
+      "source_triangle": 2388,
+      "source_distance_mm": 0.2957223914563656
+    },
+    {
+      "index": 2033,
+      "source_triangle": 2485,
+      "source_distance_mm": 2.3141626734286547
+    },
+    {
+      "index": 2034,
+      "source_triangle": 2403,
+      "source_distance_mm": 2.111042384058237
+    },
+    {
+      "index": 2035,
+      "source_triangle": 2403,
+      "source_distance_mm": 2.111042384058237
+    },
+    {
+      "index": 2036,
+      "source_triangle": 132,
+      "source_distance_mm": 0.05196567872189917
+    },
+    {
+      "index": 2037,
+      "source_triangle": 132,
+      "source_distance_mm": 0.4913426819257438
+    },
+    {
+      "index": 2038,
+      "source_triangle": 344,
+      "source_distance_mm": 3.4111267887055874
+    },
+    {
+      "index": 2039,
+      "source_triangle": 341,
+      "source_distance_mm": 0.3462799941189587
+    },
+    {
+      "index": 2040,
+      "source_triangle": 259,
+      "source_distance_mm": 3.2844694796949625
+    },
+    {
+      "index": 2041,
+      "source_triangle": 259,
+      "source_distance_mm": 3.2844694796949625
+    },
+    {
+      "index": 2042,
+      "source_triangle": 259,
+      "source_distance_mm": 3.2844694796949625
+    },
+    {
+      "index": 2043,
+      "source_triangle": 134,
+      "source_distance_mm": 0.7649280596524477
+    },
+    {
+      "index": 2044,
+      "source_triangle": 134,
+      "source_distance_mm": 0.7649280596524477
+    },
+    {
+      "index": 2045,
+      "source_triangle": 134,
+      "source_distance_mm": 0.7649280596524477
+    },
+    {
+      "index": 2046,
+      "source_triangle": 207,
+      "source_distance_mm": 0.030461393180303276
+    },
+    {
+      "index": 2047,
+      "source_triangle": 217,
+      "source_distance_mm": 0.2561427536420524
+    },
+    {
+      "index": 2048,
+      "source_triangle": 109,
+      "source_distance_mm": 1.278327195905149
+    },
+    {
+      "index": 2049,
+      "source_triangle": 109,
+      "source_distance_mm": 1.278327195905149
+    },
+    {
+      "index": 2050,
+      "source_triangle": 109,
+      "source_distance_mm": 1.278327195905149
+    },
+    {
+      "index": 2051,
+      "source_triangle": 186,
+      "source_distance_mm": 0.7463975925929844
+    },
+    {
+      "index": 2052,
+      "source_triangle": 208,
+      "source_distance_mm": 2.08840798586607
+    },
+    {
+      "index": 2053,
+      "source_triangle": 208,
+      "source_distance_mm": 2.08840798586607
+    },
+    {
+      "index": 2054,
+      "source_triangle": 208,
+      "source_distance_mm": 2.08840798586607
+    },
+    {
+      "index": 2055,
+      "source_triangle": 186,
+      "source_distance_mm": 0.9915949776768684
+    },
+    {
+      "index": 2056,
+      "source_triangle": 218,
+      "source_distance_mm": 0.1119150037993677
+    },
+    {
+      "index": 2057,
+      "source_triangle": 279,
+      "source_distance_mm": 0.1289164210902527
+    },
+    {
+      "index": 2058,
+      "source_triangle": 187,
+      "source_distance_mm": 1.5134294517338276
+    },
+    {
+      "index": 2059,
+      "source_triangle": 187,
+      "source_distance_mm": 1.5134294517338276
+    },
+    {
+      "index": 2060,
+      "source_triangle": 199,
+      "source_distance_mm": 0.29412441654130816
+    },
+    {
+      "index": 2061,
+      "source_triangle": 320,
+      "source_distance_mm": 0.3016551781911403
+    },
+    {
+      "index": 2062,
+      "source_triangle": 257,
+      "source_distance_mm": 0.8512200438417494
+    },
+    {
+      "index": 2063,
+      "source_triangle": 257,
+      "source_distance_mm": 0.8512200438417494
+    },
+    {
+      "index": 2064,
+      "source_triangle": 284,
+      "source_distance_mm": 1.9303325098007917
+    },
+    {
+      "index": 2065,
+      "source_triangle": 284,
+      "source_distance_mm": 1.9303325098007917
+    },
+    {
+      "index": 2066,
+      "source_triangle": 284,
+      "source_distance_mm": 1.9303325098007917
+    },
+    {
+      "index": 2067,
+      "source_triangle": 284,
+      "source_distance_mm": 0.31808839412406087
+    },
+    {
+      "index": 2068,
+      "source_triangle": 297,
+      "source_distance_mm": 1.4979661209508777
+    },
+    {
+      "index": 2069,
+      "source_triangle": 297,
+      "source_distance_mm": 1.4979661209508777
+    },
+    {
+      "index": 2070,
+      "source_triangle": 349,
+      "source_distance_mm": 0.6644195527769625
+    },
+    {
+      "index": 2071,
+      "source_triangle": 349,
+      "source_distance_mm": 0.6644195527769625
+    },
+    {
+      "index": 2072,
+      "source_triangle": 349,
+      "source_distance_mm": 2.3982038255780935
+    },
+    {
+      "index": 2073,
+      "source_triangle": 2587,
+      "source_distance_mm": 0.009999581379815936
+    },
+    {
+      "index": 2074,
+      "source_triangle": 2572,
+      "source_distance_mm": 0.028025453502777964
+    },
+    {
+      "index": 2075,
+      "source_triangle": 2547,
+      "source_distance_mm": 0.05672611587215215
+    },
+    {
+      "index": 2076,
+      "source_triangle": 2437,
+      "source_distance_mm": 0.1409064861945808
+    },
+    {
+      "index": 2077,
+      "source_triangle": 2493,
+      "source_distance_mm": 0.5235408898442984
+    },
+    {
+      "index": 2078,
+      "source_triangle": 2493,
+      "source_distance_mm": 0.5235408898442984
+    },
+    {
+      "index": 2079,
+      "source_triangle": 2520,
+      "source_distance_mm": 0.288355746306479
+    },
+    {
+      "index": 2080,
+      "source_triangle": 2520,
+      "source_distance_mm": 0.288355746306479
+    },
+    {
+      "index": 2081,
+      "source_triangle": 2520,
+      "source_distance_mm": 0.288355746306479
+    },
+    {
+      "index": 2082,
+      "source_triangle": 2465,
+      "source_distance_mm": 1.9477868918329477
+    },
+    {
+      "index": 2083,
+      "source_triangle": 2465,
+      "source_distance_mm": 1.9477868918329477
+    },
+    {
+      "index": 2084,
+      "source_triangle": 2546,
+      "source_distance_mm": 1.5380996046587825
+    },
+    {
+      "index": 2085,
+      "source_triangle": 2546,
+      "source_distance_mm": 1.5380996046587825
+    },
+    {
+      "index": 2086,
+      "source_triangle": 2546,
+      "source_distance_mm": 1.5380996046587825
+    },
+    {
+      "index": 2087,
+      "source_triangle": 2465,
+      "source_distance_mm": 1.6064353985711932
+    },
+    {
+      "index": 2088,
+      "source_triangle": 2409,
+      "source_distance_mm": 1.5207716496661305
+    },
+    {
+      "index": 2089,
+      "source_triangle": 2409,
+      "source_distance_mm": 1.5207716496661305
+    },
+    {
+      "index": 2090,
+      "source_triangle": 2493,
+      "source_distance_mm": 2.4405098520219326
+    },
+    {
+      "index": 2091,
+      "source_triangle": 2493,
+      "source_distance_mm": 2.4405098520219326
+    },
+    {
+      "index": 2092,
+      "source_triangle": 2376,
+      "source_distance_mm": 0.5711651174351573
+    },
+    {
+      "index": 2093,
+      "source_triangle": 2348,
+      "source_distance_mm": 0.13496582687366754
+    },
+    {
+      "index": 2094,
+      "source_triangle": 2330,
+      "source_distance_mm": 0.32736602588556707
+    },
+    {
+      "index": 2095,
+      "source_triangle": 2404,
+      "source_distance_mm": 1.5791081823408604
+    },
+    {
+      "index": 2096,
+      "source_triangle": 2330,
+      "source_distance_mm": 0.4321498272474855
+    },
+    {
+      "index": 2097,
+      "source_triangle": 2409,
+      "source_distance_mm": 1.446718000806868
+    },
+    {
+      "index": 2098,
+      "source_triangle": 2334,
+      "source_distance_mm": 3.211091738194227
+    },
+    {
+      "index": 2099,
+      "source_triangle": 2334,
+      "source_distance_mm": 3.211091738194227
+    },
+    {
+      "index": 2100,
+      "source_triangle": 2334,
+      "source_distance_mm": 3.211091738194227
+    },
+    {
+      "index": 2101,
+      "source_triangle": 2402,
+      "source_distance_mm": 2.670224290341139
+    },
+    {
+      "index": 2102,
+      "source_triangle": 2402,
+      "source_distance_mm": 2.670224290341139
+    },
+    {
+      "index": 2103,
+      "source_triangle": 355,
+      "source_distance_mm": 0.24174315331038088
+    },
+    {
+      "index": 2104,
+      "source_triangle": 299,
+      "source_distance_mm": 0.5189807852730155
+    },
+    {
+      "index": 2105,
+      "source_triangle": 195,
+      "source_distance_mm": 0.1857284951256588
+    },
+    {
+      "index": 2106,
+      "source_triangle": 175,
+      "source_distance_mm": 0.0840305001474917
+    },
+    {
+      "index": 2107,
+      "source_triangle": 82,
+      "source_distance_mm": 0.28221355751156807
+    },
+    {
+      "index": 2108,
+      "source_triangle": 82,
+      "source_distance_mm": 0.18159877799917012
+    },
+    {
+      "index": 2109,
+      "source_triangle": 175,
+      "source_distance_mm": 0.25091812130995095
+    },
+    {
+      "index": 2110,
+      "source_triangle": 299,
+      "source_distance_mm": 0.9595719166100025
+    },
+    {
+      "index": 2111,
+      "source_triangle": 356,
+      "source_distance_mm": 0.35743569605983794
+    },
+    {
+      "index": 2112,
+      "source_triangle": 352,
+      "source_distance_mm": 0.004455777343537193
+    },
+    {
+      "index": 2113,
+      "source_triangle": 356,
+      "source_distance_mm": 1.6640099929645658
+    },
+    {
+      "index": 2114,
+      "source_triangle": 348,
+      "source_distance_mm": 1.6218533273786306
+    },
+    {
+      "index": 2115,
+      "source_triangle": 348,
+      "source_distance_mm": 1.6218533273786306
+    },
+    {
+      "index": 2116,
+      "source_triangle": 159,
+      "source_distance_mm": 0.8315778686664999
+    },
+    {
+      "index": 2117,
+      "source_triangle": 159,
+      "source_distance_mm": 0.8315778686664999
+    },
+    {
+      "index": 2118,
+      "source_triangle": 130,
+      "source_distance_mm": 2.987633692100644
+    },
+    {
+      "index": 2119,
+      "source_triangle": 82,
+      "source_distance_mm": 1.1143775191158056
+    },
+    {
+      "index": 2120,
+      "source_triangle": 82,
+      "source_distance_mm": 1.1143775191158056
+    },
+    {
+      "index": 2121,
+      "source_triangle": 285,
+      "source_distance_mm": 1.2761185644194484
+    },
+    {
+      "index": 2122,
+      "source_triangle": 285,
+      "source_distance_mm": 1.2761185644194484
+    },
+    {
+      "index": 2123,
+      "source_triangle": 285,
+      "source_distance_mm": 1.2761185644194484
+    },
+    {
+      "index": 2124,
+      "source_triangle": 345,
+      "source_distance_mm": 0.23968040477484465
+    },
+    {
+      "index": 2125,
+      "source_triangle": 223,
+      "source_distance_mm": 2.380513586103916
+    },
+    {
+      "index": 2126,
+      "source_triangle": 223,
+      "source_distance_mm": 2.380513586103916
+    },
+    {
+      "index": 2127,
+      "source_triangle": 223,
+      "source_distance_mm": 2.380513586103916
+    },
+    {
+      "index": 2128,
+      "source_triangle": 296,
+      "source_distance_mm": 2.6345928199589252
+    },
+    {
+      "index": 2129,
+      "source_triangle": 296,
+      "source_distance_mm": 2.6345928199589252
+    },
+    {
+      "index": 2130,
+      "source_triangle": 342,
+      "source_distance_mm": 3.2251894008368254
+    }
+  ]
+}

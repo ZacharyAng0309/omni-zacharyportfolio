@@ -1,0 +1,25 @@
+{
+  "face": {
+    "bytes": 96992,
+    "quality": 70,
+    "resolution": [
+      4096,
+      2048
+    ],
+    "old_vertices": 2719,
+    "new_vertices": 2837,
+    "patched_triangles": 122
+  },
+  "hair": {
+    "bytes": 86876,
+    "quality": 90,
+    "resolution": [
+      2048,
+      2048
+    ],
+    "old_vertices": 1911,
+    "new_vertices": 2345,
+    "patched_triangles": 729
+  },
+  "glb_bytes": 2651584
+}

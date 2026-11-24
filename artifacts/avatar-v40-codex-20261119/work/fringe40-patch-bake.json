@@ -1,0 +1,35 @@
+{
+  "face": {
+    "rectangle_pixels": [
+      896,
+      16,
+      768,
+      768
+    ],
+    "resolution": [
+      4096,
+      2048
+    ],
+    "patch_triangles": 851,
+    "source_triangles_using_patch": 122
+  },
+  "hair": {
+    "rectangle_pixels": [
+      1264,
+      400,
+      768,
+      768
+    ],
+    "resolution": [
+      2048,
+      2048
+    ],
+    "patch_triangles": 851,
+    "source_triangles_using_patch": 729
+  },
+  "verified_files": {
+    "fringe40-face-raw.png": "813ced4e0f5a958c207178c18393db2e5e38db8deaa2d3bfc9130928c53a5ea9",
+    "fringe40-hair-raw.png": "0e7e399dc0049c567454665cf18aa4bb499cdbf0ab51f89f801fb7cc038045c7",
+    "fringe40-patch-uv.npz": "89c0774d0fbd5159cf87547b5e3d3a13df485687e8d82f5d72ed9a580355db54"
+  }
+}

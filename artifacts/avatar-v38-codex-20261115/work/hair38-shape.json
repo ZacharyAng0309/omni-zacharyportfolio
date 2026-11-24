@@ -1,0 +1,8 @@
+{
+  "affected_vertex_copies": 130,
+  "max_displacement_mm": 5.447864532470703,
+  "minimum_triangle_orientation_cosine": 0.9385209083557129,
+  "minimum_area_ratio": 0.885344386100769,
+  "shared_face_boundary_movement_mm": 0.0,
+  "all_boundary_movement_mm": 0.0
+}

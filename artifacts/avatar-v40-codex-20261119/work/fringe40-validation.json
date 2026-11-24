@@ -1,0 +1,4807 @@
+{
+  "checks_passed": 1196,
+  "checks_failed": 0,
+  "metrics": {
+    "face_unchanged_surface_color_error_255": {
+      "sampled_triangles": 3000,
+      "mean": 1.3128093946045782,
+      "p99": 5.760351814366878
+    },
+    "hair_unchanged_surface_color_error_255": {
+      "sampled_triangles": 2698,
+      "mean": 0.29832524923490455,
+      "p99": 2.0
+    },
+    "unwrap_overlap_texel_centres": 0,
+    "triangles": 44910,
+    "glb_bytes": 2651584,
+    "joints": 52,
+    "new_uv_vertex_copies": 552
+  },
+  "checks": [
+    {
+      "check": "SM_Character_Face triangle count preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face UV2 exists",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face per-corner POSITION preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face per-corner NORMAL preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face per-corner TEXCOORD_0 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face per-corner JOINTS_0 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face per-corner WEIGHTS_0 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face per-corner TEXCOORD_1 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 0 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 1 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 2 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 3 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 4 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 5 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 6 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face target 7 POSITION copied exactly",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face copied joint weights normalized",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 443 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 444 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 448 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 480 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 491 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 509 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 513 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 544 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 545 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 546 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 561 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 562 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 563 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 567 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 568 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 569 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 578 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 579 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 583 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 595 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 596 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 601 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 624 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 628 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 637 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 638 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 646 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 647 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 654 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 657 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 658 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 659 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 660 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 665 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 666 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 667 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 672 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 686 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 689 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 690 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 691 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 700 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 712 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 713 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 714 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 715 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 716 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 718 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 727 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 741 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 742 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 750 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 759 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 765 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 771 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 772 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 785 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 789 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 794 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 800 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 804 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 805 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 817 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 818 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 820 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 826 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 827 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 844 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 861 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 865 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 866 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 868 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 869 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 875 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 876 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 956 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 965 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 968 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 996 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 997 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1000 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1126 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1153 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1174 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1175 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1220 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1328 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1362 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 1413 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2231 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2434 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2482 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2488 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2501 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2502 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2512 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2513 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2532 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2582 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2627 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2628 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2647 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2648 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2663 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2664 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2674 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2675 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2800 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2801 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2802 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2894 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2895 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2918 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2919 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2950 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2990 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2991 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 2992 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 3014 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 3101 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 3120 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face patch triangle 3121 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "face atlas slot was unused",
+      "passed": true
+    },
+    {
+      "check": "face unchanged surface average color retained",
+      "passed": true
+    },
+    {
+      "check": "face unchanged surface p99 color retained",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face local movement below 2.001 mm",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face material pbrMetallicRoughness preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face material normalTexture preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face material extensions preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face base color selects UV2",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair triangle count preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair UV2 exists",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair per-corner POSITION preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair per-corner NORMAL preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair per-corner TEXCOORD_0 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair per-corner JOINTS_0 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair per-corner WEIGHTS_0 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair per-corner TEXCOORD_1 preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair copied joint weights normalized",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 77 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 79 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 82 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 83 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 84 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 85 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 86 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 88 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 89 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 90 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 91 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 92 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 93 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 95 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 96 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 97 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 98 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 104 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 106 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 107 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 109 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 116 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 117 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 120 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 121 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 129 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 130 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 132 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 137 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 147 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 153 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 155 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 157 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 158 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 165 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 166 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 167 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 168 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 169 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 170 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 171 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 172 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 173 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 174 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 175 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 176 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 177 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 178 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 179 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 180 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 181 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 182 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 183 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 184 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 185 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 186 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 187 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 188 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 189 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 190 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 191 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 192 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 193 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 194 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 195 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 196 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 197 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 198 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 199 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 200 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 201 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 202 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 203 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 204 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 205 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 206 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 207 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 208 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 209 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 210 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 211 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 212 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 213 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 214 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 215 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 216 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 217 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 218 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 219 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 220 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 221 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 222 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 223 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 224 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 225 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 226 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 227 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 228 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 229 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 230 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 231 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 232 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 233 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 234 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 235 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 236 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 237 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 238 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 239 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 240 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 241 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 242 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 243 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 244 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 245 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 246 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 247 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 248 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 249 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 250 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 251 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 252 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 253 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 254 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 255 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 256 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 257 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 258 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 259 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 260 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 261 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 264 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 265 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 266 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 267 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 274 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 275 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 277 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 278 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 287 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 288 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 289 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 290 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 299 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 307 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 308 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 309 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 311 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 312 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 313 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 314 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 315 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 316 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 318 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 319 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 320 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 321 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 322 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 323 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 327 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 329 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 332 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 336 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 337 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 338 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 339 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 342 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 345 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 348 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 349 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 350 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 351 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 352 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 353 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 354 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 356 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 357 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 361 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 362 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 363 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 584 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 603 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 620 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 627 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 634 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 639 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 650 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 655 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 656 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 666 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 667 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 671 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 672 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 673 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 674 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 675 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 703 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 707 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 710 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 713 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 730 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 731 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 742 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 749 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 750 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 758 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 760 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 761 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 762 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 774 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 779 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 780 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 781 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 782 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 793 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 803 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 809 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 818 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 819 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 829 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 830 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 831 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 833 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 854 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 856 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 863 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 876 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 877 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 878 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 880 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 884 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 885 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 909 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 917 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 918 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 920 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 926 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 927 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 928 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 929 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 930 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 933 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 946 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 947 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 951 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 954 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 961 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 962 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 966 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 969 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 975 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 976 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 980 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 985 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 991 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 992 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 993 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 996 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1001 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1002 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1003 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1007 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1015 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1026 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1027 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1031 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1033 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1046 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1047 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1056 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1064 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1065 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1072 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1075 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1076 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1077 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1082 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1083 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1091 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1092 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1102 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1103 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1107 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1109 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1117 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1120 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1128 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1150 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1155 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1156 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1176 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1187 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1188 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1189 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1190 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1209 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1211 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1212 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1219 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1224 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1241 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1242 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1243 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1244 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1248 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1250 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1251 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1256 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1257 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1258 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1260 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1288 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1289 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1292 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1299 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1300 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1304 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1307 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1317 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1318 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1333 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1334 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1337 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1340 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1342 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1345 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1346 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1349 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1350 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1351 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1352 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1357 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1377 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1378 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1379 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1382 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1383 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1384 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1385 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1388 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1393 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1394 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1395 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1400 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1410 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1416 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1418 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1421 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1434 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1435 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1437 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1440 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1443 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1454 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1456 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1457 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1458 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1459 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1464 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1465 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1466 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1467 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1477 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1478 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1479 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1483 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1490 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1494 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1495 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1506 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1513 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1515 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1519 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1520 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1526 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1532 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1535 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1539 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1544 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1545 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1546 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1547 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1548 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1549 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1550 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1551 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1553 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1559 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1560 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1564 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1565 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1566 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1570 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1571 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1572 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1580 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1581 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1582 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1586 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1587 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1588 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1589 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1590 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1594 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1595 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1600 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1623 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1624 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1625 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1632 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1634 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1642 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1645 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1646 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1648 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1651 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1652 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1654 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1660 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1661 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1669 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1675 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1681 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1687 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1688 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1689 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1694 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1695 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1702 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1706 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1709 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1714 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1726 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1727 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1728 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1729 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1731 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1732 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1733 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1737 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1738 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1746 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1747 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1748 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1749 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1751 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1752 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1756 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1757 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1758 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1762 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1763 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1771 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1772 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1779 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1782 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1783 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1790 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1796 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1797 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1799 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1803 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1804 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1810 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1811 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1813 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1816 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1817 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1818 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1819 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1835 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1839 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1840 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1841 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1842 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1845 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1856 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1859 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1862 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1863 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1864 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1872 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1877 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1884 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1885 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1887 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1892 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1893 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1904 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1905 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1916 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1917 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1918 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1919 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1920 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1921 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1922 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1923 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1927 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1928 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1930 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1932 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1934 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1935 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1936 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1955 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1956 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1966 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1967 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1968 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1969 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1970 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1971 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1973 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1978 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1979 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1983 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1984 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1986 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1987 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1989 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1990 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1991 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1992 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1997 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 1998 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2004 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2005 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2014 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2017 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2018 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2029 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2030 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2032 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2033 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2034 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2036 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2048 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2056 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2059 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2063 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2064 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2065 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2068 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2074 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2078 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2081 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2082 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2083 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2084 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2091 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2105 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2109 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2110 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2111 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2117 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2118 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2127 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2135 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2136 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2137 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2141 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2142 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2143 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2145 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2146 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2149 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2151 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2159 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2160 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2162 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2172 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2173 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2174 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2175 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2181 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2182 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2199 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2205 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2206 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2207 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2208 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2214 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2224 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2228 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2236 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2237 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2240 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2246 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2247 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2253 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2254 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2255 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2258 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2259 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2261 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2262 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2263 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2266 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2271 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2277 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2278 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2280 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2281 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2285 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2286 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2293 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2298 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2301 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2305 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2306 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2307 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2308 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2309 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2315 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2316 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2317 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2322 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2324 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2325 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2331 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2332 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2333 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2336 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2339 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2340 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2341 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2342 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2344 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2348 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2357 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2358 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2365 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2368 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2377 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2378 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2379 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2380 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2381 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2382 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2383 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2391 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2395 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2396 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2398 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2401 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2403 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2405 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2410 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2411 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2433 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2434 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2435 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2450 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2451 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2452 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2463 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2464 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2468 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2469 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2476 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2477 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2480 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2481 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2482 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2483 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2484 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2488 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2499 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2507 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2525 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2527 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2533 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2534 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2545 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2551 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2554 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2555 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2559 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2563 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2564 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2565 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2567 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2573 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2595 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2596 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2602 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2622 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2625 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2626 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2627 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2628 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2634 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2639 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2642 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2643 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2647 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2664 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2665 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2682 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2683 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2693 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2702 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2712 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2713 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2714 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2719 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2720 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2724 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2732 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2746 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2753 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2759 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2763 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2764 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2770 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2771 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2792 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2819 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2820 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2838 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2839 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2846 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2852 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2853 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2859 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2869 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2875 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair patch triangle 2876 corner mapping",
+      "passed": true
+    },
+    {
+      "check": "hair atlas slot was unused",
+      "passed": true
+    },
+    {
+      "check": "hair unchanged surface average color retained",
+      "passed": true
+    },
+    {
+      "check": "hair unchanged surface p99 color retained",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair local movement below 2.001 mm",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair material pbrMetallicRoughness preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair material normalTexture preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair material extensions preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair base color selects UV2",
+      "passed": true
+    },
+    {
+      "check": "Accessor 0 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 1 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 2 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 3 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 4 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 5 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 5 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 6 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 7 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 8 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 9 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 10 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 11 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 12 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 13 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 14 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 15 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 16 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 17 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 18 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 19 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 20 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 20 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 21 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 21 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 22 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 22 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 23 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 23 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 24 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 24 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 25 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 25 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 26 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 26 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 27 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 27 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 28 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 28 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 29 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 29 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 30 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 30 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 31 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 31 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 32 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 32 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 33 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 33 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 34 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 34 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 35 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 35 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 36 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 36 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 37 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 37 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 38 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 38 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 39 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 39 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 40 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 40 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 41 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 41 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 42 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 42 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 43 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 43 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 44 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 44 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 45 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 45 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 46 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 46 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 47 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 47 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 48 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 48 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 49 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 49 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 50 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 50 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 51 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 51 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 52 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 52 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 53 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 53 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 54 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 55 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 55 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 56 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 56 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 57 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 57 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 58 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 58 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 59 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 59 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 60 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 60 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 61 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 61 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 62 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 62 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 63 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 63 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 64 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 64 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 65 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 65 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 66 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 66 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 67 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 67 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 68 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 68 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 69 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 69 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 70 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 70 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 71 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 71 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 72 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 72 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 73 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 73 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 74 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 74 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 75 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 75 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 76 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 76 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 77 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 77 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 78 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 78 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 79 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 79 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 80 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 80 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 81 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 81 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 82 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 82 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 83 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 83 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 84 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 84 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 85 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 85 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 86 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 86 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 87 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 87 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 88 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 88 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 89 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 89 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 90 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 90 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 91 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 91 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 92 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 92 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 93 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 93 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 94 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 94 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 95 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 95 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 96 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 96 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 97 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 97 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 98 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 98 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 99 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 99 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 100 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 100 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 101 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 101 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 102 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 102 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 103 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 103 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 104 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 104 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 105 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 105 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 106 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 106 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 107 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 107 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 108 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 108 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 109 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 109 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 110 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 110 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 111 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 112 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 113 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 113 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 114 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 114 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 115 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 115 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 116 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 116 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 117 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 117 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 118 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 118 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 119 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 119 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 120 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 120 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 121 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 121 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 122 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 122 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 123 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 123 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 124 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 124 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 125 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 125 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 126 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 126 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 127 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 127 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 128 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 128 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 129 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 129 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 130 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 130 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 131 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 131 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 132 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 132 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 133 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 133 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 134 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 134 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 135 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 135 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 136 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 136 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 137 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 137 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 138 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 138 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 139 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 139 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 140 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 140 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 141 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 141 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 142 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 142 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 143 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 143 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 144 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 144 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 145 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 145 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Accessor 146 finite",
+      "passed": true
+    },
+    {
+      "check": "Accessor 146 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "nodes unchanged",
+      "passed": true
+    },
+    {
+      "check": "skins unchanged",
+      "passed": true
+    },
+    {
+      "check": "scenes unchanged",
+      "passed": true
+    },
+    {
+      "check": "scene unchanged",
+      "passed": true
+    },
+    {
+      "check": "textures unchanged",
+      "passed": true
+    },
+    {
+      "check": "samplers unchanged",
+      "passed": true
+    },
+    {
+      "check": "animations unchanged",
+      "passed": true
+    },
+    {
+      "check": "extensionsUsed unchanged",
+      "passed": true
+    },
+    {
+      "check": "extensionsRequired unchanged",
+      "passed": true
+    },
+    {
+      "check": "Image 0 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 0 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Image 1 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 2 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 2 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Image 3 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 3 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Image 4 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 4 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "Image 5 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 6 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "Image 6 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face moved triangle orientation valid",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Face moved triangle area valid",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair moved triangle orientation valid",
+      "passed": true
+    },
+    {
+      "check": "SM_Character_Hair moved triangle area valid",
+      "passed": true
+    },
+    {
+      "check": "Every moving facial vertex base preserved",
+      "passed": true
+    },
+    {
+      "check": "135 shared face/hair pairs coincident",
+      "passed": true
+    },
+    {
+      "check": "Dedicated unwrap sampled without overlaps",
+      "passed": true
+    },
+    {
+      "check": "Triangle budget retained",
+      "passed": true
+    },
+    {
+      "check": "GLB below 3 MB",
+      "passed": true
+    },
+    {
+      "check": "52 joints retained",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "body-albedo": {
+    "bytes": 90724,
+    "resolution": 2048,
+    "quality": 90
+  },
+  "hair-albedo": {
+    "bytes": 80324,
+    "resolution": 2048,
+    "quality": 95
+  },
+  "body-roughness": {
+    "bytes": 67256,
+    "resolution": 1024,
+    "quality": "lossless"
+  },
+  "hair-roughness": {
+    "bytes": 28163,
+    "resolution": 512,
+    "quality": "lossless"
+  }
+}

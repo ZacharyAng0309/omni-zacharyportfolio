@@ -1,0 +1,17 @@
+{
+  "original_face_vertices": 2614,
+  "final_face_vertices": 2719,
+  "added_uv_seam_duplicates": 105,
+  "changed_normal_copies": 877,
+  "face_triangles": 3399,
+  "baked_texture_bytes": 96380,
+  "baked_texture_resolution": [
+    4096,
+    2048
+  ],
+  "webp_quality": 70,
+  "glb_bytes": 2354404,
+  "positions_and_existing_expression_values": "preserved; added vertices duplicate original values",
+  "roughness": 0.65,
+  "specular_factor": 0.35
+}

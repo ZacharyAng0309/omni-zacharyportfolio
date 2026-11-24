@@ -1,0 +1,50 @@
+[
+  {
+    "name": "zachary_character_v33_candidate.glb",
+    "bytes": 2691704,
+    "sha256": "58871C6C3B73AB541C465BD566E5B703CD03E3D935ED391C92850D21CF3AAE0E",
+    "verified": true
+  },
+  {
+    "name": "Zachary_Avatar_v33_Review.blend",
+    "bytes": 3211663,
+    "sha256": "710E2524689484AD0176DD8DE2CD2C0D4B5908EE7F0F0A6A38F1F1F3947C35C3",
+    "verified": true
+  },
+  {
+    "name": "avatar-v33-pose-targets.json",
+    "bytes": 2627,
+    "sha256": "6830C2FEABC3B2776C612DCF94E3943510FAFFDA6C83163F5C1E30D9E6E4D1FB",
+    "verified": true
+  },
+  {
+    "name": "Avatar-v33-Review.md",
+    "bytes": 4418,
+    "sha256": "762BE49517FB5BD8EB61D1754C8640EA0D8E283846017BE2DB2DFC55919098F0",
+    "verified": true
+  },
+  {
+    "name": "avatar-v33-mouth-review.jpg",
+    "bytes": 75618,
+    "sha256": "33E34BB9FBD5ED7D70589C4DDDE48B1F43802D8E848EB37BFFD4A199DF967B81",
+    "verified": true
+  },
+  {
+    "name": "avatar-v33-oral-cutaway.png",
+    "bytes": 457674,
+    "sha256": "36259933D6E57AA2EB3D957B35C8B882061ED6EC96BD1730F3FC030D6E90868D",
+    "verified": true
+  },
+  {
+    "name": "full33-front.png",
+    "bytes": 711873,
+    "sha256": "ABA7F626B4A1F15897D93D98B560D3F460E660634C265FAA5B959F36BC8F6E03",
+    "verified": true
+  },
+  {
+    "name": "full33-audit.json",
+    "bytes": 18834,
+    "sha256": "5CD125924630842EDF6265E08D8F22B55F3F4A1E8BE1C24A4B77A1C2413F1A93",
+    "verified": true
+  }
+]

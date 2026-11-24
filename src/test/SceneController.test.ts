@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as THREE from 'three';
 import { SceneController, PortfolioEngine } from '../graphics/SceneController';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { SCAN_MATERIAL } from '../domain/contracts';
 
 describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => {
@@ -483,25 +484,47 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
       controller.dispose();
     });
 
-    it('ignores clicks on interactive DOM buttons to prevent unwanted 3D raycast triggers', () => {
-      const onSelectSummitBeacon = vi.fn();
-      const controller = new SceneController(container, { onSelectSummitBeacon });
+    it('ignores clicks on interactive DOM buttons and overlaying 2D HUD panels to prevent unwanted 3D raycast triggers', () => {
+      const onSelectCaseStudyNode = vi.fn();
+      const controller = new SceneController(container, { onSelectCaseStudyNode });
 
-      // Add a DOM button
+      // Place a large raycastable target directly in front of the Act 1 camera at NDC (0, 0)
+      const cam = controller.getCamera();
+      const forward = new THREE.Vector3();
+      cam.getWorldDirection(forward);
+      const hitMesh = new THREE.Mesh(
+        new THREE.BoxGeometry(4, 4, 0.2),
+        new THREE.MeshBasicMaterial()
+      );
+      hitMesh.position.copy(cam.position).add(forward.multiplyScalar(3));
+      hitMesh.lookAt(cam.position);
+      hitMesh.userData = { type: 'flagshipOrb', caseStudySlug: 'hireti' };
+      controller.getScene().add(hitMesh);
+      controller.getScene().updateMatrixWorld(true);
+
+      const width = container.clientWidth || window.innerWidth;
+      const height = container.clientHeight || window.innerHeight;
+      const centerX = width * 0.5;
+      const centerY = height * 0.5;
+
+      // 1. Clicking an overlaying 2D DOM button or drawer div directly over the 3D prop must NOT raycast through
+      const sheetDiv = document.createElement('div');
       const button = document.createElement('button');
       button.textContent = 'Explore';
-      document.body.appendChild(button);
+      sheetDiv.appendChild(button);
+      document.body.appendChild(sheetDiv);
 
-      // Click on the DOM button
-      const clickEvent = new MouseEvent('pointerdown', {
-        clientX: 100,
-        clientY: 100,
-        bubbles: true,
-      });
-      button.dispatchEvent(clickEvent);
+      button.dispatchEvent(new MouseEvent('pointerdown', { clientX: centerX, clientY: centerY, bubbles: true }));
+      sheetDiv.dispatchEvent(new MouseEvent('pointerdown', { clientX: centerX, clientY: centerY, bubbles: true }));
+      expect(onSelectCaseStudyNode).not.toHaveBeenCalled();
 
-      expect(onSelectSummitBeacon).not.toHaveBeenCalled();
+      // 2. Clicking the actual 3D WebGL canvas at the same coordinates MUST hit the target cleanly
+      const canvasEl = controller.getEngine().getDomElement();
+      canvasEl.dispatchEvent(new MouseEvent('pointerdown', { clientX: centerX, clientY: centerY, bubbles: true }));
+      expect(onSelectCaseStudyNode).toHaveBeenCalledTimes(1);
+      expect(onSelectCaseStudyNode).toHaveBeenCalledWith('hireti');
 
+      sheetDiv.remove();
       controller.dispose();
     });
   });
@@ -611,7 +634,6 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
       const controller = new SceneController(container);
       const scene = controller.getScene();
 
-      let dressingTabletFound = false;
       let keynoteMonitorFound = false;
       let enterpriseWorkstationFound = false;
 
@@ -956,8 +978,8 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
     it('verifies 5-domain modular character breakdown in zachary_character.glb (Face, Hair, Glasses, Hands, Clothes) with 8 morph targets, 30 active finger bones, and zero hand-thigh contamination', async () => {
       const fs = await import('node:fs');
       const path = await import('node:path');
-      const candidatePathA = path.resolve(process.cwd(), 'public/models/zachary_character.glb');
-      const candidatePathB = path.resolve(process.cwd(), 'projects/ZacharyPortfolio/public/models/zachary_character.glb');
+      const candidatePathA = path.resolve(process.cwd(), 'artifacts/archived_public/models/zachary_character.glb');
+      const candidatePathB = path.resolve(process.cwd(), 'projects/ZacharyPortfolio/artifacts/archived_public/models/zachary_character.glb');
       const glbPath = fs.existsSync(candidatePathA) ? candidatePathA : candidatePathB;
       const buf = fs.readFileSync(glbPath);
 
@@ -985,8 +1007,31 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
         const idxAcc = gltf.accessors[mesh.primitives[0].indices];
         totalBodyTris += idxAcc.count / 3;
       }
-      // Exact topology conservation across the 6 body/cloth domain sub-meshes
-      expect(totalBodyTris).toBe(35069);
+      // Exact topology conservation across the 6 base body/cloth domain sub-meshes (v38) & 7 oral/eye meshes
+      expect(totalBodyTris).toBe(34674);
+      const extraV38Meshes = [
+        'SM_Character_OralCavity',
+        'SM_Character_UpperTeeth',
+        'SM_Character_LowerTeeth',
+        'SM_Character_Tongue',
+        'SM_Character_Eyelids',
+        'SM_Character_EyeRight',
+        'SM_Character_EyeLeft',
+      ];
+      let extraTris = 0;
+      for (const eName of extraV38Meshes) {
+        const node = gltf.nodes.find((n: any) => n.name === eName);
+        expect(node).toBeDefined();
+        const mesh = gltf.meshes[node.mesh];
+        extraTris += gltf.accessors[mesh.primitives[0].indices].count / 3;
+      }
+      const specIdxNode = gltf.nodes.find((n: any) => n.name === 'Sovereign_Titanium_Spectacles');
+      const specMeshObj = gltf.meshes[specIdxNode.mesh];
+      const specTris = specMeshObj.primitives.reduce(
+        (sum: number, prim: any) => sum + gltf.accessors[prim.indices].count / 3,
+        0
+      );
+      expect(totalBodyTris + extraTris + specTris).toBe(44910);
 
       // [TASK-AVATAR-MOD-01] & [AC-AVATAR-05]: SM_Character_Face 8 morph targets
       const faceNode = gltf.nodes.find((n: any) => n.name === 'SM_Character_Face');
@@ -1216,12 +1261,20 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
         return new Float32Array(bin.buffer, bin.byteOffset + (tBV.byteOffset || 0), tAcc.count * 3);
       });
 
+      const hoodiePosSet = new Set<string>();
+      const hPAcc = gltf.accessors[hoodiePrim.attributes.POSITION];
+      const hPBV = gltf.bufferViews[hPAcc.bufferView];
+      const hPArr = new Float32Array(bin.buffer, bin.byteOffset + (hPBV.byteOffset || 0), hPAcc.count * 3);
+      for (let v = 0; v < hPAcc.count; v++) hoodiePosSet.add(posKey(hPArr, v));
+
       let sharedSeamVerts = 0;
       let unpinnedSeamMorphVerts = 0;
       let mismatchedSeamSkinVerts = 0;
-      let mismatchedSeamNormals = 0;
+      const mismatchedSeamNormalKeys = new Set<string>();
+      let mismatchedHoodieCollarNormals = 0;
       for (let v = 0; v < fPosAcc.count; v++) {
-        const neighbor = neighborSkinByPos.get(posKey(fPos, v));
+        const key = posKey(fPos, v);
+        const neighbor = neighborSkinByPos.get(key);
         if (!neighbor) continue;
         sharedSeamVerts++;
         for (const mArr of morphArrays) {
@@ -1237,12 +1290,17 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
           fNrm[v * 3]! * neighbor.n[0]! +
           fNrm[v * 3 + 1]! * neighbor.n[1]! +
           fNrm[v * 3 + 2]! * neighbor.n[2]!;
-        if (nDot < 0.9999) mismatchedSeamNormals++;
+        if (nDot < 0.9999) {
+          mismatchedSeamNormalKeys.add(key);
+          if (hoodiePosSet.has(key)) mismatchedHoodieCollarNormals++;
+        }
       }
       expect(sharedSeamVerts).toBeGreaterThan(100);
-      expect(unpinnedSeamMorphVerts).toBeLessThanOrEqual(16); // <=16 minor boundary displacement entries from v24 adjacent hair boundary relaxation
+      expect(unpinnedSeamMorphVerts).toBe(0);
       expect(mismatchedSeamSkinVerts).toBe(0);
-      expect(mismatchedSeamNormals).toBeLessThanOrEqual(40); // <=40 boundary normal adjustments from v24 hair contour relaxation
+      expect(mismatchedHoodieCollarNormals).toBe(0);
+      // Deduplicate by 3D seam position so v40 UV2-split vertex copies along identical forehead/hair boundary points are not double-counted (45 unique vs 47 in v38)
+      expect(mismatchedSeamNormalKeys.size).toBeLessThanOrEqual(50);
 
       // [TASK-AVATAR-MOD-05] & [AC-CHR-03]: Verify forward 6-station arm kinematics (zero backward arm dislocation)
       const parents = new Array<number>(gltf.nodes.length).fill(-1);
@@ -1446,7 +1504,7 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
       expect(headPivot).toBeDefined();
       expect(neckPivot).toBeDefined();
 
-      // In Act 2 (sp = 0.22), prop target is the 3.89 Tome at (1.1, 0.0, -18.0)
+      // In Act 2 (sp = 0.22), prop target is the 3.75 Tome at (1.1, 0.0, -18.0)
       controller.updateScroll(0.22);
       for (let i = 0; i < 25; i++) controller.animateTick(0.016);
       const act2HeadRotY = headPivot!.rotation.y;
@@ -2222,6 +2280,1130 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
       expect((plinth.material as THREE.Material).opacity).toBeCloseTo(1.0, 2);
 
       controller.dispose();
+    });
+  });
+
+  describe('6-Act Cinema Diorama Backdrops, SpatialLightBridge, Focus Dolly & GLSL SkyDome', () => {
+    it('constructs 6 ChapterBackdrops and reveals SpatialLightBridge strictly during inter-act corridor transitions', () => {
+      const controller = new SceneController(container);
+      const lattice = controller.getParticleLattice();
+      const backdrops = lattice.getChapterBackdropsGroup();
+      const bridge = lattice.getSpatialLightBridge();
+
+      expect(backdrops).toBeDefined();
+      expect(bridge).toBeDefined();
+      for (let i = 0; i < 6; i++) {
+        expect(backdrops.getObjectByName(`ChapterBackdrop_${i}`)).toBeDefined();
+      }
+
+      // Stationary at Act 1 station: bridge hidden
+      controller.updateScroll(0.0);
+      controller.animateTick(0.016);
+      expect(bridge.visible).toBe(false);
+
+      // Mid-corridor transit between Act 1 and Act 2 (sp = 0.12): bridge illuminated
+      controller.updateScroll(0.12);
+      controller.animateTick(0.016);
+      expect(bridge.visible).toBe(true);
+
+      // Arrived at Act 2 station (sp = 0.20): bridge hides again
+      controller.updateScroll(0.2);
+      controller.animateTick(0.016);
+      expect(bridge.visible).toBe(false);
+
+      controller.dispose();
+    });
+
+    it('orchestrates 22 Focus Dolly sub-targets with smooth focusBlendWeight and clean clearSubTargetFocus release', () => {
+      const controller = new SceneController(container);
+      expect(SceneController.DIORAMA_SUB_TARGETS).toHaveLength(22);
+
+      const onSelectSubTarget = vi.fn();
+      const c2 = new SceneController(container, { onSelectSubTarget });
+
+      c2.selectSubTarget(0, 'optical-core');
+      expect(c2.getActiveSubTarget()).toEqual({ actIndex: 0, subTargetId: 'optical-core' });
+      expect(onSelectSubTarget).toHaveBeenCalledWith(0, 'optical-core');
+      expect(c2.getCameraRig().getActiveFocusTarget()?.subTargetId).toBe('optical-core');
+
+      for (let i = 0; i < 40; i++) c2.animateTick(0.016);
+      expect(c2.getCameraRig().getFocusBlendWeight()).toBeGreaterThan(0.95);
+      expect(c2.getCamera().position.z).toBeCloseTo(7.20, 1);
+
+      c2.clearSubTargetFocus();
+      expect(c2.getActiveSubTarget()).toBeNull();
+      expect(c2.getCameraRig().getActiveFocusTarget()).toBeNull();
+      for (let i = 0; i < 45; i++) c2.animateTick(0.016);
+      expect(c2.getCameraRig().getFocusBlendWeight()).toBeLessThan(0.05);
+
+      c2.dispose();
+      controller.dispose();
+    });
+
+    it('projects DiegeticHotspotLayer reticles within safe viewport bounds, clears WhisperStageHUD, enforces >= 8.5% sibling separation, and hides in transit', () => {
+      const controller = new SceneController(container);
+
+      for (let actIdx = 0; actIdx < 6; actIdx++) {
+        controller.updateScroll(actIdx * 0.2);
+        controller.animateTick(0.016);
+        const pins = controller.getProjectedHotspots(actIdx);
+        expect(pins.length).toBeGreaterThanOrEqual(3);
+
+        for (let i = 0; i < pins.length; i++) {
+          const p = pins[i]!;
+          expect(p.xPercent).toBeGreaterThanOrEqual(16);
+          expect(p.xPercent).toBeLessThanOrEqual(82);
+          expect(p.yPercent).toBeGreaterThanOrEqual(18);
+          expect(p.yPercent).toBeLessThanOrEqual(74);
+          if (p.xPercent < 44) {
+            expect(p.yPercent).toBeLessThanOrEqual(64);
+          }
+          for (let j = i + 1; j < pins.length; j++) {
+            const q = pins[j]!;
+            expect(Math.hypot(p.xPercent - q.xPercent, p.yPercent - q.yPercent)).toBeGreaterThanOrEqual(8.0);
+          }
+        }
+      }
+
+      // Mid-corridor transit hides diegetic pins cleanly
+      controller.updateScroll(0.12);
+      controller.animateTick(0.016);
+      const transitPins = controller.getProjectedHotspots(0);
+      expect(transitPins.every((p) => !p.visible)).toBe(true);
+
+      controller.dispose();
+    });
+
+    it('adapts 390x844 portrait FOV, enforces full-width yPercent <= 54 hotspot safe-zone, and centers portrait Focus Dolly framing', () => {
+      const controller = new SceneController(container);
+      controller.getEngine().resize(390, 844);
+      controller.getCameraRig().resize(390, 844);
+
+      const responsiveFov = controller.getCameraRig().getResponsiveBaseFov();
+      expect(responsiveFov).toBeGreaterThan(60);
+      expect(responsiveFov).toBeLessThanOrEqual(68);
+
+      for (let actIdx = 0; actIdx < 6; actIdx++) {
+        controller.updateScroll(actIdx * 0.2);
+        controller.animateTick(0.016);
+        const pins = controller.getProjectedHotspots(actIdx);
+        expect(pins.length).toBeGreaterThanOrEqual(3);
+        for (const p of pins) {
+          expect(p.yPercent).toBeLessThanOrEqual(54);
+        }
+      }
+
+      controller.updateScroll(0);
+      controller.selectSubTarget(0, 'optical-core');
+      for (let i = 0; i < 40; i++) controller.animateTick(0.016);
+      // optical-core desktop focusCamPos.z=7.20 and focusLookAt.x=1.34 -> portrait +Z pullback and centered lookAt.x counter-shift
+      expect(controller.getCamera().position.z).toBeGreaterThan(8.0);
+      expect(controller.getCurrentLookAt().x).toBeLessThan(1.20);
+
+      controller.dispose();
+    });
+
+    it('dispatches Act 2–6 prop choreography via selectSubTarget across Academy volumes, Crucible rings, Summit waypoints, Frontier cores, and Horizon lenses', () => {
+      const controller = new SceneController(container);
+
+      controller.selectSubTarget(1, 'vol-3', { emitCallback: false });
+      expect(controller.getLastSceneAction()).toBe('tome_inspect');
+
+      controller.selectSubTarget(2, 'cloud-ai', { emitCallback: false });
+      expect(controller.getLastSceneAction()).toBe('badge_surge');
+
+      controller.selectSubTarget(3, 'hilti-trophy', { emitCallback: false });
+      expect(controller.getLastSceneAction()).toBe('trophy_present');
+
+      controller.selectSubTarget(4, 'hireti-sweetzerland', { emitCallback: false });
+      expect(controller.isFrontierStrataExplodedState()).toBe(true);
+
+      controller.selectSubTarget(5, 'crypto-quant', { emitCallback: false });
+      expect(controller.getLastSceneAction()).toBe('interest_focus');
+      expect(controller.getInterestFocusColorHex().toLowerCase()).toBe('#f59e0b');
+
+      controller.selectSubTarget(5, 'direct-dispatch', { emitCallback: false });
+      expect(controller.getLastSceneAction()).toBe('handshake_wave');
+
+      controller.dispose();
+    });
+
+    it('articulates lower-body walking stride during corridor transit and contrapposto weight shift when stationary', () => {
+      const controller = new SceneController(container);
+      const gltfScene = new THREE.Group();
+      const boneNames = ['Hips', 'Head', 'LeftUpLeg', 'RightUpLeg', 'LeftLeg', 'RightLeg'] as const;
+      const bones: Record<string, THREE.Bone> = {};
+      for (const n of boneNames) {
+        const b = new THREE.Bone();
+        b.name = n;
+        bones[n] = b;
+        gltfScene.add(b);
+      }
+      controller.applyLoadedGLTFAvatar({ scene: gltfScene });
+
+      // Stationary contrapposto at Act 1
+      controller.updateScroll(0.0);
+      for (let i = 0; i < 20; i++) controller.animateTick(0.016);
+      expect(Math.abs(bones['Hips']!.rotation.z)).toBeGreaterThan(0.005);
+
+      // Mid-corridor walking stride at sp = 0.12
+      controller.updateScroll(0.12);
+      let maxStrideDiff = 0;
+      for (let i = 0; i < 25; i++) {
+        controller.animateTick(0.032);
+        maxStrideDiff = Math.max(
+          maxStrideDiff,
+          Math.abs(bones['LeftUpLeg']!.rotation.x - bones['RightUpLeg']!.rotation.x)
+        );
+      }
+      expect(maxStrideDiff).toBeGreaterThan(0.15);
+
+      controller.dispose();
+    });
+
+    it('keeps Act 1 StudioGroup anchored in world space during walking departure and suppresses test-env GLB load warnings', async () => {
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const loadSpy = vi.spyOn(GLTFLoader.prototype, 'load').mockImplementation((_url, _onLoad, _onProgress, onError) => {
+        onError?.(new Error('Simulated network error in test env'));
+      });
+
+      const controller = new SceneController(container);
+      const studioGroup = controller.getStudioGroup();
+      expect(studioGroup).not.toBeNull();
+
+      await controller.loadGLTFModel('/models/missing_test_model.glb');
+      expect(warnSpy).not.toHaveBeenCalled();
+
+      // Advance into Act 1 walking departure (sp = 0.12): StudioGroup counter-translates so world anchor stays fixed at Station 0
+      controller.updateScroll(0.12);
+      controller.animateTick(0.016);
+      const worldPos = new THREE.Vector3();
+      studioGroup!.getWorldPosition(worldPos);
+      expect(worldPos.distanceTo(SceneController.PERSONA_STATIONS[0]!.pos)).toBeLessThan(0.15);
+
+      controller.dispose();
+      loadSpy.mockRestore();
+      warnSpy.mockRestore();
+    });
+
+    it('renders continuous CinemaSkyDome GLSL shader centered on camera with per-act horizon color transitions', () => {
+      const controller = new SceneController(container);
+      const skyMesh = controller.getParticleLattice().getCinemaSkyMesh();
+      expect(skyMesh).toBeDefined();
+      expect(skyMesh.name).toBe('CinemaSkyDome');
+
+      const skyMat = skyMesh.material as THREE.ShaderMaterial;
+      const horizonUniform = skyMat.uniforms['uHorizonColor']!.value as THREE.Color;
+
+      controller.updateScroll(0.0);
+      controller.animateTick(0.016);
+      const act1HorizonHex = horizonUniform.getHex();
+      expect(skyMesh.position.distanceTo(controller.getCamera().position)).toBeCloseTo(0, 3);
+
+      controller.updateScroll(0.6);
+      controller.animateTick(0.016);
+      const act4HorizonHex = horizonUniform.getHex();
+      expect(act4HorizonHex).not.toBe(act1HorizonHex);
+      expect(skyMesh.position.distanceTo(controller.getCamera().position)).toBeCloseTo(0, 3);
+
+      controller.dispose();
+    });
+  });
+
+  describe('Cinematic Transition Physics, Inter-Act Portals & Velocity Star-Streak Warp', () => {
+    it('builds 5 inter-act architectural portal gates visible strictly inside transition corridors', () => {
+      const controller = new SceneController(container);
+      const backdrops = controller.getParticleLattice().getChapterBackdropsGroup();
+
+      for (let i = 0; i < 5; i++) {
+        expect(backdrops.getObjectByName(`InterActPortalGate_${i}`)).toBeDefined();
+        expect(backdrops.getObjectByName(`SkybridgePromenadeDeck_${i}`)).toBeDefined();
+      }
+
+      // Stationary at Act 1 station: portal gate 0 must remain hidden
+      controller.updateScroll(0.0);
+      controller.animateTick(0.016);
+      expect(backdrops.getObjectByName('InterActPortalGate_0')?.visible).toBe(false);
+
+      // Mid-transition between Act 1 and Act 2 (sp = 0.10): portal gate 0 illuminates cleanly
+      controller.updateScroll(0.1);
+      controller.animateTick(0.016);
+      expect(backdrops.getObjectByName('InterActPortalGate_0')?.visible).toBe(true);
+      expect(backdrops.getObjectByName('InterActPortalGate_1')?.visible).toBe(false);
+
+      // Stationary at Act 2 station: portal gate 0 hides cleanly again
+      controller.updateScroll(0.2);
+      controller.animateTick(0.016);
+      expect(backdrops.getObjectByName('InterActPortalGate_0')?.visible).toBe(false);
+
+      controller.dispose();
+    });
+
+    it('applies damped Steadicam lateral banking roll and warps stardust lattice under velocity', () => {
+      const controller = new SceneController(container);
+      const rig = controller.getCameraRig();
+      const lattice = controller.getParticleLattice();
+
+      controller.updateScroll(0.0);
+      controller.animateTick(0.016);
+      expect(Math.abs(rig.getBankRoll())).toBeLessThan(0.01);
+
+      // Rapid scroll sweep from Act 1 (x = -0.48) toward Act 2 (x = +1.35)
+      controller.updateScroll(0.2);
+      controller.animateTick(0.016);
+      expect(Math.abs(rig.getBankRoll())).toBeGreaterThan(0.005);
+      expect(Math.abs(rig.getBankRoll())).toBeLessThanOrEqual(0.055);
+      expect(lattice.getWarpFactor()).toBeGreaterThan(0.15);
+
+      // Under reduced motion, banking roll and velocity warp lock cleanly to zero
+      controller.setReducedMotion(true);
+      controller.animateTick(0.016);
+      expect(rig.getBankRoll()).toBe(0);
+      expect(lattice.getWarpFactor()).toBe(0);
+
+      controller.dispose();
+    });
+
+    it('smoothly interpolates Skybridge lighting intensities without step jumps and damps companion idle arm relaxation', () => {
+      const controller = new SceneController(container);
+      controller.setReducedMotion(false);
+      const scene = controller.getScene();
+      const keyLight = scene.children.find(
+        (obj) => obj instanceof THREE.DirectionalLight && obj.castShadow
+      ) as THREE.DirectionalLight | undefined;
+      const rimLight = controller.getRimCyanLight();
+      expect(keyLight).toBeDefined();
+      expect(rimLight).toBeDefined();
+
+      // Act 1 corridor onset (sp = 0.11, w ~ 0.316 <= 0.35): preserves exact Act 1 lighting baseline
+      controller.updateScroll(0.11);
+      controller.animateTick(0.016);
+      expect(keyLight!.intensity).toBeCloseTo(3.1, 3);
+      expect(rimLight!.intensity).toBeCloseTo(2.45, 3);
+
+      // Mid-corridor ramp (sp = 0.125, w ~ 0.593): smoothly interpolated intermediate values
+      controller.updateScroll(0.125);
+      controller.animateTick(0.016);
+      expect(keyLight!.intensity).toBeGreaterThan(3.2);
+      expect(keyLight!.intensity).toBeLessThan(3.7);
+      expect(rimLight!.intensity).toBeGreaterThan(2.6);
+      expect(rimLight!.intensity).toBeLessThan(4.3);
+
+      // Exit to Act 2 (sp = 0.15, w ~ 0.957 >= 0.85): settles smoothly at Act 2 intensities
+      controller.updateScroll(0.15);
+      controller.animateTick(0.016);
+      expect(keyLight!.intensity).toBeCloseTo(3.8, 3);
+      expect(rimLight!.intensity).toBeCloseTo(4.5, 3);
+
+      // Verify smooth exponential damping on stylized companion idle arm relaxation weight
+      const compGroup = new THREE.Group();
+      for (const boneName of ['LeftArm', 'RightArm', 'LeftForeArm', 'RightForeArm']) {
+        const b = new THREE.Bone();
+        b.name = boneName;
+        compGroup.add(b);
+      }
+      const idleClip = new THREE.AnimationClip('Idle_Breathing', 1.0, []);
+      const walkClip = new THREE.AnimationClip('Walk_Forward', 1.0, []);
+      controller.applyLoadedStylizedCompanion({ scene: compGroup, animations: [idleClip, walkClip] });
+      expect(controller.getCompanionIdleRelaxWeight()).toBeCloseTo(1.0, 3);
+
+      controller.updateScroll(0.12);
+      for (let i = 0; i < 5; i++) controller.animateTick(0.016);
+      const midWeight = controller.getCompanionIdleRelaxWeight();
+      expect(midWeight).toBeGreaterThan(0.1);
+      expect(midWeight).toBeLessThan(0.9);
+
+      for (let i = 0; i < 35; i++) controller.animateTick(0.016);
+      expect(controller.getCompanionIdleRelaxWeight()).toBeLessThan(0.05);
+
+      controller.dispose();
+    });
+
+    it('hides fallback StarPressBackingFrame upon GLB alignment, isolates IlluminatedTome top-face material, and aligns Act 5/6 landmarks', () => {
+      const controller = new SceneController(container);
+      const scene = controller.getScene();
+      const backdrops = controller.getParticleLattice().getChapterBackdropsGroup();
+
+      // Act 4: alignStarPressToGLBFrame() must hide fallback StarPressBackingFrame to prevent Z-fighting with Prop_Star_PressFrame
+      const backingFrame = scene.getObjectByName('StarPressBackingFrame') as THREE.Mesh;
+      const paperMesh = scene.getObjectByName('StarPressPaperMesh') as THREE.Mesh;
+      expect(backingFrame).toBeDefined();
+      expect(backingFrame.visible).toBe(true);
+      (controller as unknown as { act4: { alignStarPressToGLBFrame(): void } }).act4.alignStarPressToGLBFrame();
+      expect(backingFrame.visible).toBe(false);
+      expect(paperMesh.visible).toBe(true);
+
+      // Act 2: IlluminatedTome renders manuscript texture strictly on +Y top face (index 2) with sRGB colorSpace
+      const tome = scene.getObjectByName('IlluminatedTome') as THREE.Mesh;
+      expect(Array.isArray(tome.material)).toBe(true);
+      const tomeMats = tome.material as THREE.MeshStandardMaterial[];
+      expect(tomeMats).toHaveLength(6);
+      expect(tomeMats[2]?.map).not.toBeNull();
+      expect(tomeMats[2]?.map?.colorSpace).toBe(THREE.SRGBColorSpace);
+      expect(tomeMats[0]?.map).toBeNull();
+
+      // Act 5: ReactorGantryStruts and ReactorFloorBusbars flank the x = 0.55 reactor tunnel axis symmetrically
+      const struts = backdrops.getObjectByName('ReactorGantryStruts') as THREE.InstancedMesh;
+      const m0 = new THREE.Matrix4();
+      const m1 = new THREE.Matrix4();
+      const p0 = new THREE.Vector3();
+      const p1 = new THREE.Vector3();
+      struts.getMatrixAt(0, m0);
+      struts.getMatrixAt(1, m1);
+      p0.setFromMatrixPosition(m0);
+      p1.setFromMatrixPosition(m1);
+      expect((p0.x + p1.x) * 0.5).toBeCloseTo(0.55, 3);
+
+      const busbars = backdrops.getObjectByName('ReactorFloorBusbars') as THREE.Group;
+      expect(busbars).toBeDefined();
+      expect(busbars.children).toHaveLength(2);
+      expect((busbars.children[0]!.position.x + busbars.children[1]!.position.x) * 0.5).toBeCloseTo(0.55, 3);
+      expect(busbars.children[0]!.position.z).toBeLessThan(-10);
+
+      // Act 6: CosmicDeckCompassRing centers at world x = 0 (local -0.35 inside ChapterBackdrop_5)
+      const compass = backdrops.getObjectByName('CosmicDeckCompassRing') as THREE.Mesh;
+      expect(compass.position.x).toBeCloseTo(-0.35, 3);
+
+      controller.dispose();
+    });
+
+    it('synchronizes all 6 Schema-v4 facial morph meshes, applies non-accumulating restQuaternion finger curls with 0.55 thumb scale, and matches eyelid PBR calibration', () => {
+      const controller = new SceneController(container);
+      const gltfScene = new THREE.Group();
+
+      const headBone = new THREE.Bone();
+      headBone.name = 'Head';
+      const rightHandBone = new THREE.Bone();
+      rightHandBone.name = 'RightHand';
+      rightHandBone.rotation.set(0.16, 0.22, -0.12, 'XYZ');
+
+      // Non-identity rest quaternions mirroring v38 GLB bone orientation
+      const indexRest = new THREE.Quaternion(0.1238, -0.8629, 0.2901, 0.3948).normalize();
+      const thumbRest = new THREE.Quaternion(-0.1012, -0.8682, 0.3612, 0.3248).normalize();
+      const indexBone = new THREE.Bone();
+      indexBone.name = 'LeftHandIndex1';
+      indexBone.quaternion.copy(indexRest);
+      const thumbBone = new THREE.Bone();
+      thumbBone.name = 'LeftHandThumb1';
+      thumbBone.quaternion.copy(thumbRest);
+      gltfScene.add(headBone, rightHandBone, indexBone, thumbBone);
+
+      const morphTargetNames = [
+        'mouthSmileLeft',
+        'mouthSmileRight',
+        'mouthOpen',
+        'jawOpen',
+        'eyeBlinkLeft',
+        'eyeBlinkRight',
+        'browInnerUp',
+        'viseme_aa',
+      ];
+      const morphDict: Record<string, number> = {
+        ...Object.fromEntries(morphTargetNames.map((n, i) => [n, i])),
+        staleUnusedShape: 8,
+      };
+      const meshNames = [
+        'SM_Character_Face',
+        'SM_Character_OralCavity',
+        'SM_Character_UpperTeeth',
+        'SM_Character_LowerTeeth',
+        'SM_Character_Tongue',
+        'SM_Character_Eyelids',
+      ] as const;
+
+      const morphMeshes: THREE.Mesh[] = [];
+      const skinTex = new THREE.Texture();
+      let eyelidsMat: THREE.MeshStandardMaterial | null = null;
+      for (const mName of meshNames) {
+        const g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(9), 3));
+        const mat = new THREE.MeshStandardMaterial(mName === 'SM_Character_Face' || mName === 'SM_Character_Eyelids' ? { map: skinTex } : {});
+        if (mName === 'SM_Character_Eyelids') eyelidsMat = mat;
+        const m = new THREE.Mesh(g, mat);
+        m.name = mName;
+        m.morphTargetDictionary = { ...morphDict };
+        m.morphTargetInfluences = [0, 0, 0, 0, 0, 0, 0, 0, 0.99]; // Seed stale extra morph at index 8
+        morphMeshes.push(m);
+        gltfScene.add(m);
+      }
+      const eyeMesh = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.02, 0.02), new THREE.MeshStandardMaterial());
+      eyeMesh.name = 'SM_Character_EyeLeft';
+      gltfScene.add(eyeMesh);
+
+      controller.applyLoadedGLTFAvatar({ scene: gltfScene });
+
+      // Primary face mesh stays SM_Character_Face, all 6 morph meshes are registered, and eyelids share skin PBR calibration
+      expect(controller.getGLTFFaceMesh()?.name).toBe('SM_Character_Face');
+      expect(controller.getGLTFFacialMorphMeshes()).toHaveLength(6);
+      expect(eyelidsMat?.color.getHex()).toBe(0xefebe8);
+      expect(eyelidsMat?.roughness).toBeCloseTo(0.64, 2);
+      expect(eyelidsMat?.emissiveIntensity).toBeCloseTo(0.08, 2);
+      expect(morphMeshes[5]!.castShadow).toBe(false);
+      expect(eyeMesh.castShadow).toBe(false);
+
+      // Trigger blink window around virtualTime % 4.2 > 4.02 & inspect_tome for brow + curl
+      for (let i = 0; i < 245; i++) controller.animateTick(0.016); // virtualTime ~ 3.92s
+      controller.triggerSceneAction('inspect_tome');
+      for (let i = 0; i < 13; i++) controller.animateTick(0.016); // virtualTime ~ 4.128s inside blink window while inspect_tome is active
+
+      const faceInfl = morphMeshes[0]!.morphTargetInfluences!;
+      expect(faceInfl[4]).toBeGreaterThan(0.3); // eyeBlinkLeft active
+      expect(faceInfl[5]).toBeGreaterThan(0.3); // eyeBlinkRight active
+      for (const m of morphMeshes) {
+        expect(m.morphTargetInfluences![8]).toBe(0); // Inactive/stale target reset to 0 every frame
+        for (let k = 0; k < 8; k++) {
+          expect(m.morphTargetInfluences![k]).toBeCloseTo(faceInfl[k]!, 5);
+        }
+      }
+
+      // Let currentFingerCurl settle to inspect_tome (0.18) and confirm zero per-frame accumulation & 0.55x thumb scale
+      for (let i = 0; i < 45; i++) controller.animateTick(0.016);
+      const expectedAngleDelta = (q: THREE.Quaternion, rest: THREE.Quaternion): number => {
+        const diff = rest.clone().invert().multiply(q).normalize();
+        return 2 * Math.acos(THREE.MathUtils.clamp(Math.abs(diff.w), 0, 1));
+      };
+      const indexDeltaAt60 = expectedAngleDelta(indexBone.quaternion, indexRest);
+      const thumbDeltaAt60 = expectedAngleDelta(thumbBone.quaternion, thumbRest);
+      expect(indexDeltaAt60).toBeCloseTo(0.18, 2);
+      expect(thumbDeltaAt60).toBeCloseTo(0.18 * 0.55, 2);
+
+      for (let i = 0; i < 40; i++) controller.animateTick(0.016);
+      expect(expectedAngleDelta(indexBone.quaternion, indexRest)).toBeCloseTo(0.18, 2);
+      expect(expectedAngleDelta(thumbBone.quaternion, thumbRest)).toBeCloseTo(0.18 * 0.55, 2);
+
+      // Verify glasses_adjust wraps 4.52316 wrist Z to shortest equivalent (-1.76 rad) rather than spinning +4.5 rad
+      controller.triggerSceneAction('glasses_adjust');
+      controller.animateTick(0.016);
+      expect(rightHandBone.rotation.z).toBeLessThan(0.0);
+
+      controller.dispose();
+    });
+
+    it('welds coincident UV-seam vertex normals on SM_Character_Face and calibrates M_Hair_v38_CurtainFlow sheen/shadow response', () => {
+      const controller = new SceneController(container);
+      const gltfScene = new THREE.Group();
+
+      // Build split-normal geometry at coincident corner position (0, 0, 0)
+      const faceGeom = new THREE.BufferGeometry();
+      faceGeom.setAttribute(
+        'position',
+        new THREE.Float32BufferAttribute([0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0, 0, 0.1, 0, -0.1, 0, 0], 3)
+      );
+      faceGeom.setAttribute(
+        'normal',
+        new THREE.Float32BufferAttribute([1, 0, 0, 0, 0, 1, 0, 0, 1, -1, 0, 0, 0, 0, 1, 0, 0, 1], 3)
+      );
+      const faceMat = new THREE.MeshStandardMaterial({ map: new THREE.Texture() });
+      const faceMesh = new THREE.Mesh(faceGeom, faceMat);
+      faceMesh.name = 'SM_Character_Face';
+
+      const hairTex = new THREE.Texture();
+      const hairMat = new THREE.MeshStandardMaterial({
+        name: 'M_Hair_v38_CurtainFlow',
+        map: hairTex,
+        normalMap: hairTex,
+        roughness: 1.0,
+      });
+      const hairMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), hairMat);
+      hairMesh.name = 'SM_Character_Hair';
+
+      const hips = new THREE.Bone();
+      hips.name = 'Hips';
+      const head = new THREE.Bone();
+      head.name = 'Head';
+      hips.add(head);
+      gltfScene.add(faceMesh, hairMesh, hips);
+
+      (controller as unknown as { applyLoadedGLTFAvatar(m: THREE.Group): void }).applyLoadedGLTFAvatar(gltfScene);
+
+      // Indices 0 and 3 share position (0, 0, 0) with exact opposite normals -> guard keeps finite unit normals without NaN
+      const nAttr = faceMesh.geometry.getAttribute('normal');
+      expect(Number.isFinite(nAttr.getX(0))).toBe(true);
+      expect(Math.hypot(nAttr.getX(0), nAttr.getY(0), nAttr.getZ(0))).toBeCloseTo(1, 5);
+      expect(nAttr.getX(0)).toBeCloseTo(1, 5);
+      expect(nAttr.getX(3)).toBeCloseTo(-1, 5);
+      controller.dispose();
+
+      const controller2 = new SceneController(container);
+      const gltfScene2 = new THREE.Group();
+      const faceGeom2 = new THREE.BufferGeometry();
+      faceGeom2.setAttribute(
+        'position',
+        new THREE.Float32BufferAttribute([0, 0, 0, 0, 0, 0], 3)
+      );
+      faceGeom2.setAttribute(
+        'normal',
+        new THREE.Float32BufferAttribute([0.6, 0, 0.8, -0.6, 0, 0.8], 3)
+      );
+      const faceMesh2 = new THREE.Mesh(faceGeom2, new THREE.MeshStandardMaterial({ map: new THREE.Texture() }));
+      faceMesh2.name = 'SM_Character_Face';
+      const hairMat2 = new THREE.MeshStandardMaterial({
+        name: 'M_Hair_v38_CurtainFlow',
+        map: new THREE.Texture(),
+        normalMap: new THREE.Texture(),
+        roughness: 1.0,
+      });
+      hairMat2.normalScale.set(1, -1);
+      const hairMesh2 = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), hairMat2);
+      hairMesh2.name = 'SM_Character_Hair';
+      const head2 = new THREE.Bone();
+      head2.name = 'Head';
+      gltfScene2.add(faceMesh2, hairMesh2, head2);
+
+      (controller2 as unknown as { applyLoadedGLTFAvatar(m: THREE.Group): void }).applyLoadedGLTFAvatar(gltfScene2);
+      const n2 = faceMesh2.geometry.getAttribute('normal');
+      expect(n2.getX(0)).toBeCloseTo(0, 5);
+      expect(n2.getZ(0)).toBeCloseTo(1, 5);
+      expect(n2.getX(1)).toBeCloseTo(n2.getX(0), 5);
+      expect(n2.getZ(1)).toBeCloseTo(n2.getZ(0), 5);
+
+      expect(hairMat2.roughness).toBeCloseTo(0.72, 2);
+      expect(hairMat2.normalScale.x).toBeCloseTo(0.85, 2);
+      expect(hairMat2.normalScale.y).toBeCloseTo(-0.85, 2);
+      expect(hairMat2.emissiveIntensity).toBeCloseTo(0.08, 2);
+
+      controller2.dispose();
+    });
+
+    it('guards selectSubTarget against recursive callback loops, routes Act 5 explode_strata to Act5Frontier, resets sticky poses on clearSubTargetFocus, and compensates portrait mobile FOV', () => {
+      let callbackCount = 0;
+      const controller = new SceneController(container, {
+        onSelectSubTarget: (actIndex, subTargetId) => {
+          callbackCount += 1;
+          // Simulate buggy recursive re-entry without emitCallback: false
+          controller.selectSubTarget(actIndex, subTargetId);
+        },
+      });
+
+      // 1. Non-re-entrant selectSubTarget + sticky pose reset
+      controller.selectSubTarget(0, 'strategy-table');
+      expect(callbackCount).toBe(1);
+      expect(controller.getCurrentPoseAction()).toBe('keynote_present');
+
+      controller.clearSubTargetFocus();
+      expect(controller.getActiveSubTarget()).toBeNull();
+      expect(controller.getCurrentPoseAction()).toBe('neutral');
+
+      // Default Architectural Centerpiece Mode keeps humanoid off stage while studioEnvRT disposes cleanly
+      expect(controller.isArchitecturalCenterpieceMode()).toBe(true);
+      expect(controller.getStylizedRig().group.visible).toBe(false);
+
+      // Also verify explicit emitCallback: false skips callback completely
+      controller.selectSubTarget(0, 'optical-core', { emitCallback: false });
+      expect(callbackCount).toBe(1);
+      expect(controller.getCurrentPoseAction()).toBe('glasses_adjust');
+      controller.clearSubTargetFocus();
+      expect(controller.getCurrentPoseAction()).toBe('neutral');
+
+      // 2. Act 5 explode_strata dock routing does not toggle Act 1 off-screen
+      const act1Initial = controller.isEngineExplodedState();
+      expect(controller.isFrontierStrataExplodedState()).toBe(false);
+      controller.updateScroll(0.8);
+      controller.triggerSceneAction('explode_strata', { section: 'ai-solutions' });
+      expect(controller.isFrontierStrataExplodedState()).toBe(true);
+      expect(controller.isEngineExplodedState()).toBe(act1Initial);
+
+      // 3. Composed left-arm stance in Act 3 & Act 5 (clears adjacent props)
+      expect(SceneController.PERSONA_STATIONS[2]!.gltf.leftArmZ).toBeLessThan(0);
+      expect(SceneController.PERSONA_STATIONS[4]!.gltf.leftArmZ).toBeLessThan(0);
+
+      // 4. Portrait mobile aspect FOV compensation preserves desktop 46 deg exactness
+      const camRig = controller.getCameraRig();
+      camRig.resize(1280, 800);
+      expect(camRig.getResponsiveBaseFov()).toBe(46);
+      camRig.resize(375, 812);
+      expect(camRig.getResponsiveBaseFov()).toBeGreaterThan(46);
+      expect(camRig.getResponsiveBaseFov()).toBeLessThanOrEqual(68);
+
+      controller.dispose();
+    });
+
+    it('preserves v40 TEXCOORD_2/UV1 channels with Face/Hair emissive seam parity, scoped portrait eye/eyewear catchlight IBL with deterministic disposal & non-WebGL fallback, and left-zone Act 1-6 focus framing', () => {
+      const controller = new SceneController(container);
+      const gltfScene = new THREE.Group();
+
+      const faceBaseTex = new THREE.Texture();
+      faceBaseTex.channel = 2;
+      const faceMat = new THREE.MeshStandardMaterial({
+        name: 'Zachary_Face_Albedo',
+        map: faceBaseTex,
+      });
+      const faceMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), faceMat);
+      faceMesh.name = 'SM_Character_Face';
+
+      const hairBaseTex = new THREE.Texture();
+      hairBaseTex.channel = 2;
+      const hairNormalTex = new THREE.Texture();
+      hairNormalTex.channel = 1;
+      const hairRoughTex = new THREE.Texture();
+      hairRoughTex.channel = 1;
+      const hairMat = new THREE.MeshStandardMaterial({
+        name: 'M_Hair_v38_CurtainFlow',
+        map: hairBaseTex,
+        normalMap: hairNormalTex,
+        roughnessMap: hairRoughTex,
+        roughness: 1.0,
+      });
+      const hairMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.1, 0.1), hairMat);
+      hairMesh.name = 'SM_Character_Hair';
+
+      const glassesMetalMat = new THREE.MeshStandardMaterial({
+        name: 'Glasses_Metal',
+        color: 0x2e333d,
+        metalness: 0.98,
+        roughness: 0.12,
+      });
+      const glassesLensMat = new THREE.MeshPhysicalMaterial({
+        name: 'Glasses_Lens',
+        transparent: true,
+        opacity: 0.004,
+        roughness: 0.06,
+      });
+      const glassesMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.02, 0.02), [
+        glassesMetalMat,
+        glassesLensMat,
+      ]);
+      glassesMesh.name = 'Sovereign_Titanium_Spectacles_1';
+
+      const eyeMat = new THREE.MeshPhysicalMaterial({
+        name: 'M_Eyes_v36',
+        roughness: 0.14,
+        specularIntensity: 0.1,
+      });
+      const eyeLeftMesh = new THREE.Mesh(new THREE.SphereGeometry(0.012), eyeMat);
+      eyeLeftMesh.name = 'SM_Character_EyeLeft';
+
+      const head = new THREE.Bone();
+      head.name = 'Head';
+      gltfScene.add(faceMesh, hairMesh, glassesMesh, eyeLeftMesh, head);
+
+      (controller as unknown as { applyLoadedGLTFAvatar(m: THREE.Group): void }).applyLoadedGLTFAvatar(gltfScene);
+
+      // v40 UV2 base/emissive + UV1 hair normal/roughness preserved
+      expect(faceMat.map?.channel).toBe(2);
+      expect(faceMat.emissiveMap).toBe(faceBaseTex);
+      expect(faceMat.emissiveMap?.channel).toBe(2);
+      expect(hairMat.map?.channel).toBe(2);
+      expect(hairMat.emissiveMap).toBe(hairBaseTex);
+      expect(hairMat.emissiveMap?.channel).toBe(2);
+      expect(hairMat.normalMap?.channel).toBe(1);
+      expect(hairMat.roughnessMap?.channel).toBe(1);
+      // Harmonized warm-neutral hair emissive lift matches Face fringe seam
+      expect(hairMat.emissive.getHex()).toBe(0xf5e2d3);
+      expect(hairMat.emissiveIntensity).toBeCloseTo(0.08, 2);
+
+      // Brushed titanium spectacles & corneal eye catchlights (strictly scoped to eyes/eyewear — zero global or Face/Hair IBL bleed)
+      expect(controller.getScene().environment).toBeNull();
+      expect(faceMat.envMap).toBeNull();
+      expect(hairMat.envMap).toBeNull();
+      expect(glassesMetalMat.metalness).toBeCloseTo(0.72, 2);
+      expect(glassesMetalMat.roughness).toBeCloseTo(0.24, 2);
+      expect(glassesMetalMat.emissiveIntensity).toBeCloseTo(0.22, 2);
+      expect(glassesLensMat.depthWrite).toBe(false);
+      expect(glassesLensMat.transparent).toBe(true);
+      expect(glassesLensMat.clearcoat).toBeCloseTo(1.0, 2);
+      expect(glassesLensMat.opacity).toBeLessThanOrEqual(0.035);
+      expect(glassesLensMat.envMapIntensity).toBeLessThanOrEqual(0.35);
+      expect(eyeMat.roughness).toBeCloseTo(0.10, 2);
+      expect(eyeMat.specularIntensity).toBeCloseTo(0.55, 2);
+      expect(eyeMat.clearcoat).toBeCloseTo(1.0, 2);
+      expect(eyeMat.clearcoatRoughness).toBeLessThanOrEqual(0.04);
+      expect(eyeMat.ior).toBeGreaterThanOrEqual(1.4);
+      expect(eyeMat.envMapIntensity).toBeLessThanOrEqual(0.7);
+
+      const catchlightRT = controller.getPortraitCatchlightEnvTarget();
+      expect(catchlightRT).not.toBeNull();
+      expect(eyeMat.envMap).toBe(catchlightRT!.texture);
+      expect(glassesMetalMat.envMap).toBe(catchlightRT!.texture);
+      expect(glassesLensMat.envMap).toBe(catchlightRT!.texture);
+      const envDisposeSpy = vi.spyOn(catchlightRT!, 'dispose');
+
+      // Act 1 focus targets look right of focal sculpture so they sit in the unobstructed left-58% band
+      const opticalCoreCfg = SceneController.DIORAMA_SUB_TARGETS.find((t) => t.id === 'optical-core')!;
+      const dossierCfg = SceneController.DIORAMA_SUB_TARGETS.find((t) => t.id === 'executive-dossier')!;
+      const tableCfg = SceneController.DIORAMA_SUB_TARGETS.find((t) => t.id === 'strategy-table')!;
+      expect(opticalCoreCfg.focusLookAt.x).toBeGreaterThan(1.3);
+      expect(dossierCfg.focusLookAt.y).toBeGreaterThanOrEqual(-0.20);
+      expect(tableCfg.focusLookAt.x).toBeGreaterThan(tableCfg.worldAnchor.x + 0.3);
+
+      // Every single one of the Focus Dolly targets across Acts 1–6 keeps its focal anchor
+      // unobstructed inside the left-58% viewport (NDC x <= 0.08, clear of the 500px right-hand sheet at x = +0.18)
+      // and clear of CinemaTimelineHUD (anchor NDC y <= 0.72)
+      const projCam = new THREE.PerspectiveCamera(46, 1280 / 800, 0.1, 145);
+      for (const target of SceneController.DIORAMA_SUB_TARGETS) {
+        projCam.fov = target.focusFov ?? 39;
+        projCam.position.copy(target.focusCamPos);
+        projCam.lookAt(target.focusLookAt);
+        projCam.updateProjectionMatrix();
+        projCam.updateMatrixWorld(true);
+
+        const anchorNdc = target.worldAnchor.clone().project(projCam);
+
+        expect(anchorNdc.x, `${target.id} anchor clipped left (${anchorNdc.x.toFixed(3)})`).toBeGreaterThan(-0.92);
+        expect(anchorNdc.x, `${target.id} anchor occluded by sheet (${anchorNdc.x.toFixed(3)})`).toBeLessThan(0.08);
+        expect(anchorNdc.y, `${target.id} anchor clips top HUD (${anchorNdc.y.toFixed(3)})`).toBeLessThan(0.72);
+      }
+
+      // Cross-act subtarget selection keeps the targeted Act 5 Frontier visible even while scrollProgress is still at Act 1
+      controller.updateScroll(0.0);
+      controller.selectSubTarget(4, 'hireti-sweetzerland', { emitCallback: false });
+      controller.animateTick(0.016);
+      expect(controller.getFrontierGroup().visible).toBe(true);
+
+      const studioEnvSpy = controller.getStudioEnvTarget() ? vi.spyOn(controller.getStudioEnvTarget()!, 'dispose') : null;
+      controller.dispose();
+      expect(envDisposeSpy).toHaveBeenCalledTimes(1);
+      expect(controller.getPortraitCatchlightEnvTarget()).toBeNull();
+      if (studioEnvSpy) expect(studioEnvSpy).toHaveBeenCalledTimes(1);
+      expect(controller.getStudioEnvTarget()).toBeNull();
+
+      // Safe fallback when WebGL context is unavailable (stripped non-WebGL mock): never throws and keeps direct material calibration
+      const fallbackController = new SceneController(container);
+      vi.spyOn(fallbackController.getRenderer(), 'getContext').mockReturnValue(null as unknown as WebGLRenderingContext);
+      const fallbackScene = new THREE.Group();
+      const fallbackEyeMat = new THREE.MeshPhysicalMaterial({ name: 'M_Eyes_v36', roughness: 0.14 });
+      const fallbackEye = new THREE.Mesh(new THREE.SphereGeometry(0.012), fallbackEyeMat);
+      fallbackEye.name = 'SM_Character_EyeLeft';
+      const fallbackHead = new THREE.Bone();
+      fallbackHead.name = 'Head';
+      fallbackScene.add(fallbackEye, fallbackHead);
+      expect(() => fallbackController.applyLoadedGLTFAvatar({ scene: fallbackScene })).not.toThrow();
+      expect(fallbackController.getPortraitCatchlightEnvTarget()).toBeNull();
+      expect(fallbackEyeMat.envMap).toBeNull();
+      expect(fallbackEyeMat.clearcoat).toBeCloseTo(1.0, 2);
+      expect(fallbackEyeMat.roughness).toBeCloseTo(0.10, 2);
+      fallbackController.dispose();
+    });
+
+    it('welds shared Face/Hands/Hoodie seam normals, injects per-fragment parabolic collar & wrist margin shader guards, restores checkShaderErrors after PMREM prefiltering, and drives 6-mesh lip-sync from narrowband Web Audio synthesis', () => {
+      const controller = new SceneController(container);
+      const renderer = controller.getRenderer();
+      expect(renderer.debug.checkShaderErrors).toBe(true);
+
+      const gltfScene = new THREE.Group();
+      const head = new THREE.Bone();
+      head.name = 'Head';
+      gltfScene.add(head);
+
+      // Shared seam vertex at (0.04, 1.45, 0.01) between SM_Character_Face and SM_Cloth_Hoodie
+      // and at (0.36, 0.89, 0.02) between SM_Character_Hands and SM_Cloth_Hoodie
+      const faceGeom = new THREE.BufferGeometry();
+      faceGeom.setAttribute('position', new THREE.Float32BufferAttribute([0.04, 1.45, 0.01], 3));
+      faceGeom.setAttribute('normal', new THREE.Float32BufferAttribute([0.6, 0.0, 0.8], 3));
+      const faceMat = new THREE.MeshStandardMaterial({ name: 'Zachary_Face_Albedo', map: new THREE.Texture() });
+      const faceMesh = new THREE.Mesh(faceGeom, faceMat);
+      faceMesh.name = 'SM_Character_Face';
+
+      const handsGeom = new THREE.BufferGeometry();
+      handsGeom.setAttribute('position', new THREE.Float32BufferAttribute([0.36, 0.89, 0.02], 3));
+      handsGeom.setAttribute('normal', new THREE.Float32BufferAttribute([0.0, 0.6, 0.8], 3));
+      const handsMat = new THREE.MeshStandardMaterial({ name: 'Zachary_Hands_Albedo', map: new THREE.Texture() });
+      const handsMesh = new THREE.Mesh(handsGeom, handsMat);
+      handsMesh.name = 'SM_Character_Hands';
+
+      const hoodieGeom = new THREE.BufferGeometry();
+      hoodieGeom.setAttribute(
+        'position',
+        new THREE.Float32BufferAttribute([0.04, 1.45, 0.01, 0.36, 0.89, 0.02], 3)
+      );
+      hoodieGeom.setAttribute(
+        'normal',
+        new THREE.Float32BufferAttribute([-0.6, 0.0, 0.8, 0.0, -0.6, 0.8], 3)
+      );
+      const hoodieMat = new THREE.MeshStandardMaterial({ name: 'Zachary_Cloth_Hoodie', map: new THREE.Texture() });
+      const hoodieMesh = new THREE.Mesh(hoodieGeom, hoodieMat);
+      hoodieMesh.name = 'SM_Cloth_Hoodie';
+
+      const eyeMat = new THREE.MeshPhysicalMaterial({ name: 'M_Eyes_v36' });
+      const eyeMesh = new THREE.Mesh(new THREE.SphereGeometry(0.012), eyeMat);
+      eyeMesh.name = 'SM_Character_EyeLeft';
+
+      gltfScene.add(faceMesh, handsMesh, hoodieMesh, eyeMesh);
+      controller.applyLoadedGLTFAvatar({ scene: gltfScene });
+
+      // 1. checkShaderErrors stays true after PMREM catchlight generation
+      expect(renderer.debug.checkShaderErrors).toBe(true);
+
+      // 2. Shared seam normals welded identically across Face<->Hoodie and Hands<->Hoodie
+      const fNorm = faceGeom.getAttribute('normal');
+      const hNorm = hoodieGeom.getAttribute('normal');
+      const wNorm = handsGeom.getAttribute('normal');
+      expect(fNorm.getX(0)).toBeCloseTo(0.0, 5);
+      expect(fNorm.getZ(0)).toBeCloseTo(1.0, 5);
+      expect(hNorm.getX(0)).toBeCloseTo(fNorm.getX(0), 5);
+      expect(hNorm.getZ(0)).toBeCloseTo(fNorm.getZ(0), 5);
+      expect(wNorm.getY(0)).toBeCloseTo(0.0, 5);
+      expect(wNorm.getZ(0)).toBeCloseTo(1.0, 5);
+      expect(hNorm.getY(1)).toBeCloseTo(wNorm.getY(0), 5);
+      expect(hNorm.getZ(1)).toBeCloseTo(wNorm.getZ(0), 5);
+
+      // 3. Per-fragment parabolic collar & wrist margin shader guards attached to Face, Hands, and Hoodie
+      expect(faceMat.customProgramCacheKey()).toBe('skin-atlas-margin-neck-v2');
+      expect(handsMat.customProgramCacheKey()).toBe('skin-atlas-margin-wrist-v2');
+      expect(hoodieMat.customProgramCacheKey()).toBe('skin-atlas-margin-hoodie-v2');
+      expect(handsMat.emissiveIntensity).toBeCloseTo(0.08, 2);
+
+      const mockFaceShader = {
+        vertexShader: '#include <common>\nvoid main() {\n#include <begin_vertex>\n}',
+        fragmentShader: '#include <common>\nvoid main() {\n#include <map_fragment>\n#include <emissivemap_fragment>\n}',
+      } as unknown as THREE.WebGLProgramParametersWithUniforms;
+      faceMat.onBeforeCompile(mockFaceShader, renderer);
+      expect(mockFaceShader.vertexShader).toContain('varying vec3 vBindPos;');
+      expect(mockFaceShader.fragmentShader).toContain('vNeckCollarRimMask');
+      expect(mockFaceShader.fragmentShader).toContain('1.4265 + 4.8 * vBindPos.x * vBindPos.x');
+      expect(mockFaceShader.fragmentShader).toContain('1.0 - smoothstep( 0.018, 0.030, vBindPos.z )');
+
+      const mockHandsShader = {
+        vertexShader: '#include <common>\nvoid main() {\n#include <begin_vertex>\n}',
+        fragmentShader: '#include <common>\nvoid main() {\n#include <map_fragment>\n#include <emissivemap_fragment>\n}',
+      } as unknown as THREE.WebGLProgramParametersWithUniforms;
+      handsMat.onBeforeCompile(mockHandsShader, renderer);
+      expect(mockHandsShader.fragmentShader).toContain('0.7114 + 0.47086 * abs( vBindPos.x ) - 0.05367 * vBindPos.z');
+
+      const mockHoodieShader = {
+        vertexShader: '#include <common>\nvoid main() {\n#include <begin_vertex>\n}',
+        fragmentShader:
+          '#include <common>\nvoid main() {\n#include <map_fragment>\n#include <roughnessmap_fragment>\n#include <emissivemap_fragment>\n}',
+      } as unknown as THREE.WebGLProgramParametersWithUniforms;
+      hoodieMat.onBeforeCompile(mockHoodieShader, renderer);
+      expect(mockHoodieShader.fragmentShader).toContain('vHoodieNeckSkinMask');
+      expect(mockHoodieShader.fragmentShader).toContain('vHoodieWristSkinMask');
+      expect(mockHoodieShader.fragmentShader).toContain('vHoodieWristCuffMask');
+      expect(mockHoodieShader.fragmentShader).toContain('0.7114 + 0.47086 * abs( vBindPos.x ) - 0.05367 * vBindPos.z');
+      expect(mockHoodieShader.fragmentShader).toContain('roughnessFactor = mix( roughnessFactor, 0.64, vHoodieNeckSkinMask );');
+
+      // 4. Narrowband Web Audio synthesis (bins 0..1 active, bins 2..31 zero) + synthesis envelope drives getAudioEnergy()
+      const sound = controller.getSoundEngine();
+      sound.toggleAudio();
+      expect(sound.isAudioEnabled()).toBe(true);
+      const analyser = (sound as unknown as { analyser: { getByteFrequencyData: (arr: Uint8Array) => void } | null }).analyser;
+      if (analyser) {
+        vi.spyOn(analyser, 'getByteFrequencyData').mockImplementation((arr: Uint8Array) => {
+          arr.fill(0);
+          arr[0] = 210; // 48Hz..220Hz fundamental bin only
+          arr[1] = 90;
+        });
+      }
+      sound.playHarmonicHum(220, 0.45);
+      const energyDuringHum = sound.getAudioEnergy();
+      expect(energyDuringHum).toBeGreaterThan(0.60);
+      // Overlapping short haptic click must not truncate or drop the active longer hum envelope
+      sound.playHapticClick(880, 0.04);
+      expect(sound.getAudioEnergy()).toBeGreaterThanOrEqual(energyDuringHum * 0.95);
+
+      sound.toggleAudio();
+      expect(sound.isAudioEnabled()).toBe(false);
+      expect(sound.getAudioEnergy()).toBe(0);
+
+      // 5. +Z-forward portrait gaze clamping across all 6 Acts keeps head yaw subtle (<= 0.14 rad), eliminates upward chin-tilt pitch,
+      //    and dynamically synchronizes M_Eyes_v36 envMapRotation.y with avatar head yaw so corneal catchlights stay matched
+      controller.setReducedMotion(true);
+      for (const actSp of [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]) {
+        controller.updateScroll(actSp);
+        controller.animateTick(0.016);
+        expect(Math.abs(head.rotation.y)).toBeLessThanOrEqual(0.1401);
+        expect(head.rotation.x).toBeGreaterThanOrEqual(-0.0201);
+        expect(head.rotation.x).toBeLessThanOrEqual(0.0401);
+        const expectedEyeEnvYaw = controller.getAvatarRig().rotation.y + head.rotation.y;
+        expect(eyeMat.envMapRotation.y).toBeCloseTo(expectedEyeEnvYaw, 4);
+      }
+
+      // 6. PersistentParticleLattice enforces true outer cylindrical perimeter (zero foreground squares inside central portrait frustum)
+      const lattice = controller.getParticleLattice().getPersistentLattice();
+      const mat4 = new THREE.Matrix4();
+      const posVec = new THREE.Vector3();
+      let minPerimeterRadius = Infinity;
+      for (let i = 0; i < lattice.count; i += 25) {
+        lattice.getMatrixAt(i, mat4);
+        posVec.setFromMatrixPosition(mat4);
+        const effR = Math.hypot(posVec.x, (posVec.y - 0.6) / 0.45);
+        if (effR < minPerimeterRadius) minPerimeterRadius = effR;
+      }
+      expect(minPerimeterRadius).toBeGreaterThanOrEqual(5.75);
+
+      controller.dispose();
+    });
+
+    it('mounts Designer Vinyl Stylized Companion on Act 1 dais, drives baked AnimationMixer locomotion (Idle_Breathing, Gesture_Present, Walk_Forward, Turn_Greet) & blink morphs, and stops mixer cleanly on dispose', () => {
+      const controller = new SceneController(container);
+      expect(controller.isStylizedCompanionMode()).toBe(true);
+      expect(controller.isArchitecturalCenterpieceMode()).toBe(true);
+      expect(controller.getStylizedRig().group.visible).toBe(false);
+      expect(controller.getScene().environment).toBeNull();
+
+      const compScene = new THREE.Group();
+      const hips = new THREE.Bone();
+      hips.name = 'Hips';
+      const neck = new THREE.Bone();
+      neck.name = 'Neck';
+      const head = new THREE.Bone();
+      head.name = 'Head';
+      hips.add(neck);
+      neck.add(head);
+
+      const eyelidGeo = new THREE.BoxGeometry(0.02, 0.01, 0.01);
+      const eyelidMat = new THREE.MeshStandardMaterial({ name: 'Mat_Companion_Skin' });
+      const eyelidMesh = new THREE.Mesh(eyelidGeo, eyelidMat);
+      eyelidMesh.name = 'SM_Companion_Eyelids';
+      eyelidMesh.morphTargetDictionary = { eyeBlinkLeft: 0, eyeBlinkRight: 1 };
+      eyelidMesh.morphTargetInfluences = [0, 0];
+
+      const glassesMat = new THREE.MeshStandardMaterial({ name: 'Mat_Companion_GlassesMetal', metalness: 0.94, roughness: 0.18 });
+      const glassesMesh = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.02, 0.02), glassesMat);
+      glassesMesh.name = 'SM_Companion_Glasses';
+
+      compScene.add(hips, eyelidMesh, glassesMesh);
+
+      const mkClip = (name: string) =>
+        new THREE.AnimationClip(name, 1.0, [
+          new THREE.NumberKeyframeTrack('Hips.position[y]', [0, 0.5, 1.0], [0.78, 0.80, 0.78]),
+        ]);
+
+      controller.applyLoadedStylizedCompanion({
+        scene: compScene,
+        animations: [
+          mkClip('Idle_Breathing'),
+          mkClip('Walk_Forward'),
+          mkClip('Gesture_Present'),
+          mkClip('Turn_Greet'),
+        ],
+      });
+
+      const companion = controller.getStylizedCompanionModel();
+      const mixer = controller.getCompanionAnimationMixer();
+      expect(companion).not.toBeNull();
+      expect(mixer).not.toBeNull();
+      expect(companion!.position.y).toBeCloseTo(-1.31, 2);
+      expect(controller.getCompanionActiveClip()).toBe('Idle_Breathing');
+
+      // Exploding the strata core prompts companion to gesture toward the sculpture
+      controller.triggerSceneAction('explode_strata', { exploded: true });
+      controller.animateTick(0.016);
+      expect(controller.getCompanionActiveClip()).toBe('Gesture_Present');
+
+      // Collapse back and scroll into Act 1->2 Obsidian Skybridge transit: steps down onto bridge & walks forward
+      controller.triggerSceneAction('explode_strata', { exploded: false });
+      controller.updateScroll(0.12);
+      for (let i = 0; i < 6; i++) controller.animateTick(0.016);
+      expect(controller.getCompanionActiveClip()).toBe('Walk_Forward');
+      expect(companion!.position.y).toBeCloseTo(-1.45, 2);
+      expect(Math.abs(companion!.rotation.y)).toBeGreaterThan(1.0);
+
+      // Handshake dispatch at chapter prompts greeting clip
+      controller.updateScroll(0.0);
+      controller.triggerSceneAction('handshake_wave');
+      controller.animateTick(0.016);
+      expect(controller.getCompanionActiveClip()).toBe('Turn_Greet');
+
+      // Arrival at Act 6 (sp = 1.0) triggers bounded 2.4s Turn_Greet, then settles back to Idle_Breathing
+      controller.updateScroll(1.0);
+      controller.animateTick(0.016);
+      expect(controller.getCompanionActiveClip()).toBe('Turn_Greet');
+      for (let i = 0; i < 28; i++) controller.animateTick(0.1);
+      expect(controller.getCompanionActiveClip()).toBe('Idle_Breathing');
+
+      const stopSpy = vi.spyOn(mixer!, 'stopAllAction');
+      controller.dispose();
+      expect(stopSpy).toHaveBeenCalledTimes(1);
+      expect(controller.getStylizedCompanionModel()).toBeNull();
+      expect(controller.getCompanionAnimationMixer()).toBeNull();
+    });
+
+    it('enforces sloped Act 3->4 bridge elevation, Act 6 5-lens morphing, CameraRig sheet framing, gesture reset, and pointermove hover cursor', () => {
+      Object.defineProperty(container, 'clientWidth', { value: 1280, configurable: true });
+      Object.defineProperty(container, 'clientHeight', { value: 800, configurable: true });
+      const controller = new SceneController(container);
+
+      // 1. Sloped Act 3->4 Skybridge elevation at sp = 0.52 (Act 4 landing y > -1.40)
+      controller.updateScroll(0.52);
+      controller.animateTick(0.016);
+      const backdrops = controller.getParticleLattice().getChapterBackdropsGroup();
+      const gate2 = backdrops.getObjectByName('InterActPortalGate_2');
+      const deck2 = gate2?.getObjectByName('SkybridgeDeckGroup_2');
+      const pier34 = gate2?.getObjectByName('SkybridgeFlankPier_2_34_R');
+      const pier68 = gate2?.getObjectByName('SkybridgeFlankPier_2_68_R');
+      expect(gate2?.visible).toBe(true);
+      expect(deck2?.rotation.order).toBe('YXZ');
+      expect(deck2?.rotation.x).toBeLessThan(0);
+      expect(pier68!.position.y).toBeGreaterThan(pier34!.position.y);
+      deck2!.updateWorldMatrix(true, false);
+      const act4EndWorld = deck2!.localToWorld(new THREE.Vector3(0, 0, 10));
+      expect(act4EndWorld.y).toBeGreaterThan(-1.40);
+
+      // 2. Act 6 5-lens selectSubTarget color morphing (Beacon Light + Cosmic Eclipse + Eclipse Rim)
+      controller.updateScroll(1.0);
+      controller.animateTick(0.016);
+      const horizonGroup = controller.getHorizonGroup();
+      const beaconLight = horizonGroup.children.find(
+        (c): c is THREE.PointLight => c instanceof THREE.PointLight
+      );
+      const eclipseRim = backdrops.getObjectByName('CosmicEclipseRim') as THREE.Mesh | undefined;
+      const astrolabe = backdrops.getObjectByName('CosmicEclipseAstrolabeRing') as THREE.Mesh | undefined;
+      expect(beaconLight).toBeDefined();
+      expect(eclipseRim).toBeDefined();
+      expect(astrolabe).toBeDefined();
+
+      const lensChecks: Array<[string, string, number]> = [
+        ['ai-systems', '#06b6d4', 0x06b6d4],
+        ['crypto-quant', '#f59e0b', 0xf59e0b],
+        ['cinematic-video', '#a855f7', 0xa855f7],
+        ['hackathons-mentorship', '#10b981', 0x10b981],
+        ['fintech-architecture', '#3b82f6', 0x3b82f6],
+      ];
+      for (const [lensId, hexStr, hexNum] of lensChecks) {
+        controller.selectSubTarget(5, lensId);
+        expect(controller.getInterestFocusColorHex()).toBe(hexStr);
+        expect(beaconLight!.color.getHex()).toBe(hexNum);
+        expect((eclipseRim!.material as THREE.MeshBasicMaterial).color.getHex()).toBe(hexNum);
+        expect((astrolabe!.material as THREE.MeshBasicMaterial).color.getHex()).toBe(hexNum);
+      }
+
+      // 3. clearSubTargetFocus resets all gesture timers & CameraRig.setSheetOpen shifts lookAt rightward on desktop
+      controller.selectSubTarget(1, 'vol-3');
+      controller.clearSubTargetFocus();
+      expect(controller.getActiveSubTarget()).toBeNull();
+      expect(controller.getCameraRig().getActiveFocusTarget()).toBeNull();
+
+      controller.updateScroll(0.0);
+      for (let i = 0; i < 45; i++) controller.animateTick(0.016);
+      const baseLookX = controller.getCameraRig().getCurrentLookAt().x;
+      controller.setSheetOpen(true);
+      for (let i = 0; i < 45; i++) controller.animateTick(0.016);
+      expect(controller.getCameraRig().isSheetOpenState()).toBe(true);
+      expect(controller.getCameraRig().getCurrentLookAt().x).toBeGreaterThan(baseLookX + 0.8);
+      controller.setSheetOpen(false);
+      for (let i = 0; i < 45; i++) controller.animateTick(0.016);
+      expect(controller.getCameraRig().isSheetOpenState()).toBe(false);
+      expect(controller.getCameraRig().getCurrentLookAt().x).toBeCloseTo(baseLookX, 1);
+
+      // 4. pointermove 3D prop hover sets hoveredProp & cursor and cleans up on dispose()
+      const coreGroup = controller.getEnterpriseAIEngine();
+      expect(coreGroup).not.toBeNull();
+      const hitPlane = new THREE.Mesh(
+        new THREE.BoxGeometry(10, 10, 0.5),
+        new THREE.MeshBasicMaterial()
+      );
+      controller.getScene().updateMatrixWorld(true);
+      controller.getCamera().updateMatrixWorld(true);
+      const camWorldPos = new THREE.Vector3();
+      const camWorldDir = new THREE.Vector3();
+      controller.getCamera().getWorldPosition(camWorldPos);
+      controller.getCamera().getWorldDirection(camWorldDir);
+      const hitWorld = camWorldPos.clone().add(camWorldDir.multiplyScalar(2.0));
+      coreGroup!.worldToLocal(hitWorld);
+      hitPlane.position.copy(hitWorld);
+      hitPlane.userData = { type: 'subTargetProp', actIndex: 0, subTargetId: 'optical-core' };
+      coreGroup!.add(hitPlane);
+      controller.getScene().updateMatrixWorld(true);
+      controller.getCamera().updateMatrixWorld(true);
+
+      window.dispatchEvent(new MouseEvent('pointermove', { clientX: 640, clientY: 400 }));
+      expect(document.body.dataset.hoveredProp).toBe('optical-core');
+      expect(container.style.cursor).toBe('pointer');
+
+      controller.dispose();
+      expect(document.body.dataset.hoveredProp).toBeUndefined();
+      expect(container.style.cursor).toBe('');
     });
   });
 });

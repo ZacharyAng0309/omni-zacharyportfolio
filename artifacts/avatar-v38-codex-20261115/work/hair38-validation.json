@@ -1,0 +1,1426 @@
+{
+  "checks_passed": 337,
+  "checks_failed": 0,
+  "metrics": {
+    "triangles": 44910,
+    "glb_bytes": 2551464,
+    "joints": 52,
+    "images": [
+      {
+        "image": 0,
+        "bytes": 90724,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "sha256": "4dca3129a2d36e94984722329c11b6239b636e516b62b3a59310ca9dab69b788"
+      },
+      {
+        "image": 1,
+        "bytes": 74704,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "sha256": "c8069f45f317ee77ee176b5d599b38be22ea85d44960451dc4f45d7b439e54b4"
+      },
+      {
+        "image": 2,
+        "bytes": 47858,
+        "resolution": [
+          1024,
+          1024
+        ],
+        "sha256": "a82a39d5d16f5842faf47b49cb460900e675e5499bcf82c3d58277f0a0081d4b"
+      },
+      {
+        "image": 3,
+        "bytes": 67256,
+        "resolution": [
+          1024,
+          1024
+        ],
+        "sha256": "8fdb8c6ec63ce06d2be814148b7d93ffb4727346fc78cb5d31b62e69bbb3f691"
+      },
+      {
+        "image": 4,
+        "bytes": 54084,
+        "resolution": [
+          512,
+          512
+        ],
+        "sha256": "eaf1b76557bc5d0e179e1e88d91f7b3898737d71a144b68f1d7d9f7171a643db"
+      },
+      {
+        "image": 5,
+        "bytes": 96380,
+        "resolution": [
+          4096,
+          2048
+        ],
+        "sha256": "120b344e2cbda63884c80afea58697c82408ca18087b10112ce4592553563369"
+      },
+      {
+        "image": 6,
+        "bytes": 35596,
+        "resolution": [
+          1024,
+          1024
+        ],
+        "sha256": "3fdba276842942145a34412437bf4da199bae0eec13f963357d4a3d27d4fb67a"
+      }
+    ],
+    "moved_hair_vertex_copies": 130,
+    "shared_face_hair_copies": 135
+  },
+  "checks": [
+    {
+      "check": "Accessor count unchanged",
+      "passed": true
+    },
+    {
+      "check": "accessor 0 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 0 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 1 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 1 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 2 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 2 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 3 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 3 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 4 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 4 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 5 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 5 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 6 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 6 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 7 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 7 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 8 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 8 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 9 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 9 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 10 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 10 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 11 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 11 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 12 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 12 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 13 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 13 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 14 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 15 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 16 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 16 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 17 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 17 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 18 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 18 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 19 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 19 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 20 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 20 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 21 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 21 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 22 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 22 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 23 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 23 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 24 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 24 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 25 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 25 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 26 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 26 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 27 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 27 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 28 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 28 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 29 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 29 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 30 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 30 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 31 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 31 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 32 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 32 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 33 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 33 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 34 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 34 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 35 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 35 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 36 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 36 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 37 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 37 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 38 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 38 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 39 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 39 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 40 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 40 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 41 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 41 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 42 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 42 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 43 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 43 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 44 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 44 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 45 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 45 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 46 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 46 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 47 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 47 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 48 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 48 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 49 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 49 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 50 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 50 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 51 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 51 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 52 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 52 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 53 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 53 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 54 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 54 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 55 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 55 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 56 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 56 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 57 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 57 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 58 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 58 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 59 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 59 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 60 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 60 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 61 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 61 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 62 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 62 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 63 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 63 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 64 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 64 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 65 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 65 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 66 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 66 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 67 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 67 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 68 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 68 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 69 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 69 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 70 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 70 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 71 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 71 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 72 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 72 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 73 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 73 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 74 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 74 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 75 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 75 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 76 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 76 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 77 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 77 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 78 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 78 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 79 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 79 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 80 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 80 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 81 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 81 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 82 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 82 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 83 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 83 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 84 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 84 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 85 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 85 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 86 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 86 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 87 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 87 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 88 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 88 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 89 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 89 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 90 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 90 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 91 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 91 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 92 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 92 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 93 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 93 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 94 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 94 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 95 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 95 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 96 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 96 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 97 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 97 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 98 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 98 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 99 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 99 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 100 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 100 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 101 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 101 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 102 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 102 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 103 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 103 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 104 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 104 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 105 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 105 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 106 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 106 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 107 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 107 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 108 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 108 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 109 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 109 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 110 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 110 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 111 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 111 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 112 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 112 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 113 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 113 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 114 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 114 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 115 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 115 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 116 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 116 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 117 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 117 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 118 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 118 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 119 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 119 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 120 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 120 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 121 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 121 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 122 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 122 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 123 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 123 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 124 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 124 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 125 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 125 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 126 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 126 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 127 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 127 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 128 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 128 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 129 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 129 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 130 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 130 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 131 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 131 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 132 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 132 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 133 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 133 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 134 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 134 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 135 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 135 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 136 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 136 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 137 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 137 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 138 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 138 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 139 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 139 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 140 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 140 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 141 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 141 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 142 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 142 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 143 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 143 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 144 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 144 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 145 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 145 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "accessor 146 finite",
+      "passed": true
+    },
+    {
+      "check": "accessor 146 byte preserved",
+      "passed": true
+    },
+    {
+      "check": "meshes unchanged",
+      "passed": true
+    },
+    {
+      "check": "nodes unchanged",
+      "passed": true
+    },
+    {
+      "check": "skins unchanged",
+      "passed": true
+    },
+    {
+      "check": "scenes unchanged",
+      "passed": true
+    },
+    {
+      "check": "scene unchanged",
+      "passed": true
+    },
+    {
+      "check": "animations unchanged",
+      "passed": true
+    },
+    {
+      "check": "extensionsUsed unchanged",
+      "passed": true
+    },
+    {
+      "check": "extensionsRequired unchanged",
+      "passed": true
+    },
+    {
+      "check": "samplers unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 0 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 1 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 2 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 3 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 4 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 5 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 6 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 7 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 8 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 9 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 10 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 11 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 12 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "material 13 parameters and UV routing unchanged",
+      "passed": true
+    },
+    {
+      "check": "image 0 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 0 preserved",
+      "passed": true
+    },
+    {
+      "check": "image 1 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 2 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 3 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 3 preserved",
+      "passed": true
+    },
+    {
+      "check": "image 4 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 5 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 5 preserved",
+      "passed": true
+    },
+    {
+      "check": "image 6 under 100 KB",
+      "passed": true
+    },
+    {
+      "check": "image 6 preserved",
+      "passed": true
+    },
+    {
+      "check": "Hair displacement under 5.5 mm",
+      "passed": true
+    },
+    {
+      "check": "Crown part only changes height",
+      "passed": true
+    },
+    {
+      "check": "All moved vertices in crown brush",
+      "passed": true
+    },
+    {
+      "check": "Hair triangle orientation retained",
+      "passed": true
+    },
+    {
+      "check": "Hair triangle area retained",
+      "passed": true
+    },
+    {
+      "check": "Hair normals unit length",
+      "passed": true
+    },
+    {
+      "check": "Every matched face/hair seam pair preserved",
+      "passed": true
+    },
+    {
+      "check": "Triangle count preserved and within desktop budget",
+      "passed": true
+    },
+    {
+      "check": "Avatar below 3 MB",
+      "passed": true
+    },
+    {
+      "check": "All 52 joints retained",
+      "passed": true
+    }
+  ]
+}

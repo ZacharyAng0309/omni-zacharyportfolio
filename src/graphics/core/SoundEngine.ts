@@ -15,6 +15,9 @@ export class SoundEngine {
   private masterGain: GainNode | null = null;
   private analyser: AnalyserNode | null = null;
   private energyBuffer: Uint8Array<ArrayBuffer> | null = null;
+  private activeSynthUntilMs: number = 0;
+  private activeSynthDurationMs: number = 0;
+  private activeSynthPeak: number = 0;
   private unlockListenerAttached: boolean = false;
   private unlockHandler: (() => void) | null = null;
 
@@ -96,24 +99,56 @@ export class SoundEngine {
     return !this.isAudioMuted;
   }
 
+  private triggerSynthEnvelope(peak: number, durationSeconds: number): void {
+    const nowMs = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const durationMs = Math.max(40, durationSeconds * 1000);
+    const currentEnv =
+      nowMs < this.activeSynthUntilMs && this.activeSynthDurationMs > 0
+        ? this.activeSynthPeak *
+          Math.max(0.18, Math.min(1.0, (this.activeSynthUntilMs - nowMs) / this.activeSynthDurationMs))
+        : 0;
+    const newUntilMs = Math.max(this.activeSynthUntilMs, nowMs + durationMs);
+    this.activeSynthDurationMs = Math.max(40, newUntilMs - nowMs);
+    this.activeSynthUntilMs = newUntilMs;
+    this.activeSynthPeak = Math.max(currentEnv, Math.min(1.0, peak));
+  }
+
   public getAudioEnergy(): number {
     if (this.isAudioMuted || !this.audioContext || this.audioContext.state !== 'running') {
       return 0.0;
     }
+    let fftEnergy = 0.0;
     if (this.analyser && this.energyBuffer) {
       try {
         this.analyser.getByteFrequencyData(this.energyBuffer);
         let sum = 0;
+        let vocalSum = 0;
+        const vocalBins = Math.min(4, this.energyBuffer.length);
         for (let i = 0; i < this.energyBuffer.length; i++) {
-          sum += this.energyBuffer[i]!;
+          const val = this.energyBuffer[i]!;
+          sum += val;
+          if (i < vocalBins) {
+            vocalSum += val;
+          }
         }
-        const avg = sum / (this.energyBuffer.length * 255.0);
-        return Math.min(1.0, avg * 3.5);
+        const fullAvg = sum / (this.energyBuffer.length * 255.0);
+        const vocalAvg = vocalBins > 0 ? vocalSum / (vocalBins * 255.0) : 0.0;
+        fftEnergy = Math.max(fullAvg, vocalAvg * 0.65) * 3.5;
       } catch {
-        return 0.0;
+        fftEnergy = 0.0;
       }
     }
-    return 0.0;
+
+    const nowMs = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    let transientEnergy = 0.0;
+    if (nowMs < this.activeSynthUntilMs && this.activeSynthDurationMs > 0) {
+      const remaining = (this.activeSynthUntilMs - nowMs) / this.activeSynthDurationMs;
+      transientEnergy = this.activeSynthPeak * Math.max(0.18, Math.min(1.0, remaining));
+    }
+    const subBassFloor = this.subBassOsc ? 0.24 : 0.0;
+    const synthEnergy = Math.max(subBassFloor, transientEnergy);
+
+    return Math.min(1.0, Math.max(fftEnergy, synthEnergy));
   }
 
   public toggleAudio(): boolean {
@@ -125,6 +160,9 @@ export class SoundEngine {
       this.playHapticClick(1200, 0.05);
     } else {
       this.stopAmbientSubBass();
+      this.activeSynthUntilMs = 0;
+      this.activeSynthDurationMs = 0;
+      this.activeSynthPeak = 0;
     }
 
     return !this.isAudioMuted;
@@ -135,7 +173,11 @@ export class SoundEngine {
   }
 
   public playHapticClick(frequency: number = 2400, duration: number = 0.04): void {
-    if (this.isAudioMuted || !this.audioContext || this.audioContext.state !== 'running') return;
+    if (this.isAudioMuted || !this.audioContext || this.audioContext.state === 'closed') return;
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume().catch(() => {});
+    }
+    this.triggerSynthEnvelope(0.45, Math.max(duration, 0.14));
     try {
       const osc = this.audioContext.createOscillator();
       const gain = this.audioContext.createGain();
@@ -157,7 +199,11 @@ export class SoundEngine {
   }
 
   public playHarmonicHum(frequency: number = 220, duration: number = 0.35): void {
-    if (this.isAudioMuted || !this.audioContext || this.audioContext.state !== 'running') return;
+    if (this.isAudioMuted || !this.audioContext || this.audioContext.state === 'closed') return;
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume().catch(() => {});
+    }
+    this.triggerSynthEnvelope(0.68, duration);
     try {
       const osc = this.audioContext.createOscillator();
       const gain = this.audioContext.createGain();
@@ -180,7 +226,11 @@ export class SoundEngine {
   }
 
   public playTransitionSweep(startFreq: number = 140, endFreq: number = 480, duration: number = 0.45): void {
-    if (this.isAudioMuted || !this.audioContext || this.audioContext.state !== 'running') return;
+    if (this.isAudioMuted || !this.audioContext || this.audioContext.state === 'closed') return;
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume().catch(() => {});
+    }
+    this.triggerSynthEnvelope(0.62, duration);
     try {
       const osc = this.audioContext.createOscillator();
       const gain = this.audioContext.createGain();
@@ -203,7 +253,11 @@ export class SoundEngine {
   }
 
   public playSummitChime(): void {
-    if (this.isAudioMuted || !this.audioContext || this.audioContext.state !== 'running') return;
+    if (this.isAudioMuted || !this.audioContext || this.audioContext.state === 'closed') return;
+    if (this.audioContext.state === 'suspended') {
+      this.audioContext.resume().catch(() => {});
+    }
+    this.triggerSynthEnvelope(0.72, 0.45);
     const chords = [528, 792, 1056];
     chords.forEach((freq, idx) => {
       setTimeout(() => {
@@ -264,6 +318,9 @@ export class SoundEngine {
       this.analyser = null;
     }
     this.energyBuffer = null;
+    this.activeSynthUntilMs = 0;
+    this.activeSynthDurationMs = 0;
+    this.activeSynthPeak = 0;
     if (this.audioContext) {
       try {
         this.audioContext.close();

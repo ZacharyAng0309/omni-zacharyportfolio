@@ -47,3 +47,7 @@ npm run build
 # Preview production build
 npm run preview
 ```
+
+## Avatar refinement status
+
+See [AVATAR_LATEST.md](AVATAR_LATEST.md) for the latest verified review model, changes, Blender checks and remaining work. The review candidate and the public model may differ.

@@ -1,0 +1,22 @@
+{
+  "reopened_pose_errors_mm": {
+    "41": {
+      "RightHand": 0.0001800514157652046
+    },
+    "81": {
+      "RightHand": 0.0001959941750461743,
+      "LeftHand": 0.0004828528090125218
+    },
+    "121": {
+      "RightHand": 0.0007890583452507095
+    }
+  },
+  "packed_texture_images": 5,
+  "review_frames": [
+    1,
+    41,
+    81,
+    121
+  ],
+  "scene": "Whole model review v27"
+}

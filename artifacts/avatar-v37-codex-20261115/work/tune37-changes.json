@@ -1,0 +1,35 @@
+{
+  "source": "v36",
+  "placement_y_mm": -1.6,
+  "pupil_radius_before_after_mm": [
+    2.5,
+    2.0
+  ],
+  "iris_radius_before_after_mm": [
+    5.3,
+    5.8
+  ],
+  "new_images": 0,
+  "changes": {
+    "SM_Character_Face": {
+      "placement_max_mm": 1.5999999046325684,
+      "changed_copies": 1218
+    },
+    "SM_Character_Hair": {
+      "placement_max_mm": 1.5999999046325684,
+      "changed_copies": 51
+    },
+    "SM_Character_Eyelids": {
+      "placement_max_mm": 1.5999999046325684,
+      "changed_copies": 345
+    },
+    "SM_Character_EyeLeft": {
+      "placement_max_mm": 1.5999999046325684,
+      "changed_copies": 290
+    },
+    "SM_Character_EyeRight": {
+      "placement_max_mm": 1.5999999046325684,
+      "changed_copies": 290
+    }
+  }
+}

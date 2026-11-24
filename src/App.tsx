@@ -1,22 +1,23 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { ThreeCanvas } from './graphics/ThreeCanvas';
 import { NavbarHUD } from './components/NavbarHUD';
-import { HeroSection } from './components/HeroSection';
-import { CareerTimelineSection } from './components/CareerTimelineSection';
-import { CredentialVaultSection } from './components/CredentialVaultSection';
-import { SummitSection } from './components/SummitSection';
-import { AISolutionsSection } from './components/AISolutionsSection';
-import { ActionCenterSection } from './components/ActionCenterSection';
+import { CinemaTimelineHUD } from './components/CinemaTimelineHUD';
+import { WhisperStageHUD } from './components/WhisperStageHUD';
+import { WHISPER_ACTS } from './data/whisperActs';
+import { DiegeticHotspotLayer } from './components/DiegeticHotspotLayer';
+import { SlideOverInspectionSheet } from './components/SlideOverInspectionSheet';
 import { SpatialStageControlDock } from './components/SpatialStageControlDock';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { PressModal } from './components/PressModal';
 import { MagneticCursor } from './components/MagneticCursor';
-import { MarqueeTicker } from './components/MarqueeTicker';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
+import { scrollToSectionCinematic } from './utils/cinematicScroll';
 import type { CaseStudy } from './domain/contracts';
 import { CASE_STUDIES } from './data/caseStudies';
-import type { SceneController } from './graphics/SceneController';
+import { SceneController } from './graphics/SceneController';
+
+const SECTION_IDS = ['hero', 'timeline', 'vault', 'summit', 'ai-solutions', 'contact'] as const;
 
 export default function App() {
   const { scrollProgress, activeSection } = useScrollProgress();
@@ -26,12 +27,109 @@ export default function App() {
   const [controller, setController] = useState<SceneController | null>(null);
   const [isAudioEnabled, setIsAudioEnabled] = useState(false);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+  // 4-State Interactive Choreographer UI State
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [selectedActOverride, setSelectedActOverride] = useState<number | null>(null);
+  const [activeSubTargetId, setActiveSubTargetId] = useState<string | null>(null);
+  const [pendingNavAct, setPendingNavAct] = useState<number | null>(null);
+  const [prevActiveSection, setPrevActiveSection] = useState<string>(activeSection);
+
+  const activeAct =
+    WHISPER_ACTS.find((a) => a.sectionId === activeSection) ?? WHISPER_ACTS[0]!;
+  const activeActIndexRef = useRef(activeAct.actIndex);
+  useEffect(() => {
+    activeActIndexRef.current = activeAct.actIndex;
+  }, [activeAct.actIndex]);
+
+  // Synchronize sheet chapter & release stale focus when external/manual scrolling crosses acts
+  if (activeSection !== prevActiveSection) {
+    setPrevActiveSection(activeSection);
+    const scrolledActIdx = activeAct.actIndex;
+    if (pendingNavAct !== null) {
+      if (scrolledActIdx === pendingNavAct) {
+        setPendingNavAct(null);
+      }
+    } else {
+      if (selectedActOverride !== null && selectedActOverride !== scrolledActIdx) {
+        setSelectedActOverride(null);
+      }
+      if (activeSubTargetId !== null) {
+        const focusedCfg = SceneController.DIORAMA_SUB_TARGETS.find(
+          (t) => t.id === activeSubTargetId
+        );
+        if (!focusedCfg || focusedCfg.actIndex !== scrolledActIdx) {
+          setActiveSubTargetId(null);
+        }
+      }
     }
-  };
+  }
+
+  useEffect(() => {
+    if (activeSubTargetId === null && controller && Boolean(controller.getActiveSubTarget())) {
+      controller.clearSubTargetFocus();
+    }
+  }, [activeSubTargetId, controller]);
+
+  useEffect(() => {
+    if (pendingNavAct === null) return;
+    const clearPending = () => setPendingNavAct(null);
+    const handlePageInterrupt = (e: Event) => {
+      const target = e.target;
+      if (
+        typeof Element !== 'undefined' &&
+        target instanceof Element &&
+        target.closest('[data-testid="slide-over-inspection-sheet"], [role="dialog"]')
+      ) {
+        return;
+      }
+      setPendingNavAct(null);
+      if (activeActIndexRef.current !== pendingNavAct) {
+        setSelectedActOverride(null);
+        setActiveSubTargetId(null);
+        controller?.clearSubTargetFocus();
+      }
+    };
+    const timer = setTimeout(clearPending, 1500);
+    window.addEventListener('wheel', handlePageInterrupt, { passive: true });
+    window.addEventListener('touchstart', handlePageInterrupt, { passive: true });
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('wheel', handlePageInterrupt);
+      window.removeEventListener('touchstart', handlePageInterrupt);
+    };
+  }, [pendingNavAct, controller]);
+
+  const currentActIndex =
+    selectedActOverride ?? activeAct.actIndex;
+
+  const scrollTo = useCallback(
+    (id: string) => {
+      scrollToSectionCinematic(id, { reducedMotion: isReducedMotion });
+    },
+    [isReducedMotion]
+  );
+
+  const handleScrubTimelineStart = useCallback(() => {
+    setPendingNavAct(null);
+    setSelectedActOverride(null);
+    setActiveSubTargetId(null);
+    if (controller) {
+      controller.clearSubTargetFocus();
+    }
+  }, [controller]);
+
+  const handleNavigateToSection = useCallback(
+    (sectionId: string) => {
+      setPendingNavAct(null);
+      setSelectedActOverride(null);
+      setActiveSubTargetId(null);
+      if (controller) {
+        controller.clearSubTargetFocus();
+      }
+      scrollTo(sectionId);
+    },
+    [controller, scrollTo]
+  );
 
   const handleControllerReady = useCallback((sc: SceneController | null) => {
     setController(sc);
@@ -58,9 +156,73 @@ export default function App() {
     }
   }, []);
 
+  const handleSelectSubTarget = useCallback(
+    (actIndex: number, subTargetId: string) => {
+      setSelectedActOverride(actIndex);
+      setActiveSubTargetId(subTargetId);
+      setIsSheetOpen(true);
+      if (actIndex !== activeAct.actIndex) {
+        setPendingNavAct(actIndex);
+        const secId = SECTION_IDS[actIndex];
+        if (secId) {
+          scrollTo(secId);
+        }
+      } else {
+        setPendingNavAct(null);
+      }
+      if (controller) {
+        controller.selectSubTarget(actIndex, subTargetId, { emitCallback: false });
+      }
+    },
+    [activeAct.actIndex, controller, scrollTo]
+  );
+
+  const handleCloseSheet = useCallback(() => {
+    setIsSheetOpen(false);
+    setActiveSubTargetId(null);
+    setSelectedActOverride(null);
+    setPendingNavAct(null);
+    if (controller) {
+      controller.clearSubTargetFocus();
+    }
+  }, [controller]);
+
+  const handleToggleSheet = useCallback(
+    (actIndex: number) => {
+      if (isSheetOpen) {
+        handleCloseSheet();
+      } else {
+        setSelectedActOverride(actIndex);
+        setIsSheetOpen(true);
+      }
+    },
+    [isSheetOpen, handleCloseSheet]
+  );
+
+  const handleSelectActInSheet = useCallback(
+    (actIndex: number) => {
+      const isSameAct = actIndex === activeAct.actIndex;
+      setSelectedActOverride(isSameAct ? null : actIndex);
+      setActiveSubTargetId(null);
+      setPendingNavAct(isSameAct ? null : actIndex);
+      if (controller) {
+        controller.clearSubTargetFocus();
+      }
+      const secId = SECTION_IDS[actIndex];
+      if (secId) {
+        scrollTo(secId);
+      }
+    },
+    [activeAct.actIndex, controller, scrollTo]
+  );
+
   const handleOpenPressModal = useCallback(() => {
     setIsPressModalOpen(true);
   }, []);
+
+  const handleOpenDirectDispatch = useCallback(() => {
+    handleSelectSubTarget(5, 'direct-dispatch');
+  }, [handleSelectSubTarget]);
 
   const handleClosePressModal = useCallback(() => {
     setIsPressModalOpen(false);
@@ -73,66 +235,109 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-[#050507] text-neutral-100 font-sans selection:bg-blue-500/30 selection:text-white">
       {/* Spring-Lerped Magnetic Hardware Cursor */}
-      <MagneticCursor />
+      <MagneticCursor accentColor={activeAct.accentColor} isReducedMotion={isReducedMotion} />
 
-      {/* 3D WebGL Background Canvas with Direct Raycasting & Interaction */}
+      {/* 1. Full-Viewport 3D WebGL Diorama World (>=85% Unobstructed Spatial Sovereignty) */}
       <ThreeCanvas
         scrollProgress={scrollProgress}
         isReducedMotion={isReducedMotion}
+        isSheetOpen={isSheetOpen}
         onSelectSummitBeacon={handleOpenPressModal}
         onSelectCaseStudyNode={handleSelectCaseStudyBySlug}
+        onSelectSubTarget={handleSelectSubTarget}
         onControllerReady={handleControllerReady}
       />
 
-      {/* Apple Pro Minimalist Navigation Bar (6-Act Growth Journey) */}
+      {/* 1b. Non-Interactive Anamorphic Lens Vignette & Monograph Film-Grain Finish */}
+      <div
+        aria-hidden="true"
+        className="cinema-vignette fixed inset-0 z-[15] pointer-events-none select-none"
+      />
+      <div
+        aria-hidden="true"
+        className="cinema-film-grain fixed inset-0 z-[15] pointer-events-none select-none"
+      />
+
+      {/* 2. Top Compact Pill Navigation Bar (6-Act Growth Journey) */}
       <NavbarHUD
         activeSection={activeSection}
         isReducedMotion={isReducedMotion}
         onToggleReducedMotion={toggleReducedMotion}
         isAudioEnabled={isAudioEnabled}
         onToggleAudio={handleToggleAudio}
+        onSelectSection={handleNavigateToSection}
       />
 
-      {/* Main Storyline Narrative Content (Chronological 6-Act Growth Journey) */}
-      <main className="relative z-10 flex flex-col">
-        {/* Act 1 (#hero): Overview & Executive Strategy Studio */}
-        <HeroSection
-          onExploreCaseStudies={() => scrollTo('timeline')}
-          onExecutiveInquiries={() => scrollTo('contact')}
-          onExploreClick={() => scrollTo('timeline')}
-          onCaseStudiesClick={() => scrollTo('contact')}
-        />
+      {/* 2b. Director's Cut SMPTE Timecode & Scrubbable Filmstrip Timeline */}
+      <CinemaTimelineHUD
+        scrollProgress={scrollProgress}
+        activeSection={activeSection}
+        isReducedMotion={isReducedMotion}
+        onSelectChapter={handleNavigateToSection}
+        onScrubStart={handleScrubTimelineStart}
+      />
 
-        {/* Global Credentials Infinite Marquee Ribbon */}
-        <MarqueeTicker />
+      {/* 3. Diegetic 3D Spatial Target Reticles Projected onto Scene Props */}
+      <DiegeticHotspotLayer
+        activeSection={activeSection}
+        activeSubTargetId={activeSubTargetId}
+        isSheetOpen={isSheetOpen}
+        controller={controller}
+        onSelectSubTarget={handleSelectSubTarget}
+      />
 
-        {/* Act 2 (#timeline): Academic Foundations & Career Ascent (The Academy) */}
-        <CareerTimelineSection />
+      {/* 4. Bottom-Left Whisper Narrative HUD & Dual-Trigger Sub-Target Bar */}
+      <WhisperStageHUD
+        activeSection={activeSection}
+        scrollProgress={scrollProgress}
+        activeSubTargetId={activeSubTargetId}
+        isSheetOpen={isSheetOpen}
+        onSelectSubTarget={handleSelectSubTarget}
+        onToggleSheet={handleToggleSheet}
+        onClearFocus={handleCloseSheet}
+      />
 
-        {/* Act 3 (#vault): Cloud Mastery & GDSC Leadership (The Crucible) */}
-        <CredentialVaultSection />
+      {/* 5. Right-40% Frosted-Glass Slide-Over Inspection Sheet (Opens On Demand) */}
+      <SlideOverInspectionSheet
+        isOpen={isSheetOpen}
+        activeActIndex={currentActIndex}
+        activeSubTargetId={activeSubTargetId}
+        onClose={handleCloseSheet}
+        onSelectAct={handleSelectActInSheet}
+        onSelectSubTarget={handleSelectSubTarget}
+        onSelectCaseStudy={(study) => setSelectedCaseStudy(study)}
+        onInspectPressModal={handleOpenPressModal}
+      />
 
-        {/* Act 4 (#summit): Global Championship Peak (The Alpine Summit / Hilti) */}
-        <SummitSection
-          onInspectPressModal={handleOpenPressModal}
-        />
-
-        {/* Act 5 (#ai-solutions): Production AI & Enterprise Systems (The Frontier) */}
-        <AISolutionsSection
-          onSelectCaseStudy={(study) => setSelectedCaseStudy(study)}
-        />
-
-        {/* Act 6 (#contact): Beyond the Architecture — Personal Interests & Approach Hub (The Horizon) */}
-        <ActionCenterSection />
+      {/* 6. Optically Transparent 6-Act Spatial Scroll Track (Zero 2D Card Clutter over 3D Stage) */}
+      <main
+        aria-label="6-Act Spatial Diorama Scroll Continuum"
+        className="relative z-10 flex flex-col pointer-events-none select-none"
+      >
+        {WHISPER_ACTS.map((act) => (
+          <section
+            key={act.sectionId}
+            id={act.sectionId}
+            data-testid={`spatial-waypoint-${act.sectionId}`}
+            className="min-h-screen w-full bg-transparent pointer-events-none"
+          >
+            <div className="sr-only">
+              <span>{act.actBadge}</span>
+              <h2>{act.title}</h2>
+              <p>{act.hook}</p>
+            </div>
+          </section>
+        ))}
       </main>
 
-      {/* Floating Spatial Stage Control Dock (3D Peek & Gesture Trigger) */}
+      {/* 7. Bottom-Right Spatial Stage Control Dock (3D Peek & Gesture Trigger) */}
       <SpatialStageControlDock
         activeSection={activeSection}
         controller={controller}
+        onOpenDispatch={handleOpenDirectDispatch}
       />
 
-      {/* Inspection Modal Drawers */}
+      {/* 8. Deep Inspection Modals */}
       <CaseStudyModal
         caseStudy={selectedCaseStudy}
         onClose={handleCloseCaseStudyModal}

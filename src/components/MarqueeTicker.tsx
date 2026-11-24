@@ -6,7 +6,7 @@ interface MarqueeTickerProps {
 
 const TICKER_ITEMS = [
   { icon: '🥇', label: 'HILTI GLOBAL IT CHAMPION', detail: '1st of 184 teams worldwide' },
-  { icon: '⚡', label: '3.89 FIRST CLASS HONOURS', detail: 'Top 5% Academic Valedictorian' },
+  { icon: '⚡', label: '3.75 FIRST-CLASS BSC • 3.89 DIPLOMA', detail: 'APU & Staffordshire UK Honors' },
   { icon: '☁️', label: 'GOOGLE CLOUD ACE CERTIFIED', detail: 'Production Distributed Infrastructure' },
   { icon: '🏆', label: '4X GLOBAL HACKATHON WINNER', detail: 'APU, Hilti, Shell, AWS' },
   { icon: '🤖', label: 'ENTERPRISE AI PLATFORMS', detail: 'Autonomous Multi-Agent Architectures' },

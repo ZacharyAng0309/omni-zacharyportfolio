@@ -1,0 +1,44 @@
+{
+  "latest_verified_review_version": "v33",
+  "updated": "2026-11-12",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v33-codex-20261112",
+  "files": {
+    "zachary_character_v33_candidate.glb": {
+      "path": "artifacts/avatar-v33-codex-20261112/outputs/zachary_character_v33_candidate.glb",
+      "sha256": "58871c6c3b73ab541c465bd566e5b703cd03e3d935ed391c92850d21cf3aae0e"
+    },
+    "Zachary_Avatar_v33_Review.blend": {
+      "path": "artifacts/avatar-v33-codex-20261112/outputs/Zachary_Avatar_v33_Review.blend",
+      "sha256": "710e2524689484ad0176dd8de2cd2c0d4b5908ee7f0f0a6a38f1f1f3947c35c3"
+    },
+    "avatar-v33-pose-targets.json": {
+      "path": "artifacts/avatar-v33-codex-20261112/outputs/avatar-v33-pose-targets.json",
+      "sha256": "6830c2feabc3b2776c612dcf94e3943510faffda6c83163f5c1e30d9e6e4d1fb"
+    }
+  },
+  "changes": [
+    "Added approximate upper/lower dental crowns and a tongue using Blender geometry, with no new textures.",
+    "Lower teeth and tongue follow the opening/jaw/AA shapes; the tongue clears the dental arch in reviewed poses.",
+    "Preserved every existing v32 mesh, material, texture and accessor; new anatomy remains hidden in the neutral front review."
+  ],
+  "verification": [
+    "238 preservation, data, topology, weight, clearance and intersection checks passed; zero failures.",
+    "Fresh exported GLB reviewed in Blender across ten expressions plus three-quarter and side speech views.",
+    "Saved Blender file reopened: five facial meshes synchronized; all imported morph vertices, packed textures and gesture positions verified.",
+    "Project WebGL governance audit passed with zero violations; v33 candidate budgets checked separately."
+  ],
+  "next_work": [
+    "Improve eyelid structure and soft eye/lip texture",
+    "Refine lip/cheek motion and simplified oral anatomy",
+    "Refine independent finger creasing and fingertip detail",
+    "Raised-elbow cloth, remaining station poses, website integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v33 oral detail and clearance checks verified. Next focus: eyelid structure and facial texture. Synchronize all five facial meshes during application integration."
+}

@@ -1,0 +1,55 @@
+{
+  "new_meshes": [
+    {
+      "mesh": "SM_Character_UpperTeeth",
+      "vertices": 256,
+      "triangles": 480,
+      "bounds_min": [
+        -0.024316107854247093,
+        1.5210524797439575,
+        0.07512030005455017
+      ],
+      "bounds_max": [
+        0.024316107854247093,
+        1.5292906761169434,
+        0.09317653626203537
+      ],
+      "head_joint": 32
+    },
+    {
+      "mesh": "SM_Character_LowerTeeth",
+      "vertices": 256,
+      "triangles": 480,
+      "bounds_min": [
+        -0.02422996424138546,
+        1.5136971473693848,
+        0.07402423769235611
+      ],
+      "bounds_max": [
+        0.02422996424138546,
+        1.5201407670974731,
+        0.09193794429302216
+      ],
+      "head_joint": 32
+    },
+    {
+      "mesh": "SM_Character_Tongue",
+      "vertices": 266,
+      "triangles": 528,
+      "bounds_min": [
+        -0.012499993667006493,
+        1.514799952507019,
+        0.061000000685453415
+      ],
+      "bounds_max": [
+        0.012499997392296791,
+        1.520799994468689,
+        0.08399999886751175
+      ],
+      "head_joint": 32
+    }
+  ],
+  "anatomy_basis": "Artistic approximation; no open-mouth personal reference",
+  "source": "v32",
+  "source_face_geometry_and_morphs": "unchanged"
+}

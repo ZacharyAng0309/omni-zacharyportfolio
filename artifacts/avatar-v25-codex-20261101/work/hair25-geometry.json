@@ -1,0 +1,17 @@
+{
+  "source": "v24",
+  "hair_dimensions_before_m": [
+    0.1991749107837677,
+    0.22003650665283203,
+    0.250094473361969
+  ],
+  "hair_dimensions_after_m": [
+    0.19825811684131622,
+    0.21837377548217773,
+    0.2488659918308258
+  ],
+  "max_hair_displacement_mm": 2.2000560760498047,
+  "shared_boundary_displacement_mm": 0.0,
+  "boundary_vertex_count": 218,
+  "affected_hair_vertices": 1060
+}

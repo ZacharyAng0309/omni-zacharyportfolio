@@ -1,0 +1,67 @@
+{
+  "latest_verified_review_version": "v39",
+  "updated": "2026-11-16",
+  "owner": "Codex",
+  "status": "v39 Blender review verified; v38 remains integrated in the application; likeness/texture refinement ongoing",
+  "archive": "artifacts/avatar-v39-codex-20261116",
+  "files": {
+    "zachary_character_v39_candidate.glb": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/zachary_character_v39_candidate.glb",
+      "sha256": "8a314545a7e59558784103ea9525ab6513ee1eeb87ca2f7724f2f5af5afec65a"
+    },
+    "Zachary_Avatar_v39_Review.blend": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/Zachary_Avatar_v39_Review.blend",
+      "sha256": "0598eb4c576faa30c1a0554d3498da96cd48d54f2266dab61266bac5b49fd216"
+    },
+    "avatar-v39-pose-targets.json": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/avatar-v39-pose-targets.json",
+      "sha256": "63d6f9128e7ac6d100d94514297311f0fd392250255b96b906efa6628d59d3e4"
+    },
+    "Avatar-v39-Review.md": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/Avatar-v39-Review.md",
+      "sha256": "81d6f7f86a0cc30149ad1e5806b941956921f28b1fbb287bb6c570a3d0c58720"
+    },
+    "avatar-v39-comparison.jpg": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/avatar-v39-comparison.jpg",
+      "sha256": "ff592e9f65ca7abcb73fb2e3ed050c25fa52ef38c9ecc9671bcb4372de19e598"
+    },
+    "avatar-v39-review-views.jpg": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/avatar-v39-review-views.jpg",
+      "sha256": "321347e178370813039784740048d66ac88c8ab9530ca9246545311838396a97"
+    },
+    "full39-front.png": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/full39-front.png",
+      "sha256": "517a338f1b59a90cd572c0e59a98b5a82d29ae63bf38a6fdd2e3490bd59df196"
+    },
+    "full39-audit.json": {
+      "path": "artifacts/avatar-v39-codex-20261116/outputs/full39-audit.json",
+      "sha256": "622db42fdc697b8e966271b8ccc1078d8a455d638c2e3f7cfa5c6b6c6f4fbf9a"
+    }
+  },
+  "changes": [
+    "Bounded side/rear hair relaxation, maximum 1.601 mm; frontal fringe, crown part and boundaries retained.",
+    "252 compatible face/eyelid shading groups reconciled; less angular lip shading.",
+    "All topology, seven image payloads, UVs, weights and morph position deltas preserved; experimental fringe overlays excluded."
+  ],
+  "verification": [
+    "2588 preservation, geometry, shading-continuity and budget checks passed; zero failed.",
+    "Fresh GLB rendered at five angles and through seven facial review views; saved Blender review reopened.",
+    "Fourteen facial frames, six synchronized meshes, packed images and four gesture targets verified.",
+    "Current project governance audit passed; v39 application integration/browser checks pending."
+  ],
+  "next_work": [
+    "Fringe edge cleanup, loose silhouette strands and less uniform strand flow",
+    "Side/back hair surface refinement; one frontal reference limits likeness",
+    "Eye shading, face/body texture bake (T_Face_v34_Albedo top hairline bleed and hoodie collar/wrist UV dilation >= 16px), lip/cheek motion and hand/cloth detail"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "ec703d9fe5ffd3f7af1109eef6e979fe5e50e1f72aff72ce4b6dcf357280f4a3",
+    "bytes": 2551464,
+    "latest_candidate_integrated": false,
+    "integrated_version": "v38",
+    "integrated_updated": "2026-11-15",
+    "verification_record": "artifacts/avatar-v39-codex-20261116/work/resume39-baseline.json"
+  },
+  "active_work": "v39 Blender review verifies side/rear hair relaxation and face/eyelid UV-split normal repair. Fringe overlay trials were rejected. Continue authored forehead/hairline texture repair and hair silhouette work. v38 remains integrated and browser-verified per the preserved application handoff; v39 is not integrated."
+}

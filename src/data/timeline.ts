@@ -97,12 +97,12 @@ export const TIMELINE_MILESTONES: readonly CareerMilestone[] = [
     category: 'Academic',
     isHero: false,
     keyImpacts: [
-      'Graduated with CGPA 3.89 / 4.00 Distinction (First Class Honours Equivalent).',
+      'Graduated with CGPA 3.75 / 4.00 (UK Dual First-Class Honours).',
       'Conferred onto the APU Vice Chancellor’s Honors List (2022/2023) for academic distinction and community impact.',
       'Specialized in Enterprise Systems Architecture, Predictive Data Modeling, and Business Process Engineering.',
     ],
     techOrDomain: [
-      'Distinction / First Class (3.89 CGPA)',
+      'First Class Honours (3.75 CGPA)',
       'Enterprise Architecture',
       'Business Information Systems',
       'Predictive Analytics',

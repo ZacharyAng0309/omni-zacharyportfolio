@@ -1,0 +1,68 @@
+{
+  "latest_verified_review_version": "v40",
+  "updated": "2026-11-19",
+  "owner": "Codex",
+  "status": "v40 fringe texture repair verified in Blender; v38 remains integrated in the application; broader likeness refinement ongoing",
+  "archive": "artifacts/avatar-v40-codex-20261119",
+  "files": {
+    "zachary_character_v40_candidate.glb": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/zachary_character_v40_candidate.glb",
+      "sha256": "8e89493ee8244ff50024c4869bbef4cce82dc0825402887c98e961da847e14f0"
+    },
+    "Zachary_Avatar_v40_Review.blend": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/Zachary_Avatar_v40_Review.blend",
+      "sha256": "d28c039571ae9fb7570247a10337ddca78bc4acf77f652fe53750ac458bb97be"
+    },
+    "avatar-v40-pose-targets.json": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/avatar-v40-pose-targets.json",
+      "sha256": "3f1df5e3b04454038233994a2ad8122d13259cb6c3b1820b59296aab46524104"
+    },
+    "Avatar-v40-Review.md": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/Avatar-v40-Review.md",
+      "sha256": "9c71048c518ebd80140d4da8eb4dd35717d10d7c77f3314c7eb5c505a6ebca7e"
+    },
+    "avatar-v40-comparison.jpg": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/avatar-v40-comparison.jpg",
+      "sha256": "aef8876ad5745cc6374591b75c2723605cd7cff8fcca692809de54347d86249e"
+    },
+    "avatar-v40-review-views.jpg": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/avatar-v40-review-views.jpg",
+      "sha256": "0cea8cb31b471876cfc3d07984c2c92222f76c0b1b6866bc38101ba7d3fb5089"
+    },
+    "full40-front.png": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/full40-front.png",
+      "sha256": "af63a120255f42d178ff29d1280882b213c95a0dd843d172b59633daefc03648"
+    },
+    "full40-audit.json": {
+      "path": "artifacts/avatar-v40-codex-20261119/outputs/full40-audit.json",
+      "sha256": "6d2f5a74d05ade48597e1c4a70449897d9da8bfd03b98a3d5f08a26d178b039f"
+    }
+  },
+  "changes": [
+    "Harmonized painted fringe colors across Face/Hair while retaining source skin and wispy edges.",
+    "Dedicated UV repair patches occupy unused atlas areas; base color uses UV2, original UV0/UV1 retained for other maps.",
+    "Localized surface relaxation below the part; rig, topology, active facial vertices and original morph position targets retained."
+  ],
+  "verification": [
+    "1196 preservation, corner mapping, geometry, sampled UV-overlap, color and budget checks passed; zero failed.",
+    "Fresh exported GLB matches the Blender fringe preview; five angles and seven facial review views inspected.",
+    "Saved Blender review reopened: fourteen facial frames, six synchronized meshes, packed images and gesture targets verified.",
+    "Current project governance audit passed; v40 application/browser integration remains pending."
+  ],
+  "next_work": [
+    "Finer natural fringe strands and broader hair silhouette polish",
+    "Eye shading, skin detail and residual surface/texture facets",
+    "Collar/wrist atlas margins and hand/cloth detail",
+    "v40 browser appearance and application integration with base-color UV2; release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "ec703d9fe5ffd3f7af1109eef6e979fe5e50e1f72aff72ce4b6dcf357280f4a3",
+    "bytes": 2551464,
+    "latest_candidate_integrated": false,
+    "integrated_version": "v38",
+    "integrated_updated": "2026-11-15",
+    "verification_record": "artifacts/avatar-v39-codex-20261116/work/resume39-baseline.json"
+  },
+  "active_work": "v40 repairs the painted fringe color/mapping discontinuity with dedicated atlas space and restrained surface relaxation. Preserve TEXCOORD_2 for Face/Hair base color and UV1 for hair normal/parameter maps. The six-mesh schema-v4 facial contract is unchanged. v38 remains integrated; v40 is a verified Blender review candidate pending browser checks."
+}

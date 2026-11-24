@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, EyeOff, Eye, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { scrollToSectionCinematic } from '../utils/cinematicScroll';
+import { WHISPER_ACTS } from '../data/whisperActs';
 
 interface NavbarHUDProps {
   activeSection: string;
@@ -7,6 +9,7 @@ interface NavbarHUDProps {
   onToggleReducedMotion: () => void;
   isAudioEnabled?: boolean;
   onToggleAudio?: () => void;
+  onSelectSection?: (sectionId: string) => void;
 }
 
 export const NavbarHUD: React.FC<NavbarHUDProps> = ({
@@ -15,6 +18,7 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
   onToggleReducedMotion,
   isAudioEnabled = false,
   onToggleAudio,
+  onSelectSection,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -29,9 +33,10 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
 
   const scrollTo = (id: string) => {
     setIsMobileMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (onSelectSection) {
+      onSelectSection(id);
+    } else {
+      scrollToSectionCinematic(id, { reducedMotion: isReducedMotion });
     }
   };
 
@@ -59,55 +64,68 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
         <div
           data-testid="mobile-menu-backdrop"
           onClick={() => setIsMobileMenuOpen(false)}
-          className="fixed inset-0 bg-black/85 backdrop-blur-xl z-40 md:hidden animate-fadeIn"
+          className="fixed inset-0 bg-black/85 backdrop-blur-xl z-[45] lg:hidden"
           aria-hidden="true"
         />
       )}
 
-      <header className="fixed top-0 left-0 right-0 z-50 px-3 py-2.5 sm:px-8 sm:py-3">
+      <header
+        data-peek-hide
+        className="fixed top-0 left-0 right-0 z-50 px-3 pt-1.5 sm:px-8 sm:pt-1.5 pointer-events-none"
+      >
         <nav
           role="navigation"
           aria-label="Executive Portfolio Navigation"
-          className="max-w-5xl mx-auto flex items-center justify-between px-4 py-2 sm:px-5 sm:py-2.5 rounded-full apple-glass transition-all duration-300 relative"
+          className="pointer-events-auto max-w-5xl mx-auto flex items-center justify-between gap-2 px-4 py-1 sm:px-5 sm:py-1 rounded-full bg-[#0a0908]/82 backdrop-blur-2xl border border-white/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_16px_36px_rgba(0,0,0,0.7)] transition-all duration-300 relative"
         >
           {/* Brand / Monogram */}
-          <div
+          <button
+            type="button"
             onClick={() => scrollTo('hero')}
-            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group min-h-[44px]"
+            className="flex items-center gap-2 sm:gap-2.5 cursor-pointer group min-h-[38px] shrink-0 text-left rounded-full pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F0EA]/80"
           >
             <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-bold text-xs tracking-tighter text-white group-hover:scale-105 transition-transform">
               ZA
             </div>
-            <span className="font-semibold tracking-tight text-white text-sm">
+            <span className="font-semibold tracking-tight text-white text-sm whitespace-nowrap">
               Zachary Ang
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-neutral-400 font-mono hidden xs:inline">
-              Pro
-            </span>
-          </div>
+          </button>
 
           {/* Desktop Apple Style Section Pills */}
-          <div className="hidden md:flex items-center gap-6 text-xs font-medium text-neutral-400">
+          <div className="hidden lg:flex items-center lg:gap-4 xl:gap-6 text-xs font-medium text-neutral-400">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
+              const actAccent =
+                WHISPER_ACTS.find((a) => a.sectionId === item.id)?.accentColor ?? '#c8a97e';
               return (
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className={`transition-colors cursor-pointer py-1 ${
+                  className={`relative transition-colors cursor-pointer py-1 whitespace-nowrap ${
                     isActive
                       ? 'text-white font-semibold'
                       : 'hover:text-white'
                   }`}
                 >
                   {item.label}
+                  {isActive && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-0 inset-x-0.5 h-[2px] rounded-full transition-colors duration-300"
+                      style={{
+                        backgroundColor: actAccent,
+                        boxShadow: `0 0 8px ${actAccent}`,
+                      }}
+                    />
+                  )}
                 </button>
               );
             })}
           </div>
 
           {/* Actions & Accessibility */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {onToggleAudio && (
               <button
                 onClick={onToggleAudio}
@@ -134,7 +152,7 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
 
             <a
               href="mailto:ziyang.ang02@gmail.com?subject=Strategic%20Inquiry%20-%20Ang%20Zi%20Yang%20(Zachary)"
-              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-sm hover:scale-102 active:scale-98 min-h-[44px]"
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition-all cursor-pointer shadow-sm hover:scale-102 active:scale-98 min-h-[44px] whitespace-nowrap shrink-0"
             >
               <Mail className="w-3 h-3 text-black" />
               <span>Get in Touch</span>
@@ -145,7 +163,7 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
-              className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-neutral-300 hover:text-white hover:bg-white/10 transition-colors"
+              className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-neutral-300 hover:text-white hover:bg-white/10 transition-colors"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -155,25 +173,42 @@ export const NavbarHUD: React.FC<NavbarHUDProps> = ({
         {/* Mobile Frosted Navigation Drawer / Dropdown */}
         {isMobileMenuOpen && (
           <div
-            className="md:hidden max-w-5xl mx-auto mt-2 p-3.5 rounded-3xl bg-[#09090f]/95 backdrop-blur-2xl shadow-2xl animate-fadeIn border border-white/15 relative z-50 ring-1 ring-white/10"
+            className="pointer-events-auto lg:hidden max-w-5xl mx-auto mt-2 p-3.5 rounded-3xl bg-[#09090f]/95 backdrop-blur-2xl shadow-2xl animate-fadeIn border border-white/15 relative z-50 ring-1 ring-white/10"
             role="dialog"
             aria-label="Mobile Navigation"
           >
             <div className="flex flex-col space-y-1">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
+                const actAccent =
+                  WHISPER_ACTS.find((a) => a.sectionId === item.id)?.accentColor ?? '#c8a97e';
                 return (
                   <button
                     key={item.id}
+                    type="button"
                     onClick={() => scrollTo(item.id)}
-                    className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-medium flex items-center justify-between transition-colors min-h-[44px] ${
+                    style={
                       isActive
-                        ? 'bg-cyan-500/15 text-cyan-300 font-semibold border border-cyan-500/30'
-                        : 'text-neutral-300 hover:bg-white/5 hover:text-white'
+                        ? {
+                            backgroundColor: `${actAccent}1f`,
+                            borderColor: `${actAccent}66`,
+                            color: '#F4F0EA',
+                          }
+                        : undefined
+                    }
+                    className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-medium flex items-center justify-between transition-colors min-h-[44px] border ${
+                      isActive
+                        ? 'font-semibold'
+                        : 'text-[#D6D0C4] hover:bg-white/5 hover:text-[#F4F0EA] border-transparent'
                     }`}
                   >
                     <span>{item.label}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />}
+                    {isActive && (
+                      <span
+                        className="w-1.5 h-1.5 rounded-full"
+                        style={{ backgroundColor: actAccent }}
+                      />
+                    )}
                   </button>
                 );
               })}

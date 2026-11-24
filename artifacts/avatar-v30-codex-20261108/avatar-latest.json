@@ -1,0 +1,44 @@
+{
+  "latest_verified_review_version": "v30",
+  "updated": "2026-11-08",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v30-codex-20261108",
+  "files": {
+    "zachary_character_v30_candidate.glb": {
+      "path": "artifacts/avatar-v30-codex-20261108/outputs/zachary_character_v30_candidate.glb",
+      "sha256": "641b28faa21193cc75e3409817d28a422929e9524f3a9c2196426bc61e23620d"
+    },
+    "Zachary_Avatar_v30_Review.blend": {
+      "path": "artifacts/avatar-v30-codex-20261108/outputs/Zachary_Avatar_v30_Review.blend",
+      "sha256": "06fc3bf53907f818107960fe5a125fc273257819f449b617d7c8cfec047536e8"
+    },
+    "avatar-v30-pose-targets.json": {
+      "path": "artifacts/avatar-v30-codex-20261108/outputs/avatar-v30-pose-targets.json",
+      "sha256": "dcc8fcc2d77891ad8024e30973897f4d92951c8fe180202434d9a18cfe24ce20"
+    }
+  },
+  "changes": [
+    "Removed erroneous bridges between middle and ring fingers on both hands, retaining their palm connections.",
+    "Transferred UVs and weights to appended cut-surface vertices; retained original vertex indices and attributes.",
+    "Cleaned Boolean slivers and verified original cuff boundaries with no additional open or non-manifold edges."
+  ],
+  "verification": [
+    "94 preservation, topology, gap-clearance, UV/weight and size checks passed, zero failures.",
+    "All 2,078 active hand vertices agree with Blender skinning within 0.001 mm in six poses.",
+    "Both hands reviewed with uniform and independent finger curls; full-body views and gestures rendered.",
+    "Final Blender file reopened; six hand-review frames, whole-body gestures and packed images verified."
+  ],
+  "next_work": [
+    "Facial detail and likeness review against the local portrait",
+    "Coarse cut rims/fingertips and independent-finger creasing",
+    "Raised-elbow garment deformation",
+    "Remaining station poses, website integration and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v30 finger-web repair verified; next focus is facial detail and likeness, with finer hand articulation still pending"
+}

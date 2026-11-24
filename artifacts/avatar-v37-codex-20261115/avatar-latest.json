@@ -1,0 +1,64 @@
+{
+  "latest_verified_review_version": "v37",
+  "updated": "2026-11-15",
+  "owner": "Codex",
+  "status": "review candidate; whole-model refinement in progress; not approved for release",
+  "archive": "artifacts/avatar-v37-codex-20261115",
+  "files": {
+    "zachary_character_v37_candidate.glb": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/zachary_character_v37_candidate.glb",
+      "sha256": "9dfac9378828d0937cb93c1d15df7e8667de3edae9b61a85cac4cca7b04e76e1"
+    },
+    "Zachary_Avatar_v37_Review.blend": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/Zachary_Avatar_v37_Review.blend",
+      "sha256": "7042077a83d3d8fb9916b1d6ce71a3272994b2e10c878bc1758e6986af620ffb"
+    },
+    "avatar-v37-pose-targets.json": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/avatar-v37-pose-targets.json",
+      "sha256": "8d3f0e7d7725bae7dea0c0781bf3cdfb535d69c04980cb3fd86369ef6adf64bf"
+    },
+    "Avatar-v37-Review.md": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/Avatar-v37-Review.md",
+      "sha256": "ff77cdaa0ec4fc2c5559716b1c270f789d84333e8c965a3e663723981c3f3438"
+    },
+    "avatar-v37-comparison.jpg": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/avatar-v37-comparison.jpg",
+      "sha256": "a9c8eeaf8f027442a4462d0dfc2527453b23be8c942415676ac85d5ce03fd4c1"
+    },
+    "avatar-v37-expressions.jpg": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/avatar-v37-expressions.jpg",
+      "sha256": "04c7f4e0f36bca48af7897eca34c2d5709e98d3f08ee7c0d3e1e275ef69ff837"
+    },
+    "full37-front.png": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/full37-front.png",
+      "sha256": "ce26089d3dd44a3f1abc4d471df047d0903b2e8464da2ebf7a34ed88e36fe99d"
+    },
+    "full37-audit.json": {
+      "path": "artifacts/avatar-v37-codex-20261115/outputs/full37-audit.json",
+      "sha256": "233533b2fce907f8446cc424c1fd430908e553c1482f7ebc7b41511379b22725"
+    }
+  },
+  "changes": [
+    "Lowered eye assembly by 1.6 mm with local support; shared skin/hair boundaries maintained.",
+    "Smaller pupils, larger warm brown irises, angled/full lid openings and a restrained upper-lid crease.",
+    "Preserved topology, images, UVs, weights, original Face targets and the schema-v4 six-mesh contract."
+  ],
+  "verification": [
+    "1226 preservation, geometry, seam, sampled visibility and budget checks passed; zero failed.",
+    "Fresh GLB rendered across fourteen expressions and quarter/side views; saved Blender review reopened.",
+    "All six facial meshes, imported morph values, packed textures and gesture targets verified.",
+    "Current project governance audit passed; application and release gates pending."
+  ],
+  "next_work": [
+    "More natural iris/cornea shading, subtle eye asymmetry and tear ducts",
+    "Sharper facial detail and lip/cheek motion",
+    "Finger creasing and raised-elbow cloth",
+    "Six-mesh application integration, gaze controls, remaining poses and release gates"
+  ],
+  "application_model": {
+    "path": "public/models/zachary_character.glb",
+    "sha256": "df73e3ad3c62e935962ef6cf82491ccb725a17c82ca0284711fd50b8d647ac08",
+    "latest_candidate_integrated": false
+  },
+  "active_work": "v37 eye placement, iris proportions and lid tuning verified. Likeness remains a review candidate. Continue eye/skin realism and subtle asymmetry. Schema-v4 animation must synchronize Eyelids with the five other facial meshes; globes follow Head only."
+}

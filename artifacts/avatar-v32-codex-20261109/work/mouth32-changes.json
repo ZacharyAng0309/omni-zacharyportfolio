@@ -1,0 +1,12 @@
+{
+  "method": "rounded lip slit and recessed Boolean oral cavity; transferred surface attributes and revised mouth/jaw/aa targets",
+  "original_face_vertices": 2304,
+  "total_face_vertices": 2614,
+  "original_triangles": 3769,
+  "outer_triangles": 3415,
+  "oral_triangles": 245,
+  "unchanged_outer_triangles": 3264,
+  "neutral_aperture_mm": 0.4,
+  "depth_back_m": 0.06,
+  "integration_requirement": "Drive matching morph target names on both SM_Character_Face and SM_Character_OralCavity."
+}

@@ -1,0 +1,7 @@
+{
+  "method": "inverse-distance bone envelopes; smooth 45 mm geodesic blend from cuff seam",
+  "vertices_reweighted": 1632,
+  "seam_vertices_preserved": 101,
+  "max_influences": 4,
+  "weight_sum_max_error": 1.1920928955078125e-07
+}

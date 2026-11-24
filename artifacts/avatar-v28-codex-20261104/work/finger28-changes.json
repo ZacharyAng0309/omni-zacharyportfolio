@@ -1,0 +1,448 @@
+{
+  "method": "surface midlines at authored joint landmarks; local +X flexion toward palm",
+  "changes": {
+    "RightHandIndex1": {
+      "old_position_m": [
+        -0.3480000000000001,
+        0.8349999999999999,
+        0.08999999999999997
+      ],
+      "new_position_m": [
+        -0.400701,
+        0.825,
+        0.091
+      ],
+      "offset_corrected_mm": 53.65067940855909
+    },
+    "RightHandIndex2": {
+      "old_position_m": [
+        -0.34800000000000003,
+        0.7979999999999998,
+        0.08999999999999996
+      ],
+      "new_position_m": [
+        -0.398899,
+        0.794,
+        0.098
+      ],
+      "offset_corrected_mm": 51.67889512170317
+    },
+    "RightHandIndex3": {
+      "old_position_m": [
+        -0.34800000000000003,
+        0.7659999999999999,
+        0.08999999999999993
+      ],
+      "new_position_m": [
+        -0.3887332,
+        0.774,
+        0.102
+      ],
+      "offset_corrected_mm": 43.21103542198452
+    },
+    "RightHandMiddle1": {
+      "old_position_m": [
+        -0.3480000000000001,
+        0.8349999999999999,
+        0.07199999999999995
+      ],
+      "new_position_m": [
+        -0.40641905,
+        0.825,
+        0.07
+      ],
+      "offset_corrected_mm": 59.30249069729271
+    },
+    "RightHandMiddle2": {
+      "old_position_m": [
+        -0.348,
+        0.7979999999999999,
+        0.07199999999999994
+      ],
+      "new_position_m": [
+        -0.41077094999999997,
+        0.791,
+        0.073
+      ],
+      "offset_corrected_mm": 63.16796786269523
+    },
+    "RightHandMiddle3": {
+      "old_position_m": [
+        -0.34800000000000003,
+        0.7659999999999998,
+        0.0719999999999999
+      ],
+      "new_position_m": [
+        -0.40054205,
+        0.767,
+        0.077
+      ],
+      "offset_corrected_mm": 52.788891049182844
+    },
+    "RightHandRing1": {
+      "old_position_m": [
+        -0.34800000000000003,
+        0.8349999999999999,
+        0.05199999999999995
+      ],
+      "new_position_m": [
+        -0.40782215,
+        0.825,
+        0.047
+      ],
+      "offset_corrected_mm": 60.857946322748134
+    },
+    "RightHandRing2": {
+      "old_position_m": [
+        -0.3479999999999999,
+        0.798,
+        0.05199999999999994
+      ],
+      "new_position_m": [
+        -0.4117422,
+        0.791,
+        0.05
+      ],
+      "offset_corrected_mm": 64.15659015907883
+    },
+    "RightHandRing3": {
+      "old_position_m": [
+        -0.3479999999999999,
+        0.766,
+        0.051999999999999956
+      ],
+      "new_position_m": [
+        -0.4032463,
+        0.767,
+        0.051
+      ],
+      "offset_corrected_mm": 55.26439779541625
+    },
+    "RightHandPinky1": {
+      "old_position_m": [
+        -0.3480000000000001,
+        0.8349999999999999,
+        0.025999999999999968
+      ],
+      "new_position_m": [
+        -0.40547659999999996,
+        0.825,
+        0.023
+      ],
+      "offset_corrected_mm": 58.41711690557815
+    },
+    "RightHandPinky2": {
+      "old_position_m": [
+        -0.3479999999999999,
+        0.7979999999999999,
+        0.02599999999999993
+      ],
+      "new_position_m": [
+        -0.40808365,
+        0.801,
+        0.0245
+      ],
+      "offset_corrected_mm": 60.17719665556474
+    },
+    "RightHandPinky3": {
+      "old_position_m": [
+        -0.3480000000000001,
+        0.766,
+        0.025999999999999995
+      ],
+      "new_position_m": [
+        -0.4016934,
+        0.784,
+        0.024
+      ],
+      "offset_corrected_mm": 56.6655204119753
+    },
+    "RightHandThumb1": {
+      "old_position_m": [
+        -0.3360000000000001,
+        0.8349999999999999,
+        0.1119999999999999
+      ],
+      "new_position_m": [
+        -0.36481025,
+        0.85,
+        0.098
+      ],
+      "offset_corrected_mm": 35.36990959929777
+    },
+    "RightHandThumb2": {
+      "old_position_m": [
+        -0.336,
+        0.7979999999999999,
+        0.11200000000000002
+      ],
+      "new_position_m": [
+        -0.3638774,
+        0.835,
+        0.111
+      ],
+      "offset_corrected_mm": 46.337343803459454
+    },
+    "RightHandThumb3": {
+      "old_position_m": [
+        -0.33599999999999997,
+        0.7659999999999998,
+        0.11199999999999996
+      ],
+      "new_position_m": [
+        -0.36384735,
+        0.823,
+        0.12
+      ],
+      "offset_corrected_mm": 63.94118314531348
+    },
+    "LeftHandIndex1": {
+      "old_position_m": [
+        0.3479999999999999,
+        0.8349999999999999,
+        0.08999999999999994
+      ],
+      "new_position_m": [
+        0.39730665,
+        0.825,
+        0.091
+      ],
+      "offset_corrected_mm": 50.320430584629385
+    },
+    "LeftHandIndex2": {
+      "old_position_m": [
+        0.348,
+        0.7979999999999999,
+        0.08999999999999993
+      ],
+      "new_position_m": [
+        0.3951262,
+        0.794,
+        0.098
+      ],
+      "offset_corrected_mm": 47.96747571469652
+    },
+    "LeftHandIndex3": {
+      "old_position_m": [
+        0.3479999999999999,
+        0.7659999999999998,
+        0.08999999999999986
+      ],
+      "new_position_m": [
+        0.38537414999999997,
+        0.774,
+        0.102
+      ],
+      "offset_corrected_mm": 40.06029316196414
+    },
+    "LeftHandMiddle1": {
+      "old_position_m": [
+        0.348,
+        0.8349999999999999,
+        0.07199999999999995
+      ],
+      "new_position_m": [
+        0.40295245,
+        0.825,
+        0.07
+      ],
+      "offset_corrected_mm": 55.89071265427292
+    },
+    "LeftHandMiddle2": {
+      "old_position_m": [
+        0.3479999999999999,
+        0.7979999999999998,
+        0.07199999999999986
+      ],
+      "new_position_m": [
+        0.40693665,
+        0.791,
+        0.073
+      ],
+      "offset_corrected_mm": 59.359318672155496
+    },
+    "LeftHandMiddle3": {
+      "old_position_m": [
+        0.34800000000000014,
+        0.7659999999999999,
+        0.07200000000000004
+      ],
+      "new_position_m": [
+        0.3970435,
+        0.767,
+        0.077
+      ],
+      "offset_corrected_mm": 49.307858321468245
+    },
+    "LeftHandRing1": {
+      "old_position_m": [
+        0.348,
+        0.8349999999999999,
+        0.05199999999999997
+      ],
+      "new_position_m": [
+        0.40432295,
+        0.825,
+        0.047
+      ],
+      "offset_corrected_mm": 57.42190084543094
+    },
+    "LeftHandRing2": {
+      "old_position_m": [
+        0.348,
+        0.7979999999999998,
+        0.05199999999999995
+      ],
+      "new_position_m": [
+        0.40821435,
+        0.791,
+        0.05
+      ],
+      "offset_corrected_mm": 60.6528477973005
+    },
+    "LeftHandRing3": {
+      "old_position_m": [
+        0.3479999999999999,
+        0.7659999999999998,
+        0.05199999999999987
+      ],
+      "new_position_m": [
+        0.3996229,
+        0.767,
+        0.051
+      ],
+      "offset_corrected_mm": 51.64226761491026
+    },
+    "LeftHandPinky1": {
+      "old_position_m": [
+        0.34799999999999986,
+        0.8349999999999999,
+        0.02599999999999996
+      ],
+      "new_position_m": [
+        0.4017944,
+        0.825,
+        0.023
+      ],
+      "offset_corrected_mm": 54.798152079792004
+    },
+    "LeftHandPinky2": {
+      "old_position_m": [
+        0.34799999999999986,
+        0.7979999999999999,
+        0.025999999999999947
+      ],
+      "new_position_m": [
+        0.4047229,
+        0.801,
+        0.0245
+      ],
+      "offset_corrected_mm": 56.821979764964325
+    },
+    "LeftHandPinky3": {
+      "old_position_m": [
+        0.34799999999999986,
+        0.7659999999999999,
+        0.02599999999999998
+      ],
+      "new_position_m": [
+        0.39814685,
+        0.784,
+        0.024
+      ],
+      "offset_corrected_mm": 53.31703822346584
+    },
+    "LeftHandThumb1": {
+      "old_position_m": [
+        0.3360000000000001,
+        0.8349999999999999,
+        0.11200000000000006
+      ],
+      "new_position_m": [
+        0.36117005,
+        0.85,
+        0.098
+      ],
+      "offset_corrected_mm": 32.47354949805306
+    },
+    "LeftHandThumb2": {
+      "old_position_m": [
+        0.3360000000000001,
+        0.7979999999999999,
+        0.11200000000000002
+      ],
+      "new_position_m": [
+        0.36064185,
+        0.835,
+        0.111
+      ],
+      "offset_corrected_mm": 44.46595069738752
+    },
+    "LeftHandThumb3": {
+      "old_position_m": [
+        0.336,
+        0.7659999999999998,
+        0.11199999999999997
+      ],
+      "new_position_m": [
+        0.36073605,
+        0.823,
+        0.12
+      ],
+      "offset_corrected_mm": 62.648800224765004
+    }
+  },
+  "finger_tips_m": {
+    "RightHandIndex": [
+      -0.38545675,
+      0.763,
+      0.103
+    ],
+    "RightHandMiddle": [
+      -0.3943877,
+      0.751,
+      0.078
+    ],
+    "RightHandRing": [
+      -0.39786584999999997,
+      0.752,
+      0.051
+    ],
+    "RightHandPinky": [
+      -0.3975832,
+      0.771,
+      0.023
+    ],
+    "RightHandThumb": [
+      -0.36423375,
+      0.816,
+      0.124
+    ],
+    "LeftHandIndex": [
+      0.38257385,
+      0.763,
+      0.103
+    ],
+    "LeftHandMiddle": [
+      0.3907236,
+      0.751,
+      0.078
+    ],
+    "LeftHandRing": [
+      0.3941634,
+      0.752,
+      0.051
+    ],
+    "LeftHandPinky": [
+      0.39389035,
+      0.771,
+      0.023
+    ],
+    "LeftHandThumb": [
+      0.36112235000000004,
+      0.816,
+      0.124
+    ]
+  },
+  "pose_contract": "Multiply each finger rest quaternion by local X-axis curl quaternion. Do not overwrite absolute Euler X."
+}

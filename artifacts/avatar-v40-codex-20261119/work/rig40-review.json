@@ -1,0 +1,22 @@
+{
+  "station-1": {
+    "sampled_vertices": 198,
+    "maximum_skinning_difference_mm": 0.0007540929871129986,
+    "finger_curl_radians": 0.1
+  },
+  "glasses_adjust": {
+    "sampled_vertices": 198,
+    "maximum_skinning_difference_mm": 0.0007066670478212461,
+    "finger_curl_radians": 0.15
+  },
+  "inspect_tablet": {
+    "sampled_vertices": 198,
+    "maximum_skinning_difference_mm": 0.0006231821675993944,
+    "finger_curl_radians": 0.12
+  },
+  "keynote_present": {
+    "sampled_vertices": 198,
+    "maximum_skinning_difference_mm": 0.0007496309491857658,
+    "finger_curl_radians": 0.04
+  }
+}
