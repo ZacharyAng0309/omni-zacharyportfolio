@@ -2542,11 +2542,11 @@ export class SceneController {
             }
             physMat.needsUpdate = true;
           } else if (mName === 'Mat_Companion_GlassesMetal') {
-            stdMat.metalness = 0.92;
-            stdMat.roughness = 0.22;
+            stdMat.metalness = 0.80;
+            stdMat.roughness = 0.30;
             if (studioEnvMap) {
               stdMat.envMap = studioEnvMap;
-              stdMat.envMapIntensity = 0.85;
+              stdMat.envMapIntensity = 0.68;
             }
             stdMat.needsUpdate = true;
           } else if (mName === 'Mat_Companion_Body') {
@@ -2563,7 +2563,7 @@ export class SceneController {
               stdMat.map.needsUpdate = true;
               stdMat.emissiveMap = stdMat.map;
               stdMat.emissive = new THREE.Color(0xffffff);
-              stdMat.emissiveIntensity = 0.14;
+              stdMat.emissiveIntensity = 0.12;
             }
             if (stdMat.normalMap) {
               stdMat.normalMap.anisotropy = maxAniso;

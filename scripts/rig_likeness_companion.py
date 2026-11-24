@@ -243,6 +243,7 @@ def import_and_align_sources() -> tuple[
     bmesh.ops.remove_doubles(bm_weld, verts=bm_weld.verts, dist=5e-5)
     bm_weld.faces.ensure_lookup_table()
     bvh_shell = BVHTree.FromBMesh(bm_weld)
+    z_floor = min(v.co.z for v in bm_weld.verts) + 0.01
 
     is_outer: dict[int, bool] = {}
     for f in bm_weld.faces:
@@ -260,12 +261,20 @@ def import_and_align_sources() -> tuple[
             ang = k * (math.pi / 4.0)
             dirs.append((n * 0.22 + (t1 * math.cos(ang) + t2 * math.sin(ang)) * 0.975).normalized())
         # Front-face outward normal guard (true hollow backing faces always point backward n.y > +0.15)
-        if abs(fc.x) < 0.145 and fc.y < -0.165 and -0.16 < fc.z < 0.145 and n.y < 0.08:
+        if abs(fc.x) < 0.145 and fc.y < -0.165 and -0.16 < fc.z < 0.145 and n.y < -0.25:
             is_outer[f.index] = True
             continue
         escaped = False
         origin = fc + n * 0.0005
         for d in dirs:
+            if d.z < -0.05 and origin.z > z_floor:
+                t_fl = (z_floor - origin.z) / d.z
+                if (
+                    t_fl > 0.0
+                    and abs(origin.x + d.x * t_fl) < 0.36
+                    and abs(origin.y + d.y * t_fl) < 0.30
+                ):
+                    continue
             hit, _, _, _ = bvh_shell.ray_cast(origin, d, 5.0)
             if hit is None:
                 escaped = True
@@ -328,11 +337,17 @@ def import_and_align_sources() -> tuple[
     bust_scale = TARGET_HEAD_HEIGHT / raw_head_h
     print(f"Raw bust chin_z={bust_chin_z_raw:.4f}, crown_z={bust_crown_z_raw:.4f}, head_h={raw_head_h:.4f} -> bust_scale={bust_scale:.4f}")
 
-    # Measure raw eye centers from open iris + sclera zone (strictly below forehead bangs Z < 0.132)
-    eye_l_raw = h_pts[(h_pts[:, 1] < -0.18) & (h_pts[:, 0] > 0.045) & (h_pts[:, 0] < 0.115) & (h_pts[:, 2] > 0.085) & (h_pts[:, 2] < 0.132) & ((luma_h < 0.28) | (luma_h > 0.72))]
-    eye_r_raw = h_pts[(h_pts[:, 1] < -0.18) & (h_pts[:, 0] < -0.045) & (h_pts[:, 0] > -0.115) & (h_pts[:, 2] > 0.085) & (h_pts[:, 2] < 0.132) & ((luma_h < 0.28) | (luma_h > 0.72))]
-    el_med = np.median(eye_l_raw, axis=0) if len(eye_l_raw) else np.array([0.078, -0.209, 0.114])
-    er_med = np.median(eye_r_raw, axis=0) if len(eye_r_raw) else np.array([-0.078, -0.209, 0.114])
+    # Find clean sclera Z below bangs, then center horizontally on symmetrical dark iris pupils in that slit
+    warm_h = bust_vcol[:, 0] - bust_vcol[:, 2]
+    is_sclera_h = (luma_h > 0.64) & (warm_h < 0.14)
+    sc_z_pts = h_pts[(h_pts[:, 1] < -0.18) & (np.abs(h_pts[:, 0]) > 0.045) & (np.abs(h_pts[:, 0]) < 0.115) & (h_pts[:, 2] > 0.085) & (h_pts[:, 2] < 0.120) & is_sclera_h]
+    z_sc_raw = float(np.median(sc_z_pts[:, 2])) if len(sc_z_pts) >= 6 else 0.112
+    iris_l_raw = h_pts[(h_pts[:, 1] < -0.18) & (h_pts[:, 0] > 0.045) & (h_pts[:, 0] < 0.115) & (np.abs(h_pts[:, 2] - z_sc_raw) < 0.012) & (luma_h < 0.28)]
+    iris_r_raw = h_pts[(h_pts[:, 1] < -0.18) & (h_pts[:, 0] < -0.045) & (h_pts[:, 0] > -0.115) & (np.abs(h_pts[:, 2] - z_sc_raw) < 0.012) & (luma_h < 0.28)]
+    eye_l_raw = iris_l_raw if len(iris_l_raw) >= 4 else h_pts[(h_pts[:, 1] < -0.18) & (h_pts[:, 0] > 0.045) & (h_pts[:, 0] < 0.115) & (h_pts[:, 2] > 0.085) & (h_pts[:, 2] < 0.120) & ((luma_h < 0.28) | is_sclera_h)]
+    eye_r_raw = iris_r_raw if len(iris_r_raw) >= 4 else h_pts[(h_pts[:, 1] < -0.18) & (h_pts[:, 0] < -0.045) & (h_pts[:, 0] > -0.115) & (h_pts[:, 2] > 0.085) & (h_pts[:, 2] < 0.120) & ((luma_h < 0.28) | is_sclera_h)]
+    el_med = np.median(eye_l_raw, axis=0) if len(eye_l_raw) else np.array([0.078, -0.209, z_sc_raw])
+    er_med = np.median(eye_r_raw, axis=0) if len(eye_r_raw) else np.array([-0.078, -0.209, z_sc_raw])
     eye_mid_x_raw = 0.5 * float(el_med[0] + er_med[0])
 
     # Measure neck cylinder Y center in [-0.25, -0.16]
@@ -353,26 +368,50 @@ def import_and_align_sources() -> tuple[
     hd_bust.data.transform(bust_mat)
     hd_bust.data.update()
 
-    # Re-measure world landmarks directly on transformed HD bust
+    # Re-measure world landmarks directly on transformed HD bust (sclera Z + dark-iris pupil X!)
     a_pts = np.array([list(v.co) for v in hd_bust.data.vertices], dtype=np.float64)
     a_lum = luma_h
+    a_warm = warm_h
+    is_sclera_a = (a_lum > 0.64) & (a_warm < 0.14)
     eye_z_est = 0.5 * float(el_med[2] + er_med[2]) * bust_scale + dz
 
-    iris_l = a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 0] > 0.018) & (a_pts[:, 0] < 0.046) & (np.abs(a_pts[:, 2] - eye_z_est) < 0.009) & (a_lum < 0.28)]
-    iris_r = a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 0] < -0.018) & (a_pts[:, 0] > -0.046) & (np.abs(a_pts[:, 2] - eye_z_est) < 0.009) & (a_lum < 0.28)]
-    eye_l_pos = Vector(np.median(iris_l, axis=0)) if len(iris_l) else Vector((float(el_med[0]) * bust_scale + dx, float(el_med[1]) * bust_scale + dy, eye_z_est))
-    eye_r_pos = Vector(np.median(iris_r, axis=0)) if len(iris_r) else Vector((float(er_med[0]) * bust_scale + dx, float(er_med[1]) * bust_scale + dy, eye_z_est))
-    eye_z = 0.5 * (eye_l_pos.z + eye_r_pos.z) - 0.0010  # optical center just below upper lash line
+    sc_l = a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 0] > 0.018) & (a_pts[:, 0] < 0.048) & (np.abs(a_pts[:, 2] - eye_z_est) < 0.012) & is_sclera_a]
+    sc_r = a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 0] < -0.018) & (a_pts[:, 0] > -0.048) & (np.abs(a_pts[:, 2] - eye_z_est) < 0.012) & is_sclera_a]
+    z_sc_l = float(np.median(sc_l[:, 2])) if len(sc_l) >= 6 else eye_z_est
+    z_sc_r = float(np.median(sc_r[:, 2])) if len(sc_r) >= 6 else eye_z_est
+    eye_z = 0.5 * (z_sc_l + z_sc_r)
+
+    sc_y_min = float(min(
+        np.min(sc_l[:, 1]) if len(sc_l) >= 6 else -0.080,
+        np.min(sc_r[:, 1]) if len(sc_r) >= 6 else -0.080,
+    ))
+    pupil_l = a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 1] > sc_y_min - 0.005) & (a_pts[:, 0] > 0.020) & (a_pts[:, 0] < 0.045) & (a_pts[:, 2] >= eye_z - 0.0075) & (a_pts[:, 2] <= eye_z + 0.0042) & (a_lum < 0.30)]
+    pupil_r = a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 1] > sc_y_min - 0.005) & (a_pts[:, 0] < -0.020) & (a_pts[:, 0] > -0.045) & (a_pts[:, 2] >= eye_z - 0.0075) & (a_pts[:, 2] <= eye_z + 0.0042) & (a_lum < 0.30)]
+    if len(pupil_l) >= 6 and len(pupil_r) >= 6:
+        eye_z = 0.5 * (float(np.median(pupil_l[:, 2])) + float(np.median(pupil_r[:, 2])))
+    band_l = pupil_l if len(pupil_l) >= 6 else a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 1] > sc_y_min - 0.006) & (a_pts[:, 0] > 0.018) & (a_pts[:, 0] < 0.048) & (np.abs(a_pts[:, 2] - eye_z) < 0.006) & (is_sclera_a | (a_lum < 0.28))]
+    band_r = pupil_r if len(pupil_r) >= 6 else a_pts[(a_pts[:, 1] < -0.055) & (a_pts[:, 1] > sc_y_min - 0.006) & (a_pts[:, 0] < -0.018) & (a_pts[:, 0] > -0.048) & (np.abs(a_pts[:, 2] - eye_z) < 0.006) & (is_sclera_a | (a_lum < 0.28))]
+    eye_l_pos = Vector((
+        float(np.median(band_l[:, 0])) if len(band_l) else float(el_med[0]) * bust_scale + dx,
+        float(np.median(band_l[:, 1])) if len(band_l) else float(el_med[1]) * bust_scale + dy,
+        eye_z,
+    ))
+    eye_r_pos = Vector((
+        float(np.median(band_r[:, 0])) if len(band_r) else float(er_med[0]) * bust_scale + dx,
+        float(np.median(band_r[:, 1])) if len(band_r) else float(er_med[1]) * bust_scale + dy,
+        eye_z,
+    ))
     eye_dx = 0.5 * (eye_l_pos.x - eye_r_pos.x)
     nose_x = 0.5 * (eye_l_pos.x + eye_r_pos.x)
 
     nose_sub = a_pts[(np.abs(a_pts[:, 0] - nose_x) < 0.010) & (a_pts[:, 2] > eye_z - 0.055) & (a_pts[:, 2] < eye_z - 0.020)]
     nose_tip = nose_sub[np.argmin(nose_sub[:, 1])] if len(nose_sub) else np.array([nose_x, float(eye_l_pos.y) - 0.024, eye_z - 0.036])
-    bridge_sub = a_pts[(np.abs(a_pts[:, 0] - nose_x) < 0.008) & (np.abs(a_pts[:, 2] - eye_z) < 0.008) & (a_pts[:, 1] < -0.05)]
+    is_skin_w = (a_warm > 0.04) & (a_lum > 0.35)
+    bridge_sub = a_pts[(np.abs(a_pts[:, 0] - nose_x) < 0.008) & (a_pts[:, 2] >= eye_z - 0.010) & (a_pts[:, 2] <= eye_z + 0.002) & (a_pts[:, 1] < -0.05) & is_skin_w]
     bridge_y = float(bridge_sub[:, 1].min()) if len(bridge_sub) else float(eye_l_pos.y) - 0.010
 
-    cornea_l = a_pts[(np.abs(a_pts[:, 0] - eye_l_pos.x) < 0.008) & (np.abs(a_pts[:, 2] - eye_z) < 0.007) & (a_pts[:, 1] < -0.05)]
-    cornea_r = a_pts[(np.abs(a_pts[:, 0] - eye_r_pos.x) < 0.008) & (np.abs(a_pts[:, 2] - eye_z) < 0.007) & (a_pts[:, 1] < -0.05)]
+    cornea_l = a_pts[(np.abs(a_pts[:, 0] - eye_l_pos.x) < 0.009) & (np.abs(a_pts[:, 2] - eye_z) < 0.006) & (a_pts[:, 1] < -0.05) & (a_pts[:, 2] < eye_z + 0.005) & (is_sclera_a | (a_lum < 0.28) | is_skin_w)]
+    cornea_r = a_pts[(np.abs(a_pts[:, 0] - eye_r_pos.x) < 0.009) & (np.abs(a_pts[:, 2] - eye_z) < 0.006) & (a_pts[:, 1] < -0.05) & (a_pts[:, 2] < eye_z + 0.005) & (is_sclera_a | (a_lum < 0.28) | is_skin_w)]
     eye_front_y = float(min(
         cornea_l[:, 1].min() if len(cornea_l) else eye_l_pos.y,
         cornea_r[:, 1].min() if len(cornea_r) else eye_r_pos.y,
@@ -467,18 +506,33 @@ def sculpt_refine_hd_bust(
     hd_bust: bpy.types.Object, bust_vcol: np.ndarray, lm: dict[str, object]
 ) -> None:
     """
-    Clean Horizontal Bisect + Procedural Pixar-Anime Neck Skirt (ZERO facial distortion!):
+    Clean Horizontal Bisect + Watertight Procedural Pixar-Anime Neck Skirt (ZERO facial distortion!):
     - Preserves 100% of TRELLIS.2's sculpted Pixar-Anime face, eyelids, bangs, smile, and ears.
-    - Trims stray outer collar flares below `chin_guard_z`, slices razor-flat at Z=1.338m via
-      `bmesh.ops.bisect_plane`, and extrudes an 8-ring smooth slim neck cylinder (rx=0.0445, ry=0.0360)
-      down to Z=1.278m cleanly tucked inside the analytical body collar opening.
+    - Trims standing collar flaps smoothly while preserving chin, jawline, and rear occipital nape hair,
+      slices razor-flat at Z=1.346m via `bmesh.ops.bisect_plane`, bridges any angular gap so the neck ring
+      is a closed 360-deg loop, and extrudes a 10-ring smooth neck cylinder down to Z=1.268m tucked inside
+      the sculpted crew-neck collar.
     """
-    _ = bust_vcol
     mesh = hd_bust.data
+    v_luma = (0.299 * bust_vcol[:, 0] + 0.587 * bust_vcol[:, 1] + 0.114 * bust_vcol[:, 2]).astype(np.float32)
+    v_warm = (bust_vcol[:, 0] - bust_vcol[:, 2]).astype(np.float32)
+
     bm = bmesh.new()
     bm.from_mesh(mesh)
     bm.verts.ensure_lookup_table()
     bm.faces.ensure_lookup_table()
+
+    # Classify dark standing-collar faces UPFRONT while bm.verts matches bust_vcol indices 1:1
+    n_vcol = len(bust_vcol)
+    dark_collar_face_ids: set[int] = set()
+    for f in bm.faces:
+        n_fv = float(len(f.verts))
+        if n_fv <= 0 or any(v.index >= n_vcol for v in f.verts):
+            continue
+        avg_lum = sum(float(v_luma[v.index]) for v in f.verts) / n_fv
+        avg_warm = sum(float(v_warm[v.index]) for v in f.verts) / n_fv
+        if avg_lum < 0.26 and avg_warm < 0.035:
+            dark_collar_face_ids.add(f.index)
 
     nose_x = float(lm["nose_x"])
     chin_z = float(lm["chin_z"])
@@ -486,32 +540,38 @@ def sculpt_refine_hd_bust(
     neck_skin_uv = lm.get("neck_skin_uv", (0.5, 0.5))
     uv_vec = Vector((float(neck_skin_uv[0]), float(neck_skin_uv[1])))  # type: ignore[index]
 
-    # 1. Remove stray outer standing-collar & dangling side/rear bust flares below jawline
-    # Seal occipital nape cleanly via generous rear ry_lim above 1.356m while clipping any loose dangling tips
-    chin_guard_z = max(1.352, chin_z - 0.008)
-    back_flare_z = min(max(chin_guard_z + 0.010, chin_z + 0.012), 1.382)
+    # 1. Remove standing-collar & dangling side/rear bust flares cleanly below jawline
+    # Continuous smooth rx_lim/ry_lim prevents stepped side-neck notches while trimming lower nape tufts
+    chin_guard_z = max(1.356, chin_z - 0.012)
+    back_flare_z = min(max(chin_guard_z + 0.018, chin_z + 0.018), 1.388)
     flare_faces = []
     for f in bm.faces:
         fc = f.calc_center_median()
+        in_inner_neck = math.hypot((fc.x - nose_x) / 0.050, (fc.y - neck_cy) / 0.048) <= 1.00
+        if (
+            not in_inner_neck
+            and f.index in dark_collar_face_ids
+            and fc.z < 1.378
+            and (fc.y < 0.028 or (fc.z < 1.360 and fc.y < 0.036))
+        ):
+            flare_faces.append(f)
+            continue
         if fc.z >= back_flare_z:
             continue
-        if fc.z >= chin_guard_z and fc.y <= 0.025:
+        if fc.z >= chin_guard_z and fc.y <= -0.015:
             continue
         if fc.y < -0.036 and fc.z >= chin_z - 0.014:
             continue
-        if fc.z < 1.356:
-            rx_lim = 0.045
-            ry_lim = 0.050
-        else:
-            rx_lim = 0.047
-            ry_lim = 0.064 if fc.y > neck_cy else 0.052
+        t_z = smoothstep(1.346, back_flare_z, fc.z)
+        rx_lim = 0.0495 + 0.0025 * t_z
+        ry_lim = (0.043 + 0.009 * t_z) if fc.y > neck_cy else 0.050
         if math.hypot((fc.x - nose_x) / rx_lim, (fc.y - neck_cy) / ry_lim) > 1.00:
             flare_faces.append(f)
     if flare_faces:
         bmesh.ops.delete(bm, geom=flare_faces, context="FACES")
 
-    # 2. Razor-flat horizontal knife cut at Z_cut=1.338m (removes lower bust collar & broken white tee cleanly)
-    z_cut = 1.338
+    # 2. Razor-flat horizontal knife cut at Z_cut=1.346m (strictly above standing collar crease)
+    z_cut = 1.346
     geom_all = list(bm.verts) + list(bm.edges) + list(bm.faces)
     bmesh.ops.bisect_plane(
         bm,
@@ -547,57 +607,105 @@ def sculpt_refine_hd_bust(
         stray_verts = [v for comp in comps[1:] for v in comp]
         bmesh.ops.delete(bm, geom=stray_verts, context="VERTS")
 
-    # 4. Find ONLY the clean horizontal bottom cut boundary edges at Z=1.338m
+    # 4. Walk exact topological cut boundary edges at Z=1.346m (guarantees 100% shared edge extrusion, 0 open seams!)
     bm.verts.ensure_lookup_table()
     bm.edges.ensure_lookup_table()
     bm.faces.ensure_lookup_table()
+    target_cx = nose_x
+    target_cy = neck_cy
+
     cut_bedges = [
         e for e in bm.edges
         if e.is_boundary
-        and abs(e.verts[0].co.z - z_cut) < 0.0025
-        and abs(e.verts[1].co.z - z_cut) < 0.0025
-        and max(e.verts[0].co.y, e.verts[1].co.y) < 0.062
+        and abs(e.verts[0].co.z - z_cut) < 0.0012
+        and abs(e.verts[1].co.z - z_cut) < 0.0012
+        and max(e.verts[0].co.y, e.verts[1].co.y) < 0.068
     ]
     assert len(cut_bedges) >= 12, f"Expected >= 12 horizontal neck cut edges at Z={z_cut}, got {len(cut_bedges)}"
 
     cut_verts = list({v for e in cut_bedges for v in e.verts})
-    target_cx = nose_x
-    target_cy = neck_cy
+    cut_adj: dict[int, list[bmesh.types.BMVert]] = {bv.index: [] for bv in cut_verts}
+    for e in cut_bedges:
+        va, vb = e.verts[0], e.verts[1]
+        cut_adj[va.index].append(vb)
+        cut_adj[vb.index].append(va)
 
-    # Clamp any stray wide vertex on the cut ring to a slim anatomical throat oval & smooth tangentially
     for bv in cut_verts:
         dx_c = bv.co.x - target_cx
         dy_c = bv.co.y - target_cy
-        ry_cap = 0.030 if dy_c < 0.0 else 0.049
-        el_c = math.hypot(dx_c / 0.0465, dy_c / ry_cap)
+        ry_cap = 0.033 if dy_c < 0.0 else 0.043
+        el_c = math.hypot(dx_c / 0.0450, dy_c / ry_cap)
         if el_c > 1.0:
             bv.co.x = target_cx + dx_c / el_c
             bv.co.y = target_cy + dy_c / el_c
         bv.co.z = z_cut
 
-    cut_set = {v.index for v in cut_verts}
-    for _ in range(2):
-        tan_disp: dict[int, tuple[float, float]] = {}
+    for _ in range(4):
+        nxt_xy: dict[int, tuple[float, float]] = {}
         for bv in cut_verts:
-            nbr_xy = [e.other_vert(bv).co for e in bv.link_edges if e.other_vert(bv).index in cut_set]
-            if len(nbr_xy) == 2:
-                mx = 0.5 * (nbr_xy[0].x + nbr_xy[1].x)
-                my = 0.5 * (nbr_xy[0].y + nbr_xy[1].y)
-                tan_disp[bv.index] = ((mx - bv.co.x) * 0.45, (my - bv.co.y) * 0.45)
+            nbrs = cut_adj.get(bv.index, [])
+            if len(nbrs) == 2:
+                mx = 0.5 * (nbrs[0].co.x + nbrs[1].co.x)
+                my = 0.5 * (nbrs[0].co.y + nbrs[1].co.y)
+                nxt_xy[bv.index] = (bv.co.x + (mx - bv.co.x) * 0.42, bv.co.y + (my - bv.co.y) * 0.42)
         for bv in cut_verts:
-            if bv.index in tan_disp:
-                bv.co.x += tan_disp[bv.index][0]
-                bv.co.y += tan_disp[bv.index][1]
+            if bv.index in nxt_xy:
+                bv.co.x, bv.co.y = nxt_xy[bv.index]
+            bv.co.z = z_cut
 
-    front_cut = [v for v in cut_verts if v.co.y < 0.042] or cut_verts
+    # Extrude every topological cut edge directly, and bridge any rear open chain endpoints across small gaps
+    closed_ring: list[bmesh.types.BMVert] = list(cut_verts)
+    ring_pairs: list[tuple[bmesh.types.BMVert, bmesh.types.BMVert]] = [
+        (e.verts[0], e.verts[1]) for e in cut_bedges
+    ]
+    gaps_filled = 0
+    endpoints = [
+        bv for bv in cut_verts
+        if len(cut_adj.get(bv.index, [])) == 1
+    ]
+    if len(endpoints) >= 2:
+        endpoints_sorted = sorted(endpoints, key=lambda v: math.atan2(v.co.y - target_cy, v.co.x - target_cx))
+        used_ep: set[int] = set()
+        for idx_e, ep_a in enumerate(endpoints_sorted):
+            if ep_a.index in used_ep:
+                continue
+            ep_b = endpoints_sorted[(idx_e + 1) % len(endpoints_sorted)]
+            if ep_b.index in used_ep or ep_b == ep_a:
+                continue
+            # Only bridge across actual uncovered chain gap (no existing edge, small distance < 30mm)
+            if ep_b not in cut_adj.get(ep_a.index, []) and (ep_b.co - ep_a.co).length < 0.030:
+                used_ep.add(ep_a.index)
+                used_ep.add(ep_b.index)
+                gaps_filled += 1
+                ring_pairs.append((ep_a, ep_b))
+
+    # Smooth upper neck skin strictly behind chin so side-neck roughness melts evenly before skirt extrusion
+    bm.verts.ensure_lookup_table()
+    bm.edges.ensure_lookup_table()
+    upper_neck_verts = [
+        v for v in bm.verts
+        if not v.is_boundary and 1.346 < v.co.z <= 1.362 and v.co.y > -0.042
+    ]
+    for _ in range(4):
+        disp_u: dict[int, Vector] = {}
+        for v in upper_neck_verts:
+            nbrs = [e.other_vert(v).co for e in v.link_edges]
+            if nbrs:
+                avg = sum(nbrs, Vector((0.0, 0.0, 0.0))) / float(len(nbrs))
+                disp_u[v.index] = (avg - v.co) * 0.28
+        for v in upper_neck_verts:
+            if v.index in disp_u:
+                v.co += disp_u[v.index]
+
+    front_cut = [v for v in closed_ring if v.co.y < 0.042] or closed_ring
     ncx = float(np.median([v.co.x for v in front_cut]))
     ncy = float(np.median([v.co.y for v in front_cut]))
 
-    # 5. Extrude 8 smooth downward rings from Z=1.338m to Z=1.268m matching sculpted crew-neck rib collar
-    rx_t, ry_front_t, ry_back_t, z_bot = 0.056, 0.058, 0.044, 1.268
-    n_rings = 8
+    # 5. Extrude 10 smooth downward rings from Z=1.346m to Z=1.268m tucked inside crew-neck collar
+    rx_t, ry_front_t, ry_back_t, z_bot = 0.050, 0.046, 0.043, 1.268
+    n_rings = 10
     ring_verts: dict[tuple[bmesh.types.BMVert, int], bmesh.types.BMVert] = {}
-    for bv in cut_verts:
+    for bv in closed_ring:
         ring_verts[(bv, 0)] = bv
         dx_n = bv.co.x - target_cx
         dy_n = bv.co.y - target_cy
@@ -609,7 +717,6 @@ def sculpt_refine_hd_bust(
             tx = target_cx + ux * r_ell
             ty = target_cy + uy * r_ell
         else:
-            uy = 0.0
             tx, ty = target_cx, target_cy
         for s in range(1, n_rings + 1):
             t = s / float(n_rings)
@@ -621,15 +728,14 @@ def sculpt_refine_hd_bust(
             ring_verts[(bv, s)] = bm.verts.new(Vector((nx, ny, nz)))
 
     uv_lay = bm.loops.layers.uv.active
-    seam_ring_verts: set[bmesh.types.BMVert] = set(cut_verts)
-    for e in cut_bedges:
-        va, vb = e.verts[0], e.verts[1]
+    seam_ring_verts: set[bmesh.types.BMVert] = set(closed_ring)
+    for va, vb in ring_pairs:
         for s in range(n_rings):
             v00 = ring_verts[(va, s)]
             v01 = ring_verts[(vb, s)]
             v11 = ring_verts[(vb, s + 1)]
             v10 = ring_verts[(va, s + 1)]
-            if s <= 1:
+            if s <= 2:
                 seam_ring_verts.add(v10)
                 seam_ring_verts.add(v11)
             try:
@@ -646,24 +752,35 @@ def sculpt_refine_hd_bust(
                 for lp in nf.loops:
                     lp[uv_lay].uv = uv_vec
 
-    # 6. 3 light Laplacian relaxation passes strictly on top skirt seam rings s=0..2 (1.316..1.342)
+    # 6. 4 light Laplacian relaxation passes across top skirt splice band (1.326..1.356)
     bm.verts.ensure_lookup_table()
     bm.edges.ensure_lookup_table()
     trans_verts = [
         v for v in seam_ring_verts
-        if not v.is_boundary and 1.316 <= v.co.z <= 1.342
+        if not v.is_boundary and 1.326 <= v.co.z <= 1.356 and v.co.y > -0.042
     ]
-    for _ in range(3):
+    for _ in range(4):
         disp_t: dict[int, Vector] = {}
         for v in trans_verts:
             nbrs = [e.other_vert(v).co for e in v.link_edges]
             if nbrs:
                 avg = sum(nbrs, Vector((0.0, 0.0, 0.0))) / float(len(nbrs))
-                disp_t[v.index] = (avg - v.co) * 0.35
+                disp_t[v.index] = (avg - v.co) * 0.32
         for v in trans_verts:
             if v.index in disp_t:
                 v.co += disp_t[v.index]
-    print(f"Bisected at Z={z_cut:.3f}m ({len(cut_bedges)} cut edges, neck_c=({ncx:+.4f},{ncy:+.4f})) and extruded 8-ring skirt to Z={z_bot:.3f}m")
+
+    open_front_neck = sum(
+        1 for e in bm.edges
+        if e.is_boundary
+        and 1.280 <= 0.5 * (e.verts[0].co.z + e.verts[1].co.z) <= 1.370
+        and 0.5 * (e.verts[0].co.y + e.verts[1].co.y) < 0.028
+    )
+    print(
+        f"Bisected at Z={z_cut:.3f}m (ring={len(closed_ring)}, gaps_filled={gaps_filled}, "
+        f"open_front_neck={open_front_neck}, neck_c=({ncx:+.4f},{ncy:+.4f})) and extruded {n_rings}-ring skirt to Z={z_bot:.3f}m"
+    )
+    assert open_front_neck == 0, f"Visible torn neck boundary detected (open_front_neck={open_front_neck})"
 
     assert len(bm.verts) > 12000, f"Unexpectedly small HD head mesh after collar trim: {len(bm.verts)} verts"
     bm.to_mesh(mesh)
@@ -881,8 +998,8 @@ def add_sculpted_crew_collar(
         cx = math.cos(th)
         sy = math.sin(th)  # -1 = front throat (-Y), +1 = back nape (+Y)
 
-        rx_in = 0.0485
-        ry_in = 0.0405 if sy < 0.0 else 0.0455
+        rx_in = 0.0475
+        ry_in = 0.0395 if sy < 0.0 else 0.0450
         x_in = nose_x + cx * rx_in
         y_in = neck_cy + sy * ry_in
         rad_dir = Vector((cx / rx_in, sy / ry_in, 0.0)).normalized()
@@ -1149,8 +1266,8 @@ def add_sculpted_jacket_plackets(
 
             sec_pts = [
                 (x_edge + sx * 0.007, max(y_t + 0.006, y_front + 0.015), 0.904),
-                (x_edge + sx * 0.001, max(y_t - 0.001, y_front + 0.007), 0.902),
-                (x_edge - sx * 0.001, y_front + 0.0032, 0.898),
+                (x_edge + sx * 0.0020, max(y_t - 0.001, y_front + 0.007), 0.902),
+                (x_edge + sx * 0.0005, y_front + 0.0032, 0.898),
                 (x_edge, y_front + 0.0004, 0.893),
                 (x_edge + sx * 0.006, y_front - 0.0006, 0.889),
                 (x_edge + sx * 0.017, y_p5, 0.884),
@@ -1601,7 +1718,7 @@ def build_clean_body_and_hd_head(
     uv_h.active = True
     uv_h.active_render = True
 
-    # Hero-Priority Split UV Unwrap: give the contiguous front face/eyes/nose/mouth ~150x more texel density!
+    # Hero-Priority Split UV Unwrap: convex ear-free face, cheeks, jaw & visible neck disc in Zone 1!
     bm_uv = bmesh.new()
     bm_uv.from_mesh(head_low.data)
     bm_uv.faces.ensure_lookup_table()
@@ -1612,16 +1729,23 @@ def build_clean_body_and_hd_head(
     for f in bm_uv.faces:
         f.normal_update()
         fc = f.calc_center_median()
-        if (
-            f.normal.y < -0.18
-            and abs(fc.x - nose_x) < 0.068
-            and 1.362 <= fc.z <= eye_z_uv + 0.022
-            and fc.y < -0.048
-            and not (fc.z > eye_z_uv + 0.009 and fc.y < bridge_y_uv - 0.005)
-        ):
+        in_face_jaw = (
+            1.346 <= fc.z <= eye_z_uv + 0.024
+            and abs(fc.x - nose_x) < 0.064
+            and fc.y < 0.008
+            and f.normal.y < 0.15
+            and not (fc.z > eye_z_uv + 0.012 and fc.y < bridge_y_uv - 0.003)
+        )
+        in_neck_visible = (
+            1.305 <= fc.z < 1.352
+            and abs(fc.x - nose_x) < 0.056
+            and fc.y < 0.022
+            and f.normal.y < 0.25
+        )
+        if in_face_jaw or in_neck_visible:
             cand_face_set.add(f.index)
 
-    # Keep only the largest edge-connected component as Zone 1 (single fold-free front portrait sheet)
+    # Keep only the largest edge-connected component as Zone 1 (single fold-free front/side skin sheet)
     seen_cf: set[int] = set()
     cf_comps: list[list[int]] = []
     for fi in cand_face_set:
@@ -1649,7 +1773,7 @@ def build_clean_body_and_hd_head(
     bpy.context.view_layer.objects.active = head_low
     bpy.ops.object.mode_set(mode="EDIT")
 
-    # Zone 1: Unwrap Hero Front Face continuously
+    # Zone 1: Unwrap continuous front/side face, jaw & visible neck skin sheet
     bpy.ops.mesh.select_mode(type="FACE")
     bpy.ops.mesh.select_all(action="DESELECT")
     bm_ed = bmesh.from_edit_mesh(head_low.data)
@@ -1659,15 +1783,15 @@ def build_clean_body_and_hd_head(
     bmesh.update_edit_mesh(head_low.data, loop_triangles=False, destructive=False)
     bpy.ops.uv.unwrap(method="ANGLE_BASED", margin=0.004)
 
-    # Zone 2: Smart-project hair, ears, skull & neck with wider island margin to block collar/hair UV bleed
+    # Zone 2: Smart-project hair, ears, skull & hidden collar tuck with healthy 0.008 island margin
     bm_ed.faces.ensure_lookup_table()
     for f in bm_ed.faces:
         f.select_set(f.index not in hero_face_indices)
     bmesh.update_edit_mesh(head_low.data, loop_triangles=False, destructive=False)
-    bpy.ops.uv.smart_project(angle_limit=math.radians(66.0), island_margin=0.05)
+    bpy.ops.uv.smart_project(angle_limit=math.radians(66.0), island_margin=0.008)
     bpy.ops.object.mode_set(mode="OBJECT")
 
-    # Pack Zone 1 into [0.02..0.70, 0.04..0.96] preserving aspect ratio, Zone 2 into [0.73..0.99, 0.02..0.98]
+    # Pack Zone 1 into [0.01..0.60, 0.02..0.98] preserving aspect ratio, Zone 2 into [0.63..0.99, 0.02..0.98]
     bm_pack = bmesh.new()
     bm_pack.from_mesh(head_low.data)
     bm_pack.faces.ensure_lookup_table()
@@ -1678,15 +1802,15 @@ def build_clean_body_and_hd_head(
     z1_vs = [lp[uv_lay_p].uv.y for f in bm_pack.faces if f.index in hero_face_indices for lp in f.loops]
     u1_0, u1_1 = min(z1_us), max(z1_us)
     v1_0, v1_1 = min(z1_vs), max(z1_vs)
-    sc1 = min((0.70 - 0.02) / max(1e-5, u1_1 - u1_0), (0.96 - 0.04) / max(1e-5, v1_1 - v1_0))
-    u1_off = 0.02 + 0.5 * ((0.70 - 0.02) - (u1_1 - u1_0) * sc1)
-    v1_off = 0.04 + 0.5 * ((0.96 - 0.04) - (v1_1 - v1_0) * sc1)
+    sc1 = min((0.60 - 0.01) / max(1e-5, u1_1 - u1_0), (0.98 - 0.02) / max(1e-5, v1_1 - v1_0))
+    u1_off = 0.01 + 0.5 * ((0.60 - 0.01) - (u1_1 - u1_0) * sc1)
+    v1_off = 0.02 + 0.5 * ((0.98 - 0.02) - (v1_1 - v1_0) * sc1)
 
     z2_us = [lp[uv_lay_p].uv.x for f in bm_pack.faces if f.index not in hero_face_indices for lp in f.loops]
     z2_vs = [lp[uv_lay_p].uv.y for f in bm_pack.faces if f.index not in hero_face_indices for lp in f.loops]
     u2_0, u2_1 = min(z2_us), max(z2_us)
     v2_0, v2_1 = min(z2_vs), max(z2_vs)
-    su2 = (0.99 - 0.73) / max(1e-5, u2_1 - u2_0)
+    su2 = (0.99 - 0.63) / max(1e-5, u2_1 - u2_0)
     sv2 = (0.98 - 0.02) / max(1e-5, v2_1 - v2_0)
 
     max_u_face = 0.0
@@ -1700,20 +1824,21 @@ def build_clean_body_and_hd_head(
                 max_u_face = max(max_u_face, nu)
         else:
             for lp in f.loops:
-                nu = 0.73 + (lp[uv_lay_p].uv.x - u2_0) * su2
+                nu = 0.63 + (lp[uv_lay_p].uv.x - u2_0) * su2
                 nv = 0.02 + (lp[uv_lay_p].uv.y - v2_0) * sv2
                 lp[uv_lay_p].uv = Vector((nu, nv))
                 min_u_other = min(min_u_other, nu)
 
-    assert max_u_face <= 0.705 and min_u_other >= 0.725, (
+    assert max_u_face <= 0.605 and min_u_other >= 0.625, (
         f"UV Zone overlap detected: max_u_face={max_u_face:.4f}, min_u_other={min_u_other:.4f}"
     )
 
-    # Audit eye UV texel area on 1024x1024
+    # Audit eye UV texel area on 1024x1024 covering full eyeball surface
     eye_uv_area = 0.0
+    eye_y_cut = float(lm["eye_front_y"]) + 0.016
     for f in bm_pack.faces:
         fc = f.calc_center_median()
-        if f.normal.y < 0.0 and 0.018 < fc.x < 0.046 and 1.472 < fc.z < 1.496 and fc.y < -0.065:
+        if f.normal.y < 0.0 and 0.018 < fc.x < 0.046 and (eye_z_uv - 0.012) < fc.z < (eye_z_uv + 0.012) and fc.y < eye_y_cut:
             pts_uv = [lp[uv_lay_p].uv for lp in f.loops]
             a = 0.0
             for i in range(len(pts_uv)):
@@ -1761,9 +1886,9 @@ def build_clean_body_and_hd_head(
         type="NORMAL",
         normal_space="TANGENT",
         use_selected_to_active=True,
-        cage_extrusion=0.0040,
-        max_ray_distance=0.014,
-        margin=8,
+        cage_extrusion=0.0025,
+        max_ray_distance=0.008,
+        margin=6,
         use_clear=True,
     )
     baked_face_normal.pack()
@@ -1782,9 +1907,9 @@ def build_clean_body_and_hd_head(
     bpy.ops.object.bake(
         type="EMIT",
         use_selected_to_active=True,
-        cage_extrusion=0.0040,
-        max_ray_distance=0.014,
-        margin=8,
+        cage_extrusion=0.0025,
+        max_ray_distance=0.008,
+        margin=6,
         use_clear=True,
     )
 
@@ -1849,39 +1974,16 @@ def build_clean_body_and_hd_head(
                     patch[mask_p] = avg_skin
                     healed_tris += 1
 
-        # Generalized 2-pass front/side neck cluster heal against collar bleed smudges
-        neck_cut_z = float(lm["chin_z"]) + 0.008
-        healed_neck_clusters = 0
-        for _ in range(2):
-            for f in bm_heal.faces:
-                if f_lum[f.index] >= 0.42:
-                    continue
-                fc = f.calc_center_median()
-                if fc.z >= neck_cut_z or fc.y >= 0.022 or f.normal.y >= 0.30 or abs(fc.x) >= 0.062:
-                    continue
-                adj_faces = [lf for e in f.edges for lf in e.link_faces if lf != f]
-                skin_nbrs = [
-                    nf for nf in adj_faces
-                    if f_lum[nf.index] > 0.44 and (f_rgb[nf.index][0] - f_rgb[nf.index][2]) > 0.03
-                ]
-                if skin_nbrs:
-                    avg_skin = np.mean([f_rgb[nf.index] for nf in skin_nbrs], axis=0)
-                    us = [lp[uv_lay_heal].uv.x for lp in f.loops]
-                    vs = [lp[uv_lay_heal].uv.y for lp in f.loops]
-                    u0 = max(0, int(min(us) * (fw_img - 1)) - 2)
-                    u1 = min(fw_img, int(max(us) * (fw_img - 1)) + 3)
-                    v0 = max(0, int(min(vs) * (fh_img - 1)) - 2)
-                    v1 = min(fh_img, int(max(vs) * (fh_img - 1)) + 3)
-                    patch = frgb[v0:v1, u0:u1]
-                    pluma = 0.299 * patch[:, :, 0] + 0.587 * patch[:, :, 1] + 0.114 * patch[:, :, 2]
-                    mask_p = pluma < 0.44
-                    if np.any(mask_p):
-                        patch[mask_p] = avg_skin
-                        f_rgb[f.index] = avg_skin
-                        f_lum[f.index] = float(0.299 * avg_skin[0] + 0.587 * avg_skin[1] + 0.114 * avg_skin[2])
-                        healed_neck_clusters += 1
-        print(f"Healed {healed_tris} isolated face specks and {healed_neck_clusters} front/side neck cluster patches on head_low")
+        print(f"Healed {healed_tris} isolated 1-triangle face specks on head_low")
     bm_heal.free()
+
+    # Post-bake Zone 2 health check: ensure Smart UV islands never collapse into sparse pixels
+    z2_x0 = int(fw_img * 0.63)
+    z2_slice = frgb[:, z2_x0:, :]
+    z2_luma = 0.299 * z2_slice[:, :, 0] + 0.587 * z2_slice[:, :, 1] + 0.114 * z2_slice[:, :, 2]
+    z2_occupancy = float(np.mean(z2_luma > 0.02))
+    print(f"Zone 2 baked occupancy (u in [0.63, 0.99]): {z2_occupancy * 100.0:.1f}%")
+    assert z2_occupancy >= 0.35, f"Zone 2 UV collapse detected: occupancy={z2_occupancy * 100.0:.1f}% < 35%"
 
     fpx[:, :, :3] = frgb
     baked_face_albedo.pixels.foreach_set(np.ascontiguousarray(fpx.ravel(), dtype=np.float32))
@@ -1901,13 +2003,13 @@ def build_clean_body_and_hd_head(
     bpy.ops.object.bake(
         type="EMIT",
         use_selected_to_active=True,
-        cage_extrusion=0.0040,
-        max_ray_distance=0.014,
-        margin=8,
+        cage_extrusion=0.0025,
+        max_ray_distance=0.008,
+        margin=6,
         use_clear=True,
     )
     baked_face_mr.pack()
-    print("Baked Zachary_Face_MR (512x512 Pixar-Anime roughness: 0.06 eyes / 0.36 lips / 0.70 hair / 0.54 skin)")
+    print("Baked Zachary_Face_MR (512x512 Pixar-Anime roughness: 0.06 eyes / 0.38 lips / 0.72 hair / 0.54 skin)")
 
     mat_face = bpy.data.materials.new("Mat_Companion_Face")
     mat_face.use_nodes = True
@@ -1923,7 +2025,7 @@ def build_clean_body_and_hd_head(
     sep_mr = nt_f.nodes.new("ShaderNodeSeparateColor")
     tex_nrm = nt_f.nodes.new("ShaderNodeTexImage"); tex_nrm.image = baked_face_normal
     nrm_map = nt_f.nodes.new("ShaderNodeNormalMap")
-    nrm_map.inputs["Strength"].default_value = 0.52
+    nrm_map.inputs["Strength"].default_value = 0.35
 
     nt_f.links.new(tex_alb.outputs["Color"], bsdf_f.inputs["Base Color"])
     nt_f.links.new(tex_mr.outputs["Color"], sep_mr.inputs["Color"])
@@ -2017,17 +2119,18 @@ def build_hd_face_albedo_bake_shader(
     eye_front_y = float(lm["eye_front_y"])
     eye_z = float(lm["eye_z"])
     eye_dx = float(lm["eye_dx"])
+    chin_z = float(lm["chin_z"])
 
     # Landmark-locked orthographic UV projection onto originating concept portrait `02_hd_bust_glasses_off.png`
-    u_mid = 0.49854
-    v_mid = 0.58398
-    ipd_uv = 0.16113
+    u_mid = 0.50000
+    v_mid = 0.58154
+    ipd_uv = 0.16504
     uv_scale = ipd_uv / max(1e-4, 2.0 * eye_dx)
 
     dx_n = math_op("SUBTRACT", sep_co.outputs["X"], nose_x)
     abs_dx_e = math_op("ABSOLUTE", dx_n, 0.0)
     u_eye = math_op("ADD", u_mid, math_op("MULTIPLY", dx_n, uv_scale))
-    v_eye = math_op("ADD", v_mid, math_op("MULTIPLY", math_op("SUBTRACT", sep_co.outputs["Z"], eye_z - 0.0008), uv_scale))
+    v_eye = math_op("ADD", v_mid, math_op("MULTIPLY", math_op("SUBTRACT", sep_co.outputs["Z"], eye_z), uv_scale))
     comb_eye_uv = nt.nodes.new("ShaderNodeCombineXYZ")
     nt.links.new(u_eye, comb_eye_uv.inputs["X"])
     nt.links.new(v_eye, comb_eye_uv.inputs["Y"])
@@ -2038,11 +2141,11 @@ def build_hd_face_albedo_bake_shader(
     nt.links.new(comb_eye_uv.outputs["Vector"], tex_concept.inputs["Vector"])
 
     # Strict dual-eye orbital ellipse mask (irises, pupils, catchlights, sclera & upper lashes ONLY!)
-    ex_n = math_op("DIVIDE", math_op("SUBTRACT", abs_dx_e, eye_dx), 0.0155)
-    ez_n = math_op("DIVIDE", math_op("SUBTRACT", sep_co.outputs["Z"], eye_z - 0.0004), 0.0085)
+    ex_n = math_op("DIVIDE", math_op("SUBTRACT", abs_dx_e, eye_dx), 0.0165)
+    ez_n = math_op("DIVIDE", math_op("SUBTRACT", sep_co.outputs["Z"], eye_z), 0.0092)
     e_r2 = math_op("ADD", math_op("MULTIPLY", ex_n, ex_n), math_op("MULTIPLY", ez_n, ez_n))
-    w_eye_orb = map_range(e_r2, 1.00, 0.42, 0.0, 1.0)
-    w_eye_y = map_range(sep_co.outputs["Y"], -0.064, -0.072, 0.0, 1.0)
+    w_eye_orb = map_range(e_r2, 1.00, 0.38, 0.0, 1.0)
+    w_eye_y = map_range(sep_co.outputs["Y"], -0.060, -0.068, 0.0, 1.0)
     w_eye_ny = map_range(sep_n.outputs["Y"], -0.20, -0.45, 0.0, 1.0)
     w_eye_src = math_op("MULTIPLY", w_eye_orb, math_op("MULTIPLY", w_eye_y, w_eye_ny))
 
@@ -2056,11 +2159,11 @@ def build_hd_face_albedo_bake_shader(
 
     # Soften harsh dark nostril-hole pixels strictly inside nostril box (covering Y=-0.078 nostril wings!)
     abs_dx_n = math_op("ABSOLUTE", math_op("SUBTRACT", sep_co.outputs["X"], nose_x), 0.0)
-    nos_x = map_range(abs_dx_n, 0.015, 0.022, 1.0, 0.0)
+    nos_x = map_range(abs_dx_n, 0.016, 0.024, 1.0, 0.0)
     nos_z = math_op(
         "MULTIPLY",
         map_range(sep_co.outputs["Z"], nose_tip_z - 0.012, nose_tip_z - 0.008, 0.0, 1.0),
-        map_range(sep_co.outputs["Z"], nose_tip_z + 0.004, nose_tip_z + 0.008, 1.0, 0.0),
+        map_range(sep_co.outputs["Z"], nose_tip_z + 0.006, nose_tip_z + 0.010, 1.0, 0.0),
     )
     nos_y = map_range(sep_co.outputs["Y"], eye_front_y + 0.012, eye_front_y + 0.002, 0.0, 1.0)
     nos_dark = map_range(bw_bust.outputs["Val"], 0.03, 0.16, 1.0, 0.0)
@@ -2072,16 +2175,22 @@ def build_hd_face_albedo_bake_shader(
     lin_nos = srgb_to_linear((float(skin_srgb[0] * 0.64), float(skin_srgb[1] * 0.58), float(skin_srgb[2] * 0.55)))
     mix_nostril.inputs["Color2"].default_value = (lin_nos[0], lin_nos[1], lin_nos[2], 1.0)
 
-    # Lower-neck skin blend on procedural neck skirt & splice seam (Z=1.310..1.350) with subtle collar AO
-    neck_bot_w = map_range(sep_co.outputs["Z"], 1.310, 1.350, 1.0, 0.0)
-    front_neck_y = map_range(sep_co.outputs["Y"], 0.034, 0.052, 1.0, 0.0)
-    w_guard = math_op("MULTIPLY", neck_bot_w, front_neck_y)
+    # Seamless throat/neck skin blend eliminating dark terracotta collar-shadow band below jawline
+    neck_bot_w = map_range(sep_co.outputs["Z"], 1.332, 1.378, 1.0, 0.0)
+    front_neck_y = map_range(sep_co.outputs["Y"], 0.032, 0.058, 1.0, 0.0)
+    chin_front_safe = map_range(sep_co.outputs["Y"], -0.058, -0.042, 0.0, 1.0)
+    chin_z_safe = map_range(sep_co.outputs["Z"], chin_z - 0.012, chin_z - 0.001, 1.0, 0.0)
+    w_guard = math_op(
+        "MULTIPLY",
+        math_op("MULTIPLY", neck_bot_w, front_neck_y),
+        math_op("MAXIMUM", chin_front_safe, chin_z_safe),
+    )
 
-    neck_ao_t = map_range(sep_co.outputs["Z"], 1.294, 1.326, 0.0, 1.0)
+    neck_ao_t = map_range(sep_co.outputs["Z"], 1.300, 1.368, 0.0, 1.0)
     mix_neck_tone = nt.nodes.new("ShaderNodeMixRGB"); mix_neck_tone.blend_type = "MIX"
     nt.links.new(neck_ao_t, mix_neck_tone.inputs["Factor"])
-    lin_neck_lo = srgb_to_linear((float(skin_srgb[0] * 0.855), float(skin_srgb[1] * 0.825), float(skin_srgb[2] * 0.815)))
-    lin_neck_hi = srgb_to_linear((float(skin_srgb[0] * 0.905), float(skin_srgb[1] * 0.880), float(skin_srgb[2] * 0.870)))
+    lin_neck_lo = srgb_to_linear((float(skin_srgb[0] * 0.865), float(skin_srgb[1] * 0.825), float(skin_srgb[2] * 0.805)))
+    lin_neck_hi = srgb_to_linear((float(skin_srgb[0] * 0.915), float(skin_srgb[1] * 0.875), float(skin_srgb[2] * 0.855)))
     mix_neck_tone.inputs["Color1"].default_value = (lin_neck_lo[0], lin_neck_lo[1], lin_neck_lo[2], 1.0)
     mix_neck_tone.inputs["Color2"].default_value = (lin_neck_hi[0], lin_neck_hi[1], lin_neck_hi[2], 1.0)
 
@@ -2096,11 +2205,11 @@ def build_hd_face_albedo_bake_shader(
     w_hair_y = map_range(sep_co.outputs["Y"], -0.045, -0.015, 0.0, 1.0)
     w_ear_zone = math_op(
         "MULTIPLY",
-        map_range(abs_dx_e, 0.054, 0.062, 0.0, 1.0),
+        map_range(abs_dx_e, 0.052, 0.060, 0.0, 1.0),
         math_op(
             "MULTIPLY",
-            map_range(sep_co.outputs["Z"], eye_z + 0.014, eye_z + 0.004, 0.0, 1.0),
-            map_range(sep_co.outputs["Y"], 0.025, 0.012, 0.0, 1.0),
+            map_range(sep_co.outputs["Z"], eye_z + 0.018, eye_z + 0.006, 0.0, 1.0),
+            map_range(sep_co.outputs["Y"], 0.052, 0.036, 0.0, 1.0),
         ),
     )
     w_safe_mask = math_op(
@@ -2148,8 +2257,8 @@ def build_hd_face_mr_bake_shader(
     """
     Outputs packed MetallicRoughness texture via EMIT: R=0, G=Roughness, B=0.0 (Metallic).
     - Pixar-Anime Eyes / Corneas: Roughness = 0.06 (alive glossy specular catchlights!)
-    - Lips: Roughness = 0.36
-    - Hair: Roughness = 0.70 (soft natural satin matte)
+    - Lips: Roughness = 0.38
+    - Hair: Roughness = 0.72 (soft natural satin matte, excluding ear shells)
     - Skin: Roughness = 0.54 (creamy satin Pixar matte)
     - Eyebrows: Roughness = 0.68
     """
@@ -2202,16 +2311,29 @@ def build_hd_face_mr_bake_shader(
         else: nt.links.new(b, mx.inputs[3])
         return mx.outputs[0]
 
+    abs_dx = math_op("ABSOLUTE", math_op("SUBTRACT", sep_co.outputs["X"], nose_x), 0.0)
+    w_ear_zone = math_op(
+        "MULTIPLY",
+        map_range(abs_dx, 0.052, 0.060, 0.0, 1.0),
+        math_op(
+            "MULTIPLY",
+            map_range(sep_co.outputs["Z"], eye_z + 0.018, eye_z + 0.006, 0.0, 1.0),
+            map_range(sep_co.outputs["Y"], 0.052, 0.036, 0.0, 1.0),
+        ),
+    )
     w_dark = map_range(bw.outputs["Val"], 0.08, 0.20, 1.0, 0.0)
     w_hair_z = map_range(sep_co.outputs["Z"], eye_z + 0.010, eye_z + 0.026, 0.0, 1.0)
     w_hair_y = map_range(sep_co.outputs["Y"], -0.045, -0.015, 0.0, 1.0)
-    w_hair = math_op("MULTIPLY", w_dark, math_op("MAXIMUM", w_hair_z, w_hair_y))
+    w_hair = math_op(
+        "MULTIPLY",
+        math_op("MULTIPLY", w_dark, math_op("MAXIMUM", w_hair_z, w_hair_y)),
+        math_op("SUBTRACT", 1.0, w_ear_zone),
+    )
 
-    r_val = mix_float(w_hair, 0.54, 0.70)
+    r_val = mix_float(w_hair, 0.54, 0.72)
 
     neg_py = math_op("MULTIPLY", sep_co.outputs["Y"], -1.0)
     w_front_y = map_range(neg_py, 0.052, 0.075, 0.0, 1.0)
-    abs_dx = math_op("ABSOLUTE", math_op("SUBTRACT", sep_co.outputs["X"], nose_x), 0.0)
 
     w_brow_z = math_op("MULTIPLY", map_range(sep_co.outputs["Z"], eye_z + 0.011, eye_z + 0.017, 0.0, 1.0),
                                    map_range(sep_co.outputs["Z"], eye_z + 0.026, eye_z + 0.034, 1.0, 0.0))
@@ -2225,7 +2347,7 @@ def build_hd_face_mr_bake_shader(
     lz_n = math_op("DIVIDE", math_op("SUBTRACT", sep_co.outputs["Z"], mouth_z), 0.009)
     l_r2 = math_op("ADD", math_op("MULTIPLY", lx_n, lx_n), math_op("MULTIPLY", lz_n, lz_n))
     w_lip = math_op("MULTIPLY", map_range(l_r2, 0.35, 1.0, 1.0, 0.0), w_front_y)
-    r_val = mix_float(w_lip, r_val, 0.36)
+    r_val = mix_float(w_lip, r_val, 0.38)
 
     # Pixar-Anime eye globes (wider & taller iris catchlights!)
     ex_n = math_op("DIVIDE", math_op("SUBTRACT", abs_dx, eye_dx), 0.0165)
@@ -2340,11 +2462,11 @@ def panto_offset(theta: float, rx: float, rz_top: float, rz_bot: float) -> tuple
 def build_fitted_glasses(lm: dict[str, object]) -> bpy.types.Object:
     mat_metal = make_pbr_mat(
         "Mat_Companion_GlassesMetal",
-        (0.30, 0.25, 0.21),
-        metallic=0.88,
-        roughness=0.22,
-        coat_weight=0.15,
-        coat_roughness=0.08,
+        (0.18, 0.16, 0.15),
+        metallic=0.78,
+        roughness=0.30,
+        coat_weight=0.08,
+        coat_roughness=0.14,
     )
     mat_lens = make_pbr_mat(
         "Mat_Companion_GlassesLens",
@@ -2366,44 +2488,50 @@ def build_fitted_glasses(lm: dict[str, object]) -> bpy.types.Object:
     )
 
     nose_x = float(lm["nose_x"])
-    eye_z = float(lm["eye_z"]) - 0.0010
-    eye_dx = float(lm["eye_dx"]) * 1.04
+    true_eye_z = float(lm["eye_z"])
+    lens_z = true_eye_z - 0.0038
+    lens_dx = float(lm["eye_dx"]) * 1.02
     bridge_y = float(lm["bridge_y"])
     eye_front_y = float(lm["eye_front_y"])
+    nose_tip_y = float(lm["nose_tip_y"])
     ear_y = float(lm["ear_top_y"])
 
-    # Anchor lens plane strictly ahead of BOTH sculpted eyeballs & nose bridge; wider/lower clear of brows
-    lens_y = min(bridge_y - 0.0055, eye_front_y - 0.0095)
-    rx = max(0.0268, eye_dx * 0.87)
-    rz_top = rx * 0.69
-    rz_bot = rx * 0.88
-    wire_r = 0.00084
+    # Anchor lens plane ~5-6mm ahead of skin bridge & ~9mm ahead of corneas, strictly behind nose tip
+    lens_y = max(nose_tip_y + 0.0035, min(bridge_y - 0.0050, eye_front_y - 0.0090))
+    rx = max(0.0256, float(lm["eye_dx"]) * 0.85)
+    rz_top = rx * 0.72
+    rz_bot = rx * 0.85
+    tilt_rad = math.radians(4.5)
+    sin_tilt = math.sin(tilt_rad)
+    cos_tilt = math.cos(tilt_rad)
+    wire_r = 0.00105
 
     t_ys = list(lm["temple_profile_y"])
     t_xs = list(lm["temple_profile_x"])
 
     def _temple_x_at(yq: float, min_x: float) -> float:
-        return max(min_x, float(np.interp(yq, t_ys, t_xs)))
+        return max(min_x, float(np.interp(yq, t_ys, t_xs)) + 0.0015)
 
-    wire_r_temple = 0.00098
+    wire_r_temple = 0.00108
     bm = bmesh.new()
-    rim_segs = 44
-    tube_segs = 10
+    rim_segs = 56
+    tube_segs = 12
+    fwd_dir = Vector((0.0, -cos_tilt, -sin_tilt))
 
     for sx in (-1.0, 1.0):
-        cx = nose_x + sx * eye_dx
+        cx = nose_x + sx * lens_dx
         rim_rings: list[list[bmesh.types.BMVert]] = []
         for s in range(rim_segs):
             th = (2.0 * math.pi * s) / rim_segs
             ox, oz = panto_offset(th, rx, rz_top, rz_bot)
-            wrap_y = 0.0024 * max(0.0, (sx * ox) / rx) ** 2
-            ring_c = Vector((cx + ox, lens_y + wrap_y, eye_z + oz))
-            rad_dir = Vector((ox, 0.0, oz)).normalized()
-            fwd_dir = Vector((0.0, -1.0, 0.0))
+            wrap_y = 0.0022 * max(0.0, (sx * ox) / rx) ** 2
+            ring_y = lens_y + wrap_y - oz * sin_tilt
+            ring_c = Vector((cx + ox, ring_y, lens_z + oz))
+            rad_dir = Vector((ox, -oz * sin_tilt, oz * cos_tilt)).normalized()
             ring = []
             for ts in range(tube_segs):
                 a = (2.0 * math.pi * ts) / tube_segs
-                pt = ring_c + rad_dir * (math.cos(a) * wire_r) + fwd_dir * (math.sin(a) * wire_r * 1.15)
+                pt = ring_c + rad_dir * (math.cos(a) * wire_r) + fwd_dir * (math.sin(a) * wire_r * 1.12)
                 ring.append(bm.verts.new(pt))
             rim_rings.append(ring)
 
@@ -2415,24 +2543,28 @@ def build_fitted_glasses(lm: dict[str, object]) -> bpy.types.Object:
                 f.material_index = 0
                 f.smooth = True
 
-        # Optical lens disc
+        # Optical lens disc matching pantoscopic tilt
         lring = []
         for s in range(rim_segs):
             th = (2.0 * math.pi * s) / rim_segs
             ox, oz = panto_offset(th, rx - 0.0005, rz_top - 0.0005, rz_bot - 0.0005)
-            wrap_y = 0.0024 * max(0.0, (sx * ox) / rx) ** 2
-            lring.append(bm.verts.new((cx + ox, lens_y + wrap_y, eye_z + oz)))
+            wrap_y = 0.0022 * max(0.0, (sx * ox) / rx) ** 2
+            lring.append(bm.verts.new((cx + ox, lens_y + wrap_y - oz * sin_tilt, lens_z + oz)))
         fl = bm.faces.new(list(reversed(lring)))
         fl.material_index = 1
         fl.smooth = True
 
-        # Nose pad wires & pads kissing bridge
-        inner_rim_x = cx - sx * (rx - 0.0018)
+        # Nose pad wires & pads anchored cleanly to lower-inner rim and kissing bridge sides
+        px_raw, pz_pad = panto_offset(math.radians(-15.0), rx, rz_top, rz_bot)
+        inner_pad_x = cx - sx * px_raw
+        inner_pad_y = lens_y - pz_pad * sin_tilt
+        inner_pad_z = lens_z + pz_pad
         pad_pts = [
-            (Vector((inner_rim_x, lens_y + 0.0012, eye_z + 0.0020)), 0.00062),
-            (Vector((nose_x + sx * 0.0080, bridge_y + 0.0012, eye_z - 0.0006)), 0.00062),
+            (Vector((inner_pad_x, inner_pad_y + 0.0006, inner_pad_z)), 0.00066),
+            (Vector((nose_x + sx * 0.0080, inner_pad_y + 0.0032, lens_z + 0.0005)), 0.00064),
+            (Vector((nose_x + sx * 0.0075, bridge_y + 0.0010, lens_z + 0.0015)), 0.00064),
         ]
-        sweep_tube(bm, pad_pts, segments=6, mat_idx=0)
+        sweep_tube(bm, pad_pts, segments=8, mat_idx=0)
         pbm = bmesh.new()
         bmesh.ops.create_cube(pbm, size=1.0)
         bmesh.ops.subdivide_edges(pbm, edges=list(pbm.edges), cuts=2, use_grid_fill=True)
@@ -2442,52 +2574,60 @@ def build_fitted_glasses(lm: dict[str, object]) -> bpy.types.Object:
         append_bm(
             bm,
             pbm,
-            location=(nose_x + sx * 0.0080, bridge_y + 0.0014, eye_z - 0.0010),
+            location=(nose_x + sx * 0.0075, bridge_y + 0.0010, lens_z + 0.0015),
             mat_idx=2,
         )
         pbm.free()
 
-        # Contour-hugging temple arms interpolated cleanly over the ears
-        outer_x = cx + sx * (rx + 0.0002)
-        temple_z = eye_z + 0.0042
-        x_endpiece = abs(outer_x - nose_x)
-        y_span_0 = lens_y + 0.008
+        # Flush-welded 3mm outer endpiece lug + contoured temple arm clearing cranial profile & hooking over ear
+        ox_raw, oz_out = panto_offset(math.radians(16.0), rx, rz_top, rz_bot)
+        wrap_out = 0.0022 * ((ox_raw / rx) ** 2)
+        outer_x = cx + sx * ox_raw
+        outer_y = lens_y + wrap_out - oz_out * sin_tilt
+        temple_z = lens_z + oz_out
+        x_endpiece = abs(outer_x - nose_x) + 0.0030
+        ey_lug = outer_y + 0.0014
+
+        y_span_0 = ey_lug + 0.0065
         y_span_1 = ear_y
         yq1 = y_span_0 + 0.25 * (y_span_1 - y_span_0)
         yq2 = y_span_0 + 0.50 * (y_span_1 - y_span_0)
         yq3 = y_span_0 + 0.75 * (y_span_1 - y_span_0)
         yq4 = y_span_1
 
-        x_front = min(x_endpiece + 0.0022, _temple_x_at(y_span_0, x_endpiece + 0.0004))
-        x_t1 = min(x_endpiece + 0.0018, _temple_x_at(yq1, x_endpiece - 0.0002))
-        x_t2 = x_endpiece - 0.0004
-        x_t3 = x_endpiece - 0.0012
-        x_t4 = x_endpiece - 0.0020
-        x_ear = x_endpiece - 0.0028
+        x_front = min(x_endpiece + 0.0026, _temple_x_at(y_span_0, x_endpiece + 0.0006))
+        x_t1 = min(x_endpiece + 0.0022, _temple_x_at(yq1, x_endpiece))
+        x_t2 = min(x_endpiece + 0.0018, _temple_x_at(yq2, x_endpiece - 0.0004))
+        x_t3 = x_endpiece - 0.0010
+        x_t4 = x_endpiece - 0.0018
+        x_ear = x_endpiece - 0.0026
 
         wing_pts = [
-            (Vector((outer_x, lens_y + 0.0024, temple_z)), 0.00105),
-            (Vector((nose_x + sx * (x_endpiece + 0.0005), lens_y + 0.0038, temple_z)), 0.00102),
+            (Vector((outer_x - sx * 0.0004, outer_y, temple_z)), 0.00112),
+            (Vector((nose_x + sx * x_endpiece, ey_lug, temple_z)), 0.00110),
             (Vector((nose_x + sx * x_front, y_span_0, temple_z - 0.0002)), wire_r_temple),
             (Vector((nose_x + sx * x_t1, yq1, temple_z - 0.0004)), wire_r_temple),
             (Vector((nose_x + sx * x_t2, yq2, temple_z - 0.0007)), wire_r_temple),
             (Vector((nose_x + sx * x_t3, yq3, temple_z - 0.0011)), wire_r_temple),
             (Vector((nose_x + sx * x_t4, yq4 - 0.003, temple_z - 0.0020)), wire_r_temple),
             (Vector((nose_x + sx * x_ear, ear_y + 0.007, temple_z - 0.0046)), wire_r_temple),
-            (Vector((nose_x + sx * (x_ear - 0.0032), ear_y + 0.019, temple_z - 0.0165)), 0.00102),
+            (Vector((nose_x + sx * (x_ear - 0.0030), ear_y + 0.019, temple_z - 0.0165)), 0.00106),
         ]
-        sweep_tube(bm, wing_pts, segments=8, mat_idx=0)
+        sweep_tube(bm, wing_pts, segments=10, mat_idx=0)
 
-    # Single arched center bridge connecting both rims (clean single-bridge Pixar-anime style)
-    bridge_x0 = nose_x - (eye_dx - rx + 0.0004)
-    bridge_x1 = nose_x + (eye_dx - rx + 0.0004)
+    # Flush-welded arched single bridge computed from exact inner rim contour at theta=14 deg
+    ix_raw, iz_in = panto_offset(math.radians(14.0), rx, rz_top, rz_bot)
+    bx_left = (nose_x + lens_dx) - ix_raw
+    bx_right = (nose_x - lens_dx) + ix_raw
+    bz_in = lens_z + iz_in
+    by_in = lens_y - iz_in * sin_tilt
     bridge_pts = []
-    for k in range(7):
-        t = k / 6.0
-        bx = bridge_x0 + t * (bridge_x1 - bridge_x0)
+    for k in range(9):
+        t = k / 8.0
+        bx = bx_right + t * (bx_left - bx_right)
         arch = math.sin(t * math.pi)
-        bridge_pts.append((Vector((bx, lens_y - arch * 0.0010, eye_z + 0.0072 + arch * 0.0020)), 0.00090))
-    sweep_tube(bm, bridge_pts, segments=8, mat_idx=0)
+        bridge_pts.append((Vector((bx, by_in - arch * 0.0012, bz_in + arch * 0.0026)), 0.00102))
+    sweep_tube(bm, bridge_pts, segments=10, mat_idx=0)
 
     bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
     gmesh = bpy.data.meshes.new("SM_Companion_Glasses")
@@ -3077,6 +3217,7 @@ def add_facial_shape_keys(body: bpy.types.Object, lm: dict[str, object]) -> None
 
     for key_name, sx in (("eyeBlinkLeft", 1.0), ("eyeBlinkRight", -1.0)):
         kb = body.shape_key_add(name=key_name, from_mix=False)
+        kb.value = 0.0
         cx = nose_x + sx * eye_dx
         for i, co in enumerate(base_coords):
             if co.y > eye_front_y + 0.022 or abs(co.x - cx) >= 0.021:
@@ -3093,6 +3234,7 @@ def add_facial_shape_keys(body: bpy.types.Object, lm: dict[str, object]) -> None
 
     for key_name, sx in (("mouthSmileLeft", 1.0), ("mouthSmileRight", -1.0)):
         kb = body.shape_key_add(name=key_name, from_mix=False)
+        kb.value = 0.0
         cx = nose_x + sx * 0.019
         for i, co in enumerate(base_coords):
             side_offset = sx * (co.x - nose_x)
@@ -3109,8 +3251,13 @@ def add_facial_shape_keys(body: bpy.types.Object, lm: dict[str, object]) -> None
             rad = _sstep(1.0, 0.0, dx * dx + dz * dz) * _sstep(0.001, 0.012, side_offset)
             kb.data[i].co = Vector((co.x + sx * 0.0020 * rad, co.y + 0.0018 * rad, co.z + 0.0038 * rad))
 
+    body.active_shape_key_index = 0
+    body.show_only_shape_key = False
+    assert all(abs(kb.value) < 1e-6 for kb in mesh.shape_keys.key_blocks[1:]), (
+        f"Non-zero default shape key values: {[(kb.name, kb.value) for kb in mesh.shape_keys.key_blocks]}"
+    )
     mesh.update()
-    print(f"Added facial shape keys to SM_Companion_Body: {[kb.name for kb in mesh.shape_keys.key_blocks]}")
+    print(f"Added facial shape keys to SM_Companion_Body (rest=0.0): {[(kb.name, kb.value) for kb in mesh.shape_keys.key_blocks]}")
 
 
 def main() -> None:
@@ -3151,36 +3298,43 @@ def main() -> None:
         if img.users == 0:
             bpy.data.images.remove(img)
 
+    import io_scene_gltf2.io.exp.meshopt as _meshopt_exp
+
     out_path = os.path.abspath(args.out_glb)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     size_bytes = 0
     img_sizes: list[int] = []
-    for quality in (88, 82, 76, 70):
-        bpy.ops.export_scene.gltf(
-            filepath=out_path,
-            export_format="GLB",
-            export_yup=True,
-            export_apply=False,
-            export_materials="EXPORT",
-            export_image_format="WEBP",
-            export_image_quality=quality,
-            export_meshopt_compression_enable=True,
-            export_meshopt_extension="EXT_meshopt_compression",
-            export_skins=True,
-            export_morph=True,
-            export_animations=True,
-            export_animation_mode="NLA_TRACKS",
-            export_nla_strips=True,
-        )
-        size_bytes = os.path.getsize(out_path)
-        img_sizes = _glb_image_byte_lengths(out_path)
-        max_img = max(img_sizes, default=0)
-        print(
-            f"Exported {out_path} (webp_q={quality}, meshopt): {size_bytes} bytes ({size_bytes / 1024:.1f} KB), "
-            f"images={[round(s / 1024, 1) for s in img_sizes]} KB"
-        )
-        if size_bytes <= 3 * 1024 * 1024 and max_img <= 100 * 1024:
-            break
+    _orig_exp_bits = _meshopt_exp.EXP_FILTER_BITS
+    try:
+        _meshopt_exp.EXP_FILTER_BITS = 16
+        for quality in (88, 82, 76, 70, 64):
+            bpy.ops.export_scene.gltf(
+                filepath=out_path,
+                export_format="GLB",
+                export_yup=True,
+                export_apply=False,
+                export_materials="EXPORT",
+                export_image_format="WEBP",
+                export_image_quality=quality,
+                export_meshopt_compression_enable=True,
+                export_meshopt_extension="EXT_meshopt_compression",
+                export_skins=True,
+                export_morph=True,
+                export_animations=True,
+                export_animation_mode="NLA_TRACKS",
+                export_nla_strips=True,
+            )
+            size_bytes = os.path.getsize(out_path)
+            img_sizes = _glb_image_byte_lengths(out_path)
+            max_img = max(img_sizes, default=0)
+            print(
+                f"Exported {out_path} (webp_q={quality}, meshopt bits=16): {size_bytes} bytes ({size_bytes / 1024:.1f} KB), "
+                f"images={[round(s / 1024, 1) for s in img_sizes]} KB"
+            )
+            if size_bytes <= 3 * 1024 * 1024 and max_img <= 100 * 1024:
+                break
+    finally:
+        _meshopt_exp.EXP_FILTER_BITS = _orig_exp_bits
     assert size_bytes <= 3.0 * 1024 * 1024, f"Companion GLB exceeds 3.0 MB limit: {size_bytes}"
     assert max(img_sizes, default=0) <= 100 * 1024, f"Embedded WebP image exceeds 100 KB limit: {img_sizes}"
 

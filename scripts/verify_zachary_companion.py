@@ -187,6 +187,10 @@ def main() -> None:
         if "bufferView" in img:
             blen = int(bvs[int(img["bufferView"])].get("byteLength", 0))
             assert blen <= 100 * 1024, f"Embedded GLB image[{idx}] exceeds 100 KB: {blen} bytes"
+    for mesh_json in glb_json.get("meshes", []):
+        if "SM_Companion_Body" in mesh_json.get("name", "") and "weights" in mesh_json:
+            weights = mesh_json["weights"]
+            assert all(abs(float(w)) < 1e-5 for w in weights), f"Non-zero default GLB morph weights: {weights}"
 
     clear_scene()
     bpy.ops.import_scene.gltf(filepath=glb_path)
@@ -222,10 +226,12 @@ def main() -> None:
 
     # Verify blink & warm smile morph targets directly on SM_Companion_Body (and optional eyelids)
     body_sk = mesh_map["SM_Companion_Body"].data.shape_keys
-    assert body_sk is not None, "SM_Companion_Body missing v4.1 facial shape keys"
+    assert body_sk is not None, "SM_Companion_Body missing v4.2 facial shape keys"
     body_sk_names = {kb.name for kb in body_sk.key_blocks}
     for req_morph in ("eyeBlinkLeft", "eyeBlinkRight", "mouthSmileLeft", "mouthSmileRight"):
         assert req_morph in body_sk_names, f"Missing SM_Companion_Body shape key {req_morph} in {sorted(body_sk_names)}"
+    non_zero_kbs = [(kb.name, float(kb.value)) for kb in body_sk.key_blocks[1:] if abs(float(kb.value)) >= 1e-5]
+    assert not non_zero_kbs, f"Non-zero imported rest shape key values: {non_zero_kbs}"
     if "SM_Companion_Eyelids" in mesh_map:
         lid_sk = mesh_map["SM_Companion_Eyelids"].data.shape_keys
         assert lid_sk is not None, "SM_Companion_Eyelids missing shape keys"
