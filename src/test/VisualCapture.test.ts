@@ -1075,6 +1075,10 @@ async function verifyRealScreenViaCDP(browserPath: string, targetUrl: string, ou
         const dock = document.querySelector('[data-testid="spatial-stage-control-dock"]');
         const hudRect = hud ? hud.getBoundingClientRect() : null;
         const dockRect = dock ? dock.getBoundingClientRect() : null;
+        const subTargetPills = Array.from(document.querySelectorAll('[data-testid^="whisper-subtarget-"]'));
+        const maxPillRight = subTargetPills.length > 0
+          ? Math.max(...subTargetPills.map((el) => el.getBoundingClientRect().right))
+          : 0;
         document.querySelector('[data-testid="whisper-open-dossier-btn"]')?.click();
         await waitRaf(6);
         const sheet = document.querySelector('[data-testid="slide-over-inspection-sheet"]')?.getBoundingClientRect();
@@ -1113,6 +1117,7 @@ async function verifyRealScreenViaCDP(browserPath: string, targetUrl: string, ou
           sheetLeft: sheet ? sheet.left : null,
           hudBottom: hudRect ? hudRect.bottom : null,
           hudHeight: hudRect ? hudRect.height : null,
+          maxPillRight,
           dockTop: dockRect ? dockRect.top : null,
           backdropTop,
           backdropCoversSheet,
@@ -1569,6 +1574,7 @@ describe('Real Screen Browser Verification & Visual Kinematics', () => {
         expect(results.mobileMetrics.dockTop).not.toBeNull();
         expect(results.mobileMetrics.hudBottom!).toBeLessThanOrEqual(results.mobileMetrics.dockTop!);
         expect(results.mobileMetrics.hudHeight!).toBeLessThanOrEqual(210);
+        expect(results.mobileMetrics.maxPillRight).toBeLessThanOrEqual(375);
         expect(results.mobileMetrics.timelineTrackWidth).toBeGreaterThan(120);
         expect(results.mobileMetrics.sheetHidesWhisperHud).toBe(true);
         expect(results.mobileMetrics.maxHotspotYPercent!).toBeLessThanOrEqual(54);

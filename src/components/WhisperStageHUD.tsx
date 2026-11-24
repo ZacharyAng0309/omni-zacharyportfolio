@@ -146,54 +146,48 @@ export const WhisperStageHUD: React.FC<WhisperStageHUDProps> = ({
         </div>
 
         {/* Tactile Numbered Architectural Sub-Target Pills */}
-        <div className="relative max-w-full">
-          <div
-            role="group"
-            aria-label="3D Scene Sub-Target Switcher"
-            className={`flex flex-nowrap sm:flex-wrap items-center gap-1 sm:gap-1.5 pt-0.5 sm:pt-1 pr-8 sm:pr-0 overflow-x-auto sm:overflow-visible max-w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden transition-opacity duration-300 ${
-              isInCorridor ? 'opacity-90' : 'opacity-100'
-            }`}
-          >
-            {subTargets.map((target, idx) => {
-              const isSelected = activeSubTargetId === target.id;
-              const indexNum = `0${idx + 1}`;
-              return (
-                <button
-                  key={target.id}
-                  type="button"
-                  data-testid={`whisper-subtarget-${target.id}`}
-                  data-cursor={target.badge}
-                  aria-pressed={isSelected}
-                  onClick={() => onSelectSubTarget(currentAct.actIndex, target.id)}
-                  style={
-                    isSelected
-                      ? {
-                          borderColor: `${currentAct.accentColor}cc`,
-                          backgroundColor: 'rgba(14, 16, 22, 0.92)',
-                        }
-                      : undefined
-                  }
-                  className={`group shrink-0 inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] backdrop-blur-md transition-all cursor-pointer border ${
-                    isSelected
-                      ? 'text-[#F4F0EA] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_4px_14px_rgba(0,0,0,0.65)]'
-                      : 'bg-[#08090d]/84 text-[#F4F0EA]/95 hover:text-white hover:bg-[#12141c]/92 border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_4px_12px_rgba(0,0,0,0.5)]'
-                  }`}
+        <div
+          role="group"
+          aria-label="3D Scene Sub-Target Switcher"
+          className={`flex flex-wrap items-center gap-1 sm:gap-1.5 pt-0.5 sm:pt-1 max-w-full transition-opacity duration-300 ${
+            isInCorridor ? 'opacity-90' : 'opacity-100'
+          }`}
+        >
+          {subTargets.map((target, idx) => {
+            const isSelected = activeSubTargetId === target.id;
+            const indexNum = `0${idx + 1}`;
+            return (
+              <button
+                key={target.id}
+                type="button"
+                data-testid={`whisper-subtarget-${target.id}`}
+                data-cursor={target.badge}
+                aria-pressed={isSelected}
+                onClick={() => onSelectSubTarget(currentAct.actIndex, target.id)}
+                style={
+                  isSelected
+                    ? {
+                        borderColor: `${currentAct.accentColor}cc`,
+                        backgroundColor: 'rgba(14, 16, 22, 0.92)',
+                      }
+                    : undefined
+                }
+                className={`group shrink-0 inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] backdrop-blur-md transition-all cursor-pointer border ${
+                  isSelected
+                    ? 'text-[#F4F0EA] font-medium shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_4px_14px_rgba(0,0,0,0.65)]'
+                    : 'bg-[#08090d]/84 text-[#F4F0EA]/95 hover:text-white hover:bg-[#12141c]/92 border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.10),0_4px_12px_rgba(0,0,0,0.5)]'
+                }`}
+              >
+                <span
+                  className="font-mono text-[10px]"
+                  style={{ color: isSelected ? currentAct.accentColor : '#d6d0c4' }}
                 >
-                  <span
-                    className="font-mono text-[10px]"
-                    style={{ color: isSelected ? currentAct.accentColor : '#d6d0c4' }}
-                  >
-                    {indexNum}
-                  </span>
-                  <span className="tracking-wide">{target.label}</span>
-                </button>
-              );
-            })}
-          </div>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#050507]/95 via-[#050507]/60 to-transparent sm:hidden"
-          />
+                  {indexNum}
+                </span>
+                <span className="tracking-wide">{target.label}</span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Tactile Editorial Dossier Trigger */}

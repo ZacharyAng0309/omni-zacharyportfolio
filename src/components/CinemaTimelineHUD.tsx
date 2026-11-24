@@ -257,7 +257,7 @@ export const CinemaTimelineHUD: React.FC<CinemaTimelineHUDProps> = ({
               </div>
             </div>
 
-            {/* 6 Sleek Chapter Tick Dots with 32x32px Accessible Touch Wrappers Anchored Along the Track */}
+            {/* 6 Sleek Chapter Tick Dots with 32x44px Mobile / 44x44px sm+ Accessible Touch Hitboxes Anchored Along the Track */}
             {WHISPER_ACTS.map((act) => {
               const isActive = act.sectionId === currentAct.sectionId;
               const pct = (act.actIndex / 5) * 100;
@@ -270,7 +270,7 @@ export const CinemaTimelineHUD: React.FC<CinemaTimelineHUDProps> = ({
                   aria-label={`Jump to Act 0${act.actIndex + 1} ${act.shortCutLabel}`}
                   onClick={() => onSelectChapter(act.sectionId)}
                   style={{ left: `${pct}%` }}
-                  className="group absolute top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-8 h-8 flex items-center justify-center rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F0EA]/80"
+                  className="group absolute top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-8 h-11 sm:w-11 sm:h-11 flex items-center justify-center rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4F0EA]/80"
                 >
                   <span
                     aria-hidden="true"

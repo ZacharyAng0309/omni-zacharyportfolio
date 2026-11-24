@@ -46,7 +46,10 @@ describe('CinemaTimelineHUD & SMPTE Timecode Formatter', () => {
       />
     );
 
-    fireEvent.click(screen.getByTestId('timeline-chapter-vault'));
+    const chapterBtn = screen.getByTestId('timeline-chapter-vault');
+    expect(chapterBtn.className).toContain('h-11');
+    expect(chapterBtn.className).toContain('sm:w-11');
+    fireEvent.click(chapterBtn);
     expect(onSelectChapter).toHaveBeenCalledWith('vault');
   });
 
