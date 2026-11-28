@@ -564,8 +564,8 @@ export class Act1StrategicCore {
           dCtx.font = 'bold 11px sans-serif';
           dCtx.fillText('1ST PLACE HILTI GLOBAL', 20, 62);
           dCtx.fillStyle = '#d4b483';
-          dCtx.font = 'bold 10px sans-serif';
-          dCtx.fillText('FIRST-CLASS HONOURS 3.89', 20, 80);
+          dCtx.font = 'bold 9.5px sans-serif';
+          dCtx.fillText('3.75 FIRST-CLASS BSC • 3.89 DIP', 20, 80);
 
           // Architectural metric telemetry bars
           const bars = [

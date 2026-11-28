@@ -41,9 +41,9 @@ export const WhisperStageHUD: React.FC<WhisperStageHUDProps> = ({
       aria-label="Active 3D Scene Whisper Narrative & Sub-Target Controls"
       data-testid="whisper-stage-hud"
       data-peek-hide
-      className={`fixed bottom-[76px] left-3.5 right-3.5 sm:right-auto sm:bottom-8 sm:left-10 z-30 max-w-none sm:max-w-xl pointer-events-none select-none transition-opacity duration-300 ${
+      className={`fixed bottom-[76px] left-3.5 right-3.5 sm:right-auto sm:bottom-8 sm:left-10 z-30 max-w-none sm:max-w-lg pointer-events-none select-none transition-opacity duration-300 ${
         isSheetOpen
-          ? 'max-sm:opacity-0 max-sm:pointer-events-none'
+          ? 'max-lg:opacity-0 max-lg:pointer-events-none'
           : isInCorridor
             ? 'opacity-82'
             : 'opacity-100'

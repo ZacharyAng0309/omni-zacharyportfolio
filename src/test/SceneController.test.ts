@@ -3405,6 +3405,41 @@ describe('SceneController Modernization & 3D Spatial Persona Test Suite', () => 
       expect(document.body.dataset.hoveredProp).toBeUndefined();
       expect(container.style.cursor).toBe('');
     });
+
+    it('prevents 360-degree companion Head/Neck spin across Three.js PropertyMixer plateau frames during mouse gaze', () => {
+      const controller = new SceneController(container);
+      const compGroup = new THREE.Group();
+      const neckBone = new THREE.Bone();
+      neckBone.name = 'Neck';
+      const headBone = new THREE.Bone();
+      headBone.name = 'Head';
+      neckBone.add(headBone);
+      compGroup.add(neckBone);
+
+      const idleClip = new THREE.AnimationClip('Idle_Breathing', 3.0, [
+        new THREE.QuaternionKeyframeTrack('Neck.quaternion', [0, 3.0], [0, 0, 0, 1, 0, 0, 0, 1]),
+        new THREE.QuaternionKeyframeTrack('Head.quaternion', [0, 3.0], [0, 0, 0, 1, 0, 0, 0, 1]),
+      ]);
+      controller.applyLoadedStylizedCompanion({ scene: compGroup, animations: [idleClip] });
+      controller.setReducedMotion(false);
+      controller.updateParallax(0.95, 0.65);
+
+      for (let f = 0; f < 300; f++) {
+        controller.animateTick(1 / 60);
+        expect(Math.abs(headBone.rotation.y)).toBeLessThan(0.25);
+        expect(Math.abs(neckBone.rotation.y)).toBeLessThan(0.20);
+        expect(Math.abs(headBone.rotation.x)).toBeLessThan(0.20);
+      }
+
+      controller.updateParallax(0, 0);
+      controller.setReducedMotion(true);
+      controller.animateTick(1 / 60);
+      expect(Math.abs(headBone.rotation.y)).toBeLessThan(0.02);
+      expect(Math.abs(neckBone.rotation.y)).toBeLessThan(0.02);
+      expect(Math.abs(headBone.rotation.x)).toBeLessThan(0.02);
+
+      controller.dispose();
+    });
   });
 });
 

@@ -62,6 +62,7 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
 }) => {
   const [isPeekingStage, setIsPeekingStage] = useState(false);
   const [lastTriggeredAction, setLastTriggeredAction] = useState<string | null>(null);
+  const [explodedBySection, setExplodedBySection] = useState<Record<string, boolean>>({});
 
   const currentStage =
     STAGE_ACT_MAP[activeSection] ??
@@ -74,6 +75,30 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
 
   const actAccent =
     WHISPER_ACTS.find((a) => a.sectionId === activeSection)?.accentColor ?? '#c8a97e';
+
+  const isExplodeAction = currentStage.actionId === 'explode_strata';
+  const isCurrentExploded = Boolean(explodedBySection[activeSection]);
+  const resolvedGestureLabel = isExplodeAction
+    ? isCurrentExploded
+      ? activeSection === 'ai-solutions'
+        ? 'Collapse Strata'
+        : 'Collapse Core'
+      : currentStage.actionButtonLabel
+    : currentStage.actionButtonLabel;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const onExternalExplode = () => {
+      setExplodedBySection((prev) => ({
+        ...prev,
+        [activeSection]: !prev[activeSection],
+      }));
+    };
+    window.addEventListener('portfolio:explode_strata', onExternalExplode);
+    return () => {
+      window.removeEventListener('portfolio:explode_strata', onExternalExplode);
+    };
+  }, [activeSection]);
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -104,6 +129,12 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
       if (action === 'explode_strata' && !controller) {
         window.dispatchEvent(new CustomEvent('portfolio:explode_strata'));
       }
+    }
+    if (action === 'explode_strata') {
+      setExplodedBySection((prev) => ({
+        ...prev,
+        [activeSection]: !prev[activeSection],
+      }));
     }
     if (activeSection === 'contact') {
       onOpenDispatch?.();
@@ -147,18 +178,23 @@ export const SpatialStageControlDock: React.FC<SpatialStageControlDockProps> = (
         type="button"
         data-testid="trigger-3d-gesture-btn"
         data-cursor="TRIGGER"
+        aria-pressed={isExplodeAction ? isCurrentExploded : undefined}
         onClick={handleTriggerGesture}
         data-last-action={lastTriggeredAction ?? ''}
-        style={{ color: actAccent }}
-        className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-mono uppercase tracking-wider whitespace-nowrap bg-white/[0.05] hover:bg-white/[0.12] border border-white/10 hover:text-[#F4F0EA] transition-all cursor-pointer min-h-[38px] sm:min-h-[40px]"
+        style={{ color: isExplodeAction && isCurrentExploded ? '#14110f' : actAccent, backgroundColor: isExplodeAction && isCurrentExploded ? actAccent : undefined }}
+        className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-mono uppercase tracking-wider whitespace-nowrap border transition-all cursor-pointer min-h-[38px] sm:min-h-[40px] ${
+          isExplodeAction && isCurrentExploded
+            ? 'font-semibold border-transparent shadow-[0_0_16px_rgba(212,180,131,0.35)]'
+            : 'bg-white/[0.05] hover:bg-white/[0.12] border-white/10 hover:text-[#F4F0EA]'
+        }`}
       >
         <span
           aria-hidden="true"
           className="w-1.5 h-1.5 rounded-full shrink-0"
-          style={{ backgroundColor: actAccent }}
+          style={{ backgroundColor: isExplodeAction && isCurrentExploded ? '#14110f' : actAccent }}
         />
         <Layers className="w-3.5 h-3.5 shrink-0" />
-        <span>{currentStage.actionButtonLabel}</span>
+        <span>{resolvedGestureLabel}</span>
       </button>
     </aside>
   );

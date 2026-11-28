@@ -151,6 +151,13 @@ export class SceneController {
   private companionLastAppliedRelaxWeight: number = 0;
   private companionIdleRelaxWeight: number = 0;
   private companionRelaxScratchQuat: THREE.Quaternion = new THREE.Quaternion();
+  private companionNeckGazeInvQuat: THREE.Quaternion = new THREE.Quaternion();
+  private companionHeadGazeInvQuat: THREE.Quaternion = new THREE.Quaternion();
+  private companionGazeScratchQuat: THREE.Quaternion = new THREE.Quaternion();
+  private companionGazeScratchEuler: THREE.Euler = new THREE.Euler(0, 0, 0, 'YXZ');
+  private companionHasAppliedGaze: boolean = false;
+  private companionGazeYaw: number = 0;
+  private companionGazePitch: number = 0;
   private companionEyelidMesh: THREE.Mesh | null = null;
   private companionYawOffset: number = -0.18;
   private contactShadowTex: THREE.CanvasTexture | null = null;
@@ -2486,6 +2493,11 @@ export class SceneController {
     this.companionArmRelaxQuats = null;
     this.companionLastAppliedRelaxWeight = 0;
     this.companionIdleRelaxWeight = 0;
+    this.companionHasAppliedGaze = false;
+    this.companionGazeYaw = 0;
+    this.companionGazePitch = 0;
+    this.companionNeckGazeInvQuat.identity();
+    this.companionHeadGazeInvQuat.identity();
     this.companionEyelidMesh = null;
 
     if (this.companionModel) {
@@ -2823,6 +2835,39 @@ export class SceneController {
     this.companionLastAppliedRelaxWeight = clamped;
   }
 
+  private clearCompanionHeadGaze(): void {
+    if (!this.companionHasAppliedGaze) return;
+    if (this.companionNeckBone) {
+      this.companionNeckBone.quaternion.multiply(this.companionNeckGazeInvQuat).normalize();
+    }
+    if (this.companionHeadBone) {
+      this.companionHeadBone.quaternion.multiply(this.companionHeadGazeInvQuat).normalize();
+    }
+    this.companionNeckGazeInvQuat.identity();
+    this.companionHeadGazeInvQuat.identity();
+    this.companionHasAppliedGaze = false;
+  }
+
+  private applyCompanionHeadGaze(yawRad: number, pitchRad: number): void {
+    this.clearCompanionHeadGaze();
+    if (Math.abs(yawRad) <= 1e-5 && Math.abs(pitchRad) <= 1e-5) {
+      return;
+    }
+    if (this.companionNeckBone) {
+      this.companionGazeScratchEuler.set(pitchRad * 0.25, yawRad * 0.35, 0, 'YXZ');
+      this.companionGazeScratchQuat.setFromEuler(this.companionGazeScratchEuler);
+      this.companionNeckBone.quaternion.multiply(this.companionGazeScratchQuat).normalize();
+      this.companionNeckGazeInvQuat.copy(this.companionGazeScratchQuat).invert();
+    }
+    if (this.companionHeadBone) {
+      this.companionGazeScratchEuler.set(pitchRad * 0.75, yawRad * 0.65, 0, 'YXZ');
+      this.companionGazeScratchQuat.setFromEuler(this.companionGazeScratchEuler);
+      this.companionHeadBone.quaternion.multiply(this.companionGazeScratchQuat).normalize();
+      this.companionHeadGazeInvQuat.copy(this.companionGazeScratchQuat).invert();
+    }
+    this.companionHasAppliedGaze = true;
+  }
+
   private updateStylizedCompanion(
     safeDelta: number,
     stIdx: number,
@@ -2879,6 +2924,7 @@ export class SceneController {
 
     if (action) {
       this.applyCompanionIdleArmRelaxation(0);
+      this.clearCompanionHeadGaze();
       const resolvedName = action.getClip().name;
       if (this.isReducedMotion) {
         if (this.companionActiveClip !== resolvedName || !action.isRunning()) {
@@ -2935,16 +2981,21 @@ export class SceneController {
       }
 
       const gazeBlend = 1.0 - turnWeight;
-      if (!this.isReducedMotion && gazeBlend > 0.001) {
-        const gazeYaw = THREE.MathUtils.clamp(this.mouseParallax.x * 0.12, -0.14, 0.14) * gazeBlend;
-        const gazePitch = THREE.MathUtils.clamp(-this.mouseParallax.y * 0.06, -0.06, 0.06) * gazeBlend;
-        if (this.companionNeckBone) {
-          this.companionNeckBone.rotation.y += gazeYaw * 0.35;
-        }
-        if (this.companionHeadBone) {
-          this.companionHeadBone.rotation.y += gazeYaw * 0.65;
-          this.companionHeadBone.rotation.x += gazePitch;
-        }
+      const targetGazeYaw =
+        !this.isReducedMotion && gazeBlend > 0.001
+          ? THREE.MathUtils.clamp(this.mouseParallax.x * 0.14, -0.16, 0.16) * gazeBlend
+          : 0;
+      const targetGazePitch =
+        !this.isReducedMotion && gazeBlend > 0.001
+          ? THREE.MathUtils.clamp(-this.mouseParallax.y * 0.06, -0.07, 0.07) * gazeBlend
+          : 0;
+      if (this.isReducedMotion) {
+        this.companionGazeYaw = 0;
+        this.companionGazePitch = 0;
+      } else {
+        this.companionGazeYaw = THREE.MathUtils.damp(this.companionGazeYaw, targetGazeYaw, 6.0, safeDelta);
+        this.companionGazePitch = THREE.MathUtils.damp(this.companionGazePitch, targetGazePitch, 6.0, safeDelta);
+        this.applyCompanionHeadGaze(this.companionGazeYaw, this.companionGazePitch);
       }
     }
 
@@ -3782,6 +3833,11 @@ export class SceneController {
     this.companionArmRelaxQuats = null;
     this.companionLastAppliedRelaxWeight = 0;
     this.companionIdleRelaxWeight = 0;
+    this.companionHasAppliedGaze = false;
+    this.companionGazeYaw = 0;
+    this.companionGazePitch = 0;
+    this.companionNeckGazeInvQuat.identity();
+    this.companionHeadGazeInvQuat.identity();
     this.companionEyelidMesh = null;
     this.companionModel = null;
     if (this.contactShadowTex) {

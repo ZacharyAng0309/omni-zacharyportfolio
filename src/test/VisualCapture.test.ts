@@ -1083,7 +1083,7 @@ async function verifyRealScreenViaCDP(browserPath: string, targetUrl: string, ou
         await waitRaf(6);
         const sheet = document.querySelector('[data-testid="slide-over-inspection-sheet"]')?.getBoundingClientRect();
         const hudWhenOpen = document.querySelector('[data-testid="whisper-stage-hud"]');
-        const sheetHidesWhisperHud = Boolean(hudWhenOpen?.className.includes('max-sm:opacity-0'));
+        const sheetHidesWhisperHud = Boolean(hudWhenOpen?.className.includes('max-lg:opacity-0'));
         const hamburger = document.querySelector('button[aria-label="Open Navigation Menu"]');
         let backdropCoversSheet = false;
         let backdropCoversDock = false;
