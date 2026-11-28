@@ -4,6 +4,7 @@ import {
   createGltfLoader,
   resolveAssetUrl,
 } from '../core/gltfLoader';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface Act4SummitOptions {
   scene: THREE.Scene;
@@ -441,10 +442,10 @@ export class Act4Summit {
   public ensureLoaded(): void {
     if (this.hasRequestedLoad || typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
-    this.loadSummitGLB('/models/props/act4_summit.glb').catch(() => {});
+    this.loadSummitGLB(assetUrl('models/props/act4_summit.glb')).catch(() => {});
   }
 
-  public async loadSummitGLB(url: string = '/models/props/act4_summit.glb'): Promise<void> {
+  public async loadSummitGLB(url: string = assetUrl('models/props/act4_summit.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
     try {

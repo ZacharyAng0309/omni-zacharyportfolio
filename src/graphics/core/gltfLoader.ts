@@ -1,8 +1,11 @@
 import * as THREE from 'three';
 import type { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { assetUrl } from '../../utils/assetUrl';
 
 /**
- * Resolves relative asset paths cleanly against browser or headless JSDOM origins.
+ * Resolves relative asset paths cleanly against Vite's `BASE_URL` and the active
+ * document/window URL so project-subpath hosts (e.g. GitHub Pages `/repo/`) never
+ * strip the subpath or emit root-absolute `/...` requests.
  */
 export function resolveAssetUrl(url: string): string {
   if (
@@ -13,13 +16,24 @@ export function resolveAssetUrl(url: string): string {
   ) {
     return url;
   }
-  const origin =
-    typeof window !== 'undefined' &&
-    window.location?.origin &&
-    window.location.origin !== 'null'
-      ? window.location.origin
-      : 'http://localhost:3000';
-  return url.startsWith('/') ? `${origin}${url}` : `${origin}/${url}`;
+  const basePath = assetUrl(url);
+  const docBase =
+    typeof document !== 'undefined' &&
+    document.baseURI &&
+    /^https?:/i.test(document.baseURI)
+      ? document.baseURI
+      : typeof window !== 'undefined' &&
+          window.location?.href &&
+          /^https?:/i.test(window.location.href)
+        ? window.location.href
+        : 'http://localhost:3000/';
+  try {
+    return new URL(basePath, docBase).href;
+  } catch {
+    return basePath.startsWith('/')
+      ? `http://localhost:3000${basePath}`
+      : `http://localhost:3000/${basePath}`;
+  }
 }
 
 /**

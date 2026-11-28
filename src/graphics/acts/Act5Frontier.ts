@@ -4,6 +4,7 @@ import {
   createGltfLoader,
   resolveAssetUrl,
 } from '../core/gltfLoader';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface Act5FrontierOptions {
   scene: THREE.Scene;
@@ -454,10 +455,10 @@ export class Act5Frontier {
   public ensureLoaded(): void {
     if (this.hasRequestedLoad || typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
-    this.loadFrontierGLB('/models/props/act5_frontier.glb').catch(() => {});
+    this.loadFrontierGLB(assetUrl('models/props/act5_frontier.glb')).catch(() => {});
   }
 
-  public async loadFrontierGLB(url: string = '/models/props/act5_frontier.glb'): Promise<void> {
+  public async loadFrontierGLB(url: string = assetUrl('models/props/act5_frontier.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
     try {

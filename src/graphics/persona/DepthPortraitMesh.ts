@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface DepthPortraitMeshOptions {
   width?: number;
@@ -91,7 +92,7 @@ export class DepthPortraitMesh {
   constructor(options: DepthPortraitMeshOptions = {}) {
     const width = options.width ?? 1.8;
     const height = options.height ?? 2.4;
-    this.texturePath = options.texturePath ?? '/images/zachary_editorial_portrait.webp';
+    this.texturePath = options.texturePath ?? assetUrl('images/zachary_editorial_portrait.webp');
     const parallaxScale = options.parallaxScale ?? 0.038;
 
     const geometry = new THREE.PlaneGeometry(width, height, 32, 32);

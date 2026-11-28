@@ -4,6 +4,7 @@ import {
   createGltfLoader,
   resolveAssetUrl,
 } from '../core/gltfLoader';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface Act3CrucibleOptions {
   scene: THREE.Scene;
@@ -416,10 +417,10 @@ export class Act3Crucible {
   public ensureLoaded(): void {
     if (this.hasRequestedLoad || typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
-    this.loadCrucibleGLB('/models/props/act3_crucible.glb').catch(() => {});
+    this.loadCrucibleGLB(assetUrl('models/props/act3_crucible.glb')).catch(() => {});
   }
 
-  public async loadCrucibleGLB(url: string = '/models/props/act3_crucible.glb'): Promise<void> {
+  public async loadCrucibleGLB(url: string = assetUrl('models/props/act3_crucible.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
     try {

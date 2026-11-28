@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { assetUrl } from '../utils/assetUrl';
 import {
   X,
   Trophy,
@@ -364,7 +365,7 @@ export const SlideOverInspectionSheet: React.FC<SlideOverInspectionSheetProps> =
           >
             <div className="relative w-[104px] h-[138px] flex-shrink-0 rounded-2xl overflow-hidden border border-[#d4b483]/35 bg-[#0e0d10] shadow-[0_12px_32px_rgba(0,0,0,0.6)]">
               <img
-                src="/images/zachary_editorial_portrait.webp"
+                src={assetUrl('images/zachary_editorial_portrait.webp')}
                 alt="Ang Zi Yang (Zachary) — Executive Studio Portrait"
                 data-testid="executive-editorial-portrait"
                 width={104}

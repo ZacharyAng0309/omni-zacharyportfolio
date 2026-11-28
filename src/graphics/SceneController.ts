@@ -12,7 +12,8 @@ import { Act4Summit } from './acts/Act4Summit';
 import { Act5Frontier } from './acts/Act5Frontier';
 import { Act6HorizonGateway } from './acts/Act6HorizonGateway';
 import { getCanonicalStationProgress as resolveCanonicalStationProgress } from './core/stationProgress';
-import { createGltfLoader } from './core/gltfLoader';
+import { createGltfLoader, resolveAssetUrl } from './core/gltfLoader';
+import { assetUrl } from '../utils/assetUrl';
 import { SCAN_MATERIAL } from '../domain/contracts';
 
 export interface SceneControllerCallbacks {
@@ -815,7 +816,7 @@ export class SceneController {
 
     // 8. Initialize 2.5D POM Holographic Portrait Mesh (lazy-loaded on demand)
     this.depthPortrait = new DepthPortraitMesh({
-      texturePath: '/images/zachary_editorial_portrait.webp',
+      texturePath: assetUrl('images/zachary_editorial_portrait.webp'),
       lazy: true,
     });
 
@@ -837,10 +838,10 @@ export class SceneController {
       window.__sceneController = this;
       window.THREE = THREE;
       if (this.renderHumanoidOnStage) {
-        this.loadGLTFModel('/models/zachary_character.glb').catch(() => {});
+        this.loadGLTFModel(assetUrl('models/zachary_character.glb')).catch(() => {});
       }
       if (this.renderStylizedCompanionOnStage) {
-        this.loadStylizedCompanion('/models/zachary_companion.glb').catch(() => {});
+        this.loadStylizedCompanion(assetUrl('models/zachary_companion.glb')).catch(() => {});
       }
     }
 
@@ -2398,25 +2399,11 @@ export class SceneController {
     this.bumpReducedMotionSettleFrames(40);
   }
 
-  public async loadGLTFModel(url: string = '/models/zachary_character.glb'): Promise<void> {
+  public async loadGLTFModel(url: string = assetUrl('models/zachary_character.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     try {
-      // Resolve base URL for Node/JSDOM environments to avoid "Failed to parse URL" stderr noise
-      let resolvedUrl = url;
-      if (
-        !url.startsWith('http://') &&
-        !url.startsWith('https://') &&
-        !url.startsWith('data:') &&
-        !url.startsWith('blob:')
-      ) {
-        const origin =
-          typeof window !== 'undefined' &&
-          window.location?.origin &&
-          window.location.origin !== 'null'
-            ? window.location.origin
-            : 'http://localhost:3000';
-        resolvedUrl = url.startsWith('/') ? `${origin}${url}` : `${origin}/${url}`;
-      }
+      // Resolve base URL against BASE_URL + document.baseURI so subpath hosts (e.g. GitHub Pages) never 404
+      const resolvedUrl = resolveAssetUrl(url);
 
       const loader = await createGltfLoader();
       loader.load(
@@ -2743,24 +2730,10 @@ export class SceneController {
     this.bumpReducedMotionSettleFrames(40);
   }
 
-  public async loadStylizedCompanion(url: string = '/models/zachary_companion.glb'): Promise<void> {
+  public async loadStylizedCompanion(url: string = assetUrl('models/zachary_companion.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     try {
-      let resolvedUrl = url;
-      if (
-        !url.startsWith('http://') &&
-        !url.startsWith('https://') &&
-        !url.startsWith('data:') &&
-        !url.startsWith('blob:')
-      ) {
-        const origin =
-          typeof window !== 'undefined' &&
-          window.location?.origin &&
-          window.location.origin !== 'null'
-            ? window.location.origin
-            : 'http://localhost:3000';
-        resolvedUrl = url.startsWith('/') ? `${origin}${url}` : `${origin}/${url}`;
-      }
+      const resolvedUrl = resolveAssetUrl(url);
 
       const loader = await createGltfLoader();
       loader.load(

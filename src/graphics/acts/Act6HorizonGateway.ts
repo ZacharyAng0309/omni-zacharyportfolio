@@ -4,6 +4,7 @@ import {
   createGltfLoader,
   resolveAssetUrl,
 } from '../core/gltfLoader';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface Act6HorizonGatewayOptions {
   scene: THREE.Scene;
@@ -294,10 +295,10 @@ export class Act6HorizonGateway {
   public ensureLoaded(): void {
     if (this.hasRequestedLoad || typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
-    this.loadHorizonGLB('/models/props/act6_horizon.glb').catch(() => {});
+    this.loadHorizonGLB(assetUrl('models/props/act6_horizon.glb')).catch(() => {});
   }
 
-  public async loadHorizonGLB(url: string = '/models/props/act6_horizon.glb'): Promise<void> {
+  public async loadHorizonGLB(url: string = assetUrl('models/props/act6_horizon.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
     try {

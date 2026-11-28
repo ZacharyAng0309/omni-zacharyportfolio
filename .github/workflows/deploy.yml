@@ -22,11 +22,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Pull shipped public GLB binaries from Git LFS
+        run: |
+          git lfs pull --include="public/**" --exclude="artifacts/**"
+          node - << 'EOF'
+          const fs = require('node:fs');
+          const required = [
+            'public/models/zachary_companion.glb',
+            'public/models/props/act1_studio.glb',
+            'public/models/props/act2_academy.glb',
+            'public/models/props/act3_crucible.glb',
+            'public/models/props/act4_summit.glb',
+            'public/models/props/act5_frontier.glb',
+            'public/models/props/act6_horizon.glb',
+          ];
+          for (const p of required) {
+            const b = fs.readFileSync(p);
+            if (b.toString('ascii', 0, 4) !== 'glTF') {
+              throw new Error(`LFS pointer not hydrated: ${p}`);
+            }
+            console.log(`Verified glTF binary: ${p} (${b.length} bytes)`);
+          }
+          EOF
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'npm'
 
       - name: Install dependencies
@@ -34,6 +59,39 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Verify shipped GitHub Pages bundle & subpath URLs
+        run: |
+          node - << 'EOF'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const requiredDistGlbs = [
+            'dist/models/zachary_companion.glb',
+            'dist/models/props/act1_studio.glb',
+            'dist/models/props/act2_academy.glb',
+            'dist/models/props/act3_crucible.glb',
+            'dist/models/props/act4_summit.glb',
+            'dist/models/props/act5_frontier.glb',
+            'dist/models/props/act6_horizon.glb',
+          ];
+          for (const p of requiredDistGlbs) {
+            const b = fs.readFileSync(p);
+            if (b.toString('ascii', 0, 4) !== 'glTF') {
+              throw new Error(`Invalid glTF binary in dist: ${p}`);
+            }
+          }
+          if (!fs.existsSync('dist/images/zachary_editorial_portrait.webp')) {
+            throw new Error('Missing dist/images/zachary_editorial_portrait.webp');
+          }
+          for (const f of fs.readdirSync('dist/assets')) {
+            if (!f.endsWith('.js')) continue;
+            const s = fs.readFileSync(path.join('dist/assets', f), 'utf8');
+            if (/["'`]\/(?:models|images)\//.test(s)) {
+              throw new Error(`Root-absolute asset URL found in dist/assets/${f}`);
+            }
+          }
+          console.log('Verified dist GLBs, portrait image, and subpath-safe asset URLs');
+          EOF
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

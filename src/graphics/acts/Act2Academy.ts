@@ -4,6 +4,7 @@ import {
   createGltfLoader,
   resolveAssetUrl,
 } from '../core/gltfLoader';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface Act2AcademyOptions {
   scene: THREE.Scene;
@@ -304,10 +305,10 @@ export class Act2Academy {
   public ensureLoaded(): void {
     if (this.hasRequestedLoad || typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
-    this.loadAcademyGLB('/models/props/act2_academy.glb').catch(() => {});
+    this.loadAcademyGLB(assetUrl('models/props/act2_academy.glb')).catch(() => {});
   }
 
-  public async loadAcademyGLB(url: string = '/models/props/act2_academy.glb'): Promise<void> {
+  public async loadAcademyGLB(url: string = assetUrl('models/props/act2_academy.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     this.hasRequestedLoad = true;
     try {

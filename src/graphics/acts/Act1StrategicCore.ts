@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createGltfLoader, resolveAssetUrl } from '../core/gltfLoader';
+import { assetUrl } from '../../utils/assetUrl';
 
 export interface Act1StrategicCoreOptions {
   avatarRig: THREE.Group;
@@ -658,7 +659,7 @@ export class Act1StrategicCore {
     );
 
     if (typeof window !== 'undefined') {
-      this.loadStudioGLB('/models/props/act1_studio.glb').catch(() => {});
+      this.loadStudioGLB(assetUrl('models/props/act1_studio.glb')).catch(() => {});
     }
   }
 
@@ -730,7 +731,7 @@ export class Act1StrategicCore {
     });
   }
 
-  public async loadStudioGLB(url: string = '/models/props/act1_studio.glb'): Promise<void> {
+  public async loadStudioGLB(url: string = assetUrl('models/props/act1_studio.glb')): Promise<void> {
     if (typeof window === 'undefined') return;
     try {
       const resolvedUrl = resolveAssetUrl(url);

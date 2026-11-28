@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowDown, ExternalLink, Award, Sparkles, UserCheck } from 'lucide-react';
 import { ModalInspectionDrawer } from './ModalInspectionDrawer';
+import { assetUrl } from '../utils/assetUrl';
 
 export interface HeroSectionProps {
   onExploreCaseStudies?: () => void;
@@ -434,7 +435,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="relative rounded-3xl p-3 sm:p-4 apple-glass border border-white/15 shadow-2xl backdrop-blur-2xl">
               <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-900 border border-white/10">
                 <img
-                  src="/images/zachary_editorial_portrait.webp"
+                  src={assetUrl('images/zachary_editorial_portrait.webp')}
                   alt="Ang Zi Yang (Zachary) — AI Product Strategist & Solutions Architect"
                   className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700 ease-out"
                   loading="eager"
